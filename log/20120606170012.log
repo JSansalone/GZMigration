@@ -1,0 +1,35 @@
+==============================================================================
+================================ GZ SISTEMAS =================================
+======================== MIGRAÇÃO DE BANCOS DE DADOS =========================
+==============================================================================
+
+[17:00:12] Application started
+[17:03:09] Testing connection with mysql in 127.0.0.1
+[17:03:09] Connection parameters are correct
+[17:03:48] Testing connection with postgreesql in 127.0.0.1
+[17:03:49] Connection parameters are correct
+[17:04:19] New software: mercoflex
+[17:04:19] Old software: mrs
+[17:04:19] Trying to connect to server 127.0.0.1
+[17:04:19] Database type: MySQL
+[17:04:19] Database name: mercodb_mrs
+[17:04:19] Port: 3306
+[17:04:19] Username: root
+[17:04:19] Using password: yes
+[17:04:19] Connected
+[17:04:19] Trying to connect to server 127.0.0.1
+[17:04:19] Database type: PostgreeSQL
+[17:04:19] Database name: mrs
+[17:04:19] Port: 5432
+[17:04:19] Username: postgres
+[17:04:19] Using password: yes
+[17:04:19] Connected
+[17:04:19] Trying to count 'fornecedor'
+[17:04:19] Retrieving SQL statement from file 'getFornecedor.txt'
+[17:04:20] Reading file C:\Java\SE Workspace\GZMigration for JET\data\mrs\getfornecedor.txt
+[17:04:21] File 'getFornecedor.txt': Columns situacao not found in SQL statement
+[17:04:21] Showing policy violation message
+[17:05:01] Total number of retrieved rows: 0
+[17:05:01] Append: false
+[17:05:01] Data migration finished
+[17:05:36] Showing about frame

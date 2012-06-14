@@ -1,0 +1,58 @@
+==============================================================================
+================================ GZ SISTEMAS =================================
+======================== MIGRAÇÃO DE BANCOS DE DADOS =========================
+==============================================================================
+
+[13:59:19] Application started
+[14:00:01] Testing connection with mysql in 127.0.0.1
+[14:00:01] Connection parameters are correct
+[14:00:17] Testing connection with postgreesql in 127.0.0.1
+[14:00:17] Connection parameters are correct
+[14:00:18] New software: mercatto
+[14:00:18] Old software: mrs
+[14:00:18] Trying to connect to server 127.0.0.1
+[14:00:18] Database type: MySQL
+[14:00:18] Database name: mercattodb2
+[14:00:18] Port: 3306
+[14:00:18] Username: root
+[14:00:18] Using password: yes
+[14:00:18] Connected
+[14:00:18] Trying to connect to server 127.0.0.1
+[14:00:18] Database type: PostgreeSQL
+[14:00:18] Database name: mrs
+[14:00:18] Port: 5432
+[14:00:18] Username: postgres
+[14:00:18] Using password: yes
+[14:00:18] Connected
+[14:00:18] Trying to count 'produto'
+[14:00:18] Retrieving SQL statement from file 'getProduto.txt'
+[14:00:18] Reading file C:\Java\SE Workspace\GZMigration for JET\data\mrs\getproduto.txt
+[14:00:18] File 'getProduto.txt': Columns 
+
+
+1 as codigo_tributacao, 
+1 as aliquota_cofins, 
+1 as aliquota_pis, 
+1 as aliquota_icms, 
+1 as codigo_grupo, 
+1 as codigo_subgrupo, 
+1 as codigo_subsubgrupo, 
+1 as codigo_ativo, 
+1 as qtde_estoque_minimo, 
+1 as qtde_estoque_maximo, 
+1 as qtde_atual, 
+1 as codigo_ncm,
+1 as porcentagem_lucro, 
+'2011-01-01' as data_cadastro,
+
+
+[14:00:18] Showing policy violation message
+[14:00:40] Trying to count 'grupo'
+[14:00:40] Retrieving SQL statement from file 'getGrupo.txt'
+[14:00:40] Reading file C:\Java\SE Workspace\GZMigration for JET\data\mrs\getgrupo.txt
+[14:00:40] Total number of retrieved rows: 4
+[14:00:40] Append: false
+[14:00:40] Deleting 'grupo'
+[14:00:40] Inserting 'grupo'
+[14:00:40] Data migration finished
+[14:00:43] Application finished

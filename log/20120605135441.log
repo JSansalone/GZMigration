@@ -1,0 +1,42 @@
+==============================================================================
+================================ GZ SISTEMAS =================================
+======================== MIGRAÇÃO DE BANCOS DE DADOS =========================
+==============================================================================
+
+[13:54:41] Application started
+[13:55:08] Testing connection with mysql in 127.0.0.1
+[13:55:12] Connection parameters are correct
+[13:55:24] Testing connection with postgreesql in 127.0.0.1
+[13:55:25] Connection parameters are correct
+[13:55:30] New software: mercatto
+[13:55:30] Old software: mrs
+[13:55:30] Trying to connect to server 127.0.0.1
+[13:55:30] Database type: MySQL
+[13:55:30] Database name: mercattodb2
+[13:55:30] Port: 3306
+[13:55:30] Username: root
+[13:55:30] Using password: yes
+[13:55:30] Connected
+[13:55:30] Trying to connect to server 127.0.0.1
+[13:55:30] Database type: PostgreeSQL
+[13:55:30] Database name: mrs
+[13:55:30] Port: 5432
+[13:55:30] Username: postgres
+[13:55:30] Using password: yes
+[13:55:30] Connected
+[13:55:30] Trying to count 'produto'
+[13:55:30] Retrieving SQL statement from file 'getProduto.txt'
+[13:55:30] Reading file C:\Java\SE Workspace\GZMigration for JET\data\mrs\getproduto.txt
+[13:55:30] Showing syntax error message
+[13:55:35] Syntax error on execute SQL statement
+[13:55:35] ERRO: erro de sintaxe em ou próximo a "from"
+  Posição: 462
+[13:55:35] Trying to count 'grupo'
+[13:55:35] Retrieving SQL statement from file 'getGrupo.txt'
+[13:55:35] Reading file C:\Java\SE Workspace\GZMigration for JET\data\mrs\getgrupo.txt
+[13:55:36] Total number of retrieved rows: 4
+[13:55:36] Append: false
+[13:55:36] Deleting 'grupo'
+[13:55:36] Inserting 'grupo'
+[13:55:36] Data migration finished
+[13:56:22] Application finished

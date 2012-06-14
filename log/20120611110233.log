@@ -1,0 +1,14 @@
+==============================================================================
+================================ GZ SISTEMAS =================================
+======================== MIGRAÇÃO DE BANCOS DE DADOS =========================
+==============================================================================
+
+[11:02:33] Application started
+[11:03:27] Showing about frame
+[11:06:56] Testing connection with mysql in 127.0.0.1
+[11:06:57] Connection parameters are correct
+[11:07:01] Testing connection with mysql in 127.0.0.1
+[11:07:01] Access denied for user 'root'@'localhost' (using password: YES)
+[11:07:01] Connection failed
+[11:07:09] Testing connection with mysql in 127.0.0.1
+[11:07:09] Connection parameters are correct
