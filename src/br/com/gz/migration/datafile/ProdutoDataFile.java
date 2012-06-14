@@ -14,6 +14,8 @@ import br.com.gz.util.MercoFlexFormat;
 public class ProdutoDataFile extends DataFile {
 
 	private static ProdutoDataFile instance;
+	
+	private int currentIndex = 0;
 
 	private ProdutoDataFile() throws IOException,
 			InvalidMigrationDataTypeException {
@@ -70,12 +72,6 @@ public class ProdutoDataFile extends DataFile {
 		
 		while((r = dataSheet.getRow(i+1)) != null){
 			
-			String aux;
-			
-			try{aux = new Double(r.getCell(0).getNumericCellValue()).toString();}catch(Exception e){aux = format.toNumeric(r.getCell(0).getStringCellValue(),false);}
-			
-			if(aux.equals("") || new Integer(aux) <= 0)
-			
 			System.out.println(r.getCell(0).getNumericCellValue());i++;
 			
 		}
@@ -98,13 +94,24 @@ public class ProdutoDataFile extends DataFile {
 
 	@Override
 	public boolean hasNext() {
-		// John Auto-generated method stub
-		return false;
+		
+		try{
+			
+			double d = dataSheet.getRow(currentIndex+1).getCell(0).getNumericCellValue();
+			
+			if(d > 0) return true;
+			else return false;
+		
+		}catch(NullPointerException e){
+			
+			return false;
+			
+		}
+		
 	}
 
 	@Override
 	public Object next() {
-		// johnny Auto-generated method stub
 		return null;
 	}
 
