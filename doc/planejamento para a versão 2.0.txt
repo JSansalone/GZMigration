@@ -9,8 +9,8 @@ Objetivos:
 	específico de arquivos .xls onde nos quais os dados deverão estar.
 
 Implementações e correções:
-	
-	- br.com.gz.migration.GZMigration:
+
+	- br.com.gz.migration.GZMigration: 
 	Remover variáveis:
 		private CurrentSoftwarePanel currentSoftwarePanel;
 	Alterar valor da constante limitIndex para 7;
