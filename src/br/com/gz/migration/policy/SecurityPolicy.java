@@ -1,4 +1,4 @@
-package br.com.gz.migration.sql;
+package br.com.gz.migration.policy;
 
 public class SecurityPolicy {
 

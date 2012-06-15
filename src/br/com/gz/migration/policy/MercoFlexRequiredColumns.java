@@ -1,4 +1,4 @@
-package br.com.gz.migration.sql;
+package br.com.gz.migration.policy;
 
 import java.util.ArrayList;
 import java.util.Collections;

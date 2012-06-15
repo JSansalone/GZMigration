@@ -1,4 +1,4 @@
-package br.com.gz.migration.sql;
+package br.com.gz.migration.policy;
 
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
