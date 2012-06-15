@@ -2,10 +2,13 @@ package br.com.gz.migration.datafile;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.ss.usermodel.CellStyle;
 
 import br.com.gz.migration.EnMigrationDataType;
 import br.com.gz.migration.exception.InvalidMigrationDataTypeException;
@@ -70,15 +73,31 @@ public class ProdutoDataFile extends DataFile {
 		
 		MercoFlexFormat format = new MercoFlexFormat();
 		
-		while((r = dataSheet.getRow(i+1)) != null){
+	//	while((r = dataSheet.getRow(i+1)) != null){
 			
-			System.out.println(r.getCell(0).getNumericCellValue());i++;
+		//	System.out.println(r.getCell(0).getNumericCellValue());i++;
 			
-		}
+	//	}
+		
+		HSSFCellStyle style = (r = dataSheet.getRow(1)).getCell(0).getCellStyle();
 
-		return i;
+		return inserirFuncaoCountA(dataSheet, 1, style, 0, 4, "1");
 
 	}
+	
+	private int inserirFuncaoCountA(HSSFSheet sheet, int indexLinha, HSSFCellStyle style, int primeiraCelula, int ultimaCelula, String titulo) {  
+	    indexLinha++;  
+	    HSSFCell cell;  
+	    cell = sheet.createRow(indexLinha).createCell((short) 1);  
+	    cell.setCellValue(new HSSFRichTextString(titulo) );  
+	    cell.setCellStyle(style);  
+	    sheet.autoSizeColumn((short)(2));  
+	    cell = sheet.createRow(indexLinha).createCell((short) 2);  
+	    cell.setCellFormula("countA(A"+(primeiraCelula+1)+":A"+(ultimaCelula+1)+")");  
+	    cell.setCellStyle(style);  
+	    indexLinha++;  
+	    return new Integer(new Double(cell.getNumericCellValue()).toString());  
+	} 
 
 	@Override
 	public void moveToFirst() {
