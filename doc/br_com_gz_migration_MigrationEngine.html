@@ -1,0 +1,531 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   </head>
+   <body>
+      <table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%">
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr>
+      </table>
+      <hr>
+      <h2><font size="-1">br.com.gz.migration</font></h2><span style="font-size:large; font-weight:bold">Class&nbsp;</span><span style="font-size:large; font-weight:bold">MigrationEngine</span><br><br> <b>MigrationEngine</b><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Field Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#98">migrationType</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_IFinalizeMigration.html">IFinalizeMigration</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#99">iFinalize</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_panelSteps_IMigrationInfo.html">IMigrationInfo</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#100">iInfo</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_IMigrationType.html">IMigrationType</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#101">iType</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_SQLDataProvider.html">SQLDataProvider</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#102">myDAO</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#103">myCfgTo</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#104">myCfgFrom</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.Connection</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#105">cnnTo</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.Connection</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#106">cnnFrom</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#107">totalData</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#108">totalProduto</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#109">totalProdutoInicio</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#110">totalProdutoFinal</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#111">totalDepartamento</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#112">totalGrupo</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#113">totalMarca</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#114">totalArmacao</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#115">totalCliente</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#116">totalFornecedor</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#117">totalLoja</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#118">totalNFEntrada</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#119">totalNFEntradaItem</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#120">totalNFSaida</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#121">totalNFSaidaItem</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#122">totalContaPagar</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#123">totalContaReceber</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#124">totalMovtoVenda</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#125">toAppend</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#126">useProduto</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#127">useGrupo</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#128">useDepartamento</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#129">useMarca</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#130">useArmacao</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#131">useLoja</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#132">useCliente</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#133">useFornecedor</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#134">useNFEntrada</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#135">useNFSaida</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#136">useContaPagar</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#137">useContaReceber</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#138">useMovtoVenda</a></code><br> &nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Constructor Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#140">MigrationEngine</a>(java.util.ArrayList migrationType, <a href="br_com_gz_migration_IFinalizeMigration.html">IFinalizeMigration</a> iFinalize, <a href="br_com_gz_migration_panelSteps_IMigrationInfo.html">IMigrationInfo</a> iInfo, <a href="br_com_gz_migration_IMigrationType.html">IMigrationType</a> iType, <a href="br_com_gz_migration_SQLDataProvider.html">SQLDataProvider</a> myDAO, <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> cfgTo, <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> cfgFrom)</code><br> &nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Method Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#142">run</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#143">getCountProdutos</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#144">getCountClientes</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#145">getCountFornecedores</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#146">getCountMarca</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#147">getCountDepartamento</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#148">getCountGrupo</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#149">getCountArmacao</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#150">getCountLoja</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#151">countCurrentProduto</a>(java.sql.Connection cnn, <a href="br_com_gz_migration_EnSoftware.html">EnSoftware</a> software, java.lang.String table)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#152">getMaxLoja</a>(java.sql.Connection cnn, <a href="br_com_gz_migration_EnSoftware.html">EnSoftware</a> software)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#153">clear</a>(java.sql.Connection cnn, java.lang.String table)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#154">showErrorMessage</a>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> type)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#155">showPolicyViolationMessage</a>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> type, java.util.ArrayList columnsNeeded)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#156">showSecurityViolationMessage</a>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> type)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#157">showSyntaxErrorMessage</a>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> type)</code><br> &nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Field Detail</span></td>
+      </tr></table><a name="98"><span style="font-size:larger">migrationType</span></a><br><br><pre>private java.util.ArrayList <b>migrationType</b></pre><br><dl></dl><br><hr><a name="99"><span style="font-size:larger">iFinalize</span></a><br><br><pre>private <a href="br_com_gz_migration_IFinalizeMigration.html">IFinalizeMigration</a> <b>iFinalize</b></pre><br><dl></dl><br><hr><a name="100"><span style="font-size:larger">iInfo</span></a><br><br><pre>private <a href="br_com_gz_migration_panelSteps_IMigrationInfo.html">IMigrationInfo</a> <b>iInfo</b></pre><br><dl></dl><br><hr><a name="101"><span style="font-size:larger">iType</span></a><br><br><pre>private <a href="br_com_gz_migration_IMigrationType.html">IMigrationType</a> <b>iType</b></pre><br><dl></dl><br><hr><a name="102"><span style="font-size:larger">myDAO</span></a><br><br><pre>private <a href="br_com_gz_migration_SQLDataProvider.html">SQLDataProvider</a> <b>myDAO</b></pre><br><dl></dl><br><hr><a name="103"><span style="font-size:larger">myCfgTo</span></a><br><br><pre>private <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> <b>myCfgTo</b></pre><br><dl></dl><br><hr><a name="104"><span style="font-size:larger">myCfgFrom</span></a><br><br><pre>private <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> <b>myCfgFrom</b></pre><br><dl></dl><br><hr><a name="105"><span style="font-size:larger">cnnTo</span></a><br><br><pre>private java.sql.Connection <b>cnnTo</b></pre><br><dl></dl><br><hr><a name="106"><span style="font-size:larger">cnnFrom</span></a><br><br><pre>private java.sql.Connection <b>cnnFrom</b></pre><br><dl></dl><br><hr><a name="107"><span style="font-size:larger">totalData</span></a><br><br><pre>private int <b>totalData</b></pre><br><dl></dl><br><hr><a name="108"><span style="font-size:larger">totalProduto</span></a><br><br><pre>private int <b>totalProduto</b></pre><br><dl></dl><br><hr><a name="109"><span style="font-size:larger">totalProdutoInicio</span></a><br><br><pre>private int <b>totalProdutoInicio</b></pre><br><dl></dl><br><hr><a name="110"><span style="font-size:larger">totalProdutoFinal</span></a><br><br><pre>private int <b>totalProdutoFinal</b></pre><br><dl></dl><br><hr><a name="111"><span style="font-size:larger">totalDepartamento</span></a><br><br><pre>private int <b>totalDepartamento</b></pre><br><dl></dl><br><hr><a name="112"><span style="font-size:larger">totalGrupo</span></a><br><br><pre>private int <b>totalGrupo</b></pre><br><dl></dl><br><hr><a name="113"><span style="font-size:larger">totalMarca</span></a><br><br><pre>private int <b>totalMarca</b></pre><br><dl></dl><br><hr><a name="114"><span style="font-size:larger">totalArmacao</span></a><br><br><pre>private int <b>totalArmacao</b></pre><br><dl></dl><br><hr><a name="115"><span style="font-size:larger">totalCliente</span></a><br><br><pre>private int <b>totalCliente</b></pre><br><dl></dl><br><hr><a name="116"><span style="font-size:larger">totalFornecedor</span></a><br><br><pre>private int <b>totalFornecedor</b></pre><br><dl></dl><br><hr><a name="117"><span style="font-size:larger">totalLoja</span></a><br><br><pre>private int <b>totalLoja</b></pre><br><dl></dl><br><hr><a name="118"><span style="font-size:larger">totalNFEntrada</span></a><br><br><pre>private int <b>totalNFEntrada</b></pre><br><dl></dl><br><hr><a name="119"><span style="font-size:larger">totalNFEntradaItem</span></a><br><br><pre>private int <b>totalNFEntradaItem</b></pre><br><dl></dl><br><hr><a name="120"><span style="font-size:larger">totalNFSaida</span></a><br><br><pre>private int <b>totalNFSaida</b></pre><br><dl></dl><br><hr><a name="121"><span style="font-size:larger">totalNFSaidaItem</span></a><br><br><pre>private int <b>totalNFSaidaItem</b></pre><br><dl></dl><br><hr><a name="122"><span style="font-size:larger">totalContaPagar</span></a><br><br><pre>private int <b>totalContaPagar</b></pre><br><dl></dl><br><hr><a name="123"><span style="font-size:larger">totalContaReceber</span></a><br><br><pre>private int <b>totalContaReceber</b></pre><br><dl></dl><br><hr><a name="124"><span style="font-size:larger">totalMovtoVenda</span></a><br><br><pre>private int <b>totalMovtoVenda</b></pre><br><dl></dl><br><hr><a name="125"><span style="font-size:larger">toAppend</span></a><br><br><pre>private boolean <b>toAppend</b></pre><br><dl></dl><br><hr><a name="126"><span style="font-size:larger">useProduto</span></a><br><br><pre>private boolean <b>useProduto</b></pre><br><dl></dl><br><hr><a name="127"><span style="font-size:larger">useGrupo</span></a><br><br><pre>private boolean <b>useGrupo</b></pre><br><dl></dl><br><hr><a name="128"><span style="font-size:larger">useDepartamento</span></a><br><br><pre>private boolean <b>useDepartamento</b></pre><br><dl></dl><br><hr><a name="129"><span style="font-size:larger">useMarca</span></a><br><br><pre>private boolean <b>useMarca</b></pre><br><dl></dl><br><hr><a name="130"><span style="font-size:larger">useArmacao</span></a><br><br><pre>private boolean <b>useArmacao</b></pre><br><dl></dl><br><hr><a name="131"><span style="font-size:larger">useLoja</span></a><br><br><pre>private boolean <b>useLoja</b></pre><br><dl></dl><br><hr><a name="132"><span style="font-size:larger">useCliente</span></a><br><br><pre>private boolean <b>useCliente</b></pre><br><dl></dl><br><hr><a name="133"><span style="font-size:larger">useFornecedor</span></a><br><br><pre>private boolean <b>useFornecedor</b></pre><br><dl></dl><br><hr><a name="134"><span style="font-size:larger">useNFEntrada</span></a><br><br><pre>private boolean <b>useNFEntrada</b></pre><br><dl></dl><br><hr><a name="135"><span style="font-size:larger">useNFSaida</span></a><br><br><pre>private boolean <b>useNFSaida</b></pre><br><dl></dl><br><hr><a name="136"><span style="font-size:larger">useContaPagar</span></a><br><br><pre>private boolean <b>useContaPagar</b></pre><br><dl></dl><br><hr><a name="137"><span style="font-size:larger">useContaReceber</span></a><br><br><pre>private boolean <b>useContaReceber</b></pre><br><dl></dl><br><hr><a name="138"><span style="font-size:larger">useMovtoVenda</span></a><br><br><pre>private boolean <b>useMovtoVenda</b></pre><br><dl></dl><br><hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Constructor Detail</span></td>
+      </tr></table><span style="font-size:medium"><a name="140"><span style="font-size:medium">MigrationEngine</span></a></span><br><pre> <b>MigrationEngine</b>(java.util.ArrayList migrationType, <a href="br_com_gz_migration_IFinalizeMigration.html">IFinalizeMigration</a> iFinalize, <a href="br_com_gz_migration_panelSteps_IMigrationInfo.html">IMigrationInfo</a> iInfo, <a href="br_com_gz_migration_IMigrationType.html">IMigrationType</a> iType, <a href="br_com_gz_migration_SQLDataProvider.html">SQLDataProvider</a> myDAO, <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> cfgTo, <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> cfgFrom)</pre><br><dl><br></dl>
+      <hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Method Detail</span></td>
+      </tr></table><a name="142"><span style="font-size:medium">run</span></a><br><br><pre>public void  <b>run</b>()</pre><br><dl><br></dl>
+      <hr><a name="143"><span style="font-size:medium">getCountProdutos</span></a><br><br><pre>public int  <b>getCountProdutos</b>()</pre><br><dl><br></dl>
+      <hr><a name="144"><span style="font-size:medium">getCountClientes</span></a><br><br><pre>public int  <b>getCountClientes</b>()</pre><br><dl><br></dl>
+      <hr><a name="145"><span style="font-size:medium">getCountFornecedores</span></a><br><br><pre>public int  <b>getCountFornecedores</b>()</pre><br><dl><br></dl>
+      <hr><a name="146"><span style="font-size:medium">getCountMarca</span></a><br><br><pre>public int  <b>getCountMarca</b>()</pre><br><dl><br></dl>
+      <hr><a name="147"><span style="font-size:medium">getCountDepartamento</span></a><br><br><pre>public int  <b>getCountDepartamento</b>()</pre><br><dl><br></dl>
+      <hr><a name="148"><span style="font-size:medium">getCountGrupo</span></a><br><br><pre>public int  <b>getCountGrupo</b>()</pre><br><dl><br></dl>
+      <hr><a name="149"><span style="font-size:medium">getCountArmacao</span></a><br><br><pre>public int  <b>getCountArmacao</b>()</pre><br><dl><br></dl>
+      <hr><a name="150"><span style="font-size:medium">getCountLoja</span></a><br><br><pre>public int  <b>getCountLoja</b>()</pre><br><dl><br></dl>
+      <hr><a name="151"><span style="font-size:medium">countCurrentProduto</span></a><br><br><pre>private int  <b>countCurrentProduto</b>(java.sql.Connection cnn, <a href="br_com_gz_migration_EnSoftware.html">EnSoftware</a> software, java.lang.String table)</pre><br><dl><br></dl>
+      <hr><a name="152"><span style="font-size:medium">getMaxLoja</span></a><br><br><pre>private int  <b>getMaxLoja</b>(java.sql.Connection cnn, <a href="br_com_gz_migration_EnSoftware.html">EnSoftware</a> software)</pre><br><dl><br></dl>
+      <hr><a name="153"><span style="font-size:medium">clear</span></a><br><br><pre>private void  <b>clear</b>(java.sql.Connection cnn, java.lang.String table)</pre><br><dl><br></dl>
+      <hr><a name="154"><span style="font-size:medium">showErrorMessage</span></a><br><br><pre>private void  <b>showErrorMessage</b>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> type)</pre><br><dl><br></dl>
+      <hr><a name="155"><span style="font-size:medium">showPolicyViolationMessage</span></a><br><br><pre>private void  <b>showPolicyViolationMessage</b>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> type, java.util.ArrayList columnsNeeded)</pre><br><dl><br></dl>
+      <hr><a name="156"><span style="font-size:medium">showSecurityViolationMessage</span></a><br><br><pre>private void  <b>showSecurityViolationMessage</b>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> type)</pre><br><dl><br></dl>
+      <hr><a name="157"><span style="font-size:medium">showSyntaxErrorMessage</span></a><br><br><pre>private void  <b>showSyntaxErrorMessage</b>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> type)</pre><br><dl><br></dl>
+      <hr><br><br><table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%">
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr>
+      </table>
+      <hr><br><br><center><span style="font-size:xx-small">This documentation has been generated by EclipseUML.</span></center><br></body>
+</html>

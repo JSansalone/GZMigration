@@ -59,8 +59,6 @@ import com.jgoodies.looks.plastic.theme.SkyBluer;
  * 
  * Desenvolvedor responsável: Jonathan Sansalone Pacheco Rolim
  * 
- * 
- * 
  * Descrição básica do aplicativo:
  * 
  * Aplicativo que auxilia a migração de bancos de dados entre softwares de
@@ -70,7 +68,7 @@ import com.jgoodies.looks.plastic.theme.SkyBluer;
  * Bancos de dados:
  * 
  * É habilitado para realizar conexões com os bancos: - Oracle - MySQL -
- * Microsoft SQL Server - Microsoft Access - PostgreSQL - Firebird/Interbase
+ * Microsoft SQL Server
  * 
  */
 public class GZMigration extends JFrame implements IValidateDataProvider,
@@ -117,7 +115,9 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 	// migração
 	private Calendar date;
 
-	// Construtor default
+	/**
+	 * Construtor Default que inicializa as propriedades da janela principal e cria os componentes
+	 */
 	public GZMigration() {
 
 		// Definindo propriedades da janela
@@ -368,6 +368,13 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 
 	}
 
+	/**
+	 * 
+	 * Método que navega entre as etapas da migração. Gerencia a visibilidade dos painéis
+	 * 
+	 * @param index - índice de navegação
+	 * 
+	 */
 	private void browse(int index) {
 
 		switch (index) {
@@ -637,6 +644,14 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 
 	}
 
+	/**
+	 * 
+	 * Método que testa a conexão com o banco de dados
+	 * 
+	 * @param cfg - Objeto com as informações sobre o banco de dados
+	 * @return Retorna true se a conexão foi bem sucedida. False caso contrário
+	 * 
+	 */
 	private boolean testConn(DatabaseConfigurations cfg) {
 
 		LogFile.getInstance().writeInFile(
@@ -675,6 +690,11 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 	}
 
 	// Método que gera o relatório
+	/**
+	 * 
+	 * Método que reúne as informações para gerar o relatório
+	 * 
+	 */
 	private void generateReport() {
 
 		MigrationReportData report = new MigrationReportData();
@@ -832,6 +852,11 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 	// definir qual vai ser a implementação usada para a migração
 	// baseada na escolha do software a ser usado e o software que é usado
 	// atualmente
+	/**
+	 * 
+	 * Método que reúne as informações para criar o motor de migração
+	 * 
+	 */
 	public void setDataProvider() {
 
 		DatabaseType to = newSoftwarePanel.getDatabaseInfo().getDbType();
@@ -876,7 +901,7 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 
 			dataProvider = new SQLDataProviderImpl(software, otherSoftware, to,
 					from);
-			
+
 		}
 
 	}
@@ -887,6 +912,13 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 
 	}
 
+	/**
+	 * 
+	 * Inicia a aplicação
+	 * 
+	 * @param args
+	 * 
+	 */
 	public static void main(String[] args) {
 
 		LogFile.getInstance().writeInFile("Application started");

@@ -1,0 +1,475 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   </head>
+   <body>
+      <table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%"><tbody>
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.software.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr></tbody>
+      </table>
+      <hr>
+      <h2><font size="-1">br.com.gz.migration.software</font></h2><span style="font-size:large; font-weight:bold">Class&nbsp;</span><span style="font-size:large; font-weight:bold">SQLDataProviderImpl</span><br><br>public <b>SQLDataProviderImpl</b><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Field Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#726">stProduto</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#727">stDepartamento</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#728">stGrupo</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#729">stArmacao</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#730">stMarca</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#731">stCliente</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#732">stFornecedor</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#733">stNFEntrada</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#734">stNFSaida</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#735">stContaPagar</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#736">stContaReceber</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.PreparedStatement</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#737">stMovtoVenda</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#738">rsProduto</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#739">rsDepartamento</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#740">rsGrupo</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#741">rsArmacao</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#742">rsMarca</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#743">rsCliente</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#744">rsFornecedor</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#745">rsNFEntrada</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#746">rsNFSaida</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#747">rsContaPagar</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#748">rsContaReceber</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.ResultSet</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#749">rsMovtoVenda</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_policy_ColumnsPolicy.html">ColumnsPolicy</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#750">policy</a></code><br> &nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Constructor Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#752">SQLDataProviderImpl</a>(<a href="br_com_gz_migration_EnSoftware.html">EnSoftware</a> software, <a href="br_com_gz_migration_EnSoftware.html">EnSoftware</a> otherSoftware, org.database.connection.DatabaseType dbTo, org.database.connection.DatabaseType dbFrom)</code><br> &nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Method Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#754">countProduto</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#755">countDepartamento</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#756">countGrupo</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#757">countArmacao</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#758">countMarca</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#759">countCliente</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#760">countLoja</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#761">countFornecedor</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#762">getProduto</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#763">getDepartamento</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#764">getGrupo</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#765">getArmacao</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#766">getMarca</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#767">getCliente</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#768">getLoja</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#769">getFornecedor</a>(java.sql.Connection conn)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#770">getProdutoColumnsNeeded</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#771">getDepartamentoColumnsNeeded</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#772">getGrupoColumnsNeeded</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#773">getArmacaoColumnsNeeded</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#774">getMarcaColumnsNeeded</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#775">getClienteColumnsNeeded</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#776">getLojaColumnsNeeded</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#777">getFornecedorColumnsNeeded</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Field Detail</span></td>
+      </tr></table><a name="726"><span style="font-size:larger">stProduto</span></a><br><br><pre>private java.sql.PreparedStatement <b>stProduto</b></pre><br><dl></dl><br><hr><a name="727"><span style="font-size:larger">stDepartamento</span></a><br><br><pre>private java.sql.PreparedStatement <b>stDepartamento</b></pre><br><dl></dl><br><hr><a name="728"><span style="font-size:larger">stGrupo</span></a><br><br><pre>private java.sql.PreparedStatement <b>stGrupo</b></pre><br><dl></dl><br><hr><a name="729"><span style="font-size:larger">stArmacao</span></a><br><br><pre>private java.sql.PreparedStatement <b>stArmacao</b></pre><br><dl></dl><br><hr><a name="730"><span style="font-size:larger">stMarca</span></a><br><br><pre>private java.sql.PreparedStatement <b>stMarca</b></pre><br><dl></dl><br><hr><a name="731"><span style="font-size:larger">stCliente</span></a><br><br><pre>private java.sql.PreparedStatement <b>stCliente</b></pre><br><dl></dl><br><hr><a name="732"><span style="font-size:larger">stFornecedor</span></a><br><br><pre>private java.sql.PreparedStatement <b>stFornecedor</b></pre><br><dl></dl><br><hr><a name="733"><span style="font-size:larger">stNFEntrada</span></a><br><br><pre>private java.sql.PreparedStatement <b>stNFEntrada</b></pre><br><dl></dl><br><hr><a name="734"><span style="font-size:larger">stNFSaida</span></a><br><br><pre>private java.sql.PreparedStatement <b>stNFSaida</b></pre><br><dl></dl><br><hr><a name="735"><span style="font-size:larger">stContaPagar</span></a><br><br><pre>private java.sql.PreparedStatement <b>stContaPagar</b></pre><br><dl></dl><br><hr><a name="736"><span style="font-size:larger">stContaReceber</span></a><br><br><pre>private java.sql.PreparedStatement <b>stContaReceber</b></pre><br><dl></dl><br><hr><a name="737"><span style="font-size:larger">stMovtoVenda</span></a><br><br><pre>private java.sql.PreparedStatement <b>stMovtoVenda</b></pre><br><dl></dl><br><hr><a name="738"><span style="font-size:larger">rsProduto</span></a><br><br><pre>private java.sql.ResultSet <b>rsProduto</b></pre><br><dl></dl><br><hr><a name="739"><span style="font-size:larger">rsDepartamento</span></a><br><br><pre>private java.sql.ResultSet <b>rsDepartamento</b></pre><br><dl></dl><br><hr><a name="740"><span style="font-size:larger">rsGrupo</span></a><br><br><pre>private java.sql.ResultSet <b>rsGrupo</b></pre><br><dl></dl><br><hr><a name="741"><span style="font-size:larger">rsArmacao</span></a><br><br><pre>private java.sql.ResultSet <b>rsArmacao</b></pre><br><dl></dl><br><hr><a name="742"><span style="font-size:larger">rsMarca</span></a><br><br><pre>private java.sql.ResultSet <b>rsMarca</b></pre><br><dl></dl><br><hr><a name="743"><span style="font-size:larger">rsCliente</span></a><br><br><pre>private java.sql.ResultSet <b>rsCliente</b></pre><br><dl></dl><br><hr><a name="744"><span style="font-size:larger">rsFornecedor</span></a><br><br><pre>private java.sql.ResultSet <b>rsFornecedor</b></pre><br><dl></dl><br><hr><a name="745"><span style="font-size:larger">rsNFEntrada</span></a><br><br><pre>private java.sql.ResultSet <b>rsNFEntrada</b></pre><br><dl></dl><br><hr><a name="746"><span style="font-size:larger">rsNFSaida</span></a><br><br><pre>private java.sql.ResultSet <b>rsNFSaida</b></pre><br><dl></dl><br><hr><a name="747"><span style="font-size:larger">rsContaPagar</span></a><br><br><pre>private java.sql.ResultSet <b>rsContaPagar</b></pre><br><dl></dl><br><hr><a name="748"><span style="font-size:larger">rsContaReceber</span></a><br><br><pre>private java.sql.ResultSet <b>rsContaReceber</b></pre><br><dl></dl><br><hr><a name="749"><span style="font-size:larger">rsMovtoVenda</span></a><br><br><pre>private java.sql.ResultSet <b>rsMovtoVenda</b></pre><br><dl></dl><br><hr><a name="750"><span style="font-size:larger">policy</span></a><br><br><pre>private <a href="br_com_gz_migration_policy_ColumnsPolicy.html">ColumnsPolicy</a> <b>policy</b></pre><br><dl></dl><br><hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Constructor Detail</span></td>
+      </tr></table><span style="font-size:medium"><a name="752"><span style="font-size:medium">SQLDataProviderImpl</span></a></span><br><pre>public <b>SQLDataProviderImpl</b>(<a href="br_com_gz_migration_EnSoftware.html">EnSoftware</a> software, <a href="br_com_gz_migration_EnSoftware.html">EnSoftware</a> otherSoftware, org.database.connection.DatabaseType dbTo, org.database.connection.DatabaseType dbFrom)</pre><br><dl><br></dl>
+      <hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Method Detail</span></td>
+      </tr></table><a name="754"><span style="font-size:medium">countProduto</span></a><br><br><pre>public int  <b>countProduto</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="755"><span style="font-size:medium">countDepartamento</span></a><br><br><pre>public int  <b>countDepartamento</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="756"><span style="font-size:medium">countGrupo</span></a><br><br><pre>public int  <b>countGrupo</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="757"><span style="font-size:medium">countArmacao</span></a><br><br><pre>public int  <b>countArmacao</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="758"><span style="font-size:medium">countMarca</span></a><br><br><pre>public int  <b>countMarca</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="759"><span style="font-size:medium">countCliente</span></a><br><br><pre>public int  <b>countCliente</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="760"><span style="font-size:medium">countLoja</span></a><br><br><pre>public int  <b>countLoja</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="761"><span style="font-size:medium">countFornecedor</span></a><br><br><pre>public int  <b>countFornecedor</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="762"><span style="font-size:medium">getProduto</span></a><br><br><pre>public java.util.ArrayList <b>getProduto</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="763"><span style="font-size:medium">getDepartamento</span></a><br><br><pre>public java.util.ArrayList <b>getDepartamento</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="764"><span style="font-size:medium">getGrupo</span></a><br><br><pre>public java.util.ArrayList <b>getGrupo</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="765"><span style="font-size:medium">getArmacao</span></a><br><br><pre>public java.util.ArrayList <b>getArmacao</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="766"><span style="font-size:medium">getMarca</span></a><br><br><pre>public java.util.ArrayList <b>getMarca</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="767"><span style="font-size:medium">getCliente</span></a><br><br><pre>public java.util.ArrayList <b>getCliente</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="768"><span style="font-size:medium">getLoja</span></a><br><br><pre>public java.util.ArrayList <b>getLoja</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="769"><span style="font-size:medium">getFornecedor</span></a><br><br><pre>public java.util.ArrayList <b>getFornecedor</b>(java.sql.Connection conn)</pre><br><dl><br></dl>
+      <hr><a name="770"><span style="font-size:medium">getProdutoColumnsNeeded</span></a><br><br><pre>public java.util.ArrayList <b>getProdutoColumnsNeeded</b>()</pre><br><dl><br></dl>
+      <hr><a name="771"><span style="font-size:medium">getDepartamentoColumnsNeeded</span></a><br><br><pre>public java.util.ArrayList <b>getDepartamentoColumnsNeeded</b>()</pre><br><dl><br></dl>
+      <hr><a name="772"><span style="font-size:medium">getGrupoColumnsNeeded</span></a><br><br><pre>public java.util.ArrayList <b>getGrupoColumnsNeeded</b>()</pre><br><dl><br></dl>
+      <hr><a name="773"><span style="font-size:medium">getArmacaoColumnsNeeded</span></a><br><br><pre>public java.util.ArrayList <b>getArmacaoColumnsNeeded</b>()</pre><br><dl><br></dl>
+      <hr><a name="774"><span style="font-size:medium">getMarcaColumnsNeeded</span></a><br><br><pre>public java.util.ArrayList <b>getMarcaColumnsNeeded</b>()</pre><br><dl><br></dl>
+      <hr><a name="775"><span style="font-size:medium">getClienteColumnsNeeded</span></a><br><br><pre>public java.util.ArrayList <b>getClienteColumnsNeeded</b>()</pre><br><dl><br></dl>
+      <hr><a name="776"><span style="font-size:medium">getLojaColumnsNeeded</span></a><br><br><pre>public java.util.ArrayList <b>getLojaColumnsNeeded</b>()</pre><br><dl><br></dl>
+      <hr><a name="777"><span style="font-size:medium">getFornecedorColumnsNeeded</span></a><br><br><pre>public java.util.ArrayList <b>getFornecedorColumnsNeeded</b>()</pre><br><dl><br></dl>
+      <hr><br><br><table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%"><tbody>
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.software.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr></tbody>
+      </table>
+      <hr><br><br><center><span style="font-size:xx-small">This documentation has been generated by EclipseUML.</span></center><br></body>
+</html>
