@@ -22,4 +22,10 @@ public enum EnColumnsCategory {
 		
 	}
 	
+	public String getTableName(){
+		
+		return this.tableName;
+		
+	}
+	
 }

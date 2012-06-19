@@ -10,14 +10,16 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.usermodel.CellStyle;
 
+import br.com.gz.bean.Produto;
 import br.com.gz.migration.EnMigrationDataType;
 import br.com.gz.migration.exception.InvalidMigrationDataTypeException;
+import br.com.gz.util.GZSoftwares;
 import br.com.gz.util.MercoFlexFormat;
 
 public class ProdutoDataFile extends DataFile {
 
 	private static ProdutoDataFile instance;
-	
+
 	private int currentIndex = 0;
 
 	private ProdutoDataFile() throws IOException,
@@ -69,35 +71,9 @@ public class ProdutoDataFile extends DataFile {
 
 		int i = 0;
 
-		HSSFRow r;
-		
-		MercoFlexFormat format = new MercoFlexFormat();
-		
-	//	while((r = dataSheet.getRow(i+1)) != null){
-			
-		//	System.out.println(r.getCell(0).getNumericCellValue());i++;
-			
-	//	}
-		
-		HSSFCellStyle style = (r = dataSheet.getRow(1)).getCell(0).getCellStyle();
-
-		return inserirFuncaoCountA(dataSheet, 1, style, 0, 4, "1");
+		return i;
 
 	}
-	
-	private int inserirFuncaoCountA(HSSFSheet sheet, int indexLinha, HSSFCellStyle style, int primeiraCelula, int ultimaCelula, String titulo) {  
-	    indexLinha++;  
-	    HSSFCell cell;  
-	    cell = sheet.createRow(indexLinha).createCell((short) 1);  
-	    cell.setCellValue(new HSSFRichTextString(titulo) );  
-	    cell.setCellStyle(style);  
-	    sheet.autoSizeColumn((short)(2));  
-	    cell = sheet.createRow(indexLinha).createCell((short) 2);  
-	    cell.setCellFormula("countA(A"+(primeiraCelula+1)+":A"+(ultimaCelula+1)+")");  
-	    cell.setCellStyle(style);  
-	    indexLinha++;  
-	    return new Integer(new Double(cell.getNumericCellValue()).toString());  
-	} 
 
 	@Override
 	public void moveToFirst() {
@@ -113,20 +89,23 @@ public class ProdutoDataFile extends DataFile {
 
 	@Override
 	public boolean hasNext() {
-		
-		try{
-			
-			double d = dataSheet.getRow(currentIndex+1).getCell(0).getNumericCellValue();
-			
-			if(d > 0) return true;
-			else return false;
-		
-		}catch(NullPointerException e){
-			
+
+		try {
+
+			double d = dataSheet.getRow(currentIndex + 1).getCell(0)
+					.getNumericCellValue();
+
+			if (d > 0)
+				return true;
+			else
+				return false;
+
+		} catch (NullPointerException e) {
+
 			return false;
-			
+
 		}
-		
+
 	}
 
 	@Override
@@ -143,6 +122,16 @@ public class ProdutoDataFile extends DataFile {
 	@Override
 	public ArrayList<Object> getAll() {
 		// johnny Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected Object getRowData(int rowIndex) {
+		
+		Produto p = new Produto(GZSoftwares.MERCOFLEX);
+		
+		p.setLoja(new Integer(new Double(dataSheet.getRow(rowIndex).getCell(0).getNumericCellValue()).toString()));
+		
 		return null;
 	}
 

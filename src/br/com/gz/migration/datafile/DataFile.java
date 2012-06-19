@@ -80,5 +80,7 @@ public abstract class DataFile {
 		}
 		
 	}
+	
+	protected abstract Object getRowData(int rowIndex);
 
 }
