@@ -6,14 +6,22 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import br.com.gz.migration.EnMigrationDataType;
-import br.com.gz.migration.exception.InvalidCellStyleException;
+import br.com.gz.migration.exception.InvalidCellTypeException;
 import br.com.gz.migration.exception.InvalidMigrationDataTypeException;
 import br.com.gz.migration.exception.RequiredColumnNotFoundException;
 
+/**
+ * Representa um arquivo de dados e permite manipular as informações contidas no arquivo físico como: retornar os registros, percorrer os registros,
+ * contar a quantidade de registros, etc.
+ * 
+ * @author Jonathan
+ *
+ */
 public abstract class DataFile {
 
 	/**
@@ -26,6 +34,8 @@ public abstract class DataFile {
 	 */
 	public static final String INVALID_CELL_TYPE = "<invalid_type>";
 	
+	public static final String NULL_ROW = "<null_row>";
+	
 	/**
 	 * Representa a planilha de dados
 	 */
@@ -37,7 +47,7 @@ public abstract class DataFile {
 	private FileInputStream stream;
 
 	/**
-	 * Construtor que recebe um EnMigrationDataType e de acordo com este, lê o arquivo específico
+	 * Construtor que recebe um EnMigrationDataType e de acordo com este, lê o arquivo específico. Este construtor é responsável por obter o arquivo físico
 	 * 
 	 * @param dataType - O tipo de dado para definir o tipo de arquivo
 	 * @throws InvalidMigrationDataTypeException - Lança este exceção se o tipo passado não corresponder aos tipos implementados
@@ -156,21 +166,30 @@ public abstract class DataFile {
 	 * @param rowIndex - número da linha
 	 * @return - o registro como um Object
 	 */
-	protected abstract Object getRowData(int rowIndex);
+	protected abstract Object[] getRowData(int rowIndex);
 	
 	/**
-	 * Retorna os nomes das colunas do arquivo
+	 * Método para verificar os nomes das colunas.<br><br>
 	 * 
-	 * @param maximumColumns - máximo de colunas que devem ser lidas
-	 * @return - nomes das colunas do arquivo
-	 */
-	protected abstract String[] getHeader(int maximumColumns);
-	
-	/**
-	 * Verifica se todas as colunas estão presentes no arquivo e se estão na ordem em que devem estar
+	 * Responsabilidades:<br>
+	 * 1- Verificar se todas as colunas estão presentes<br>
+	 * 2- Verificar se os nomes das colunas estão na ordem correta<br>
+	 * 3- Verificar se o tipo de dado das colunas está correto<br>
+	 * 4- Lançar {@link InvalidCellTypeException} se o tipo de dado da coluna for inválido (não for String)<br>
+	 * 5- Lançar {@link RequiredColumnNotFoundException} se alguma coluna obrigatória não for encontrada<br>
+	 * 
 	 * 
 	 * @return - true se estiver tudo certo, false caso contrário
 	 */
-	public abstract boolean checkColumnsPolicy();
+	public abstract boolean checkHeaderPolicy() throws InvalidCellTypeException, RequiredColumnNotFoundException;
+	
+	/**
+	 * Verifica se as colunas possuem valores e se possuem o tipo de dado correto
+	 * 
+	 * @param row - A linha a ser verificada
+	 * @param cellsLimit - limite de células a serem lidas
+	 * @return - true se estiver tudo certo, false caso contrário
+	 */
+	public abstract boolean checkCellsPolicy(HSSFRow row, int cellsLimit);
 
 }

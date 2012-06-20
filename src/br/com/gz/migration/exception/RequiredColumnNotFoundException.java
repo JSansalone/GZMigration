@@ -6,4 +6,8 @@ public class RequiredColumnNotFoundException extends Exception {
 		super("Coluna(s) obrigatória(s) não encontradas");
 	}
 	
+	public RequiredColumnNotFoundException(String message) {
+		super(message);
+	}
+	
 }

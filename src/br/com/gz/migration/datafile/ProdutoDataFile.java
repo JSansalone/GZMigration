@@ -2,6 +2,7 @@ package br.com.gz.migration.datafile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -9,10 +10,11 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import br.com.gz.bean.Produto;
 import br.com.gz.migration.EnMigrationDataType;
-import br.com.gz.migration.exception.InvalidCellStyleException;
+import br.com.gz.migration.exception.InvalidCellTypeException;
 import br.com.gz.migration.exception.InvalidMigrationDataTypeException;
 import br.com.gz.migration.exception.RequiredColumnNotFoundException;
 import br.com.gz.migration.policy.EnColumnsCategory;
@@ -20,19 +22,61 @@ import br.com.gz.migration.policy.EnMercoFlexRequiredColumns;
 import br.com.gz.util.GZSoftwares;
 import br.com.gz.util.MercoFlexFormat;
 
+/**
+ * Representa um arquivo de dados para ler os registros dos produtos. Os métodos
+ * herdados devem ser implementados especificamente para trabalhar com estes
+ * registros.
+ * 
+ * @author Jonathan
+ * 
+ */
 public class ProdutoDataFile extends DataFile {
 
+	/**
+	 * Instância da classe.
+	 */
 	private static ProdutoDataFile instance;
 
-	private int currentIndex = 0;
+	/**
+	 * Posição atual no arquivo
+	 */
+	private int currentIndex = 1;
 
+	private final int qtyRequiredColumns;
+
+	private final EnMercoFlexRequiredColumns[] requiredColumns;
+
+	/**
+	 * Construtor default para passar o tipo de dado para o construtor da
+	 * superclasse
+	 * 
+	 * @throws IOException
+	 *             - Se não conseguir ler o arquivo
+	 * @throws InvalidMigrationDataTypeException
+	 *             - Se o tipo de dado não for suportado pela superclasse
+	 */
 	private ProdutoDataFile() throws IOException,
 			InvalidMigrationDataTypeException {
 
 		super(EnMigrationDataType.PRODUTO);
 
+		requiredColumns = EnMercoFlexRequiredColumns.filterValues(
+				EnColumnsCategory.ESTOQUE, EnColumnsCategory.ESTOQUE_LOJA,
+				EnColumnsCategory.ESTOQUE_SALDO,
+				EnColumnsCategory.ESTOQUE_TRIBUTACAO);
+
+		qtyRequiredColumns = requiredColumns.length;
+
 	}
 
+	/**
+	 * Método que implementa o singleton. Garante que em toda a execução da
+	 * aplicação só exista uma instância dessa classe
+	 * 
+	 * @return - A instância da classe
+	 * @throws IOException
+	 *             - Se não conseguir ler o arquivo
+	 */
 	public static ProdutoDataFile getInstance() throws IOException {
 
 		if (instance == null) {
@@ -94,27 +138,20 @@ public class ProdutoDataFile extends DataFile {
 	@Override
 	public boolean hasNext() {
 
-		try {
+		Object[] data = getRowData(currentIndex);
 
-			double d = dataSheet.getRow(currentIndex + 1).getCell(0)
-					.getNumericCellValue();
-
-			if (d > 0)
+		for (Object o : data) {
+			if (!o.equals(NULL_ROW) && !o.equals(CELL_VALUE_NULL))
 				return true;
-			else
-				return false;
-
-		} catch (NullPointerException e) {
-
-			return false;
-
 		}
+
+		return false;
 
 	}
 
 	@Override
 	public Object next() {
-		return null;
+		return getRowData(currentIndex++);
 	}
 
 	@Override
@@ -130,29 +167,68 @@ public class ProdutoDataFile extends DataFile {
 	}
 
 	@Override
-	protected Object getRowData(int rowIndex) {
+	public Object[] getRowData(int rowIndex) {
 
-		Produto p = new Produto(GZSoftwares.MERCOFLEX);
+		return DataFileReader.getCellValues(dataSheet.getRow(rowIndex),
+				qtyRequiredColumns);
 
-		p.setLoja(new Integer(new Double(dataSheet.getRow(rowIndex).getCell(0)
-				.getNumericCellValue()).toString()));
-
-		return null;
+		// return null;
 	}
 
 	@Override
-	public boolean checkColumnsPolicy() {
+	public boolean checkHeaderPolicy() throws InvalidCellTypeException,
+			RequiredColumnNotFoundException {
 
-		EnMercoFlexRequiredColumns[] requiredColumns = EnMercoFlexRequiredColumns
-				.filterValues(EnColumnsCategory.ESTOQUE,
-						EnColumnsCategory.ESTOQUE_LOJA,
-						EnColumnsCategory.ESTOQUE_SALDO,
-						EnColumnsCategory.ESTOQUE_TRIBUTACAO);
+		// obtendo as colunas do header
+		String[] columnsFromFile = DataFileReader.getHeader(
+				dataSheet.getRow(0), qtyRequiredColumns);
 
-		String[] columnsFromFile = getHeader(requiredColumns.length);
+		ArrayList<String> notFound = new ArrayList<String>();
+		ArrayList<String> invalidType = new ArrayList<String>();
 
-		for (String string : columnsFromFile) {
-			System.out.print(string + "|");
+		// verificando se estão na ordem correta
+		for (int i = 0; i < qtyRequiredColumns; i++) {
+
+			if (requiredColumns[i].getLabel().equals(columnsFromFile[i])) {
+
+			} else {
+
+				if (columnsFromFile[i].equals(DataFile.INVALID_CELL_TYPE)) {
+
+					invalidType.add(requiredColumns[i].getLabel());
+
+				} else {
+
+					notFound.add(requiredColumns[i].getLabel());
+
+				}
+
+			}
+
+		}
+
+		if (!notFound.isEmpty()) {
+
+			String message = "As seguintes colunas não foram encontradas: ";
+			for (String s : notFound) {
+				message += s + ", ";
+			}
+			message = message.substring(0, message.length() - 2) + ".";
+			throw new RequiredColumnNotFoundException(message);
+
+		} else {
+
+			if (!invalidType.isEmpty()) {
+
+				String message = "Os tipos de dados das seguintes colunas são inválidos: ";
+				for (String s : invalidType) {
+					message += s + ", ";
+				}
+				message = message.substring(0, message.length() - 2) + ".";
+				throw new InvalidCellTypeException(message);
+
+			}
+
 		}
 
 		return true;
@@ -160,39 +236,23 @@ public class ProdutoDataFile extends DataFile {
 	}
 
 	@Override
-	protected String[] getHeader(int maximumColumns) {
+	public boolean checkCellsPolicy(HSSFRow row, int cellsLimit) {
 
-		// célula
-		HSSFCell cell = null;
-		// tipo de dado da célula
-		int cellType = 0;
-		// array de String para guardar os nomes
-		String[] names = new String[maximumColumns];
+		return false;
 
-		for (int i = 0; i < maximumColumns; i++) {
+	}
 
-			// pega a célula
-			cell = dataSheet.getRow(0).getCell(i);
-			// se for null lança uma exception
-			if (cell == null) {
-				names[i] = DataFile.CELL_VALUE_NULL;
-				// senão
-			} else {
-				// pega o tipo de dado
-				cellType = cell.getCellType();
-				// se não for texto, lança uma exception
-				if (cellType != HSSFCell.CELL_TYPE_STRING) {
-					names[i] = DataFile.INVALID_CELL_TYPE;
-				} else {
-					// guarda o valor da célula
-					names[i] = cell.getStringCellValue().toUpperCase();
-				}
+	public void teste() {
 
+		while (hasNext()) {
+			Object[] data = (Object[])next();
+
+			for (Object string : data) {
+				System.out.printf("%-20s",string);
 			}
-
+			System.out.println();
+		//	System.out.println("\nhas next=" + hasNext());
 		}
-
-		return names;
 
 	}
 
