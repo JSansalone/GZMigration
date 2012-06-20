@@ -1,13 +1,23 @@
 package br.com.gz.migration.teste;
 
-import br.com.gz.migration.policy.EnMercoFlexRequiredColumns;
+import java.io.IOException;
+
+import br.com.gz.migration.datafile.ProdutoDataFile;
 
 public class Teste {
 
 	public static void main(String[] args) {
 
-		for (EnMercoFlexRequiredColumns col : EnMercoFlexRequiredColumns.values()) {
-			System.out.print(col.getLabel()+",");
+		try {
+			
+			ProdutoDataFile d = ProdutoDataFile.getInstance();
+			d.checkColumnsPolicy();
+			
+		} catch (IOException e) {
+			
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			
 		}
 
 	}

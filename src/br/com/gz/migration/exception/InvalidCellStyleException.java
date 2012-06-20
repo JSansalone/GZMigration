@@ -7,5 +7,11 @@ public class InvalidCellStyleException extends Exception {
 		super("Estilo de célula inválido!");
 		
 	}
+	
+	public InvalidCellStyleException(String message){
+		
+		super(message);
+		
+	}
 
 }

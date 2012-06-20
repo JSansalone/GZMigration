@@ -20,10 +20,26 @@
          </tr>
       </thead><tbody>
       <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public static final java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#289">CELL_VALUE_NULL</a></code><br> <font>Constante usada para representar colunas null</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public static final java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#290">INVALID_CELL_TYPE</a></code><br> <font>Constante para representar colunas com tipo de dado inv&aacute;lido</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
          <td align="right" valign="top" width="1%"><font size="-1"><code>protected org.apache.poi.hssf.usermodel.HSSFSheet</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#287">dataSheet</a></code><br> &nbsp;
+         <td><code><a href="#291">dataSheet</a></code><br> <font>Representa a planilha de dados</font>&nbsp;
             										
          </td>
       </tr>
@@ -31,7 +47,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>private java.io.FileInputStream</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#288">stream</a></code><br> &nbsp;
+         <td><code><a href="#292">stream</a></code><br> <font>Representa a stream de acesso aos dados</font>&nbsp;
             										
          </td>
       </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
@@ -44,7 +60,9 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>protected</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#290">DataFile</a>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> dataType)</code><br> &nbsp;
+         <td><code><a href="#294">DataFile</a>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> dataType)</code><br> <font>Construtor que recebe um EnMigrationDataType e de acordo com este, l&ecirc; o arquivo espec&iacute;fico
+                
+                </font>&nbsp;
             										
          </td>
       </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
@@ -57,7 +75,9 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public abstract <a href="br_com_gz_migration_datafile_DataFileMetaData.html">DataFileMetaData</a></code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#292">getMetaData</a>()</code><br> &nbsp;
+         <td><code><a href="#296">getMetaData</a>()</code><br> <font>Obt&ecirc;m os dados referentes &agrave;s colunas do arquivo
+                
+                </font>&nbsp;
             										
          </td>
       </tr>
@@ -65,7 +85,9 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public abstract java.lang.String</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#293">getName</a>()</code><br> &nbsp;
+         <td><code><a href="#297">getName</a>()</code><br> <font>Retorna o nome do arquivo
+                
+                </font>&nbsp;
             										
          </td>
       </tr>
@@ -73,7 +95,9 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public abstract int </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#294">getTotalRows</a>()</code><br> &nbsp;
+         <td><code><a href="#298">getTotalRows</a>()</code><br> <font>Retorna o total de registros no arquivo
+                
+                </font>&nbsp;
             										
          </td>
       </tr>
@@ -81,7 +105,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public abstract void </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#295">moveToFirst</a>()</code><br> &nbsp;
+         <td><code><a href="#299">moveToFirst</a>()</code><br> <font>Move o &iacute;ndice de leitura do arquivo para o primeiro registro</font>&nbsp;
             										
          </td>
       </tr>
@@ -89,7 +113,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public abstract void </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#296">moveToLast</a>()</code><br> &nbsp;
+         <td><code><a href="#300">moveToLast</a>()</code><br> <font>Move o &iacute;ndice de leitura do arquivo para o &uacute;ltimo registro</font>&nbsp;
             										
          </td>
       </tr>
@@ -97,7 +121,9 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public abstract boolean </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#297">hasNext</a>()</code><br> &nbsp;
+         <td><code><a href="#301">hasNext</a>()</code><br> <font>Verifica se h&aacute; um pr&oacute;ximo registro
+                
+                </font>&nbsp;
             										
          </td>
       </tr>
@@ -105,7 +131,9 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public abstract java.lang.Object</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#298">next</a>()</code><br> &nbsp;
+         <td><code><a href="#302">next</a>()</code><br> <font>Retorna o pr&oacute;ximo registro do arquivo
+                
+                </font>&nbsp;
             										
          </td>
       </tr>
@@ -113,7 +141,9 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public abstract java.lang.Object</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#299">previous</a>()</code><br> &nbsp;
+         <td><code><a href="#303">previous</a>()</code><br> <font>Retorna o registro anterior ao atual do arquivo
+                
+                </font>&nbsp;
             										
          </td>
       </tr>
@@ -121,7 +151,9 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public abstract java.util.ArrayList</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#300">getAll</a>()</code><br> &nbsp;
+         <td><code><a href="#304">getAll</a>()</code><br> <font>Retorna todos os registros do arquivo
+                
+                </font>&nbsp;
             										
          </td>
       </tr>
@@ -129,7 +161,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>protected void </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#301">close</a>()</code><br> &nbsp;
+         <td><code><a href="#305">close</a>()</code><br> <font>Fecha e libera os recursos do arquivo</font>&nbsp;
             										
          </td>
       </tr>
@@ -137,30 +169,109 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>protected abstract java.lang.Object</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#302">getRowData</a>(int rowIndex)</code><br> &nbsp;
+         <td><code><a href="#306">getRowData</a>(int rowIndex)</code><br> <font>Retorna o registro do arquivo recebendo como argumento o n&uacute;mero da linha
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>protected abstract String[] </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#307">getHeader</a>(int maximumColumns)</code><br> <font>Retorna os nomes das colunas do arquivo
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public abstract boolean </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#308">checkColumnsPolicy</a>()</code><br> <font>Verifica se todas as colunas est&atilde;o presentes no arquivo e se est&atilde;o na ordem em que devem estar
+                
+                </font>&nbsp;
             										
          </td>
       </tr></tbody></table><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
       <tr>
          <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Field Detail</span></td>
-      </tr></table><a name="287"><span style="font-size:larger">dataSheet</span></a><br><br><pre>protected org.apache.poi.hssf.usermodel.HSSFSheet <b>dataSheet</b></pre><br><dl></dl><br><hr><a name="288"><span style="font-size:larger">stream</span></a><br><br><pre>private java.io.FileInputStream <b>stream</b></pre><br><dl></dl><br><hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      </tr></table><a name="289"><span style="font-size:larger">CELL_VALUE_NULL</span></a><br><br><pre>public static final java.lang.String <b>CELL_VALUE_NULL</b></pre><br><dl>
+         <p>Constante usada para representar colunas null</p>
+      </dl><br><hr><a name="290"><span style="font-size:larger">INVALID_CELL_TYPE</span></a><br><br><pre>public static final java.lang.String <b>INVALID_CELL_TYPE</b></pre><br><dl>
+         <p>Constante para representar colunas com tipo de dado inv&aacute;lido</p>
+      </dl><br><hr><a name="291"><span style="font-size:larger">dataSheet</span></a><br><br><pre>protected org.apache.poi.hssf.usermodel.HSSFSheet <b>dataSheet</b></pre><br><dl>
+         <p>Representa a planilha de dados</p>
+      </dl><br><hr><a name="292"><span style="font-size:larger">stream</span></a><br><br><pre>private java.io.FileInputStream <b>stream</b></pre><br><dl>
+         <p>Representa a stream de acesso aos dados</p>
+      </dl><br><hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
       <tr>
          <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Constructor Detail</span></td>
-      </tr></table><span style="font-size:medium"><a name="290"><span style="font-size:medium">DataFile</span></a></span><br><pre>protected <b>DataFile</b>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> dataType)</pre><br><dl><br></dl>
+      </tr></table><span style="font-size:medium"><a name="294"><span style="font-size:medium">DataFile</span></a></span><br><pre>protected <b>DataFile</b>(<a href="br_com_gz_migration_EnMigrationDataType.html">EnMigrationDataType</a> dataType)</pre><br><dl>
+         <p>Construtor que recebe um EnMigrationDataType e de acordo com este, l&ecirc; o arquivo espec&iacute;fico
+             
+             
+         </p><br></dl>
       <hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
       <tr>
          <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Method Detail</span></td>
-      </tr></table><a name="292"><span style="font-size:medium">getMetaData</span></a><br><br><pre>public abstract <a href="br_com_gz_migration_datafile_DataFileMetaData.html">DataFileMetaData</a> <b>getMetaData</b>()</pre><br><dl><br></dl>
-      <hr><a name="293"><span style="font-size:medium">getName</span></a><br><br><pre>public abstract java.lang.String <b>getName</b>()</pre><br><dl><br></dl>
-      <hr><a name="294"><span style="font-size:medium">getTotalRows</span></a><br><br><pre>public abstract int  <b>getTotalRows</b>()</pre><br><dl><br></dl>
-      <hr><a name="295"><span style="font-size:medium">moveToFirst</span></a><br><br><pre>public abstract void  <b>moveToFirst</b>()</pre><br><dl><br></dl>
-      <hr><a name="296"><span style="font-size:medium">moveToLast</span></a><br><br><pre>public abstract void  <b>moveToLast</b>()</pre><br><dl><br></dl>
-      <hr><a name="297"><span style="font-size:medium">hasNext</span></a><br><br><pre>public abstract boolean  <b>hasNext</b>()</pre><br><dl><br></dl>
-      <hr><a name="298"><span style="font-size:medium">next</span></a><br><br><pre>public abstract java.lang.Object <b>next</b>()</pre><br><dl><br></dl>
-      <hr><a name="299"><span style="font-size:medium">previous</span></a><br><br><pre>public abstract java.lang.Object <b>previous</b>()</pre><br><dl><br></dl>
-      <hr><a name="300"><span style="font-size:medium">getAll</span></a><br><br><pre>public abstract java.util.ArrayList <b>getAll</b>()</pre><br><dl><br></dl>
-      <hr><a name="301"><span style="font-size:medium">close</span></a><br><br><pre>protected void  <b>close</b>()</pre><br><dl><br></dl>
-      <hr><a name="302"><span style="font-size:medium">getRowData</span></a><br><br><pre>protected abstract java.lang.Object <b>getRowData</b>(int rowIndex)</pre><br><dl><br></dl>
+      </tr></table><a name="296"><span style="font-size:medium">getMetaData</span></a><br><br><pre>public abstract <a href="br_com_gz_migration_datafile_DataFileMetaData.html">DataFileMetaData</a> <b>getMetaData</b>()</pre><br><dl>
+         <p>Obt&ecirc;m os dados referentes &agrave;s colunas do arquivo
+             
+             
+         </p><br></dl>
+      <hr><a name="297"><span style="font-size:medium">getName</span></a><br><br><pre>public abstract java.lang.String <b>getName</b>()</pre><br><dl>
+         <p>Retorna o nome do arquivo
+             
+             
+         </p><br></dl>
+      <hr><a name="298"><span style="font-size:medium">getTotalRows</span></a><br><br><pre>public abstract int  <b>getTotalRows</b>()</pre><br><dl>
+         <p>Retorna o total de registros no arquivo
+             
+             
+         </p><br></dl>
+      <hr><a name="299"><span style="font-size:medium">moveToFirst</span></a><br><br><pre>public abstract void  <b>moveToFirst</b>()</pre><br><dl>
+         <p>Move o &iacute;ndice de leitura do arquivo para o primeiro registro</p><br></dl>
+      <hr><a name="300"><span style="font-size:medium">moveToLast</span></a><br><br><pre>public abstract void  <b>moveToLast</b>()</pre><br><dl>
+         <p>Move o &iacute;ndice de leitura do arquivo para o &uacute;ltimo registro</p><br></dl>
+      <hr><a name="301"><span style="font-size:medium">hasNext</span></a><br><br><pre>public abstract boolean  <b>hasNext</b>()</pre><br><dl>
+         <p>Verifica se h&aacute; um pr&oacute;ximo registro
+             
+             
+         </p><br></dl>
+      <hr><a name="302"><span style="font-size:medium">next</span></a><br><br><pre>public abstract java.lang.Object <b>next</b>()</pre><br><dl>
+         <p>Retorna o pr&oacute;ximo registro do arquivo
+             
+             
+         </p><br></dl>
+      <hr><a name="303"><span style="font-size:medium">previous</span></a><br><br><pre>public abstract java.lang.Object <b>previous</b>()</pre><br><dl>
+         <p>Retorna o registro anterior ao atual do arquivo
+             
+             
+         </p><br></dl>
+      <hr><a name="304"><span style="font-size:medium">getAll</span></a><br><br><pre>public abstract java.util.ArrayList <b>getAll</b>()</pre><br><dl>
+         <p>Retorna todos os registros do arquivo
+             
+             
+         </p><br></dl>
+      <hr><a name="305"><span style="font-size:medium">close</span></a><br><br><pre>protected void  <b>close</b>()</pre><br><dl>
+         <p>Fecha e libera os recursos do arquivo</p><br></dl>
+      <hr><a name="306"><span style="font-size:medium">getRowData</span></a><br><br><pre>protected abstract java.lang.Object <b>getRowData</b>(int rowIndex)</pre><br><dl>
+         <p>Retorna o registro do arquivo recebendo como argumento o n&uacute;mero da linha
+             
+             
+         </p><br></dl>
+      <hr><a name="307"><span style="font-size:medium">getHeader</span></a><br><br><pre>protected abstract String[]  <b>getHeader</b>(int maximumColumns)</pre><br><dl>
+         <p>Retorna os nomes das colunas do arquivo
+             
+             
+         </p><br></dl>
+      <hr><a name="308"><span style="font-size:medium">checkColumnsPolicy</span></a><br><br><pre>public abstract boolean  <b>checkColumnsPolicy</b>()</pre><br><dl>
+         <p>Verifica se todas as colunas est&atilde;o presentes no arquivo e se est&atilde;o na ordem em que devem estar
+             
+             
+         </p><br></dl>
       <hr><br><br><table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%">
          <tr bgColor="#CCCCFF" width="100%">
             <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>

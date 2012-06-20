@@ -133,10 +133,28 @@ public enum EnMercoFlexRequiredColumns {
 	MAR_DESCRICAO("DESCRICAO","descricao",EnColumnsCategory.MARCA);
 	//=======================================================================================================
 	
+	/**
+	 * descrição do campo
+	 */
 	private final String label;
+	
+	/**
+	 * Nome da coluna no banco de dados
+	 */
 	private final String columnName;
+	
+	/**
+	 * Tabelas (categorias) a que a coluna pertence
+	 */
 	private final EnColumnsCategory[] categories;
 	
+	/**
+	 * Cria nova constante enum passando a descrição do campo, o nome da coluna no banco de dados e as categorias que ela pertence
+	 * 
+	 * @param label - Descrição, nome que aparece no arquivo de dados
+	 * @param columnName - nome da coluna no banco de dados
+	 * @param categories - categorias que a constante pertence
+	 */
 	private EnMercoFlexRequiredColumns(String label, String columnName, EnColumnsCategory... categories){
 		
 		this.label = label;
@@ -145,22 +163,83 @@ public enum EnMercoFlexRequiredColumns {
 		
 	}
 	
+	/**
+	 * Retorna a descrição, nome presente no arquivo
+	 * 
+	 * @return - descrição, nome presente no arquivo
+	 */
 	public String getLabel(){
 		
 		return label;
 		
 	}
 	
+	/**
+	 * Retorna o nome da coluna no banco de dados
+	 * 
+	 * @return - nome da coluna no banco de dados
+	 */
 	public String getColumnName(){
 		
 		return columnName;
 		
 	}
 	
+	/**
+	 * Retorna as categorias que a constante enum pertence
+	 * 
+	 * @return - categorias que a constante enum pertence
+	 */
 	public EnColumnsCategory[] getCategories(){
 		
 		return this.categories;
 		
+	}
+	
+	/**
+	 * Aprimoramento do método values(), este retorna todos as constantes de acordo com as categorias informadas
+	 * 
+	 * @param categories - categorias para filtrar
+	 * @return - todas as constantes filtradas
+	 */
+	public static EnMercoFlexRequiredColumns[] filterValues(
+			EnColumnsCategory... categories) {
+
+		int i = 0;
+
+		EnMercoFlexRequiredColumns[] en = values();
+
+		LOOP_COLUMNS: for (EnMercoFlexRequiredColumns en2 : en) {
+			EnColumnsCategory[] enc = en2.getCategories();
+			for (EnColumnsCategory enc2 : enc) {
+				for (EnColumnsCategory enc3 : categories) {
+					if (enc2 == enc3) {
+						i++;
+						continue LOOP_COLUMNS;
+					}
+				}
+			}
+		}
+
+		EnMercoFlexRequiredColumns[] toReturn = new EnMercoFlexRequiredColumns[i];
+
+		i = 0;
+
+		LOOP_COLUMNS: for (EnMercoFlexRequiredColumns en2 : en) {
+			EnColumnsCategory[] enc = en2.getCategories();
+			for (EnColumnsCategory enc2 : enc) {
+				for (EnColumnsCategory enc3 : categories) {
+					if (enc2 == enc3) {
+						toReturn[i] = en2;
+						i++;
+						continue LOOP_COLUMNS;
+					}
+				}
+			}
+		}
+		
+		return toReturn;
+
 	}
 	
 }

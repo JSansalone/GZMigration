@@ -12,7 +12,11 @@ import org.apache.poi.ss.usermodel.CellStyle;
 
 import br.com.gz.bean.Produto;
 import br.com.gz.migration.EnMigrationDataType;
+import br.com.gz.migration.exception.InvalidCellStyleException;
 import br.com.gz.migration.exception.InvalidMigrationDataTypeException;
+import br.com.gz.migration.exception.RequiredColumnNotFoundException;
+import br.com.gz.migration.policy.EnColumnsCategory;
+import br.com.gz.migration.policy.EnMercoFlexRequiredColumns;
 import br.com.gz.util.GZSoftwares;
 import br.com.gz.util.MercoFlexFormat;
 
@@ -127,12 +131,69 @@ public class ProdutoDataFile extends DataFile {
 
 	@Override
 	protected Object getRowData(int rowIndex) {
-		
+
 		Produto p = new Produto(GZSoftwares.MERCOFLEX);
-		
-		p.setLoja(new Integer(new Double(dataSheet.getRow(rowIndex).getCell(0).getNumericCellValue()).toString()));
-		
+
+		p.setLoja(new Integer(new Double(dataSheet.getRow(rowIndex).getCell(0)
+				.getNumericCellValue()).toString()));
+
 		return null;
+	}
+
+	@Override
+	public boolean checkColumnsPolicy() {
+
+		EnMercoFlexRequiredColumns[] requiredColumns = EnMercoFlexRequiredColumns
+				.filterValues(EnColumnsCategory.ESTOQUE,
+						EnColumnsCategory.ESTOQUE_LOJA,
+						EnColumnsCategory.ESTOQUE_SALDO,
+						EnColumnsCategory.ESTOQUE_TRIBUTACAO);
+
+		String[] columnsFromFile = getHeader(requiredColumns.length);
+
+		for (String string : columnsFromFile) {
+			System.out.print(string + "|");
+		}
+
+		return true;
+
+	}
+
+	@Override
+	protected String[] getHeader(int maximumColumns) {
+
+		// célula
+		HSSFCell cell = null;
+		// tipo de dado da célula
+		int cellType = 0;
+		// array de String para guardar os nomes
+		String[] names = new String[maximumColumns];
+
+		for (int i = 0; i < maximumColumns; i++) {
+
+			// pega a célula
+			cell = dataSheet.getRow(0).getCell(i);
+			// se for null lança uma exception
+			if (cell == null) {
+				names[i] = DataFile.CELL_VALUE_NULL;
+				// senão
+			} else {
+				// pega o tipo de dado
+				cellType = cell.getCellType();
+				// se não for texto, lança uma exception
+				if (cellType != HSSFCell.CELL_TYPE_STRING) {
+					names[i] = DataFile.INVALID_CELL_TYPE;
+				} else {
+					// guarda o valor da célula
+					names[i] = cell.getStringCellValue().toUpperCase();
+				}
+
+			}
+
+		}
+
+		return names;
+
 	}
 
 }
