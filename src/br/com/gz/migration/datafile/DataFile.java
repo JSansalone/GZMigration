@@ -51,6 +51,11 @@ public abstract class DataFile {
 	 * Representa a stream de acesso aos dados
 	 */
 	private FileInputStream stream;
+	
+	/**
+	 * Nome do arquivo em uso
+	 */
+	private final String fileNameNoExt;
 
 	/**
 	 * Construtor que recebe um EnMigrationDataType e de acordo com este, lê o arquivo específico. Este construtor é responsável por obter o arquivo físico
@@ -90,9 +95,22 @@ public abstract class DataFile {
 			throw new FileNotFoundException();
 			
 		}
+		
+		fileNameNoExt = dataType.toString();
 
 	}
 
+	/**
+	 * Método que retorna o nome do arquivo em uso
+	 * 
+	 * @return- O nome do arquivo
+	 */
+	public final String getFileNameNoExt(){
+		
+		return this.fileNameNoExt;
+		
+	}
+	
 	/**
 	 * Obtêm os dados referentes às colunas do arquivo
 	 * 

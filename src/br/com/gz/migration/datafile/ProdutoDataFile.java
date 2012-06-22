@@ -1,5 +1,6 @@
 package br.com.gz.migration.datafile;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -160,9 +161,9 @@ public class ProdutoDataFile extends DataFile {
 
 	@Override
 	public Object first() {
-		
+
 		currentIndex = 2;
-		
+
 		try {
 			return previous();
 		} catch (ReachedTheStartOfFileException e) {
@@ -176,14 +177,14 @@ public class ProdutoDataFile extends DataFile {
 	public Object last() {
 
 		currentIndex = lastIndex;
-		
+
 		try {
 			return next();
 		} catch (ReachedTheEndOfFileException e) {
 			e.printStackTrace();
 			return null;
 		}
-		
+
 	}
 
 	@Override
@@ -290,9 +291,8 @@ public class ProdutoDataFile extends DataFile {
 				true)));
 		p.setValorICMSSubstituicao(new Double(format.toNumeric(
 				o[i++].toString(), true)));
-		p.setEstadoTributacao(format.toEstadoSigla(o[i++].toString()));
+		p.setEstadoTributacao(format.toEstadoSigla(o[i].toString()));
 
-		// return getRowData(currentIndex++);
 		return p;
 
 	}
@@ -389,15 +389,35 @@ public class ProdutoDataFile extends DataFile {
 				o[i++].toString(), true)));
 		p.setEstadoTributacao(format.toEstadoSigla(o[i++].toString()));
 
-		// return getRowData(currentIndex++);
 		return p;
 
 	}
 
 	@Override
 	public ArrayList<Object> getAll() {
-		// johnny Auto-generated method stub
-		return null;
+
+		int aux = currentIndex;
+
+		currentIndex = 1;
+
+		ArrayList<Object> arP = new ArrayList<Object>();
+
+		Produto p;
+
+		try {
+
+			while (hasNext()) {
+
+				p = (Produto) next();
+				arP.add(p);
+
+			}
+
+		} catch (ReachedTheEndOfFileException e) {
+			System.err.println(e.getMessage());
+		}
+
+		return arP;
 	}
 
 	@Override
@@ -489,8 +509,8 @@ public class ProdutoDataFile extends DataFile {
 
 	}
 
-	private void printa(Produto p, int i){
-		
+	private void printa(Produto p, int i) {
+
 		System.out.print(i + " --> ");
 		System.out.print(p.getLoja() + "|");
 		System.out.print(p.getCodigoInterno() + "|");
@@ -534,45 +554,55 @@ public class ProdutoDataFile extends DataFile {
 		System.out.print(p.getEstadoTributacao() + "|");
 
 		System.out.println();
-		
+
 	}
-	
+
 	public void teste() {
 
+		ArrayList<Object> arP = getAll();
+
 		int i = 1;
-
-		try {
-
-//			last();
-//			previous();
-//			
-			while (hasNext()) {
-
-				Produto p = (Produto) next();
-
-				printa(p,i++);
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		for (Object o : arP) {
+			printa((Produto) o, i++);
 		}
 
-		System.out
-				.println("----------------------------------------------------------------------------------------------");
+		// int i = 1;
+		//
+		// try {
+		//
+		// while (hasNext()) {
+		//
+		// Produto p = (Produto) next();
+		//
+		// printa(p, i++);
+		//
+		// }
+		//
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
 
-		Collection cl = notInserted.values();
+		 File f = new File("data/" + getFileNameNoExt() +
+		 "_NOT_INSERTED.xls");
+		
+		 DataFileWriter.writeRowBatch(f, DataFileReader.getHeader(
+		 dataSheet.getRow(0), qtyRequiredColumns), notInserted);
 
-		i = 1;
-
-		for (Object oo : cl) {
-			Object[] ooo = (Object[]) oo;
-			System.out.print((i++) + " --> ");
-			for (Object oooo : ooo) {
-				System.out.print(oooo + "|");
-			}
-			System.out.println();
-		}
+//		System.out
+//				.println("----------------------------------------------------------------------------------------------");
+//
+//		Collection cl = notInserted.values();
+//
+//		i = 1;
+//
+//		for (Object oo : cl) {
+//			Object[] ooo = (Object[]) oo;
+//			System.out.print((i++) + " --> ");
+//			for (Object oooo : ooo) {
+//				System.out.print(oooo + "|");
+//			}
+//			System.out.println();
+//		}
 
 	}
 

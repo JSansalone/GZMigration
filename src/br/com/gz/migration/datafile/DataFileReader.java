@@ -118,6 +118,14 @@ public class DataFileReader {
 
 		for (int i = 0; i < maximumColumns; i++) {
 
+//			if(i==2){
+//				
+//				cell = row.getCell(i);
+//				cell.setCellType(cell.CELL_TYPE_STRING);
+//				System.out.println(cell.getStringCellValue());
+//				
+//			}
+			
 			// pega a célula
 			cell = row.getCell(i);
 			// se for null lança uma exception
@@ -138,14 +146,20 @@ public class DataFileReader {
 
 				case HSSFCell.CELL_TYPE_NUMERIC:
 
-					Double aux = cell.getNumericCellValue();
-
-					if (aux - Math.floor(aux) > 0)
-						values[i] = new Double(aux);
-					else if (HSSFDateUtil.isCellDateFormatted(cell)) {
-						values[i] = cell.getDateCellValue().getTime();
-					} else
-						values[i] = new Integer((int) Math.round(aux));
+					cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+					
+					values[i] = cell.getStringCellValue().toUpperCase().trim()
+					.equals("") ? DataFile.CELL_VALUE_NULL : cell
+					.getStringCellValue().toUpperCase();
+					
+//					Double aux = cell.getNumericCellValue();
+//
+//					if (aux - Math.floor(aux) > 0)
+//						values[i] = new Double(aux);
+//					else if (HSSFDateUtil.isCellDateFormatted(cell)) {
+//						values[i] = cell.getDateCellValue().getTime();
+//					} else
+//						values[i] = new Integer((int) Math.round(aux));
 					break;
 
 				case HSSFCell.CELL_TYPE_BLANK:
