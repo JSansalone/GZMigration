@@ -20,7 +20,7 @@ public class Teste {
 		
 		ProdutoDataFile d=null;
 		
-		try {
+		try {//
 
 			d = ProdutoDataFile.getInstance(GZSoftwares.MERCOFLEX);
 
