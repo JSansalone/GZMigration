@@ -16,69 +16,77 @@ import br.com.gz.bean.Grupo;
 import br.com.gz.bean.Loja;
 import br.com.gz.bean.Marca;
 import br.com.gz.bean.Produto;
+import br.com.gz.migration.datafile.ArmacaoDataFile;
+import br.com.gz.migration.datafile.ClienteDataFile;
+import br.com.gz.migration.datafile.DepartamentoDataFile;
+import br.com.gz.migration.datafile.FornecedorDataFile;
+import br.com.gz.migration.datafile.GrupoDataFile;
+import br.com.gz.migration.datafile.MarcaDataFile;
+import br.com.gz.migration.datafile.ProdutoDataFile;
 import br.com.gz.migration.exception.SecurityViolationException;
 import br.com.gz.migration.file.LogFile;
+import br.com.gz.util.GZSoftwares;
 
 /**
  * 
- * @author Jonathan
+ * @author Jonathan Sansalone
  * 
  *         Classe abstrata que servirá de substituta para a antiga interface
  *         IDAO Os benefícios dessa classe é que ela concentra todos os inserts
- *         para os sistemas da GZ, facilitando a manutenção.
+ *         para os sistemas da GZ, facilitando a manutenção.<br>
  * 
- * @rules Regras para a implementação:
+ *         <b>Regras para a implementação:</b><br>
  * 
- *        Regras gerais: primeiro usa-se countX. Se retornar POLICY_VIOLATION
- *        usa-se getXColumnsNeeded, caso contrário usa-sa getX - Devem ter
- *        membros ResultSet e PreparedStatement de acordo com a lista abaixo:
+ *         Regras gerais: primeiro usa-se countX. Se retornar POLICY_VIOLATION
+ *         usa-se getXColumnsNeeded, caso contrário usa-sa getX - Devem ter
+ *         membros ResultSet e PreparedStatement de acordo com a lista abaixo:
  * 
- *        private PreparedStatement stProduto; private PreparedStatement
- *        stDepartamento; private PreparedStatement stGrupo; private
- *        PreparedStatement stArmacao; private PreparedStatement stMarca;
- *        private PreparedStatement stCliente; private PreparedStatement
- *        stFornecedor; private PreparedStatement stNFEntrada; private
- *        PreparedStatement stNFSaida; private PreparedStatement stContaPagar;
- *        private PreparedStatement stContaReceber; private PreparedStatement
- *        stMovtoVenda;
+ *         private PreparedStatement stProduto; private PreparedStatement
+ *         stDepartamento; private PreparedStatement stGrupo; private
+ *         PreparedStatement stArmacao; private PreparedStatement stMarca;
+ *         private PreparedStatement stCliente; private PreparedStatement
+ *         stFornecedor; private PreparedStatement stNFEntrada; private
+ *         PreparedStatement stNFSaida; private PreparedStatement stContaPagar;
+ *         private PreparedStatement stContaReceber; private PreparedStatement
+ *         stMovtoVenda;
  * 
- *        private ResultSet rsProduto; private ResultSet rsDepartamento; private
- *        ResultSet rsGrupo; private ResultSet rsArmacao; private ResultSet
- *        rsMarca; private ResultSet rsCliente; private ResultSet rsFornecedor;
- *        private ResultSet rsNFEntrada; private ResultSet rsNFSaida; private
- *        ResultSet rsContaPagar; private ResultSet rsContaReceber; private
- *        ResultSet rsMovtoVenda;
+ *         private ResultSet rsProduto; private ResultSet rsDepartamento;
+ *         private ResultSet rsGrupo; private ResultSet rsArmacao; private
+ *         ResultSet rsMarca; private ResultSet rsCliente; private ResultSet
+ *         rsFornecedor; private ResultSet rsNFEntrada; private ResultSet
+ *         rsNFSaida; private ResultSet rsContaPagar; private ResultSet
+ *         rsContaReceber; private ResultSet rsMovtoVenda;
  * 
- *        Contrutor: - Deve implementar o construtor herdado - Deve salvar o
- *        software da GZ, de terceiro e o banco de destino nas variáveis
- *        herdadas - Deve instanciar a política de colunas
+ *         Contrutor: - Deve implementar o construtor herdado - Deve salvar o
+ *         software da GZ, de terceiro e o banco de destino nas variáveis
+ *         herdadas - Deve instanciar a política de colunas
  * 
- *        Métodos countX: - Devem retornar a quantidade mais exata possível de
- *        registros que serão possivelmente inseridos - Devem validar as colunas
- *        retornadas usando a política de colunas - Devem retornar
- *        POLICY_VIOLATION se a política de colunas for violada - Devem retornar
- *        EMPTY_RETURN se não forem implementados - Devem obter o select
- *        apropriado da estrutura de diretórios de selects - Devem instanciar o
- *        PreparedStatement apropriado - Devem alimentar o ResultSet apropriado
- *        com os dados - Não devem de maneira nenhuma fechar o ResultSet
- *        apropriado - Não devem de maneira nenhuma fechar o PreparedStatement
- *        apropriado - Devem posicionar o cursor do ResultSet apropriado antes
- *        do primeiro registro (usar beforeFirst())
+ *         Métodos countX: - Devem retornar a quantidade mais exata possível de
+ *         registros que serão possivelmente inseridos - Devem validar as
+ *         colunas retornadas usando a política de colunas - Devem retornar
+ *         POLICY_VIOLATION se a política de colunas for violada - Devem
+ *         retornar EMPTY_RETURN se não forem implementados - Devem obter o
+ *         select apropriado da estrutura de diretórios de selects - Devem
+ *         instanciar o PreparedStatement apropriado - Devem alimentar o
+ *         ResultSet apropriado com os dados - Não devem de maneira nenhuma
+ *         fechar o ResultSet apropriado - Não devem de maneira nenhuma fechar o
+ *         PreparedStatement apropriado - Devem posicionar o cursor do ResultSet
+ *         apropriado antes do primeiro registro (usar beforeFirst())
  * 
- *        Métodos getX: - Só podem ser utilizados se o countX validar a política
- *        de colunas - Não devem consultar os dados novamente no banco de dados
- *        - Devem utilizar o ResultSet alimentado pelo countX - Devem ser
- *        responsáveis por todos os tratamentos de dados usando um formatador
- *        apropriado para o sistema da GZ - São responsáveis por fechar o
- *        ResultSet e o PreparedStatement apropriados - Devem retornar os dados
- *        em ArrayList
+ *         Métodos getX: - Só podem ser utilizados se o countX validar a
+ *         política de colunas - Não devem consultar os dados novamente no banco
+ *         de dados - Devem utilizar o ResultSet alimentado pelo countX - Devem
+ *         ser responsáveis por todos os tratamentos de dados usando um
+ *         formatador apropriado para o sistema da GZ - São responsáveis por
+ *         fechar o ResultSet e o PreparedStatement apropriados - Devem retornar
+ *         os dados em ArrayList
  * 
- *        Métodos getXColunmNeeded: - Sua função é fornecer todas as colunas
- *        faltantes de acordo com a política - Só podem ser utilizados caso o
- *        countX retorne POLICY_VIOLATION - São responsáveis por fechar o
- *        ResultSet e o PreparedStatement apropriados caso forem (os métodos
- *        getXColumnsNeeded) utilizados - Devem retornar o ArrayList de colunas
- *        faltantes
+ *         Métodos getXColunmNeeded: - Sua função é fornecer todas as colunas
+ *         faltantes de acordo com a política - Só podem ser utilizados caso o
+ *         countX retorne POLICY_VIOLATION - São responsáveis por fechar o
+ *         ResultSet e o PreparedStatement apropriados caso forem (os métodos
+ *         getXColumnsNeeded) utilizados - Devem retornar o ArrayList de colunas
+ *         faltantes
  * 
  */
 public abstract class SQLDataProvider {
@@ -92,6 +100,8 @@ public abstract class SQLDataProvider {
 	protected EnSoftware otherSoftware;
 	protected DatabaseType dbTo;
 	protected DatabaseType dbFrom;
+	
+	protected GZSoftwares gzSoftware;
 
 	public SQLDataProvider(EnSoftware software, EnSoftware otherSoftware,
 			DatabaseType dbTo, DatabaseType dbFrom) {
@@ -101,6 +111,13 @@ public abstract class SQLDataProvider {
 		this.software = software;
 		this.otherSoftware = otherSoftware;
 
+	}
+	
+	public SQLDataProvider(GZSoftwares software, DatabaseType dbTo){
+		
+		this.gzSoftware = software;
+		this.dbTo = dbTo;
+		
 	}
 
 	public final boolean addCliente(Connection cnn, Cliente c) {
@@ -457,7 +474,7 @@ public abstract class SQLDataProvider {
 					st.setString(12, p.getSoInteiro());
 					st.setString(13, p.getNcm());
 					st.setInt(14, p.getCodigoTributacao());
-					st.setInt(15,p.getGrupo());
+					st.setInt(15, p.getGrupo());
 					st.execute();
 
 					st = cnn.prepareStatement("insert into esttrib(cdprod, icmcompra, tributa, trbcompra) values(?,?,?,?) on duplicate key update cdprod = cdprod");
@@ -598,7 +615,7 @@ public abstract class SQLDataProvider {
 				st.setDouble(3, p.getPrecoCusto());
 				st.setDouble(4, p.getPrecoVenda());
 				st.setDouble(5, p.getPorcentagemLucro());
-				
+
 				st.execute();
 				st.close();
 
@@ -665,29 +682,53 @@ public abstract class SQLDataProvider {
 
 	}
 
+	@Deprecated
 	public abstract int countProduto(Connection conn) throws IOException,
 			SecurityViolationException, SQLException;
 
+	@Deprecated
 	public abstract int countDepartamento(Connection conn) throws IOException,
 			SecurityViolationException, SQLException;
 
+	@Deprecated
 	public abstract int countGrupo(Connection conn) throws IOException,
 			SecurityViolationException, SQLException;
 
+	@Deprecated
 	public abstract int countArmacao(Connection conn) throws IOException,
 			SecurityViolationException, SQLException;
 
+	@Deprecated
 	public abstract int countMarca(Connection conn) throws IOException,
 			SecurityViolationException, SQLException;
 
+	@Deprecated
 	public abstract int countCliente(Connection conn) throws IOException,
 			SecurityViolationException, SQLException;
 
+	@Deprecated
 	public abstract int countLoja(Connection conn) throws IOException,
 			SecurityViolationException, SQLException;
 
+	@Deprecated
 	public abstract int countFornecedor(Connection conn) throws IOException,
 			SecurityViolationException, SQLException;
+
+	//
+
+	public abstract int countProduto(ProdutoDataFile dataFile) throws IOException;
+
+	public abstract int countDepartamento(DepartamentoDataFile dataFile) throws IOException;
+
+	public abstract int countGrupo(GrupoDataFile dataFile) throws IOException;
+
+	public abstract int countArmacao(ArmacaoDataFile dataFile) throws IOException;
+
+	public abstract int countMarca(MarcaDataFile dataFile) throws IOException;
+
+	public abstract int countCliente(ClienteDataFile dataFile) throws IOException;
+
+	public abstract int countFornecedor(FornecedorDataFile dataFile) throws IOException;
 
 	/*
 	 * int countNFEntrada(Connection conn) ;
@@ -701,21 +742,47 @@ public abstract class SQLDataProvider {
 	 * int countMovtoVenda(Connection conn) ;
 	 */
 
+	@Deprecated
 	public abstract ArrayList<Produto> getProduto(Connection conn);
 
+	@Deprecated
 	public abstract ArrayList<Departamento> getDepartamento(Connection conn);
 
+	@Deprecated
 	public abstract ArrayList<Grupo> getGrupo(Connection conn);
 
+	@Deprecated
 	public abstract ArrayList<Armacao> getArmacao(Connection conn);
 
+	@Deprecated
 	public abstract ArrayList<Marca> getMarca(Connection conn);
 
+	@Deprecated
 	public abstract ArrayList<Cliente> getCliente(Connection conn);
 
+	@Deprecated
 	public abstract ArrayList<Loja> getLoja(Connection conn);
 
+	@Deprecated
 	public abstract ArrayList<Fornecedor> getFornecedor(Connection conn);
+
+	//
+	
+	public abstract ArrayList<Produto> getProduto(ProdutoDataFile dataFile);
+
+	public abstract ArrayList<Departamento> getDepartamento(
+			DepartamentoDataFile dataFile);
+
+	public abstract ArrayList<Grupo> getGrupo(GrupoDataFile dataFile);
+
+	public abstract ArrayList<Armacao> getArmacao(ArmacaoDataFile dataFile);
+
+	public abstract ArrayList<Marca> getMarca(MarcaDataFile dataFile);
+
+	public abstract ArrayList<Cliente> getCliente(ClienteDataFile dataFile);
+
+	public abstract ArrayList<Fornecedor> getFornecedor(
+			FornecedorDataFile dataFile);
 
 	public abstract ArrayList<String> getProdutoColumnsNeeded();
 

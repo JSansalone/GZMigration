@@ -61,14 +61,16 @@ public class DataFileReader {
 				// senão
 			} else {
 				// pega o tipo de dado
-				cellType = cell.getCellType();
+//				cellType = cell.getCellType();
+				cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+				names[i] = cell.getStringCellValue().toUpperCase();
 				// se não for texto, lança uma exception
-				if (cellType != HSSFCell.CELL_TYPE_STRING) {
-					names[i] = DataFile.INVALID_CELL_TYPE;
-				} else {
-					// guarda o valor da célula
-					names[i] = cell.getStringCellValue().toUpperCase();
-				}
+//				if (cellType != HSSFCell.CELL_TYPE_STRING) {
+//					names[i] = DataFile.INVALID_CELL_TYPE;
+//				} else {
+//					// guarda o valor da célula
+//					names[i] = cell.getStringCellValue().toUpperCase();
+//				}
 
 			}
 

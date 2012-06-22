@@ -1,14 +1,9 @@
 package br.com.gz.migration.datafile;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
-
-import org.apache.poi.hssf.usermodel.HSSFRow;
 
 import br.com.gz.bean.Produto;
 import br.com.gz.migration.EnMigrationDataType;
@@ -16,7 +11,6 @@ import br.com.gz.migration.exception.InvalidCellTypeException;
 import br.com.gz.migration.exception.InvalidMigrationDataTypeException;
 import br.com.gz.migration.exception.ReachedTheEndOfFileException;
 import br.com.gz.migration.exception.ReachedTheStartOfFileException;
-import br.com.gz.migration.exception.RequiredColumnNotFilledException;
 import br.com.gz.migration.exception.RequiredColumnNotFoundException;
 import br.com.gz.migration.policy.EnColumnsCategory;
 import br.com.gz.migration.policy.EnMercoFlexRequiredColumns;
@@ -40,37 +34,42 @@ public class ProdutoDataFile extends DataFile {
 	 */
 	private static ProdutoDataFile instance;
 
-	/**
-	 * Posição atual no arquivo
-	 */
-	private int currentIndex = 1;
-
-	/**
-	 * Posição do último registro do arquivo
-	 */
-	private final int lastIndex;
-
-	/**
-	 * Guarda a quantidade de colunas obrigatórias para não pesquisar todas as
-	 * vezes que precisar
-	 */
-	private final int qtyRequiredColumns;
-
-	/**
-	 * Array que guarda todas as colunas obrigatórias
-	 */
-	private final EnMercoFlexRequiredColumns[] requiredColumns;
-
-	/**
-	 * Software que está sendo implantado
-	 */
-	private final GZSoftwares software;
-
-	/**
-	 * Variável que guarda todos os que não foram inseridos por não possuirem
-	 * todos os valores obrigatórios ou com valores inválidos
-	 */
-	private HashMap<Integer, Object[]> notInserted;
+//	/**
+//	 * Posição atual no arquivo
+//	 */
+//	private int currentIndex = 1;
+//
+//	/**
+//	 * Posição do último registro do arquivo
+//	 */
+//	private int lastIndex;
+//
+//	/**
+//	 * Guarda a quantidade de colunas obrigatórias para não pesquisar todas as
+//	 * vezes que precisar
+//	 */
+//	private int qtyRequiredColumns;
+//
+//	/**
+//	 * Array que guarda todas as colunas obrigatórias
+//	 */
+//	private EnMercoFlexRequiredColumns[] requiredColumns;
+//
+//	/**
+//	 * Software que está sendo implantado
+//	 */
+//	private GZSoftwares software;
+//
+//	/**
+//	 * Variável que guarda todos os que não foram inseridos por não possuirem
+//	 * todos os valores obrigatórios ou com valores inválidos
+//	 */
+//	private HashMap<Integer, Object[]> notInserted;
+//	
+//	/**
+//	 * Variável que guarda todas as colunas não encontradas
+//	 */
+//	private ArrayList<String> notFound;
 
 	/**
 	 * Construtor default para passar o tipo de dado para o construtor da
@@ -80,13 +79,12 @@ public class ProdutoDataFile extends DataFile {
 	 *             - Se não conseguir ler o arquivo
 	 * @throws InvalidMigrationDataTypeException
 	 *             - Se o tipo de dado não for suportado pela superclasse
+	 * @throws RequiredColumnNotFoundException - Se alguma coluna não for encontrada
 	 */
 	private ProdutoDataFile(GZSoftwares software) throws IOException,
 			InvalidMigrationDataTypeException {
 
-		super(EnMigrationDataType.PRODUTO);
-
-		this.software = software;
+		super(software,EnMigrationDataType.PRODUTO);
 
 		requiredColumns = EnMercoFlexRequiredColumns.filterValues(
 				EnColumnsCategory.ESTOQUE, EnColumnsCategory.ESTOQUE_LOJA,
@@ -94,10 +92,6 @@ public class ProdutoDataFile extends DataFile {
 				EnColumnsCategory.ESTOQUE_TRIBUTACAO);
 
 		qtyRequiredColumns = requiredColumns.length;
-
-		notInserted = new HashMap<Integer, Object[]>();
-
-		lastIndex = getTotalRows();
 
 	}
 
@@ -108,6 +102,7 @@ public class ProdutoDataFile extends DataFile {
 	 * @return - A instância da classe
 	 * @throws IOException
 	 *             - Se não conseguir ler o arquivo
+	 * @throws RequiredColumnNotFoundException 
 	 */
 	public static ProdutoDataFile getInstance(GZSoftwares software)
 			throws IOException {
@@ -136,12 +131,6 @@ public class ProdutoDataFile extends DataFile {
 	}
 
 	@Override
-	public DataFileMetaData getMetaData() {
-		// johnny Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String getName() {
 		// johnny Auto-generated method stub
 		return null;
@@ -150,12 +139,28 @@ public class ProdutoDataFile extends DataFile {
 	@Override
 	public int getTotalRows() {
 
-		int i = 0;
-
-		while (hasNextAfter(i))
-			i++;
-
-		return i;
+//		int i = 0;
+//
+//		while (hasNextAfter(i))
+//			i++;
+//
+//		return i;
+		
+		int i = currentIndex;
+		int j=0;
+		
+		while(hasNext()){
+			try {
+				next();
+				j++;
+			} catch (ReachedTheEndOfFileException e) {
+				break;
+			}
+		}
+		
+		currentIndex = i;
+		
+		return j;
 
 	}
 
@@ -438,6 +443,8 @@ public class ProdutoDataFile extends DataFile {
 
 		ArrayList<String> notFound = new ArrayList<String>();
 		ArrayList<String> invalidType = new ArrayList<String>();
+		
+		this.notFound.clear();
 
 		// verificando se estão na ordem correta
 		for (int i = 0; i < qtyRequiredColumns; i++) {
@@ -453,6 +460,8 @@ public class ProdutoDataFile extends DataFile {
 				} else {
 
 					notFound.add(requiredColumns[i].getLabel());
+					
+					this.notFound.add(requiredColumns[i].getLabel());
 
 				}
 
@@ -559,50 +568,52 @@ public class ProdutoDataFile extends DataFile {
 
 	public void teste() {
 
-		ArrayList<Object> arP = getAll();
-
-		int i = 1;
-		for (Object o : arP) {
-			printa((Produto) o, i++);
-		}
-
-		// int i = 1;
-		//
-		// try {
-		//
-		// while (hasNext()) {
-		//
-		// Produto p = (Produto) next();
-		//
-		// printa(p, i++);
-		//
-		// }
-		//
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-
-		 File f = new File("data/" + getFileNameNoExt() +
-		 "_NOT_INSERTED.xls");
+		System.out.println(getTotalRows());
 		
-		 DataFileWriter.writeRowBatch(f, DataFileReader.getHeader(
-		 dataSheet.getRow(0), qtyRequiredColumns), notInserted);
-
-//		System.out
-//				.println("----------------------------------------------------------------------------------------------");
+//		ArrayList<Object> arP = getAll();
 //
-//		Collection cl = notInserted.values();
-//
-//		i = 1;
-//
-//		for (Object oo : cl) {
-//			Object[] ooo = (Object[]) oo;
-//			System.out.print((i++) + " --> ");
-//			for (Object oooo : ooo) {
-//				System.out.print(oooo + "|");
-//			}
-//			System.out.println();
+//		int i = 1;
+//		for (Object o : arP) {
+//			printa((Produto) o, i++);
 //		}
+//
+//		// int i = 1;
+//		//
+//		// try {
+//		//
+//		// while (hasNext()) {
+//		//
+//		// Produto p = (Produto) next();
+//		//
+//		// printa(p, i++);
+//		//
+//		// }
+//		//
+//		// } catch (Exception e) {
+//		// e.printStackTrace();
+//		// }
+//
+//		 File f = new File("data/" + getFileNameNoExt() +
+//		 "_NOT_INSERTED.xls");
+//		
+//		 DataFileWriter.writeRowBatch(f, DataFileReader.getHeader(
+//		 dataSheet.getRow(0), qtyRequiredColumns), notInserted);
+//
+////		System.out
+////				.println("----------------------------------------------------------------------------------------------");
+////
+////		Collection cl = notInserted.values();
+////
+////		i = 1;
+////
+////		for (Object oo : cl) {
+////			Object[] ooo = (Object[]) oo;
+////			System.out.print((i++) + " --> ");
+////			for (Object oooo : ooo) {
+////				System.out.print(oooo + "|");
+////			}
+////			System.out.println();
+////		}
 
 	}
 
@@ -635,6 +646,11 @@ public class ProdutoDataFile extends DataFile {
 
 		return false;
 
+	}
+
+	@Override
+	public ArrayList<String> getColumnsNotFound() {
+		return this.notFound;
 	}
 
 }

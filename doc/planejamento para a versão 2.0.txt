@@ -12,7 +12,7 @@ Implementações e correções:
 
 	- br.com.gz.migration.GZMigration: 
 	Remover variáveis:
-		private CurrentSoftwarePanel currentSoftwarePanel;
+	private CurrentSoftwarePanel currentSoftwarePanel;
 	Alterar valor da constante limitIndex para 7;
 	
 	- br.com.gz.migration.GZMigration.GZMigration():
