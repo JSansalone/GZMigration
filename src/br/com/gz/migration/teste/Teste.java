@@ -20,7 +20,7 @@ public class Teste {
 		
 		ProdutoDataFile d=null;
 		
-		try {// estou usando a branch version2.1
+		try {
 
 			d = ProdutoDataFile.getInstance(GZSoftwares.MERCOFLEX);
 

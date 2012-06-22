@@ -25,68 +25,229 @@ import br.com.gz.migration.file.LogFile;
 import br.com.gz.migration.panelSteps.IMigrationInfo;
 
 /**
+ * Motor de migração<br><br><br>
  * 
- * @author Jonathan
+ * Classe responsável por manipular os dados recuperados pela subclasse de SQLDataProvider
  * 
- *         O famoso Motor...
- * 
+ * @author Jonathan Sansalone
+ *
  */
 class MigrationEngine extends Thread implements IMigrationResults {
 
 	// tipos de migração
+	/**
+	 * Variável que guarda os tipos de migração que serão utilizados
+	 */
 	private ArrayList<EnMigrationDataType> migrationType;
+	
+	/**
+	 * Variável que executa alguns passos ao terminar a migração
+	 */
 	private IFinalizeMigration iFinalize;
+	
+	/**
+	 * Variável que fornece informações sobre a migração após o término
+	 */
 	private IMigrationInfo iInfo;
+	
+	/**
+	 * Variável que fornece alguns dados úteis para a migração
+	 */
 	private IMigrationType iType;
+	
+	/**
+	 * Variável responsável por coletar e inserir os dados
+	 */
 	private SQLDataProvider myDAO;
+	
+	/**
+	 * Variável que contém as configurações do banco de dados de destino
+	 */
 	private IDatabaseInfo myCfgTo;
+	
+	/**
+	 * Variável que contém as configurações do banco de dados de origem. Esta não será mais utilizada
+	 */
 	private IDatabaseInfo myCfgFrom;
+	
+	/**
+	 * Variável que guarda a conexão com o banco de dados de destino
+	 */
 	private Connection cnnTo;
+	
+	/**
+	 * Variável que guarda a conexão com o banco de dados de origem
+	 */
 	private Connection cnnFrom;
 
 	// total geral de dados a serem migrados
+	/**
+	 * Guarda o total geral de dados a serem migrados
+	 */
 	private int totalData;
 
+	/**
+	 * Guarda o subtotal de produtos
+	 */
 	private int totalProduto;
 	// apenas usado quando tiver que anexar produtos
+	
+	/**
+	 * Guarda o subtotal de produtos antes de inserir os novos. (Modo anexar)
+	 */
 	private int totalProdutoInicio;
+	
+	/**
+	 * Guarda o total final após incluir os produtos novos
+	 */
 	private int totalProdutoFinal;
 	// ------------------------------------
+	
+	/**
+	 * Guarda o total de departamentos
+	 */
 	private int totalDepartamento;
+	
+	/**
+	 * Guarda o total de grupos
+	 */
 	private int totalGrupo;
+	
+	/**
+	 * Guarda o total de marcas
+	 */
 	private int totalMarca;
+	
+	/**
+	 * Guarda o total de armações
+	 */
 	private int totalArmacao;
+	
+	/**
+	 * Guarda o total de clientes
+	 */
 	private int totalCliente;
+	
+	/**
+	 * Guarda o total de fornecedores
+	 */
 	private int totalFornecedor;
+	
+	/**
+	 * Guarda o total de lojas
+	 */
 	private int totalLoja;
+	
+	/**
+	 * Guarda o total de notas fiscais de entrada
+	 */
 	private int totalNFEntrada;
+	
+	/**
+	 * Guarda o total de itens das notas fiscais de entrada
+	 */
 	private int totalNFEntradaItem;
+	
+	/**
+	 * Guarda o total de notas fiscais de saida
+	 */
 	private int totalNFSaida;
+	
+	/**
+	 * Guarda o total de itens das notas fiscais de saida
+	 */
 	private int totalNFSaidaItem;
+	
+	/**
+	 * Guarda o total de contas a pagar
+	 */
 	private int totalContaPagar;
+	
+	/**
+	 * Guarda o total de contas a receber
+	 */
 	private int totalContaReceber;
+	
+	/**
+	 * Guarda o total de movimentações de venda
+	 */
 	private int totalMovtoVenda;
 
 	// sinaliza se vai anexar ou sobrepor cadastros referentes à lojas
 	// (produtos)
+	/**
+	 * Sinaliza se vai incluir ou sobrepor os cadastros de produtos
+	 */
 	private boolean toAppend;
 
 	// flags para indicar quais dados serão usados
+	/**
+	 * Flag para indicar se vai ser migrado produtos
+	 */
 	private boolean useProduto = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado grupos
+	 */
 	private boolean useGrupo = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado departamentos
+	 */
 	private boolean useDepartamento = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado marcas
+	 */
 	private boolean useMarca = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado armações
+	 */
 	private boolean useArmacao = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado lojas
+	 */
 	private boolean useLoja = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado clientes
+	 */
 	private boolean useCliente = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado
+	 */
 	private boolean useFornecedor = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado notas fiscais de entrada
+	 */
 	private boolean useNFEntrada = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado notas fiscais de saida
+	 */
 	private boolean useNFSaida = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado contas a pagar
+	 */
 	private boolean useContaPagar = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado contas a receber
+	 */
 	private boolean useContaReceber = false;
+	
+	/**
+	 * Flag para indicar se vai ser migrado movimentações de venda
+	 */
 	private boolean useMovtoVenda = false;
 
 	/**
+	 * Construtor que instancia a classe
 	 * 
 	 * @param migrationType
 	 * @param iFinalize
@@ -165,6 +326,9 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	}
 
+	/**
+	 * Realiza a migração
+	 */
 	public void run() {
 
 		int count = 0;
@@ -798,6 +962,14 @@ class MigrationEngine extends Thread implements IMigrationResults {
 		return (useLoja) ? totalLoja : SQLDataProvider.EMPTY_RETURN;
 	}
 
+	/**
+	 * Conta a quantidade de dados nas tabelas de produto
+	 * 
+	 * @param cnn - variável de conexão com o banco de dados de destino
+	 * @param software - software a ser implantado
+	 * @param table - nome da tabela
+	 * @return - o total de produtos na tabela
+	 */
 	private int countCurrentProduto(Connection cnn, EnSoftware software,
 			String table) {
 
@@ -919,6 +1091,13 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	}
 
+	/**
+	 * Busca a última loja cadastrada no banco de destino
+	 * 
+	 * @param cnn - variável de conexão com o banco de dados de destino
+	 * @param software - software a ser implantado
+	 * @return - o código d a loja
+	 */
 	private int getMaxLoja(Connection cnn, EnSoftware software) {
 
 		PreparedStatement st;
@@ -975,6 +1154,12 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	}
 
+	/**
+	 * Limpa a tabela informada no banco de dados de destino
+	 * 
+	 * @param cnn - variável de conexão ao banco de dados de destino
+	 * @param table - nome da tabela a ser limpada
+	 */
 	private void clear(Connection cnn, String table) {
 
 		try {
@@ -988,6 +1173,11 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	}
 
+	/**
+	 * Mostra mensagem de erro genérica
+	 * 
+	 * @param type - tipo de dado
+	 */
 	private void showErrorMessage(EnMigrationDataType type) {
 
 		LogFile.getInstance().writeInFile("Showing error message");
@@ -1135,6 +1325,12 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	}
 
+	/**
+	 * Mostra mensagem de violação de colunas
+	 * 
+	 * @param type - Tipo de dado
+	 * @param columnsNeeded - colunas que faltam
+	 */
 	private void showPolicyViolationMessage(EnMigrationDataType type,
 			ArrayList<String> columnsNeeded) {
 
@@ -1290,6 +1486,12 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	}
 
+	/**
+	 * Mostra mensagem de violação de segurança ao executar código SQL
+	 * 
+	 * @param type - tipo de dado
+	 */
+	@Deprecated
 	private void showSecurityViolationMessage(EnMigrationDataType type) {
 
 		LogFile.getInstance().writeInFile("Showing security violation message");
@@ -1437,6 +1639,12 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	}
 
+	/**
+	 * Mostra mensagem de erro de sintaxe
+	 * 
+	 * @param type - Tipo de dado que causou a mensagem
+	 */
+	@Deprecated
 	private void showSyntaxErrorMessage(EnMigrationDataType type) {
 
 		LogFile.getInstance().writeInFile("Showing syntax error message");
