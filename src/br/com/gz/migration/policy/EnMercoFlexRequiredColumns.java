@@ -62,6 +62,11 @@ public enum EnMercoFlexRequiredColumns {
 	PROD_PRECO_VENDA("PRECO_VENDA","precovenda",EnColumnsCategory.ESTOQUE_SALDO),
 	
 	/**
+	 * Preço de venda a ser usado no PDV
+	 */
+	PROD_PRECO_VENDA_TERMINAL("PRECO_VENDA_TERMINAL","termvenda",EnColumnsCategory.ESTOQUE_SALDO),
+	
+	/**
 	 * Código do departamento
 	 */
 	PROD_CODIGO_DEPARTAMENTO("CODIGO_DEPARTAMENTO","depto",EnColumnsCategory.ESTOQUE),

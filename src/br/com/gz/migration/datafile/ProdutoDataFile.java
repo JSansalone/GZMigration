@@ -1,25 +1,27 @@
 package br.com.gz.migration.datafile;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.omg.PortableInterceptor.INACTIVE;
 
 import br.com.gz.bean.Produto;
 import br.com.gz.migration.EnMigrationDataType;
 import br.com.gz.migration.exception.InvalidCellTypeException;
 import br.com.gz.migration.exception.InvalidMigrationDataTypeException;
+import br.com.gz.migration.exception.ReachedTheEndOfFileException;
+import br.com.gz.migration.exception.ReachedTheStartOfFileException;
+import br.com.gz.migration.exception.RequiredColumnNotFilledException;
 import br.com.gz.migration.exception.RequiredColumnNotFoundException;
 import br.com.gz.migration.policy.EnColumnsCategory;
 import br.com.gz.migration.policy.EnMercoFlexRequiredColumns;
+import br.com.gz.util.Formattable;
 import br.com.gz.util.GZSoftwares;
+import br.com.gz.util.MercattoFormat;
 import br.com.gz.util.MercoFlexFormat;
 
 /**
@@ -27,7 +29,7 @@ import br.com.gz.util.MercoFlexFormat;
  * herdados devem ser implementados especificamente para trabalhar com estes
  * registros.
  * 
- * @author Jonathan
+ * @author Jonathan Sansalone
  * 
  */
 public class ProdutoDataFile extends DataFile {
@@ -42,9 +44,32 @@ public class ProdutoDataFile extends DataFile {
 	 */
 	private int currentIndex = 1;
 
+	/**
+	 * Posição do último registro do arquivo
+	 */
+	private final int lastIndex;
+
+	/**
+	 * Guarda a quantidade de colunas obrigatórias para não pesquisar todas as
+	 * vezes que precisar
+	 */
 	private final int qtyRequiredColumns;
 
+	/**
+	 * Array que guarda todas as colunas obrigatórias
+	 */
 	private final EnMercoFlexRequiredColumns[] requiredColumns;
+
+	/**
+	 * Software que está sendo implantado
+	 */
+	private final GZSoftwares software;
+
+	/**
+	 * Variável que guarda todos os que não foram inseridos por não possuirem
+	 * todos os valores obrigatórios ou com valores inválidos
+	 */
+	private HashMap<Integer, Object[]> notInserted;
 
 	/**
 	 * Construtor default para passar o tipo de dado para o construtor da
@@ -55,10 +80,12 @@ public class ProdutoDataFile extends DataFile {
 	 * @throws InvalidMigrationDataTypeException
 	 *             - Se o tipo de dado não for suportado pela superclasse
 	 */
-	private ProdutoDataFile() throws IOException,
+	private ProdutoDataFile(GZSoftwares software) throws IOException,
 			InvalidMigrationDataTypeException {
 
 		super(EnMigrationDataType.PRODUTO);
+
+		this.software = software;
 
 		requiredColumns = EnMercoFlexRequiredColumns.filterValues(
 				EnColumnsCategory.ESTOQUE, EnColumnsCategory.ESTOQUE_LOJA,
@@ -66,6 +93,10 @@ public class ProdutoDataFile extends DataFile {
 				EnColumnsCategory.ESTOQUE_TRIBUTACAO);
 
 		qtyRequiredColumns = requiredColumns.length;
+
+		notInserted = new HashMap<Integer, Object[]>();
+
+		lastIndex = getTotalRows();
 
 	}
 
@@ -77,13 +108,14 @@ public class ProdutoDataFile extends DataFile {
 	 * @throws IOException
 	 *             - Se não conseguir ler o arquivo
 	 */
-	public static ProdutoDataFile getInstance() throws IOException {
+	public static ProdutoDataFile getInstance(GZSoftwares software)
+			throws IOException {
 
 		if (instance == null) {
 
 			try {
 
-				instance = new ProdutoDataFile();
+				instance = new ProdutoDataFile(software);
 
 			} catch (IOException e) {
 
@@ -119,20 +151,39 @@ public class ProdutoDataFile extends DataFile {
 
 		int i = 0;
 
+		while (hasNextAfter(i))
+			i++;
+
 		return i;
 
 	}
 
 	@Override
-	public void moveToFirst() {
-		// johnny Auto-generated method stub
+	public Object first() {
+		
+		currentIndex = 2;
+		
+		try {
+			return previous();
+		} catch (ReachedTheStartOfFileException e) {
+			e.printStackTrace();
+			return null;
+		}
 
 	}
 
 	@Override
-	public void moveToLast() {
-		// johnny Auto-generated method stub
+	public Object last() {
 
+		currentIndex = lastIndex;
+		
+		try {
+			return next();
+		} catch (ReachedTheEndOfFileException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 	@Override
@@ -150,14 +201,197 @@ public class ProdutoDataFile extends DataFile {
 	}
 
 	@Override
-	public Object next() {
-		return getRowData(currentIndex++);
+	public Object next() throws ReachedTheEndOfFileException {// 35
+
+		Object[] o;
+
+		boolean passed = true;
+
+		do {
+			if (!hasNext())
+				throw new ReachedTheEndOfFileException();
+			o = getRowData(currentIndex++);
+			if (!checkValuesPolicy(o)) {
+				passed = false;
+				if (!notInserted.containsKey(currentIndex - 1)) {
+					notInserted.put(currentIndex - 1, o);
+				}
+			} else {
+				passed = true;
+			}
+		} while (!passed);
+
+		int i = 0;
+
+		Produto p = new Produto(software);
+
+		Formattable format;
+
+		switch (software) {
+		case MERCOFLEX:
+			format = new MercoFlexFormat();
+			break;
+
+		case MERCATTO:
+			format = new MercattoFormat();
+			break;
+
+		default:
+			format = new MercoFlexFormat();
+		}
+
+		try {
+			p.setLoja(new Integer(format.toNumeric(o[i++].toString(), false)));
+		} catch (Exception e) {
+			p.setLoja(1);
+		}
+		p.setCodigoInterno(format.toCodigoInterno(o[i++].toString()));
+		p.setCodigoDeBarras(format.toCodigoDeBarras(o[i++].toString()));
+		p.setDescricao(format.toDescricaoProduto(o[i++].toString()));
+		p.setDescricaoReduzida(format.toDescricaoProdutoReduzida(o[i++]
+				.toString()));
+		p.setUnidade(format.toUnidade(o[i++].toString()));
+		p.setSetor(new Integer(format.toNumeric(o[i++].toString(), false)));
+		p.setVariavel(o[i++].toString());
+		p.setPrecoCompra(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setPrecoVenda(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setPrecoVendaTerminal(new Double(format.toNumeric(o[i++].toString(),
+				true)));
+		p.setDepartamento(new Integer(
+				format.toNumeric(o[i++].toString(), false)));
+		p.setGrupo(new Integer(format.toNumeric(o[i++].toString(), false)));
+		p.setPrecoCusto(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setPorcentagemLucro(new Double(format.toNumeric(o[i++].toString(),
+				true)));
+		p.setQuantidadeEstoqueMinimo(new Double(format.toNumeric(
+				o[i++].toString(), true)));
+		p.setQuantidadeEstoqueMaximo(new Double(format.toNumeric(
+				o[i++].toString(), true)));
+		p.setQuantidade(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setDataCadastro(new Long(format.toNumeric(o[i++].toString(), false)));
+		p.setAliquotaPisCompra(new Double(format.toNumeric(o[i++].toString(),
+				true)));
+		p.setAliquotaCofinsCompra(new Double(format.toNumeric(
+				o[i++].toString(), true)));
+		p.setAtivo(format.toSituacao(o[i++].toString()));
+		p.setNcm(format.toNumeric(o[i++].toString(), false));
+		p.setCsosn(new Integer(format.toNumeric(o[i++].toString(), false)));
+		p.setModalidatePautaVenda(o[i++].toString());
+		p.setPautaVenda(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setTributacaoCompra(o[i++].toString());
+		p.setCodigoTributacao(new Integer(format.toNumeric(o[i++].toString(),
+				false)));
+		p.setIcmCompra(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setSt(o[i++].toString());
+		p.setIcmVenda(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setBaseIcmVenda(100 - new Double(format.toNumeric(o[i++].toString(),
+				true)));
+		p.setBaseICMSub(100 - new Double(format.toNumeric(o[i++].toString(),
+				true)));
+		p.setValorICMSSubstituicao(new Double(format.toNumeric(
+				o[i++].toString(), true)));
+		p.setEstadoTributacao(format.toEstadoSigla(o[i++].toString()));
+
+		// return getRowData(currentIndex++);
+		return p;
+
 	}
 
 	@Override
-	public Object previous() {
-		// johnny Auto-generated method stub
-		return null;
+	public Object previous() throws ReachedTheStartOfFileException {
+
+		Object[] o;
+
+		boolean passed = true;
+
+		do {
+			if (!hasPrevious())
+				throw new ReachedTheStartOfFileException();
+			o = getRowData(--currentIndex);
+			if (!checkValuesPolicy(o)) {
+				passed = false;
+				if (!notInserted.containsKey(currentIndex)) {
+					notInserted.put(currentIndex, o);
+				}
+			} else {
+				passed = true;
+			}
+		} while (!passed);
+
+		int i = 0;
+
+		Produto p = new Produto(software);
+
+		Formattable format;
+
+		switch (software) {
+		case MERCOFLEX:
+			format = new MercoFlexFormat();
+			break;
+
+		case MERCATTO:
+			format = new MercattoFormat();
+			break;
+
+		default:
+			format = new MercoFlexFormat();
+		}
+
+		try {
+			p.setLoja(new Integer(format.toNumeric(o[i++].toString(), false)));
+		} catch (Exception e) {
+			p.setLoja(1);
+		}
+		p.setCodigoInterno(format.toCodigoInterno(o[i++].toString()));
+		p.setCodigoDeBarras(format.toCodigoDeBarras(o[i++].toString()));
+		p.setDescricao(format.toDescricaoProduto(o[i++].toString()));
+		p.setDescricaoReduzida(format.toDescricaoProdutoReduzida(o[i++]
+				.toString()));
+		p.setUnidade(format.toUnidade(o[i++].toString()));
+		p.setSetor(new Integer(format.toNumeric(o[i++].toString(), false)));
+		p.setVariavel(o[i++].toString());
+		p.setPrecoCompra(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setPrecoVenda(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setPrecoVendaTerminal(new Double(format.toNumeric(o[i++].toString(),
+				true)));
+		p.setDepartamento(new Integer(
+				format.toNumeric(o[i++].toString(), false)));
+		p.setGrupo(new Integer(format.toNumeric(o[i++].toString(), false)));
+		p.setPrecoCusto(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setPorcentagemLucro(new Double(format.toNumeric(o[i++].toString(),
+				true)));
+		p.setQuantidadeEstoqueMinimo(new Double(format.toNumeric(
+				o[i++].toString(), true)));
+		p.setQuantidadeEstoqueMaximo(new Double(format.toNumeric(
+				o[i++].toString(), true)));
+		p.setQuantidade(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setDataCadastro(new Long(format.toNumeric(o[i++].toString(), false)));
+		p.setAliquotaPisCompra(new Double(format.toNumeric(o[i++].toString(),
+				true)));
+		p.setAliquotaCofinsCompra(new Double(format.toNumeric(
+				o[i++].toString(), true)));
+		p.setAtivo(format.toSituacao(o[i++].toString()));
+		p.setNcm(format.toNumeric(o[i++].toString(), false));
+		p.setCsosn(new Integer(format.toNumeric(o[i++].toString(), false)));
+		p.setModalidatePautaVenda(o[i++].toString());
+		p.setPautaVenda(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setTributacaoCompra(o[i++].toString());
+		p.setCodigoTributacao(new Integer(format.toNumeric(o[i++].toString(),
+				false)));
+		p.setIcmCompra(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setSt(o[i++].toString());
+		p.setIcmVenda(new Double(format.toNumeric(o[i++].toString(), true)));
+		p.setBaseIcmVenda(100 - new Double(format.toNumeric(o[i++].toString(),
+				true)));
+		p.setBaseICMSub(100 - new Double(format.toNumeric(o[i++].toString(),
+				true)));
+		p.setValorICMSSubstituicao(new Double(format.toNumeric(
+				o[i++].toString(), true)));
+		p.setEstadoTributacao(format.toEstadoSigla(o[i++].toString()));
+
+		// return getRowData(currentIndex++);
+		return p;
+
 	}
 
 	@Override
@@ -172,7 +406,6 @@ public class ProdutoDataFile extends DataFile {
 		return DataFileReader.getCellValues(dataSheet.getRow(rowIndex),
 				qtyRequiredColumns);
 
-		// return null;
 	}
 
 	@Override
@@ -236,23 +469,141 @@ public class ProdutoDataFile extends DataFile {
 	}
 
 	@Override
-	public boolean checkCellsPolicy(HSSFRow row, int cellsLimit) {
+	public boolean checkValuesPolicy(Object[] values) {
+
+		for (Object v : values) {
+
+			try {
+				if (v.equals(DataFile.CELL_VALUE_NULL)
+						|| v.equals(DataFile.INVALID_CELL_TYPE)
+						|| v.equals(DataFile.NULL_ROW)) {
+					return false;
+				}
+			} catch (Exception e) {
+				return false;
+			}
+
+		}
+
+		return true;
+
+	}
+
+	private void printa(Produto p, int i){
+		
+		System.out.print(i + " --> ");
+		System.out.print(p.getLoja() + "|");
+		System.out.print(p.getCodigoInterno() + "|");
+		System.out.print(p.getCodigoDeBarras() + "|");
+		System.out.print(p.getDescricao() + "|");
+		System.out.print(p.getDescricaoReduzida() + "|");
+		System.out.print(p.getUnidade() + "|");
+		System.out.print(p.getSetor() + "|");
+		System.out.print(p.getVariavel() + "|");
+		System.out.print(p.getPrecoCompra() + "|");
+		System.out.print(p.getPrecoVenda() + "|");
+		System.out.print(p.getPrecoVendaTerminal() + "|");
+		System.out.print(p.getDepartamento() + "|");
+		System.out.print(p.getGrupo() + "|");
+		System.out.print(p.getPrecoCusto() + "|");
+		System.out.print(p.getPorcentagemLucro() + "|");
+		System.out.print(p.getQuantidadeEstoqueMinimo() + "|");
+		System.out.print(p.getQuantidadeEstoqueMaximo() + "|");
+		System.out.print(p.getQuantidade() + "|");
+
+		DateFormat dtf = DateFormat.getDateInstance(DateFormat.DEFAULT);
+
+		Date dt = p.getDataCadastro().getTime();
+
+		System.out.print(dtf.format(dt) + "|");
+		System.out.print(p.getAliquotaPisCompra() + "|");
+		System.out.print(p.getAliquotaCofinsCompra() + "|");
+		System.out.print(p.getAtivo() + "|");
+		System.out.print(p.getNcm() + "|");
+		System.out.print(p.getCsosn() + "|");
+		System.out.print(p.getModalidatePautaVenda() + "|");
+		System.out.print(p.getPautaVenda() + "|");
+		System.out.print(p.getTributacaoCompra() + "|");
+		System.out.print(p.getCodigoTributacao() + "|");
+		System.out.print(p.getIcmCompra() + "|");
+		System.out.print(p.getSt() + "|");
+		System.out.print(p.getIcmVenda() + "|");
+		System.out.print(p.getBaseIcmVenda() + "|");
+		System.out.print(p.getBaseICMSub() + "|");
+		System.out.print(p.getValorICMSSubstituicao() + "|");
+		System.out.print(p.getEstadoTributacao() + "|");
+
+		System.out.println();
+		
+	}
+	
+	public void teste() {
+
+		int i = 1;
+
+		try {
+
+//			last();
+//			previous();
+//			
+			while (hasNext()) {
+
+				Produto p = (Produto) next();
+
+				printa(p,i++);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		System.out
+				.println("----------------------------------------------------------------------------------------------");
+
+		Collection cl = notInserted.values();
+
+		i = 1;
+
+		for (Object oo : cl) {
+			Object[] ooo = (Object[]) oo;
+			System.out.print((i++) + " --> ");
+			for (Object oooo : ooo) {
+				System.out.print(oooo + "|");
+			}
+			System.out.println();
+		}
+
+	}
+
+	@Override
+	protected boolean hasNextAfter(int idx) {
+
+		Object[] data = getRowData(idx + 1);
+
+		for (Object o : data) {
+			if (!o.equals(NULL_ROW) && !o.equals(CELL_VALUE_NULL))
+				return true;
+		}
 
 		return false;
 
 	}
 
-	public void teste() {
+	@Override
+	public boolean hasPrevious() {
 
-		while (hasNext()) {
-			Object[] data = (Object[])next();
+		if (currentIndex - 1 < 1)
+			return false;
 
-			for (Object string : data) {
-				System.out.printf("%-20s",string);
-			}
-			System.out.println();
-		//	System.out.println("\nhas next=" + hasNext());
+		Object[] data = getRowData(currentIndex - 1);
+
+		for (Object o : data) {
+			if (!o.equals(NULL_ROW) && !o.equals(CELL_VALUE_NULL))
+				return true;
 		}
+
+		return false;
 
 	}
 

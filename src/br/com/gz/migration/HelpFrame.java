@@ -17,22 +17,62 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * Classe que representa a janela de ajuda
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class HelpFrame extends JFrame implements ActionListener {
 
+	/**
+	 * Instância da classe
+	 */
 	private static HelpFrame instance;
 
+	/**
+	 * Container principal
+	 */
 	private Container window;
+	
+	/**
+	 * Painél principal
+	 */
 	private JPanel panelWindow;
+	
+	/**
+	 * Scroll que armazena os dados de ajuda
+	 */
 	private JScrollPane scrollTextArea;
+	
+	/**
+	 * Área de texto de ajuda
+	 */
 	private JTextArea areaHelp;
 
+	/**
+	 * Labels que representam os links de ajuda
+	 */
 	private JLabel[] labels = new JLabel[4];
+	
+	/**
+	 * Títulos dos links de ajuda
+	 */
 	private String[] lblTexts = { "Guia rápido", "Bancos de dados", "Softwares",
 			"Compatibilidade" };
+	/**
+	 * Conteúdo da ajuda
+	 */
 	private String[] lblContents = new String[4];
 
+	/**
+	 * Botão para sair da ajuda
+	 */
 	private JButton btOk;
 
+	/**
+	 * Construtor default
+	 */
 	private HelpFrame() {
 
 		setSize(600, 365);
@@ -60,6 +100,11 @@ public class HelpFrame extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Método que implementa o singleton e retorna uma instância da classe
+	 * 
+	 * @return - Uma instância da classe
+	 */
 	public static HelpFrame getInstance() {
 
 		if (instance == null) {
@@ -72,6 +117,9 @@ public class HelpFrame extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Método que monta o conteúdo da ajuda
+	 */
 	private void contents() {
 
 		lblContents[0] = "" +
@@ -147,6 +195,9 @@ public class HelpFrame extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Método que inicializa os componentes
+	 */
 	private void instantiatingLabels() {
 
 		for (int i = 0; i <= 3; i++) {
@@ -173,8 +224,16 @@ public class HelpFrame extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Guarda o índice do link clicado
+	 */
 	private static int indexLabelClicked = -1;
 
+	/**
+	 * Trata o link clicado
+	 * 
+	 * @param index - índice do link
+	 */
 	private void setLabelClicked(int index) {
 
 		indexLabelClicked = index;
@@ -196,6 +255,9 @@ public class HelpFrame extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Adiciona os listeners aos JLabel's
+	 */
 	private void addMouseListeners() {
 
 		labels[0].addMouseListener(new MouseListener() {
@@ -384,6 +446,9 @@ public class HelpFrame extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Instancia os componentes principais
+	 */
 	private void instantiatingComponents() {
 
 		window = getContentPane();
@@ -403,6 +468,9 @@ public class HelpFrame extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Muda o texto da área de texto de acordo com o link clicado
+	 */
 	private void setContents() {
 
 		areaHelp.setText(lblContents[indexLabelClicked]);

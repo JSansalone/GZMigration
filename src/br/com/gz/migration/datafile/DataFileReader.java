@@ -1,8 +1,16 @@
 package br.com.gz.migration.datafile;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 
+/**
+ * Classe auxiliar que faz a leitura dos valores das células do arquivo .xls.
+ * Suas responsabilidades quanto à validação dos dados são poucas.
+ * 
+ * @author Jonathan Sansalone
+ * 
+ */
 public class DataFileReader {
 
 	/**
@@ -71,14 +79,18 @@ public class DataFileReader {
 	}
 
 	/**
-	 * Método para retornar os valores das células da linha informada e até o limite de células informado<br><br>
+	 * Método para retornar os valores das células da linha informada e até o
+	 * limite de células informado<br>
+	 * <br>
 	 * 
 	 * Responsabilidades:<br>
 	 * 1- Obter os valores das colunas<br>
 	 * 
 	 * 
-	 * @param row - linha a ser lida
-	 * @param maximumColumns - limite de células a serem lidas
+	 * @param row
+	 *            - linha a ser lida
+	 * @param maximumColumns
+	 *            - limite de células a serem lidas
 	 * @return - os dados das células
 	 */
 	public static Object[] getCellValues(HSSFRow row, int maximumColumns) {
@@ -119,7 +131,9 @@ public class DataFileReader {
 				switch (cellType) {
 				case HSSFCell.CELL_TYPE_STRING:
 
-					values[i] = cell.getStringCellValue().toUpperCase().trim().equals("") ? DataFile.CELL_VALUE_NULL : cell.getStringCellValue().toUpperCase();
+					values[i] = cell.getStringCellValue().toUpperCase().trim()
+							.equals("") ? DataFile.CELL_VALUE_NULL : cell
+							.getStringCellValue().toUpperCase();
 					break;
 
 				case HSSFCell.CELL_TYPE_NUMERIC:
@@ -128,13 +142,16 @@ public class DataFileReader {
 
 					if (aux - Math.floor(aux) > 0)
 						values[i] = new Double(aux);
-					else
+					else if (HSSFDateUtil.isCellDateFormatted(cell)) {
+						values[i] = cell.getDateCellValue().getTime();
+					} else
 						values[i] = new Integer((int) Math.round(aux));
 					break;
 
 				case HSSFCell.CELL_TYPE_BLANK:
 					values[i] = DataFile.CELL_VALUE_NULL;
 					break;
+
 				default:
 					values[i] = DataFile.INVALID_CELL_TYPE;
 					break;
@@ -145,6 +162,25 @@ public class DataFileReader {
 		}
 
 		return values;
+
+	}
+
+	/**
+	 * Verifica se a String passada representa um número
+	 * 
+	 * @param str
+	 *            - String a ser testada
+	 * @return - true se for um número, false caso contrário
+	 */
+	@Deprecated
+	private static boolean isNumber(String str) {
+
+		try {
+			Double d = Double.parseDouble(str);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 
 	}
 

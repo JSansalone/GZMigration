@@ -74,45 +74,129 @@ import com.jgoodies.looks.plastic.theme.SkyBluer;
 public class GZMigration extends JFrame implements IValidateDataProvider,
 		IFinalizeMigration, ISoftwareMutable {
 
+	/**
+	 * Representa o container principal
+	 */
 	private Container wnd;
 
 	// Botões de navegação
+	/**
+	 * Botão para navegar ao próximo passo
+	 */
 	private JButton btNext;
+	
+	/**
+	 * Botão para navegar ao passo anterior
+	 */
 	private JButton btPrevious;
+	
+	/**
+	 * Botão para cancelar a migração
+	 */
 	private JButton btCancel;
+	
+	/**
+	 * Botão que abre a janela de ajuda: {@link HelpFrame}
+	 */
 	private JButton btHelp;
+	
+	/**
+	 * Botão que abre a janela de informações do aplicativo: {@link AboutFrame}
+	 */
 	private JButton btInfo;
+	
+	/**
+	 * Botão que gera o relatório ao terminar a migração
+	 */
 	private JButton btReport;
 
 	// Componentes compartilhados pelos painéis de navegação
+	/**
+	 * Dimensão padrão usada pelos painéis internos
+	 */
 	public static final Dimension DIMENSION_PANEL = new Dimension(700, 285);
+	
+	/**
+	 * Point padrão usado pelos painéis internos
+	 */
 	public static final Point POINT_PANEL = new Point(0, 93);
+	
+	/**
+	 * Fonte usada pelos painéis internos nos títulos
+	 */
 	public static final Font TITLE_FONT = new Font("Tahoma", Font.BOLD, 16);
 
 	// Variáveis de referência dos painéis de navegação
+	/**
+	 * Painél de boas vindas
+	 */
 	private WelcomePanel welcomePanel;
+	
+	/**
+	 * Painél de digitação do nome do cliente
+	 */
 	private CustomerNamePanel customerNamePanel;
+	
+	/**
+	 * Painél de escolha dos tipos de dados
+	 */
 	private MigrationTypePanel migrationTypePanel;
+	
+	/**
+	 * Painél de configuração do banco de dados do novo software
+	 */
 	private NewSoftwarePanel newSoftwarePanel;
+	
+	/**
+	 * Painél de configuração do banco de dados do software atual
+	 */
 	private CurrentSoftwarePanel currentSoftwarePanel;
+	
+	/**
+	 * Painél de confirmação das informações digitadas
+	 */
 	private ConfirmDataPanel confirmDataPanel;
+	
+	/**
+	 * Painél que mostra a porcentagem de conclusão da migração enquanto esta está sendo realizada
+	 */
 	private MigrationInfoPanel migrationInfoPanel;
+	
+	/**
+	 * Painél que mostra a mensagem de conclusão da migração
+	 */
 	private DonePanel donePanel;
 
 	// Variável de referência do motor de migração
+	/**
+	 * Representa o motor de migração
+	 */
 	private MigrationEngine dataProviderEngine;
 
 	// Variável de referência da interface de migração
+	/**
+	 * Representa o objeto que busca e insere os dados
+	 */
 	private SQLDataProvider dataProvider;
 
 	// índices de navegação dos painéis
 	// guarda o índice corrente
+	/**
+	 * Índice que guarda o passo atual
+	 */
 	private int currentIndex = 1;
+	
 	// guarda o índice limite
+	/**
+	 * Guarda o índice limite
+	 */
 	private final int limitIndex = 8;
 
 	// Variável de referência que guardará a data de inicialização do motor de
 	// migração
+	/**
+	 * Guarda a data de inicialização do motor de migração
+	 */
 	private Calendar date;
 
 	/**

@@ -13,6 +13,9 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import br.com.gz.migration.EnMigrationDataType;
 import br.com.gz.migration.exception.InvalidCellTypeException;
 import br.com.gz.migration.exception.InvalidMigrationDataTypeException;
+import br.com.gz.migration.exception.ReachedTheEndOfFileException;
+import br.com.gz.migration.exception.ReachedTheStartOfFileException;
+import br.com.gz.migration.exception.RequiredColumnNotFilledException;
 import br.com.gz.migration.exception.RequiredColumnNotFoundException;
 
 /**
@@ -34,6 +37,9 @@ public abstract class DataFile {
 	 */
 	public static final String INVALID_CELL_TYPE = "<invalid_type>";
 	
+	/**
+	 * Constante que representa uma linha totalmente vazia
+	 */
 	public static final String NULL_ROW = "<null_row>";
 	
 	/**
@@ -111,12 +117,12 @@ public abstract class DataFile {
 	/**
 	 * Move o índice de leitura do arquivo para o primeiro registro
 	 */
-	public abstract void moveToFirst();
+	public abstract Object first();
 
 	/**
 	 * Move o índice de leitura do arquivo para o último registro
 	 */
-	public abstract void moveToLast();
+	public abstract Object last();
 
 	/**
 	 * Verifica se há um próximo registro
@@ -124,20 +130,37 @@ public abstract class DataFile {
 	 * @return - true se houver um próximo registro, false caso contrário
 	 */
 	public abstract boolean hasNext();
+	
+	/**
+	 * Verifica se há um registro anterior ao atual
+	 * 
+	 * @return - true se houver um registro anterior, false caso contrário
+	 */
+	public abstract boolean hasPrevious();
+	
+	/**
+	 * Verifica se há um próximo registro após o índice informado
+	 * 
+	 * @param currentIndex - Índice atual
+	 * @return - true se existir, false caso contrário
+	 */
+	protected abstract boolean hasNextAfter(int currentIndex);
 
 	/**
 	 * Retorna o próximo registro do arquivo
 	 * 
 	 * @return - próximo registro como um Object
+	 * @throws ReachedTheEndOfFileException - Se o fim do arquivo for alcançado
 	 */
-	public abstract Object next();
+	public abstract Object next() throws ReachedTheEndOfFileException;
 
 	/**
 	 * Retorna o registro anterior ao atual do arquivo
 	 * 
 	 * @return - o registro anterior como um Object
+	 * @throws ReachedTheStartOfFileException - Se o início do arquivo for alcançado
 	 */
-	public abstract Object previous();
+	public abstract Object previous() throws ReachedTheStartOfFileException;
 
 	/**
 	 * Retorna todos os registros do arquivo
@@ -180,16 +203,17 @@ public abstract class DataFile {
 	 * 
 	 * 
 	 * @return - true se estiver tudo certo, false caso contrário
+	 * @throws InvalidCellTypeException - Se o tipo de célula não for String
+	 * @throws RequiredColumnNotFoundException - Se faltar alguma coluna
 	 */
 	public abstract boolean checkHeaderPolicy() throws InvalidCellTypeException, RequiredColumnNotFoundException;
 	
 	/**
-	 * Verifica se as colunas possuem valores e se possuem o tipo de dado correto
+	 * Método que valida se o array de valores não possue as constantes CELL_VALUE_NULL, NULL_ROW ou INVALID_CELL_TYPE
 	 * 
-	 * @param row - A linha a ser verificada
-	 * @param cellsLimit - limite de células a serem lidas
+	 * @param values - O array com valores
 	 * @return - true se estiver tudo certo, false caso contrário
 	 */
-	public abstract boolean checkCellsPolicy(HSSFRow row, int cellsLimit);
+	public abstract boolean checkValuesPolicy(Object[] values);
 
 }

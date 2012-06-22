@@ -10,6 +10,12 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * Classe que representa a janela de informações do aplicativo
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class AboutFrame extends JDialog {
 
 	public AboutFrame() {

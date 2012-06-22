@@ -13,7 +13,12 @@
          </tr>
       </table>
       <hr>
-      <h2><font size="-1">br.com.gz.migration.datafile</font></h2><span style="font-size:large; font-weight:bold">Class&nbsp;</span><span style="font-size:large; font-weight:bold">ProdutoDataFile</span><br><br>public <b>ProdutoDataFile</b><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <h2><font size="-1">br.com.gz.migration.datafile</font></h2><span style="font-size:large; font-weight:bold">Class&nbsp;</span><span style="font-size:large; font-weight:bold">ProdutoDataFile</span><br><br>public <b>ProdutoDataFile</b><br><p>Representa um arquivo de dados para ler os registros dos produtos. Os m&eacute;todos
+          herdados devem ser implementados especificamente para trabalhar com estes
+          registros.
+          
+          
+      </p><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
       <thead>
          <tr>
             <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Field Summary</span></td>
@@ -23,7 +28,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>private static <a href="br_com_gz_migration_datafile_ProdutoDataFile.html">ProdutoDataFile</a></code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#270">instance</a></code><br> &nbsp;
+         <td><code><a href="#270">instance</a></code><br> <font>Inst&acirc;ncia da classe.</font>&nbsp;
             										
          </td>
       </tr>
@@ -31,7 +36,31 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#271">currentIndex</a></code><br> &nbsp;
+         <td><code><a href="#271">currentIndex</a></code><br> <font>Posi&ccedil;&atilde;o atual no arquivo</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private final int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#272">qtyRequiredColumns</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private final EnMercoFlexRequiredColumns[]</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#273">requiredColumns</a></code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private final br.com.gz.util.GZSoftwares</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#274">software</a></code><br> &nbsp;
             										
          </td>
       </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
@@ -44,7 +73,10 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>private</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#273">ProdutoDataFile</a>()</code><br> &nbsp;
+         <td><code><a href="#276">ProdutoDataFile</a>(br.com.gz.util.GZSoftwares software)</code><br> <font>Construtor default para passar o tipo de dado para o construtor da
+                superclasse
+                
+                </font>&nbsp;
             										
          </td>
       </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
@@ -57,7 +89,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public static <a href="br_com_gz_migration_datafile_ProdutoDataFile.html">ProdutoDataFile</a></code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#275">getInstance</a>()</code><br> &nbsp;
+         <td><code><a href="#278">getInstance</a>(br.com.gz.util.GZSoftwares software)</code><br> <font>M&eacute;todo que implementa o singleton.</font>&nbsp;
             										
          </td>
       </tr>
@@ -65,7 +97,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public <a href="br_com_gz_migration_datafile_DataFileMetaData.html">DataFileMetaData</a></code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#276">getMetaData</a>()</code><br> &nbsp;
+         <td><code><a href="#279">getMetaData</a>()</code><br> &nbsp;
             										
          </td>
       </tr>
@@ -73,7 +105,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.String</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#277">getName</a>()</code><br> &nbsp;
+         <td><code><a href="#280">getName</a>()</code><br> &nbsp;
             										
          </td>
       </tr>
@@ -81,7 +113,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#278">getTotalRows</a>()</code><br> &nbsp;
+         <td><code><a href="#281">getTotalRows</a>()</code><br> &nbsp;
             										
          </td>
       </tr>
@@ -89,7 +121,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#279">moveToFirst</a>()</code><br> &nbsp;
+         <td><code><a href="#282">moveToFirst</a>()</code><br> &nbsp;
             										
          </td>
       </tr>
@@ -97,7 +129,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#280">moveToLast</a>()</code><br> &nbsp;
+         <td><code><a href="#283">moveToLast</a>()</code><br> &nbsp;
             										
          </td>
       </tr>
@@ -105,7 +137,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public boolean </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#281">hasNext</a>()</code><br> &nbsp;
+         <td><code><a href="#284">hasNext</a>()</code><br> &nbsp;
             										
          </td>
       </tr>
@@ -113,7 +145,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.Object</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#282">next</a>()</code><br> &nbsp;
+         <td><code><a href="#285">next</a>()</code><br> &nbsp;
             										
          </td>
       </tr>
@@ -121,7 +153,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.Object</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#283">previous</a>()</code><br> &nbsp;
+         <td><code><a href="#286">previous</a>()</code><br> &nbsp;
             										
          </td>
       </tr>
@@ -129,15 +161,15 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#284">getAll</a>()</code><br> &nbsp;
+         <td><code><a href="#287">getAll</a>()</code><br> &nbsp;
             										
          </td>
       </tr>
       <tr>
-         <td align="right" valign="top" width="1%"><font size="-1"><code>protected java.lang.Object</code></font>&nbsp;
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public Object[] </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#285">getRowData</a>(int rowIndex)</code><br> &nbsp;
+         <td><code><a href="#288">getRowData</a>(int rowIndex)</code><br> &nbsp;
             										
          </td>
       </tr>
@@ -145,40 +177,63 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public boolean </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#286">checkColumnsPolicy</a>()</code><br> &nbsp;
+         <td><code><a href="#289">checkHeaderPolicy</a>()</code><br> &nbsp;
             										
          </td>
       </tr>
       <tr>
-         <td align="right" valign="top" width="1%"><font size="-1"><code>protected String[] </code></font>&nbsp;
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public boolean </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#287">getHeader</a>(int maximumColumns)</code><br> &nbsp;
+         <td><code><a href="#290">checkCellsPolicy</a>(org.apache.poi.hssf.usermodel.HSSFRow row, int cellsLimit)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#291">teste</a>()</code><br> &nbsp;
             										
          </td>
       </tr></tbody></table><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
       <tr>
          <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Field Detail</span></td>
-      </tr></table><a name="270"><span style="font-size:larger">instance</span></a><br><br><pre>private static <a href="br_com_gz_migration_datafile_ProdutoDataFile.html">ProdutoDataFile</a> <b>instance</b></pre><br><dl></dl><br><hr><a name="271"><span style="font-size:larger">currentIndex</span></a><br><br><pre>private int <b>currentIndex</b></pre><br><dl></dl><br><hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      </tr></table><a name="270"><span style="font-size:larger">instance</span></a><br><br><pre>private static <a href="br_com_gz_migration_datafile_ProdutoDataFile.html">ProdutoDataFile</a> <b>instance</b></pre><br><dl>
+         <p>Inst&acirc;ncia da classe.</p>
+      </dl><br><hr><a name="271"><span style="font-size:larger">currentIndex</span></a><br><br><pre>private int <b>currentIndex</b></pre><br><dl>
+         <p>Posi&ccedil;&atilde;o atual no arquivo</p>
+      </dl><br><hr><a name="272"><span style="font-size:larger">qtyRequiredColumns</span></a><br><br><pre>private final int <b>qtyRequiredColumns</b></pre><br><dl></dl><br><hr><a name="273"><span style="font-size:larger">requiredColumns</span></a><br><br><pre>private final EnMercoFlexRequiredColumns[] <b>requiredColumns</b></pre><br><dl></dl><br><hr><a name="274"><span style="font-size:larger">software</span></a><br><br><pre>private final br.com.gz.util.GZSoftwares <b>software</b></pre><br><dl></dl><br><hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
       <tr>
          <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Constructor Detail</span></td>
-      </tr></table><span style="font-size:medium"><a name="273"><span style="font-size:medium">ProdutoDataFile</span></a></span><br><pre>private <b>ProdutoDataFile</b>()</pre><br><dl><br></dl>
+      </tr></table><span style="font-size:medium"><a name="276"><span style="font-size:medium">ProdutoDataFile</span></a></span><br><pre>private <b>ProdutoDataFile</b>(br.com.gz.util.GZSoftwares software)</pre><br><dl>
+         <p>Construtor default para passar o tipo de dado para o construtor da
+             superclasse
+             
+             
+         </p><br></dl>
       <hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
       <tr>
          <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Method Detail</span></td>
-      </tr></table><a name="275"><span style="font-size:medium">getInstance</span></a><br><br><pre>public static <a href="br_com_gz_migration_datafile_ProdutoDataFile.html">ProdutoDataFile</a> <b>getInstance</b>()</pre><br><dl><br></dl>
-      <hr><a name="276"><span style="font-size:medium">getMetaData</span></a><br><br><pre>public <a href="br_com_gz_migration_datafile_DataFileMetaData.html">DataFileMetaData</a> <b>getMetaData</b>()</pre><br><dl><br></dl>
-      <hr><a name="277"><span style="font-size:medium">getName</span></a><br><br><pre>public java.lang.String <b>getName</b>()</pre><br><dl><br></dl>
-      <hr><a name="278"><span style="font-size:medium">getTotalRows</span></a><br><br><pre>public int  <b>getTotalRows</b>()</pre><br><dl><br></dl>
-      <hr><a name="279"><span style="font-size:medium">moveToFirst</span></a><br><br><pre>public void  <b>moveToFirst</b>()</pre><br><dl><br></dl>
-      <hr><a name="280"><span style="font-size:medium">moveToLast</span></a><br><br><pre>public void  <b>moveToLast</b>()</pre><br><dl><br></dl>
-      <hr><a name="281"><span style="font-size:medium">hasNext</span></a><br><br><pre>public boolean  <b>hasNext</b>()</pre><br><dl><br></dl>
-      <hr><a name="282"><span style="font-size:medium">next</span></a><br><br><pre>public java.lang.Object <b>next</b>()</pre><br><dl><br></dl>
-      <hr><a name="283"><span style="font-size:medium">previous</span></a><br><br><pre>public java.lang.Object <b>previous</b>()</pre><br><dl><br></dl>
-      <hr><a name="284"><span style="font-size:medium">getAll</span></a><br><br><pre>public java.util.ArrayList <b>getAll</b>()</pre><br><dl><br></dl>
-      <hr><a name="285"><span style="font-size:medium">getRowData</span></a><br><br><pre>protected java.lang.Object <b>getRowData</b>(int rowIndex)</pre><br><dl><br></dl>
-      <hr><a name="286"><span style="font-size:medium">checkColumnsPolicy</span></a><br><br><pre>public boolean  <b>checkColumnsPolicy</b>()</pre><br><dl><br></dl>
-      <hr><a name="287"><span style="font-size:medium">getHeader</span></a><br><br><pre>protected String[]  <b>getHeader</b>(int maximumColumns)</pre><br><dl><br></dl>
+      </tr></table><a name="278"><span style="font-size:medium">getInstance</span></a><br><br><pre>public static <a href="br_com_gz_migration_datafile_ProdutoDataFile.html">ProdutoDataFile</a> <b>getInstance</b>(br.com.gz.util.GZSoftwares software)</pre><br><dl>
+         <p>M&eacute;todo que implementa o singleton. Garante que em toda a execu&ccedil;&atilde;o da
+             aplica&ccedil;&atilde;o s&oacute; exista uma inst&acirc;ncia dessa classe
+             
+             
+         </p><br></dl>
+      <hr><a name="279"><span style="font-size:medium">getMetaData</span></a><br><br><pre>public <a href="br_com_gz_migration_datafile_DataFileMetaData.html">DataFileMetaData</a> <b>getMetaData</b>()</pre><br><dl><br></dl>
+      <hr><a name="280"><span style="font-size:medium">getName</span></a><br><br><pre>public java.lang.String <b>getName</b>()</pre><br><dl><br></dl>
+      <hr><a name="281"><span style="font-size:medium">getTotalRows</span></a><br><br><pre>public int  <b>getTotalRows</b>()</pre><br><dl><br></dl>
+      <hr><a name="282"><span style="font-size:medium">moveToFirst</span></a><br><br><pre>public void  <b>moveToFirst</b>()</pre><br><dl><br></dl>
+      <hr><a name="283"><span style="font-size:medium">moveToLast</span></a><br><br><pre>public void  <b>moveToLast</b>()</pre><br><dl><br></dl>
+      <hr><a name="284"><span style="font-size:medium">hasNext</span></a><br><br><pre>public boolean  <b>hasNext</b>()</pre><br><dl><br></dl>
+      <hr><a name="285"><span style="font-size:medium">next</span></a><br><br><pre>public java.lang.Object <b>next</b>()</pre><br><dl><br></dl>
+      <hr><a name="286"><span style="font-size:medium">previous</span></a><br><br><pre>public java.lang.Object <b>previous</b>()</pre><br><dl><br></dl>
+      <hr><a name="287"><span style="font-size:medium">getAll</span></a><br><br><pre>public java.util.ArrayList <b>getAll</b>()</pre><br><dl><br></dl>
+      <hr><a name="288"><span style="font-size:medium">getRowData</span></a><br><br><pre>public Object[]  <b>getRowData</b>(int rowIndex)</pre><br><dl><br></dl>
+      <hr><a name="289"><span style="font-size:medium">checkHeaderPolicy</span></a><br><br><pre>public boolean  <b>checkHeaderPolicy</b>()</pre><br><dl><br></dl>
+      <hr><a name="290"><span style="font-size:medium">checkCellsPolicy</span></a><br><br><pre>public boolean  <b>checkCellsPolicy</b>(org.apache.poi.hssf.usermodel.HSSFRow row, int cellsLimit)</pre><br><dl><br></dl>
+      <hr><a name="291"><span style="font-size:medium">teste</span></a><br><br><pre>public void  <b>teste</b>()</pre><br><dl><br></dl>
       <hr><br><br><table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%"><tbody>
          <tr bgColor="#CCCCFF" width="100%">
             <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
