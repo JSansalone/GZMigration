@@ -20,12 +20,12 @@ import org.database.connection.DatabaseConfigurations;
 import org.database.connection.DatabaseType;
 import org.database.connection.InvalidDatabaseException;
 
-import br.com.gz.migration.EnSoftware;
 import br.com.gz.migration.GZMigration;
 import br.com.gz.migration.IDatabaseInfo;
 import br.com.gz.migration.IDatabaseMutable;
 import br.com.gz.migration.ISoftwareMutable;
 import br.com.gz.migration.exception.InvalidSoftwareException;
+import br.com.gz.util.GZSoftwares;
 
 public class CurrentSoftwarePanel extends JPanel implements IValidation,
 		IDatabaseInfo, IDatabaseMutable, ISoftwareMutable,
@@ -54,7 +54,7 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 	private JButton btSearch;
 	private JButton btSgbd;
 
-	private EnSoftware software;
+	private GZSoftwares software;
 
 	private ISoftwareMutable softMutable;
 
@@ -64,7 +64,7 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 
 		this.softMutable = sftmt;
 
-		// software = EnSoftware.Teste;
+		// software = GZSoftwares.Teste;
 
 		setLayout(null);
 		setSize(GZMigration.DIMENSION_PANEL);
@@ -604,29 +604,29 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 
 			if (((String) cmbSoftware.getSelectedItem()).equals("Teste")) {
 
-				software = EnSoftware.Teste;
+				software = GZSoftwares.Teste;
 
 			} else if (((String) cmbSoftware.getSelectedItem())
 					.equals("Superus")) {
 
-				software = EnSoftware.SUPERUS;
+				software = GZSoftwares.SUPERUS;
 
 			} else if (((String) cmbSoftware.getSelectedItem()).equals("MRS")) {
 
-				software = EnSoftware.MRS;
+				software = GZSoftwares.MRS;
 
 			} else if (((String) cmbSoftware.getSelectedItem()).equals("AES")) {
 
-				software = EnSoftware.AES;
+				software = GZSoftwares.AES;
 
 			} else if (((String) cmbSoftware.getSelectedItem())
 					.equals("Versatho")) {
 
-				software = EnSoftware.VERSATHO;
+				software = GZSoftwares.VERSATHO;
 
 			} else if (((String) cmbSoftware.getSelectedItem()).equals("Outro")) {
 
-				software = EnSoftware.OTHER;
+				software = GZSoftwares.OTHER;
 
 			} else {
 
@@ -639,13 +639,13 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 	}
 
 	@Override
-	public EnSoftware getSoftware() {
+	public GZSoftwares getSoftware() {
 		// TODO Auto-generated method stub
 		return software;
 	}
 
 	@Override
-	public void setAvailableSoftwares(EnSoftware software) {
+	public void setAvailableSoftwares(GZSoftwares software) {
 
 		cmbSoftware.removeAllItems();
 

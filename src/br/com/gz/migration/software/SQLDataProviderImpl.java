@@ -20,7 +20,6 @@ import br.com.gz.bean.Loja;
 import br.com.gz.bean.Marca;
 import br.com.gz.bean.Produto;
 import br.com.gz.migration.EnMigrationDataType;
-import br.com.gz.migration.EnSoftware;
 import br.com.gz.migration.SQLDataProvider;
 import br.com.gz.migration.datafile.ArmacaoDataFile;
 import br.com.gz.migration.datafile.ClienteDataFile;
@@ -29,6 +28,8 @@ import br.com.gz.migration.datafile.FornecedorDataFile;
 import br.com.gz.migration.datafile.GrupoDataFile;
 import br.com.gz.migration.datafile.MarcaDataFile;
 import br.com.gz.migration.datafile.ProdutoDataFile;
+import br.com.gz.migration.exception.InvalidCellTypeException;
+import br.com.gz.migration.exception.RequiredColumnNotFoundException;
 import br.com.gz.migration.exception.SecurityViolationException;
 import br.com.gz.migration.file.LogFile;
 import br.com.gz.migration.policy.ColumnsPolicy;
@@ -77,7 +78,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 
 	private ColumnsPolicy policy;
 
-	public SQLDataProviderImpl(EnSoftware software, EnSoftware otherSoftware,
+	public SQLDataProviderImpl(GZSoftwares software, GZSoftwares otherSoftware,
 			DatabaseType dbTo, DatabaseType dbFrom) {
 		super(software, otherSoftware, dbTo, dbFrom);
 		// guarda o software da GZ
@@ -94,7 +95,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 		this.dbFrom = dbFrom;
 
 		// instancia a nova política de colunas
-		if (software == EnSoftware.MERCOFLEX) {
+		if (software == GZSoftwares.MERCOFLEX) {
 			policy = new MercoFlexPolicy();
 		} else {
 			policy = new MercattoPolicy();
@@ -683,7 +684,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 
 			Produto p = null;
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				// instancia novo formatador de dados
 				MercoFlexFormat myFormatter = new MercoFlexFormat();
@@ -759,7 +760,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				MercattoFormat myFormatter = new MercattoFormat();
 
@@ -1008,7 +1009,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 
 			Cliente c = null;
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				MercoFlexFormat format = new MercoFlexFormat();
 
@@ -1045,7 +1046,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				MercattoFormat format = new MercattoFormat();
 
@@ -1114,7 +1115,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 
 			Fornecedor f = null;
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				MercoFlexFormat format = new MercoFlexFormat();
 
@@ -1148,7 +1149,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				MercoFlexFormat format = new MercoFlexFormat();
 
@@ -1403,38 +1404,192 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 
 	@Override
 	public int countProduto(ProdutoDataFile dataFile) throws IOException {
-		return dataFile.getTotalRows();
+		
+		try {
+			
+			if(dataFile.checkHeaderPolicy()){
+				
+				return dataFile.getTotalRows();
+				
+			}else{
+				
+				return POLICY_VIOLATION;
+				
+			}
+			
+		} catch (InvalidCellTypeException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		} catch (RequiredColumnNotFoundException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		}
+		
 	}
 
 	@Override
 	public int countDepartamento(DepartamentoDataFile dataFile)
 			throws IOException {
-		return dataFile.getTotalRows();
+
+		try {
+			
+			if(dataFile.checkHeaderPolicy()){
+				
+				return dataFile.getTotalRows();
+				
+			}else{
+				
+				return POLICY_VIOLATION;
+				
+			}
+			
+		} catch (InvalidCellTypeException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		} catch (RequiredColumnNotFoundException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		}
+		
 	}
 
 	@Override
 	public int countGrupo(GrupoDataFile dataFile) throws IOException {
-		return dataFile.getTotalRows();
+
+		try {
+			
+			if(dataFile.checkHeaderPolicy()){
+				
+				return dataFile.getTotalRows();
+				
+			}else{
+				
+				return POLICY_VIOLATION;
+				
+			}
+			
+		} catch (InvalidCellTypeException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		} catch (RequiredColumnNotFoundException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		}
+		
 	}
 
 	@Override
 	public int countArmacao(ArmacaoDataFile dataFile) throws IOException {
-		return dataFile.getTotalRows();
+
+		try {
+			
+			if(dataFile.checkHeaderPolicy()){
+				
+				return dataFile.getTotalRows();
+				
+			}else{
+				
+				return POLICY_VIOLATION;
+				
+			}
+			
+		} catch (InvalidCellTypeException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		} catch (RequiredColumnNotFoundException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		}
+		
 	}
 
 	@Override
 	public int countMarca(MarcaDataFile dataFile) throws IOException {
-		return dataFile.getTotalRows();
+
+		try {
+			
+			if(dataFile.checkHeaderPolicy()){
+				
+				return dataFile.getTotalRows();
+				
+			}else{
+				
+				return POLICY_VIOLATION;
+				
+			}
+			
+		} catch (InvalidCellTypeException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		} catch (RequiredColumnNotFoundException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		}
+		
 	}
 
 	@Override
 	public int countCliente(ClienteDataFile dataFile) throws IOException {
-		return dataFile.getTotalRows();
+
+		try {
+			
+			if(dataFile.checkHeaderPolicy()){
+				
+				return dataFile.getTotalRows();
+				
+			}else{
+				
+				return POLICY_VIOLATION;
+				
+			}
+			
+		} catch (InvalidCellTypeException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		} catch (RequiredColumnNotFoundException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		}
+		
 	}
 
 	@Override
 	public int countFornecedor(FornecedorDataFile dataFile) throws IOException {
-		return dataFile.getTotalRows();
+
+		try {
+			
+			if(dataFile.checkHeaderPolicy()){
+				
+				return dataFile.getTotalRows();
+				
+			}else{
+				
+				return POLICY_VIOLATION;
+				
+			}
+			
+		} catch (InvalidCellTypeException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		} catch (RequiredColumnNotFoundException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+			return POLICY_VIOLATION;
+		}
+		
 	}
 
 	@Override

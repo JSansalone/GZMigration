@@ -19,12 +19,12 @@ import org.database.connection.DatabaseConfigurations;
 import org.database.connection.DatabaseType;
 import org.database.connection.InvalidDatabaseException;
 
-import br.com.gz.migration.EnSoftware;
 import br.com.gz.migration.GZMigration;
 import br.com.gz.migration.IDatabaseInfo;
 import br.com.gz.migration.IDatabaseMutable;
 import br.com.gz.migration.ISoftwareMutable;
 import br.com.gz.migration.exception.InvalidSoftwareException;
+import br.com.gz.util.GZSoftwares;
 
 public class NewSoftwarePanel extends JPanel implements IValidation,
 		IDatabaseInfo, IDatabaseMutable, ISoftwareMutable,
@@ -45,13 +45,13 @@ public class NewSoftwarePanel extends JPanel implements IValidation,
 
 	private DatabaseType dbType;
 
-	private EnSoftware software;
+	private GZSoftwares software;
 
 	private boolean choosedDB = false;
 
 	public NewSoftwarePanel() {
 
-		software = EnSoftware.MERCOFLEX;
+		software = GZSoftwares.MERCOFLEX;
 
 		setLayout(null);
 		setSize(GZMigration.DIMENSION_PANEL);
@@ -416,11 +416,11 @@ public class NewSoftwarePanel extends JPanel implements IValidation,
 
 		if (cmbSoftware.getSelectedItem().equals("MercoFlex")) {
 
-			software = EnSoftware.MERCOFLEX;
+			software = GZSoftwares.MERCOFLEX;
 
 		} else if (cmbSoftware.getSelectedItem().equals("Mercatto")) {
 
-			software = EnSoftware.MERCATTO;
+			software = GZSoftwares.MERCATTO;
 
 		} else {
 
@@ -431,13 +431,13 @@ public class NewSoftwarePanel extends JPanel implements IValidation,
 	}
 
 	@Override
-	public EnSoftware getSoftware() {
+	public GZSoftwares getSoftware() {
 		// TODO Auto-generated method stub
 		return software;
 	}
 
 	@Override
-	public void setAvailableSoftwares(EnSoftware software) {
+	public void setAvailableSoftwares(GZSoftwares software) {
 		// TODO Auto-generated method stub
 
 	}

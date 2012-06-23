@@ -46,6 +46,7 @@ import br.com.gz.migration.panelSteps.WelcomePanel;
 import br.com.gz.migration.report.MigrationReportData;
 import br.com.gz.migration.report.PDFReport;
 import br.com.gz.migration.software.SQLDataProviderImpl;
+import br.com.gz.util.GZSoftwares;
 
 import com.jgoodies.looks.plastic.PlasticXPLookAndFeel;
 import com.jgoodies.looks.plastic.theme.SkyBluer;
@@ -928,7 +929,7 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 	}
 
 	@Override
-	public EnSoftware getSoftware() {
+	public GZSoftwares getSoftware() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -945,11 +946,11 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 
 		DatabaseType to = newSoftwarePanel.getDatabaseInfo().getDbType();
 		DatabaseType from = currentSoftwarePanel.getDatabaseInfo().getDbType();
-		EnSoftware software = newSoftwarePanel.getSoftware();
-		EnSoftware otherSoftware = currentSoftwarePanel.getSoftware();
+		GZSoftwares software = newSoftwarePanel.getSoftware();
+		GZSoftwares otherSoftware = currentSoftwarePanel.getSoftware();
 
 		// Instanciação dos DAOs
-		if (newSoftwarePanel.getSoftware() == EnSoftware.MERCOFLEX) {
+		if (newSoftwarePanel.getSoftware() == GZSoftwares.MERCOFLEX) {
 
 			/*
 			 * if (currentSoftwarePanel.getSoftware() == EnSoftware.Superus) {
@@ -981,7 +982,7 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 			dataProvider = new SQLDataProviderImpl(software, otherSoftware, to,
 					from);
 
-		} else if (newSoftwarePanel.getSoftware() == EnSoftware.MERCATTO) {
+		} else if (newSoftwarePanel.getSoftware() == GZSoftwares.MERCATTO) {
 
 			dataProvider = new SQLDataProviderImpl(software, otherSoftware, to,
 					from);
@@ -991,7 +992,7 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 	}
 
 	@Override
-	public void setAvailableSoftwares(EnSoftware software) {
+	public void setAvailableSoftwares(GZSoftwares software) {
 		// TODO Auto-generated method stub
 
 	}

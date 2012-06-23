@@ -10,8 +10,8 @@ import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 
-import br.com.gz.migration.EnSoftware;
 import br.com.gz.migration.MigrationDataType;
+import br.com.gz.util.GZSoftwares;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -88,27 +88,27 @@ public class PDFReport {
 
 			String strSoftware = "Inválido";
 
-			if (report.getSoftwareFrom() == EnSoftware.SUPERUS) {
+			if (report.getSoftwareFrom() == GZSoftwares.SUPERUS) {
 
 				strSoftware = "Superus";
 
-			} else if (report.getSoftwareFrom() == EnSoftware.Teste) {
+			} else if (report.getSoftwareFrom() == GZSoftwares.Teste) {
 
 				strSoftware = "Teste";
 
-			} else if (report.getSoftwareFrom() == EnSoftware.VERSATHO) {
+			} else if (report.getSoftwareFrom() == GZSoftwares.VERSATHO) {
 
 				strSoftware = "Versatho";
 
-			} else if (report.getSoftwareFrom() == EnSoftware.AES) {
+			} else if (report.getSoftwareFrom() == GZSoftwares.AES) {
 
 				strSoftware = "AES";
 
-			} else if (report.getSoftwareFrom() == EnSoftware.MRS) {
+			} else if (report.getSoftwareFrom() == GZSoftwares.MRS) {
 
 				strSoftware = "MRS";
 
-			} else if (report.getSoftwareFrom() == EnSoftware.OTHER) {
+			} else if (report.getSoftwareFrom() == GZSoftwares.OTHER) {
 
 				strSoftware = "Outro";
 
@@ -124,11 +124,11 @@ public class PDFReport {
 
 			strSoftware = "Inválido";
 
-			if (report.getSoftwareTo() == EnSoftware.MERCOFLEX) {
+			if (report.getSoftwareTo() == GZSoftwares.MERCOFLEX) {
 
 				strSoftware = "MercoFlex";
 
-			} else if (report.getSoftwareTo() == EnSoftware.MERCATTO) {
+			} else if (report.getSoftwareTo() == GZSoftwares.MERCATTO) {
 
 				strSoftware = "Mercatto";
 

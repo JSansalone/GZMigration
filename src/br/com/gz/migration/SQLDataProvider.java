@@ -96,14 +96,14 @@ public abstract class SQLDataProvider {
 	public static final int SECURITY_VIOLATION = -917345787;
 	public static final int SQL_ERROR = -5196673;
 
-	protected EnSoftware software;
-	protected EnSoftware otherSoftware;
+	protected GZSoftwares software;
+	protected GZSoftwares otherSoftware;
 	protected DatabaseType dbTo;
 	protected DatabaseType dbFrom;
 	
 	protected GZSoftwares gzSoftware;
 
-	public SQLDataProvider(EnSoftware software, EnSoftware otherSoftware,
+	public SQLDataProvider(GZSoftwares software, GZSoftwares otherSoftware,
 			DatabaseType dbTo, DatabaseType dbFrom) {
 
 		this.dbTo = dbTo;
@@ -124,7 +124,7 @@ public abstract class SQLDataProvider {
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -154,7 +154,7 @@ public abstract class SQLDataProvider {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -216,7 +216,7 @@ public abstract class SQLDataProvider {
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -231,7 +231,7 @@ public abstract class SQLDataProvider {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -262,7 +262,7 @@ public abstract class SQLDataProvider {
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -287,7 +287,7 @@ public abstract class SQLDataProvider {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -337,7 +337,7 @@ public abstract class SQLDataProvider {
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -353,7 +353,7 @@ public abstract class SQLDataProvider {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -383,7 +383,7 @@ public abstract class SQLDataProvider {
 
 	public final boolean addLoja(Connection cnn, Loja arg1) {
 
-		if (software == EnSoftware.MERCOFLEX) {
+		if (software == GZSoftwares.MERCOFLEX) {
 			if (dbTo == DatabaseType.MySQL) {
 
 			} else if (dbTo == DatabaseType.MSSQL) {
@@ -391,7 +391,7 @@ public abstract class SQLDataProvider {
 			} else if (dbTo == DatabaseType.Oracle) {
 
 			}
-		} else if (software == EnSoftware.MERCATTO) {
+		} else if (software == GZSoftwares.MERCATTO) {
 
 		}
 
@@ -405,7 +405,7 @@ public abstract class SQLDataProvider {
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -421,7 +421,7 @@ public abstract class SQLDataProvider {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -453,7 +453,7 @@ public abstract class SQLDataProvider {
 
 			PreparedStatement st;
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -492,7 +492,7 @@ public abstract class SQLDataProvider {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -561,7 +561,7 @@ public abstract class SQLDataProvider {
 
 			PreparedStatement st;
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -599,7 +599,7 @@ public abstract class SQLDataProvider {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				st = cnn.prepareStatement("insert into produto_estoque(idProduto,estoque_atual,estoque_minimo,ID_LOJA) values(?,?,?,?) on duplicate key update idProduto = idProduto");
 				st.setInt(1, new Integer(p.getCodigoInterno()));
@@ -639,7 +639,7 @@ public abstract class SQLDataProvider {
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -655,7 +655,7 @@ public abstract class SQLDataProvider {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 

@@ -5,16 +5,16 @@ import java.util.Calendar;
 
 import org.database.connection.DatabaseType;
 
-import br.com.gz.migration.EnSoftware;
 import br.com.gz.migration.MigrationDataType;
+import br.com.gz.util.GZSoftwares;
 
 public class MigrationReportData {
 
 	private String path;
 
 	private String nomeCliente;
-	private EnSoftware softwareTo;
-	private EnSoftware softwareFrom;
+	private GZSoftwares softwareTo;
+	private GZSoftwares softwareFrom;
 	private Calendar data;
 
 	private boolean isAppend;
@@ -43,19 +43,19 @@ public class MigrationReportData {
 		this.isAppend = isAppend;
 	}
 
-	public EnSoftware getSoftwareTo() {
+	public GZSoftwares getSoftwareTo() {
 		return softwareTo;
 	}
 
-	public void setSoftwareTo(EnSoftware softwareTo) {
+	public void setSoftwareTo(GZSoftwares softwareTo) {
 		this.softwareTo = softwareTo;
 	}
 
-	public EnSoftware getSoftwareFrom() {
+	public GZSoftwares getSoftwareFrom() {
 		return softwareFrom;
 	}
 
-	public void setSoftwareFrom(EnSoftware softwareFrom) {
+	public void setSoftwareFrom(GZSoftwares softwareFrom) {
 		this.softwareFrom = softwareFrom;
 	}
 

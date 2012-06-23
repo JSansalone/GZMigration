@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import br.com.gz.migration.EnMigrationDataType;
-import br.com.gz.migration.EnSoftware;
 import br.com.gz.migration.file.LogFile;
+import br.com.gz.util.GZSoftwares;
 
 public final class DefaultSQLSelectStatements {
 
@@ -366,7 +366,7 @@ public final class DefaultSQLSelectStatements {
 	public static final String SUPERUS_SELECT_CONTA_RECEBER = "";
 	public static final String SUPERUS_SELECT_MOVTO_VENDA = "";
 
-	public static String getFromFile(EnSoftware software,
+	public static String getFromFile(GZSoftwares software,
 			EnMigrationDataType dataType) throws IOException {
 
 		String soft = "data/" + software.toString().toLowerCase();
