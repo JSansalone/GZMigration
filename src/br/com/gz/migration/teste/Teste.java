@@ -18,29 +18,29 @@ public class Teste {
 //		c.setCellValue("7891037010048");
 //		System.out.println(c.getStringCellValue());
 		
-		ProdutoDataFile d=null;
-		
-		try {// estou usando a branch version2.1
-
-			d = ProdutoDataFile.getInstance(GZSoftwares.MERCOFLEX);
-
-			d.checkHeaderPolicy();
-
-		} catch (IOException e) {
-			// johnny Auto-generated catch block
-			e.printStackTrace();
-
-		} catch (RequiredColumnNotFoundException e) {
-			// johnny Auto-generated catch block
-			ArrayList<String> ar = d.getColumnsNotFound();
-			for (String string : ar) {
-				System.out.println(string);
-			}
-			System.out.println(e.getMessage());
-		} catch (InvalidCellTypeException e) {
-			// johnny Auto-generated catch block
-			e.printStackTrace();
-		}
+//		ProdutoDataFile d=null;
+//		
+//		try {// estou usando a branch version2.1
+//
+//			d = ProdutoDataFile.getInstance(GZSoftwares.MERCOFLEX);
+//
+//			d.checkHeaderPolicy();
+//
+//		} catch (IOException e) {
+//			// johnny Auto-generated catch block
+//			e.printStackTrace();
+//
+//		} catch (RequiredColumnNotFoundException e) {
+//			// johnny Auto-generated catch block
+//			ArrayList<String> ar = d.getColumnsNotFound();
+//			for (String string : ar) {
+//				System.out.println(string);
+//			}
+//			System.out.println(e.getMessage());
+//		} catch (InvalidCellTypeException e) {
+//			// johnny Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 //		try {
 //			
@@ -76,6 +76,10 @@ public class Teste {
 //			e.printStackTrace();
 //		}
 
+		String s = "48.219.738-9";
+		
+		System.out.println(s.replace(".", "").replace("-", ""));
+		
 	}
 	
 	private static boolean isValid(boolean arg){
