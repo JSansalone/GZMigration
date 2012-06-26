@@ -285,6 +285,8 @@ public class DepartamentoDataFile extends DataFile {
 		} catch (ReachedTheEndOfFileException e) {
 			System.err.println(e.getMessage());
 		}
+		
+		currentIndex = aux;
 
 		return arD;
 		

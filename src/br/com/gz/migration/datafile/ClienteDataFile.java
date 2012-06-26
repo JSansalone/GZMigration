@@ -2,6 +2,8 @@ package br.com.gz.migration.datafile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import br.com.gz.bean.Cliente;
 import br.com.gz.migration.EnMigrationDataType;
@@ -208,35 +210,44 @@ public class ClienteDataFile extends DataFile {
 		}
 
 		c.setCodigo(new Integer(format.toNumeric(o[i++].toString(), false)));
-		c.setNomeFantasia();
-		c.setRazaoSocial();
+		c.setNomeFantasia(format.toNomeFantasia(o[i++].toString()));
+		c.setRazaoSocial(format.toRazaoSocial(o[i++].toString()));
 		c.setCgc(format.toNumeric(o[i++].toString(), false));
-		c.setRegistroEstadual();
-		c.setSexo();
-		c.setDataNascimento();
-		c.setDataCadastro();
-		c.setEstado();
-		c.setCidade();
-		c.setBairro();
-		c.setEndereco();
-		c.setCep();
-		c.setNumero();
-		c.setTelefoneResidencial();
-		c.setEstadoCobranca();
-		c.setCidadeCobranca();
-		c.setBairroCobranca();
-		c.setEnderecoCobranca();
-		c.setCepCobranca();
-		c.setNumeroCobranca();
-		c.setTelefoneCobranca();
-		c.setEstadoEntrega();
-		c.setCidadeEntrega();
-		c.setBairroEntrega();
-		c.setEnderecoEntrega();
-		c.setCepEntrega();
-		c.setNumeroEntrega();
-		c.setTelefoneEntrega();
-		c.setSituacao();
+		c.setRegistroEstadual(format.toInscricaoEstadual(o[i++].toString()));
+		c.setSexo(o[i++].toString());
+		
+		Calendar cldn = Calendar.getInstance();
+		Date dtdn = new Date(o[i++].toString());
+		cldn.setTime(dtdn);
+		c.setDataNascimento(cldn);
+		
+		Calendar cldc = Calendar.getInstance();
+		Date dtdc = new Date(o[i++].toString());
+		cldc.setTime(dtdc);
+		c.setDataCadastro(cldc);
+		
+		c.setEstado(format.toEstadoSigla(o[i++].toString()));
+		c.setCidade(o[i++].toString());
+		c.setBairro(format.toBairro(o[i++].toString()));
+		c.setEndereco(format.toEndereco(o[i++].toString()));
+		c.setCep(format.toNumeric(o[i++].toString(), false));
+		c.setNumero(new Integer(format.toNumeric(o[i++].toString(), false)));
+		c.setTelefoneResidencial(format.toNumeric(o[i++].toString(), false));
+		c.setEstadoCobranca(format.toEstadoSigla(o[i++].toString()));
+		c.setCidadeCobranca(o[i++].toString());
+		c.setBairroCobranca(format.toBairro(o[i++].toString()));
+		c.setEnderecoCobranca(format.toEndereco(o[i++].toString()));
+		c.setCepCobranca(format.toNumeric(o[i++].toString(), false));
+		c.setNumeroCobranca(new Integer(format.toNumeric(o[i++].toString(), false)));
+		c.setTelefoneCobranca(format.toNumeric(o[i++].toString(), false));
+		c.setEstadoEntrega(format.toEstadoSigla(o[i++].toString()));
+		c.setCidadeEntrega(o[i++].toString());
+		c.setBairroEntrega(format.toBairro(o[i++].toString()));
+		c.setEnderecoEntrega(format.toEndereco(o[i++].toString()));
+		c.setCepEntrega(format.toNumeric(o[i++].toString(), false));
+		c.setNumeroEnderecoEntrega(new Integer(format.toNumeric(o[i++].toString(), false)));
+		c.setTelEntrega(format.toNumeric(o[i++].toString(), false));
+		c.setSituacao(format.toSituacao(o[i++].toString()));
 		
 		return c;
 
@@ -265,7 +276,7 @@ public class ClienteDataFile extends DataFile {
 
 		int i = 0;
 
-		Cliente d = new Cliente();
+		Cliente c = new Cliente();
 
 		Formattable format;
 
@@ -282,10 +293,47 @@ public class ClienteDataFile extends DataFile {
 			format = new MercoFlexFormat();
 		}
 
-		d.setCodigo(new Integer(format.toNumeric(o[i++].toString(), false)));
-		d.setDescricao(format.toDescricaoGeral(o[i++].toString(), 20));
+		c.setCodigo(new Integer(format.toNumeric(o[i++].toString(), false)));
+		c.setNomeFantasia(format.toNomeFantasia(o[i++].toString()));
+		c.setRazaoSocial(format.toRazaoSocial(o[i++].toString()));
+		c.setCgc(format.toNumeric(o[i++].toString(), false));
+		c.setRegistroEstadual(format.toInscricaoEstadual(o[i++].toString()));
+		c.setSexo(o[i++].toString());
 		
-		return d;
+		Calendar cldn = Calendar.getInstance();
+		Date dtdn = new Date(o[i++].toString());
+		cldn.setTime(dtdn);
+		c.setDataNascimento(cldn);
+		
+		Calendar cldc = Calendar.getInstance();
+		Date dtdc = new Date(o[i++].toString());
+		cldc.setTime(dtdc);
+		c.setDataCadastro(cldc);
+		
+		c.setEstado(format.toEstadoSigla(o[i++].toString()));
+		c.setCidade(o[i++].toString());
+		c.setBairro(format.toBairro(o[i++].toString()));
+		c.setEndereco(format.toEndereco(o[i++].toString()));
+		c.setCep(format.toNumeric(o[i++].toString(), false));
+		c.setNumero(new Integer(format.toNumeric(o[i++].toString(), false)));
+		c.setTelefoneResidencial(format.toNumeric(o[i++].toString(), false));
+		c.setEstadoCobranca(format.toEstadoSigla(o[i++].toString()));
+		c.setCidadeCobranca(o[i++].toString());
+		c.setBairroCobranca(format.toBairro(o[i++].toString()));
+		c.setEnderecoCobranca(format.toEndereco(o[i++].toString()));
+		c.setCepCobranca(format.toNumeric(o[i++].toString(), false));
+		c.setNumeroCobranca(new Integer(format.toNumeric(o[i++].toString(), false)));
+		c.setTelefoneCobranca(format.toNumeric(o[i++].toString(), false));
+		c.setEstadoEntrega(format.toEstadoSigla(o[i++].toString()));
+		c.setCidadeEntrega(o[i++].toString());
+		c.setBairroEntrega(format.toBairro(o[i++].toString()));
+		c.setEnderecoEntrega(format.toEndereco(o[i++].toString()));
+		c.setCepEntrega(format.toNumeric(o[i++].toString(), false));
+		c.setNumeroEnderecoEntrega(new Integer(format.toNumeric(o[i++].toString(), false)));
+		c.setTelEntrega(format.toNumeric(o[i++].toString(), false));
+		c.setSituacao(format.toSituacao(o[i++].toString()));
+		
+		return c;
 		
 	}
 
@@ -313,6 +361,8 @@ public class ClienteDataFile extends DataFile {
 			System.err.println(e.getMessage());
 		}
 
+		currentIndex = aux;
+		
 		return arD;
 		
 	}

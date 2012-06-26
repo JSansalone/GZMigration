@@ -285,6 +285,8 @@ public class GrupoDataFile extends DataFile {
 			System.err.println(e.getMessage());
 		}
 
+		currentIndex = aux;
+		
 		return arD;
 		
 	}
