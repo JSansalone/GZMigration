@@ -675,10 +675,15 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 			 * newSoftwarePanel, currentSoftwarePanel);
 			 */
 			// johnny Instanciar o motor
+//			dataProviderEngine = new MigrationEngine(
+//					migrationTypePanel.getMigrationType(), this,
+//					migrationInfoPanel, migrationTypePanel, dataProvider,
+//					newSoftwarePanel, currentSoftwarePanel);
+			
 			dataProviderEngine = new MigrationEngine(
 					migrationTypePanel.getMigrationType(), this,
 					migrationInfoPanel, migrationTypePanel, dataProvider,
-					newSoftwarePanel, currentSoftwarePanel);
+					newSoftwarePanel);
 
 			// guarda a data de início da migração
 			date = Calendar.getInstance();
@@ -945,49 +950,51 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 	public void setDataProvider() {
 
 		DatabaseType to = newSoftwarePanel.getDatabaseInfo().getDbType();
-		DatabaseType from = currentSoftwarePanel.getDatabaseInfo().getDbType();
+	//	DatabaseType from = currentSoftwarePanel.getDatabaseInfo().getDbType();
 		GZSoftwares software = newSoftwarePanel.getSoftware();
-		GZSoftwares otherSoftware = currentSoftwarePanel.getSoftware();
+	//	GZSoftwares otherSoftware = currentSoftwarePanel.getSoftware();
 
+		dataProvider = new SQLDataProviderImpl(software, to);
+		
 		// Instanciação dos DAOs
-		if (newSoftwarePanel.getSoftware() == GZSoftwares.MERCOFLEX) {
-
-			/*
-			 * if (currentSoftwarePanel.getSoftware() == EnSoftware.Superus) {
-			 * 
-			 * dataProvider = new SuperusToMercoFlex(EnSoftware.MercoFlex,
-			 * EnSoftware.Superus, to, from);
-			 * 
-			 * } else if (currentSoftwarePanel.getSoftware() ==
-			 * EnSoftware.Versatho) {
-			 * 
-			 * dataProvider = new VersathoToMercoFlex(EnSoftware.MercoFlex,
-			 * EnSoftware.Versatho, to, from);
-			 * 
-			 * } else if (currentSoftwarePanel.getSoftware() == EnSoftware.AES)
-			 * {
-			 * 
-			 * dataProvider = new AESToMercoFlex(EnSoftware.MercoFlex,
-			 * EnSoftware.AES, to, from);
-			 * 
-			 * } else if (currentSoftwarePanel.getSoftware() == EnSoftware.MRS)
-			 * {
-			 * 
-			 * dataProvider = new MRSToMercoFlex(EnSoftware.MercoFlex,
-			 * EnSoftware.MRS, to, from);
-			 * 
-			 * }
-			 */
-
-			dataProvider = new SQLDataProviderImpl(software, otherSoftware, to,
-					from);
-
-		} else if (newSoftwarePanel.getSoftware() == GZSoftwares.MERCATTO) {
-
-			dataProvider = new SQLDataProviderImpl(software, otherSoftware, to,
-					from);
-
-		}
+//		if (newSoftwarePanel.getSoftware() == GZSoftwares.MERCOFLEX) {
+//
+//			/*
+//			 * if (currentSoftwarePanel.getSoftware() == EnSoftware.Superus) {
+//			 * 
+//			 * dataProvider = new SuperusToMercoFlex(EnSoftware.MercoFlex,
+//			 * EnSoftware.Superus, to, from);
+//			 * 
+//			 * } else if (currentSoftwarePanel.getSoftware() ==
+//			 * EnSoftware.Versatho) {
+//			 * 
+//			 * dataProvider = new VersathoToMercoFlex(EnSoftware.MercoFlex,
+//			 * EnSoftware.Versatho, to, from);
+//			 * 
+//			 * } else if (currentSoftwarePanel.getSoftware() == EnSoftware.AES)
+//			 * {
+//			 * 
+//			 * dataProvider = new AESToMercoFlex(EnSoftware.MercoFlex,
+//			 * EnSoftware.AES, to, from);
+//			 * 
+//			 * } else if (currentSoftwarePanel.getSoftware() == EnSoftware.MRS)
+//			 * {
+//			 * 
+//			 * dataProvider = new MRSToMercoFlex(EnSoftware.MercoFlex,
+//			 * EnSoftware.MRS, to, from);
+//			 * 
+//			 * }
+//			 */
+//
+//			dataProvider = new SQLDataProviderImpl(software, otherSoftware, to,
+//					from);
+//
+//		} else if (newSoftwarePanel.getSoftware() == GZSoftwares.MERCATTO) {
+//
+//			dataProvider = new SQLDataProviderImpl(software, otherSoftware, to,
+//					from);
+//
+//		}
 
 	}
 

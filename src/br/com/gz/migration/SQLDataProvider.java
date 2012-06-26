@@ -18,6 +18,7 @@ import br.com.gz.bean.Marca;
 import br.com.gz.bean.Produto;
 import br.com.gz.migration.datafile.ArmacaoDataFile;
 import br.com.gz.migration.datafile.ClienteDataFile;
+import br.com.gz.migration.datafile.DataFile;
 import br.com.gz.migration.datafile.DepartamentoDataFile;
 import br.com.gz.migration.datafile.FornecedorDataFile;
 import br.com.gz.migration.datafile.GrupoDataFile;
@@ -103,6 +104,7 @@ public abstract class SQLDataProvider {
 	
 	protected GZSoftwares gzSoftware;
 
+	@Deprecated
 	public SQLDataProvider(GZSoftwares software, GZSoftwares otherSoftware,
 			DatabaseType dbTo, DatabaseType dbFrom) {
 
@@ -784,20 +786,30 @@ public abstract class SQLDataProvider {
 	public abstract ArrayList<Fornecedor> getFornecedor(
 			FornecedorDataFile dataFile);
 
+	@Deprecated
 	public abstract ArrayList<String> getProdutoColumnsNeeded();
 
+	@Deprecated
 	public abstract ArrayList<String> getDepartamentoColumnsNeeded();
 
+	@Deprecated
 	public abstract ArrayList<String> getGrupoColumnsNeeded();
 
+	@Deprecated
 	public abstract ArrayList<String> getArmacaoColumnsNeeded();
 
+	@Deprecated
 	public abstract ArrayList<String> getMarcaColumnsNeeded();
 
+	@Deprecated
 	public abstract ArrayList<String> getClienteColumnsNeeded();
 
+	@Deprecated
 	public abstract ArrayList<String> getLojaColumnsNeeded();
 
+	@Deprecated
 	public abstract ArrayList<String> getFornecedorColumnsNeeded();
+	
+	public abstract ArrayList<String> getColumnsNeeded(DataFile dataFile);
 
 }

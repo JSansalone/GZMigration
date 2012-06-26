@@ -23,6 +23,7 @@ import br.com.gz.migration.EnMigrationDataType;
 import br.com.gz.migration.SQLDataProvider;
 import br.com.gz.migration.datafile.ArmacaoDataFile;
 import br.com.gz.migration.datafile.ClienteDataFile;
+import br.com.gz.migration.datafile.DataFile;
 import br.com.gz.migration.datafile.DepartamentoDataFile;
 import br.com.gz.migration.datafile.FornecedorDataFile;
 import br.com.gz.migration.datafile.GrupoDataFile;
@@ -102,9 +103,36 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 		}
 
 	}
+	
+	public SQLDataProviderImpl(GZSoftwares software,
+			DatabaseType dbTo) {
+		
+		super(software, dbTo);
+		
+		// guarda o software da GZ
+		this.software = software;
+		
+		LogFile.getInstance().writeInFile(
+				"New software: " + this.software.toString().toLowerCase());
+		
+		LogFile.getInstance().writeInFile(
+				"Old software: " + this.otherSoftware.toString().toLowerCase());
+		
+		// guarda o banco de dados de destino
+		this.dbTo = dbTo;
+
+		// instancia a nova política de colunas
+		if (software == GZSoftwares.MERCOFLEX) {
+			policy = new MercoFlexPolicy();
+		} else {
+			policy = new MercattoPolicy();
+		}
+
+	}
 
 	// obtendo a contagem de registros que possivelmente serão inseridos
 	@Override
+	@Deprecated
 	public int countProduto(Connection conn) throws IOException,
 			SecurityViolationException, SQLException {
 
@@ -186,6 +214,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public int countDepartamento(Connection conn) throws IOException,
 			SecurityViolationException, SQLException {
 
@@ -266,6 +295,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public int countGrupo(Connection conn) throws IOException,
 			SecurityViolationException, SQLException {
 
@@ -346,6 +376,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public int countArmacao(Connection conn) throws IOException,
 			SecurityViolationException, SQLException {
 
@@ -426,6 +457,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public int countMarca(Connection conn) throws IOException,
 			SecurityViolationException, SQLException {
 
@@ -506,6 +538,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public int countCliente(Connection conn) throws IOException,
 			SecurityViolationException, SQLException {
 
@@ -584,6 +617,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public int countLoja(Connection conn) throws IOException,
 			SecurityViolationException, SQLException {
 		// johnny Auto-generated method stub
@@ -591,6 +625,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public int countFornecedor(Connection conn) throws IOException,
 			SecurityViolationException, SQLException {
 
@@ -675,6 +710,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 
 	// AQUI É ONDE ======> DEVE <====== SER FEITO TODOS OS TRATAMENTOS DE DADOS
 	@Override
+	@Deprecated
 	public ArrayList<Produto> getProduto(Connection conn) {
 
 		try {
@@ -857,6 +893,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<Departamento> getDepartamento(Connection conn) {
 
 		try {
@@ -893,6 +930,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<Grupo> getGrupo(Connection conn) {
 
 		try {
@@ -929,6 +967,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<Armacao> getArmacao(Connection conn) {
 
 		try {
@@ -965,6 +1004,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<Marca> getMarca(Connection conn) {
 
 		try {
@@ -1001,6 +1041,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<Cliente> getCliente(Connection conn) {
 
 		try {
@@ -1101,12 +1142,14 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<Loja> getLoja(Connection conn) {
 		// johnny Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<Fornecedor> getFornecedor(Connection conn) {
 
 		try {
@@ -1204,6 +1247,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	// cuidado!!! se o método getProduto for executado, o resultset estará
 	// fechado
 	@Override
+	@Deprecated
 	public ArrayList<String> getProdutoColumnsNeeded() {
 		// johnny Auto-generated method stub
 		try {
@@ -1231,6 +1275,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<String> getDepartamentoColumnsNeeded() {
 		// johnny Auto-generated method stub
 		try {
@@ -1258,6 +1303,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<String> getGrupoColumnsNeeded() {
 		// johnny Auto-generated method stub
 		try {
@@ -1285,6 +1331,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<String> getArmacaoColumnsNeeded() {
 
 		// johnny Auto-generated method stub
@@ -1314,6 +1361,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<String> getMarcaColumnsNeeded() {
 		// johnny Auto-generated method stub
 		try {
@@ -1342,6 +1390,7 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<String> getClienteColumnsNeeded() {
 		// johnny Auto-generated method stub
 		try {
@@ -1369,12 +1418,14 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<String> getLojaColumnsNeeded() {
 		// johnny Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<String> getFornecedorColumnsNeeded() {
 		// johnny Auto-generated method stub
 		try {
@@ -1687,6 +1738,13 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 		}
 
 		return ar;
+		
+	}
+
+	@Override
+	public ArrayList<String> getColumnsNeeded(DataFile dataFile) {
+		
+		return dataFile.getColumnsNotFound();
 		
 	}
 
