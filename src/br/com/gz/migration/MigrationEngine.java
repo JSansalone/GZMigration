@@ -886,6 +886,9 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itP = null;
 			arP = null;
+			
+			produtoDataFile.writeNotInserteds();
+			
 		}
 		// =============================================================================
 		
@@ -910,6 +913,9 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itD = null;
 			arD = null;
+			
+			departamentoDataFile.writeNotInserteds();
+			
 		}
 		
 		
@@ -934,6 +940,9 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itG = null;
 			arG = null;
+			
+			grupoDataFile.writeNotInserteds();
+			
 		}
 		
 		
@@ -958,6 +967,9 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itA = null;
 			arA = null;
+			
+			armacaoDataFile.writeNotInserteds();
+			
 		}
 		
 		
@@ -982,23 +994,26 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itM = null;
 			arM = null;
+			
+			marcaDataFile.writeNotInserteds();
+			
 		}
 		
 		
 		
-		if (useLoja) {
-			iInfo.setText("Inserindo registros na tabela de lojas");
+//		if (useLoja) {
+//			iInfo.setText("Inserindo registros na tabela de lojas");
+////			ArrayList<Loja> arL = myDAO.getLoja(cnnFrom);
 //			ArrayList<Loja> arL = myDAO.getLoja(cnnFrom);
-			ArrayList<Loja> arL = myDAO.getLoja(cnnFrom);
-			Iterator<Loja> itL = arL.iterator();
-			while (itL.hasNext()) {
-				Loja l = itL.next();
-				myDAO.addLoja(cnnTo, l);
-				iInfo.setValue(((count++) * 100) / totalData);
-			}
-			itL = null;
-			arL = null;
-		}
+//			Iterator<Loja> itL = arL.iterator();
+//			while (itL.hasNext()) {
+//				Loja l = itL.next();
+//				myDAO.addLoja(cnnTo, l);
+//				iInfo.setValue(((count++) * 100) / totalData);
+//			}
+//			itL = null;
+//			arL = null;
+//		}
 
 		
 		
@@ -1022,6 +1037,9 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itC = null;
 			arC = null;
+			
+			clienteDataFile.writeNotInserteds();
+			
 		}// fim do use clientes
 
 		
@@ -1047,6 +1065,9 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itF = null;
 			arF = null;
+			
+			fornecedorDataFile.writeNotInserteds();
+			
 		}// fim do use Fornecedores
 
 		iInfo.setValue(100);
