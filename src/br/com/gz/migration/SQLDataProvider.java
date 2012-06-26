@@ -26,6 +26,7 @@ import br.com.gz.migration.datafile.MarcaDataFile;
 import br.com.gz.migration.datafile.ProdutoDataFile;
 import br.com.gz.migration.exception.SecurityViolationException;
 import br.com.gz.migration.file.LogFile;
+import br.com.gz.migration.sql.EnMercoFlexInsertStatement;
 import br.com.gz.util.GZSoftwares;
 
 /**
@@ -459,33 +460,43 @@ public abstract class SQLDataProvider {
 
 				if (dbTo == DatabaseType.MySQL) {
 
-					st = cnn.prepareStatement("insert into estoque(cdprod, codbarra, descricao, descpdv, unidade, setor, variavel, depto, quantprod, cadastro, contsaldo, sointeiro, cfiscal, tributa, grupo) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update cdprod = cdprod");
-
-					st.setString(1, p.getCodigoInterno());
-					st.setString(2, p.getCodigoDeBarras());
-					st.setString(3, p.getDescricao());
-					st.setString(4, p.getDescricaoReduzida());
-					st.setString(5, p.getUnidade());
-					st.setInt(6, p.getSetor());
-					st.setString(7, p.getVariavel());
-					st.setInt(8, p.getDepartamento());
-					st.setDouble(9, p.getQuantidade());
-					st.setDate(10, new java.sql.Date(p.getDataCadastro()
-							.getTimeInMillis()));
-					st.setString(11, p.getControlaSaldo());
-					st.setString(12, p.getSoInteiro());
-					st.setString(13, p.getNcm());
-					st.setInt(14, p.getCodigoTributacao());
-					st.setInt(15, p.getGrupo());
+//					st = cnn.prepareStatement("insert into estoque(cdprod, codbarra, descricao, descpdv, unidade, setor, variavel, depto, quantprod, cadastro, contsaldo, sointeiro, cfiscal, tributa, grupo) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update cdprod = cdprod");
+//
+//					st.setString(1, p.getCodigoInterno());
+//					st.setString(2, p.getCodigoDeBarras());
+//					st.setString(3, p.getDescricao());
+//					st.setString(4, p.getDescricaoReduzida());
+//					st.setString(5, p.getUnidade());
+//					st.setInt(6, p.getSetor());
+//					st.setString(7, p.getVariavel());
+//					st.setInt(8, p.getDepartamento());
+//					st.setDouble(9, p.getQuantidade());
+//					st.setDate(10, new java.sql.Date(p.getDataCadastro()
+//							.getTimeInMillis()));
+//					st.setString(11, p.getControlaSaldo());
+//					st.setString(12, p.getSoInteiro());
+//					st.setString(13, p.getNcm());
+//					st.setInt(14, p.getCodigoTributacao());
+//					st.setInt(15, p.getGrupo());
+//					st.execute();
+//
+//					st = cnn.prepareStatement("insert into esttrib(cdprod, icmcompra, tributa, trbcompra) values(?,?,?,?) on duplicate key update cdprod = cdprod");
+//					st.setString(1, p.getCodigoInterno());
+//					st.setDouble(2, p.getIcmCompra());
+//					st.setInt(3, p.getCodigoTributacao());
+//					st.setString(4, p.getTributacaoCompra());
+//					st.execute();
+//
+//					st.close();
+					
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE.getSQL(DatabaseType.MySQL));
+					
 					st.execute();
-
-					st = cnn.prepareStatement("insert into esttrib(cdprod, icmcompra, tributa, trbcompra) values(?,?,?,?) on duplicate key update cdprod = cdprod");
-					st.setString(1, p.getCodigoInterno());
-					st.setDouble(2, p.getIcmCompra());
-					st.setInt(3, p.getCodigoTributacao());
-					st.setString(4, p.getTributacaoCompra());
+					st.close();
+					
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_TRIBUTACAO.getSQL(DatabaseType.MySQL));
+					
 					st.execute();
-
 					st.close();
 
 				} else if (dbTo == DatabaseType.MSSQL) {

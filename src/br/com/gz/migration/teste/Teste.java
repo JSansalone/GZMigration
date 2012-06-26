@@ -1,14 +1,16 @@
 package br.com.gz.migration.teste;
 
-import br.com.gz.migration.sql.EnDefaultInsertStatement;
+import org.database.connection.DatabaseType;
+
+import br.com.gz.migration.sql.EnMercoFlexInsertStatement;
 
 public class Teste {
 
 	public static void main(String[] args) {
 
-		for (EnDefaultInsertStatement en : EnDefaultInsertStatement.values()) {
+		for (EnMercoFlexInsertStatement en : EnMercoFlexInsertStatement.values()) {
 			
-			System.out.println(en.getSQL());
+			System.out.println(en.getSQL(DatabaseType.MySQL));
 			
 		}
 		

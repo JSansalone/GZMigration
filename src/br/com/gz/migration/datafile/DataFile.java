@@ -271,7 +271,7 @@ public abstract class DataFile {
 
 	}
 	
-	protected final void writeNotInserteds() {
+	public final void writeNotInserteds() {
 
 		File f = new File("data/" + getFileNameNoExt() + "_NOT_INSERTED.xls");
 
