@@ -11,4 +11,6 @@ public interface IMigrationType {
 	
 	boolean toAppend();
 	
+	boolean ignoreCodes();
+	
 }

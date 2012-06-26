@@ -41,13 +41,14 @@ public enum EnMercoFlexInsertStatement {
 	public String getSQL(DatabaseType dbType) {
 
 		String sql = "";
-		
+
 		if (dbType == DatabaseType.MySQL) {
 
 			sql = "insert into " + category.getTableName();
 
 			String columns = "";
 			String values = "";
+			String onDuplicate = "";
 
 			for (EnMercoFlexRequiredColumns requiredColumn : EnMercoFlexRequiredColumns
 					.values()) {
@@ -59,6 +60,14 @@ public enum EnMercoFlexInsertStatement {
 						columns += requiredColumn.getColumnName() + ",";
 						values += "?,";
 
+						if (onDuplicate.equals("")) {
+
+							onDuplicate += " on duplicate key update "
+									+ requiredColumn.getColumnName() + " = "
+									+ requiredColumn.getColumnName();
+
+						}
+
 					}
 
 				}
@@ -68,7 +77,7 @@ public enum EnMercoFlexInsertStatement {
 			columns = "(" + columns.substring(0, columns.length() - 1) + ")";
 			values = "(" + values.substring(0, values.length() - 1) + ")";
 
-			sql += columns + " values" + values;
+			sql += columns + " values" + values + onDuplicate;
 
 		}
 

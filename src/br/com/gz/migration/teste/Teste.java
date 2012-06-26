@@ -1,18 +1,18 @@
 package br.com.gz.migration.teste;
 
-import org.database.connection.DatabaseType;
-
-import br.com.gz.migration.sql.EnMercoFlexInsertStatement;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Teste {
 
 	public static void main(String[] args) {
 
-		for (EnMercoFlexInsertStatement en : EnMercoFlexInsertStatement.values()) {
-			
-			System.out.println(en.getSQL(DatabaseType.MySQL));
-			
-		}
+		NumberFormat nf = NumberFormat.getInstance(new Locale("en", "US"));
+		
+		nf.setMaximumFractionDigits(2);
+		nf.setMaximumIntegerDigits(2);
+		
+		System.out.println(nf.format(123456.789123));
 		
 	}
 

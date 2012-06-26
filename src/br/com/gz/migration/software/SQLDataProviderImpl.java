@@ -139,8 +139,8 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 		LogFile.getInstance().writeInFile(
 				"New software: " + this.software.toString().toLowerCase());
 		
-		LogFile.getInstance().writeInFile(
-				"Old software: " + this.otherSoftware.toString().toLowerCase());
+//		LogFile.getInstance().writeInFile(
+//				"Old software: " + this.otherSoftware.toString().toLowerCase());
 		
 		// guarda o banco de dados de destino
 		this.dbTo = dbTo;

@@ -102,7 +102,7 @@ public abstract class SQLDataProvider {
 	protected GZSoftwares otherSoftware;
 	protected DatabaseType dbTo;
 	protected DatabaseType dbFrom;
-	
+
 	protected GZSoftwares gzSoftware;
 
 	@Deprecated
@@ -115,12 +115,12 @@ public abstract class SQLDataProvider {
 		this.otherSoftware = otherSoftware;
 
 	}
-	
-	public SQLDataProvider(GZSoftwares software, DatabaseType dbTo){
-		
+
+	public SQLDataProvider(GZSoftwares software, DatabaseType dbTo) {
+
 		this.gzSoftware = software;
 		this.dbTo = dbTo;
-		
+
 	}
 
 	public final boolean addCliente(Connection cnn, Cliente c) {
@@ -460,42 +460,71 @@ public abstract class SQLDataProvider {
 
 				if (dbTo == DatabaseType.MySQL) {
 
-//					st = cnn.prepareStatement("insert into estoque(cdprod, codbarra, descricao, descpdv, unidade, setor, variavel, depto, quantprod, cadastro, contsaldo, sointeiro, cfiscal, tributa, grupo) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update cdprod = cdprod");
-//
-//					st.setString(1, p.getCodigoInterno());
-//					st.setString(2, p.getCodigoDeBarras());
-//					st.setString(3, p.getDescricao());
-//					st.setString(4, p.getDescricaoReduzida());
-//					st.setString(5, p.getUnidade());
-//					st.setInt(6, p.getSetor());
-//					st.setString(7, p.getVariavel());
-//					st.setInt(8, p.getDepartamento());
-//					st.setDouble(9, p.getQuantidade());
-//					st.setDate(10, new java.sql.Date(p.getDataCadastro()
-//							.getTimeInMillis()));
-//					st.setString(11, p.getControlaSaldo());
-//					st.setString(12, p.getSoInteiro());
-//					st.setString(13, p.getNcm());
-//					st.setInt(14, p.getCodigoTributacao());
-//					st.setInt(15, p.getGrupo());
-//					st.execute();
-//
-//					st = cnn.prepareStatement("insert into esttrib(cdprod, icmcompra, tributa, trbcompra) values(?,?,?,?) on duplicate key update cdprod = cdprod");
-//					st.setString(1, p.getCodigoInterno());
-//					st.setDouble(2, p.getIcmCompra());
-//					st.setInt(3, p.getCodigoTributacao());
-//					st.setString(4, p.getTributacaoCompra());
-//					st.execute();
-//
-//					st.close();
-					
-					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE.getSQL(DatabaseType.MySQL));
-					
+					// st =
+					// cnn.prepareStatement("insert into estoque(cdprod, codbarra, descricao, descpdv, unidade, setor, variavel, depto, quantprod, cadastro, contsaldo, sointeiro, cfiscal, tributa, grupo) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update cdprod = cdprod");
+					//
+					// st.setString(1, p.getCodigoInterno());
+					// st.setString(2, p.getCodigoDeBarras());
+					// st.setString(3, p.getDescricao());
+					// st.setString(4, p.getDescricaoReduzida());
+					// st.setString(5, p.getUnidade());
+					// st.setInt(6, p.getSetor());
+					// st.setString(7, p.getVariavel());
+					// st.setInt(8, p.getDepartamento());
+					// st.setDouble(9, p.getQuantidade());
+					// st.setDate(10, new java.sql.Date(p.getDataCadastro()
+					// .getTimeInMillis()));
+					// st.setString(11, p.getControlaSaldo());
+					// st.setString(12, p.getSoInteiro());
+					// st.setString(13, p.getNcm());
+					// st.setInt(14, p.getCodigoTributacao());
+					// st.setInt(15, p.getGrupo());
+					// st.execute();
+					//
+					// st =
+					// cnn.prepareStatement("insert into esttrib(cdprod, icmcompra, tributa, trbcompra) values(?,?,?,?) on duplicate key update cdprod = cdprod");
+					// st.setString(1, p.getCodigoInterno());
+					// st.setDouble(2, p.getIcmCompra());
+					// st.setInt(3, p.getCodigoTributacao());
+					// st.setString(4, p.getTributacaoCompra());
+					// st.execute();
+					//
+					// st.close();
+
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE
+							.getSQL(DatabaseType.MySQL));
+					st.setString(1, p.getCodigoInterno());
+					st.setString(2, p.getCodigoDeBarras());
+					st.setString(3, p.getDescricao());
+					st.setString(4, p.getDescricaoReduzida());
+					st.setString(5, p.getUnidade());
+					st.setInt(6, p.getSetor());
+					st.setString(7, p.getVariavel());
+					st.setInt(8, p.getDepartamento());
+					st.setInt(9, p.getGrupo());
+					st.setDate(10, new java.sql.Date(p.getDataCadastro()
+							.getTime().getTime()));
+					st.setString(11, p.getNcm());
+					st.setInt(12, p.getCodigoTributacao());
+					st.setString(13, p.getSt());
 					st.execute();
 					st.close();
-					
-					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_TRIBUTACAO.getSQL(DatabaseType.MySQL));
-					
+
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_TRIBUTACAO
+							.getSQL(DatabaseType.MySQL));
+					st.setString(1, p.getCodigoInterno());
+					st.setInt(2, p.getCsosn());
+					st.setString(3, p.getModalidatePautaVenda());
+					st.setDouble(4, p.getPautaVenda());
+					st.setString(5, p.getTributacaoCompra());
+					st.setInt(6, p.getCodigoTributacao());
+					st.setDouble(7, p.getIcmCompra());
+					st.setString(8, p.getSt());
+					st.setDouble(9, p.getIcmVenda());
+					st.setDouble(10, p.getBaseIcmVenda());
+					st.setDouble(11, p.getBaseICMSub());
+					st.setDouble(12, p.getValorICMSSubstituicao());
+					st.setString(13, p.getEstadoTributacao());
 					st.execute();
 					st.close();
 
@@ -568,7 +597,8 @@ public abstract class SQLDataProvider {
 
 	}
 
-	public final boolean addProdutoLoja(Connection cnn, Produto p, int l) {
+	public final boolean addProdutoLoja(Connection cnn, Produto p,
+			boolean ignoreCode, int l) {
 
 		try {
 
@@ -578,36 +608,65 @@ public abstract class SQLDataProvider {
 
 				if (dbTo == DatabaseType.MySQL) {
 
-					st = cnn.prepareStatement("insert into saldos(cdprod, icmcompra, precocomp, ipi, precoprom, precovenda, precocusto, perclucro, estminimo, estmaximo, quant,  pis, cofins, situacao, trbcompra, loja) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update cdprod = cdprod");
-					st.setString(1, p.getCodigoInterno());
-					st.setDouble(2, p.getIcmCompra());
+					// st =
+					// cnn.prepareStatement("insert into saldos(cdprod, icmcompra, precocomp, ipi, precoprom, precovenda, precocusto, perclucro, estminimo, estmaximo, quant,  pis, cofins, situacao, trbcompra, loja) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update cdprod = cdprod");
+					// st.setString(1, p.getCodigoInterno());
+					// st.setDouble(2, p.getIcmCompra());
+					// st.setDouble(3, p.getPrecoCompra());
+					// st.setDouble(4, p.getIpi());
+					// st.setDouble(5, p.getPrecoPromocao());
+					// st.setDouble(6, p.getPrecoVenda());
+					// st.setDouble(7, p.getPrecoCusto());
+					//
+					// if (p.getPorcentagemLucro() > 100.00
+					// || p.getPorcentagemLucro() < 0) {
+					// st.setDouble(8, 100.00);
+					// } else {
+					// st.setDouble(8, p.getPorcentagemLucro());
+					// }
+					// st.setDouble(9, p.getQuantidadeEstoqueMinimo());
+					// st.setDouble(10, p.getQuantidadeEstoqueMaximo());
+					// st.setDouble(11, p.getQuantidade());
+					// st.setDouble(12, p.getAliquotaPisCompra());
+					// st.setDouble(13, p.getAliquotaCofinsCompra());
+					// st.setString(14, p.getAtivo());
+					// st.setString(15, p.getTributacaoCompra());
+					// st.setInt(16, l);
+					// st.execute();
+					//
+					// st =
+					// cnn.prepareStatement("insert into estmix(cdprod, loja) values(?,?) on duplicate key update cdprod = cdprod");
+					// st.setString(1, p.getCodigoInterno());
+					// st.setInt(2, l);
+					// st.execute();
+					//
+					// st.close();
+
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_SALDO
+							.getSQL(DatabaseType.MySQL));
+					st.setInt(1, ignoreCode ? l : p.getLoja());
+					st.setString(2, p.getCodigoInterno());
 					st.setDouble(3, p.getPrecoCompra());
-					st.setDouble(4, p.getIpi());
-					st.setDouble(5, p.getPrecoPromocao());
-					st.setDouble(6, p.getPrecoVenda());
-					st.setDouble(7, p.getPrecoCusto());
-
-					if (p.getPorcentagemLucro() > 100.00
-							|| p.getPorcentagemLucro() < 0) {
-						st.setDouble(8, 100.00);
-					} else {
-						st.setDouble(8, p.getPorcentagemLucro());
-					}
-					st.setDouble(9, p.getQuantidadeEstoqueMinimo());
-					st.setDouble(10, p.getQuantidadeEstoqueMaximo());
-					st.setDouble(11, p.getQuantidade());
-					st.setDouble(12, p.getAliquotaPisCompra());
-					st.setDouble(13, p.getAliquotaCofinsCompra());
-					st.setString(14, p.getAtivo());
-					st.setString(15, p.getTributacaoCompra());
-					st.setInt(16, l);
+					st.setDouble(4, p.getPrecoVenda());
+					st.setDouble(5, p.getPrecoVendaTerminal());
+					st.setDouble(6, p.getPrecoCusto());
+					st.setDouble(7, p.getPorcentagemLucro());
+					st.setDouble(8, p.getQuantidadeEstoqueMinimo());
+					st.setDouble(9, p.getQuantidadeEstoqueMaximo());
+					st.setDouble(10, p.getQuantidade());
+					st.setDouble(11, p.getAliquotaPisCompra());
+					st.setDouble(12, p.getAliquotaCofinsCompra());
+					st.setString(13, p.getAtivo());
+					st.setString(14, p.getTributacaoCompra());
+					st.setDouble(15, p.getIcmCompra());
 					st.execute();
+					st.close();
 
-					st = cnn.prepareStatement("insert into estmix(cdprod, loja) values(?,?) on duplicate key update cdprod = cdprod");
-					st.setString(1, p.getCodigoInterno());
-					st.setInt(2, l);
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_LOJA
+							.getSQL(DatabaseType.MySQL));
+					st.setInt(1, ignoreCode ? l : p.getLoja());
+					st.setString(2, p.getCodigoInterno());
 					st.execute();
-
 					st.close();
 
 				}
@@ -729,19 +788,24 @@ public abstract class SQLDataProvider {
 
 	//
 
-	public abstract int countProduto(ProdutoDataFile dataFile) throws IOException;
+	public abstract int countProduto(ProdutoDataFile dataFile)
+			throws IOException;
 
-	public abstract int countDepartamento(DepartamentoDataFile dataFile) throws IOException;
+	public abstract int countDepartamento(DepartamentoDataFile dataFile)
+			throws IOException;
 
 	public abstract int countGrupo(GrupoDataFile dataFile) throws IOException;
 
-	public abstract int countArmacao(ArmacaoDataFile dataFile) throws IOException;
+	public abstract int countArmacao(ArmacaoDataFile dataFile)
+			throws IOException;
 
 	public abstract int countMarca(MarcaDataFile dataFile) throws IOException;
 
-	public abstract int countCliente(ClienteDataFile dataFile) throws IOException;
+	public abstract int countCliente(ClienteDataFile dataFile)
+			throws IOException;
 
-	public abstract int countFornecedor(FornecedorDataFile dataFile) throws IOException;
+	public abstract int countFornecedor(FornecedorDataFile dataFile)
+			throws IOException;
 
 	/*
 	 * int countNFEntrada(Connection conn) ;
@@ -780,7 +844,7 @@ public abstract class SQLDataProvider {
 	public abstract ArrayList<Fornecedor> getFornecedor(Connection conn);
 
 	//
-	
+
 	public abstract ArrayList<Produto> getProduto(ProdutoDataFile dataFile);
 
 	public abstract ArrayList<Departamento> getDepartamento(
@@ -820,7 +884,7 @@ public abstract class SQLDataProvider {
 
 	@Deprecated
 	public abstract ArrayList<String> getFornecedorColumnsNeeded();
-	
+
 	public abstract ArrayList<String> getColumnsNeeded(DataFile dataFile);
 
 }

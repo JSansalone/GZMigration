@@ -2,7 +2,9 @@ package br.com.gz.migration;
 
 public interface IMigrationResults {
 
-	int getCountProdutos();
+	int getCountRegisteredProdutos();
+	
+	int getCountIncludedProdutos();
 	
 	int getCountClientes();
 	

@@ -905,10 +905,10 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 
 			case PRODUTO:
 
-				if (results.getCountProdutos() != SQLDataProvider.EMPTY_RETURN) {
+				if (results.getCountRegisteredProdutos() != SQLDataProvider.EMPTY_RETURN) {
 					MigrationDataType dProduto = new MigrationDataType();
 					dProduto.setType(EnMigrationDataType.PRODUTO);
-					dProduto.setTotal(results.getCountProdutos());
+					dProduto.setTotal(results.getCountRegisteredProdutos());
 					dataTypes.add(dProduto);
 				}
 
