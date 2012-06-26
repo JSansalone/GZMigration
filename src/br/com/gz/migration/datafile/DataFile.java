@@ -270,6 +270,19 @@ public abstract class DataFile {
 		}
 
 	}
+	
+	protected final void writeNotInserteds() {
+
+		File f = new File("data/" + getFileNameNoExt() + "_NOT_INSERTED.xls");
+
+		if (!notInserted.isEmpty()) {
+
+			DataFileWriter.writeRowBatch(f, DataFileReader.getHeader(
+					dataSheet.getRow(0), qtyRequiredColumns), notInserted);
+
+		}
+
+	}
 
 	/**
 	 * Retorna o registro do arquivo recebendo como argumento o número da linha
