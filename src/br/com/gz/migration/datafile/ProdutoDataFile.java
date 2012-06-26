@@ -219,7 +219,7 @@ public class ProdutoDataFile extends DataFile {
 			o = getRowData(currentIndex++);
 			if (!checkValuesPolicy(o)) {
 				passed = false;
-				if (!notInserted.containsKey(currentIndex - 1)) {
+				if (!notInserted.containsKey(currentIndex - 1)) {//44648 42
 					notInserted.put(currentIndex - 1, o);
 				}
 			} else {
