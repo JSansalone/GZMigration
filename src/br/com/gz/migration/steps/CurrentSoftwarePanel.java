@@ -27,6 +27,7 @@ import br.com.gz.migration.ISoftwareMutable;
 import br.com.gz.migration.exception.InvalidSoftwareException;
 import br.com.gz.util.GZSoftwares;
 
+@Deprecated
 public class CurrentSoftwarePanel extends JPanel implements IValidation,
 		IDatabaseInfo, IDatabaseMutable, ISoftwareMutable,
 		InitialConfigurationsOnVisible {

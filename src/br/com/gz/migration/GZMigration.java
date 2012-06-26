@@ -151,6 +151,7 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 	/**
 	 * Painél de configuração do banco de dados do software atual
 	 */
+	@Deprecated
 	private CurrentSoftwarePanel currentSoftwarePanel;
 	
 	/**
@@ -191,7 +192,7 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 	/**
 	 * Guarda o índice limite
 	 */
-	private final int limitIndex = 8;
+	private final int limitIndex = 7;//8
 
 	// Variável de referência que guardará a data de inicialização do motor de
 	// migração
@@ -434,8 +435,8 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 
 		// criação do painél que permite a configuração do banco de dados do
 		// software atual
-		currentSoftwarePanel = new CurrentSoftwarePanel(this);
-		wnd.add(currentSoftwarePanel);
+	//	currentSoftwarePanel = new CurrentSoftwarePanel(this);
+	//	wnd.add(currentSoftwarePanel);
 
 		// criação do painél que permite a confirmação dos dados digitados
 		confirmDataPanel = new ConfirmDataPanel();
@@ -469,7 +470,7 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 			customerNamePanel.setVisible(false);
 			migrationTypePanel.setVisible(false);
 			newSoftwarePanel.setVisible(false);
-			currentSoftwarePanel.setVisible(false);
+		//	currentSoftwarePanel.setVisible(false);
 			confirmDataPanel.setVisible(false);
 			migrationInfoPanel.setVisible(false);
 			donePanel.setVisible(false);
@@ -482,7 +483,7 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 			customerNamePanel.setVisible(true);// <----
 			migrationTypePanel.setVisible(false);
 			newSoftwarePanel.setVisible(false);
-			currentSoftwarePanel.setVisible(false);
+		//	currentSoftwarePanel.setVisible(false);
 			confirmDataPanel.setVisible(false);
 			migrationInfoPanel.setVisible(false);
 			donePanel.setVisible(false);
@@ -500,7 +501,7 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 				migrationTypePanel.setVisible(true); // escolha dos dados da
 														// migração
 				newSoftwarePanel.setVisible(false);
-				currentSoftwarePanel.setVisible(false);
+			//	currentSoftwarePanel.setVisible(false);
 				confirmDataPanel.setVisible(false);
 				migrationInfoPanel.setVisible(false);
 				donePanel.setVisible(false);
@@ -528,7 +529,7 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 				customerNamePanel.setVisible(false);
 				migrationTypePanel.setVisible(false);
 				newSoftwarePanel.setVisible(true); // <----
-				currentSoftwarePanel.setVisible(false);
+			//	currentSoftwarePanel.setVisible(false);
 				confirmDataPanel.setVisible(false);
 				migrationInfoPanel.setVisible(false);
 				donePanel.setVisible(false);
@@ -559,19 +560,30 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 					// dizendo à tela de escolha do software atual
 					// para definir quais implementações de migração estão
 					// disponíveis para o novo software
-					currentSoftwarePanel.setAvailableSoftwares(newSoftwarePanel
-							.getSoftware());
+//					currentSoftwarePanel.setAvailableSoftwares(newSoftwarePanel
+//							.getSoftware());
+//
+//					welcomePanel.setVisible(false);
+//					customerNamePanel.setVisible(false);
+//					migrationTypePanel.setVisible(false);
+//					newSoftwarePanel.setVisible(false);
+//					currentSoftwarePanel.setVisible(true); // <----
+//					confirmDataPanel.setVisible(false);
+//					migrationInfoPanel.setVisible(false);
+//					donePanel.setVisible(false);
+//
+//					currentSoftwarePanel.setInitialFocus();
+					
+					confirmDataPanel.configure(migrationTypePanel.getMigrationType(), newSoftwarePanel.getDatabaseInfo().getDbType());
 
 					welcomePanel.setVisible(false);
 					customerNamePanel.setVisible(false);
 					migrationTypePanel.setVisible(false);
 					newSoftwarePanel.setVisible(false);
-					currentSoftwarePanel.setVisible(true); // <----
-					confirmDataPanel.setVisible(false);
+				//	currentSoftwarePanel.setVisible(false);
+					confirmDataPanel.setVisible(true); // <----
 					migrationInfoPanel.setVisible(false);
 					donePanel.setVisible(false);
-
-					currentSoftwarePanel.setInitialFocus();
 
 				} else {
 
@@ -599,65 +611,63 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 
 		case 6:
 
-			// Se as configurações do software atual forem validadas...
-			if (currentSoftwarePanel.validateFields()) {
-
-				// Se as informações para conexão do banco de dados do software
-				// atual forem válidas, o painél de confirmação das informações
-				// é habilitado
-				if (testConn(currentSoftwarePanel.getDatabaseInfo())) {
-
-					// passa as informações dos softwares para confirmação
-//					try {
-//						confirmDataPanel.setDB(newSoftwarePanel
-//								.getDatabaseInfo().getDbType(),
-//								currentSoftwarePanel.getDatabaseInfo()
-//										.getDbType());
-//					} catch (InvalidDatabaseException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-					
-					confirmDataPanel.configure(migrationTypePanel.getMigrationType(), newSoftwarePanel.getDatabaseInfo().getDbType());
-
-					welcomePanel.setVisible(false);
-					customerNamePanel.setVisible(false);
-					migrationTypePanel.setVisible(false);
-					newSoftwarePanel.setVisible(false);
-					currentSoftwarePanel.setVisible(false);
-					confirmDataPanel.setVisible(true); // <----
-					migrationInfoPanel.setVisible(false);
-					donePanel.setVisible(false);
-
-					btNext.setText("Iniciar");
-
-				} else {
-
-					JOptionPane.showMessageDialog(null,
-							"Dados de conexão inválidos!", "Falha de conexão",
-							JOptionPane.ERROR_MESSAGE);
-					browse(--currentIndex);
-
-				}
-
-			} else {
-
-				JOptionPane.showMessageDialog(null,
-						"Digite as informações corretamente!", "Atenção",
-						JOptionPane.WARNING_MESSAGE);
-				browse(--currentIndex);
-
-			}
-
-			break;
-
-		case 7:
-
+//			// Se as configurações do software atual forem validadas...
+//			if (currentSoftwarePanel.validateFields()) {
+//
+//				// Se as informações para conexão do banco de dados do software
+//				// atual forem válidas, o painél de confirmação das informações
+//				// é habilitado
+//				if (testConn(currentSoftwarePanel.getDatabaseInfo())) {
+//
+//					// passa as informações dos softwares para confirmação
+////					try {
+////						confirmDataPanel.setDB(newSoftwarePanel
+////								.getDatabaseInfo().getDbType(),
+////								currentSoftwarePanel.getDatabaseInfo()
+////										.getDbType());
+////					} catch (InvalidDatabaseException e) {
+////						// TODO Auto-generated catch block
+////						e.printStackTrace();
+////					}
+//					
+//					confirmDataPanel.configure(migrationTypePanel.getMigrationType(), newSoftwarePanel.getDatabaseInfo().getDbType());
+//
+//					welcomePanel.setVisible(false);
+//					customerNamePanel.setVisible(false);
+//					migrationTypePanel.setVisible(false);
+//					newSoftwarePanel.setVisible(false);
+//				//	currentSoftwarePanel.setVisible(false);
+//					confirmDataPanel.setVisible(true); // <----
+//					migrationInfoPanel.setVisible(false);
+//					donePanel.setVisible(false);
+//
+//					btNext.setText("Iniciar");
+//
+//				} else {
+//
+//					JOptionPane.showMessageDialog(null,
+//							"Dados de conexão inválidos!", "Falha de conexão",
+//							JOptionPane.ERROR_MESSAGE);
+//					browse(--currentIndex);
+//
+//				}
+//
+//			} else {
+//
+//				JOptionPane.showMessageDialog(null,
+//						"Digite as informações corretamente!", "Atenção",
+//						JOptionPane.WARNING_MESSAGE);
+//				browse(--currentIndex);
+//
+//			}
+//
+//			break;
+			
 			welcomePanel.setVisible(false);
 			customerNamePanel.setVisible(false);
 			migrationTypePanel.setVisible(false);
 			newSoftwarePanel.setVisible(false);
-			currentSoftwarePanel.setVisible(false);
+		//	currentSoftwarePanel.setVisible(false);
 			confirmDataPanel.setVisible(false);
 			migrationInfoPanel.setVisible(true); // Mostrando o progresso da
 													// migração
@@ -695,18 +705,73 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 
 			break;
 
-		case 8:
+		case 7:
 
+//			welcomePanel.setVisible(false);
+//			customerNamePanel.setVisible(false);
+//			migrationTypePanel.setVisible(false);
+//			newSoftwarePanel.setVisible(false);
+//		//	currentSoftwarePanel.setVisible(false);
+//			confirmDataPanel.setVisible(false);
+//			migrationInfoPanel.setVisible(true); // Mostrando o progresso da
+//													// migração
+//			donePanel.setVisible(false);
+//
+//			btNext.setEnabled(false); // Não permite avançar
+//			btPrevious.setEnabled(false); // Não permite voltar
+//
+//			// Escolhe a implementação adequada da interface IDAO baseada nas
+//			// informações dos softwares
+//			setDataProvider();
+//
+//			// cria o ----> \o/ MOTOR DE MIGRAÇÃO \o/ <----
+//			/*
+//			 * dao = new MigrationEngine(migrationTypePanel.getMigrationType(),
+//			 * this, migrationInfoPanel, migrationTypePanel, iDao,
+//			 * newSoftwarePanel, currentSoftwarePanel);
+//			 */
+//			// johnny Instanciar o motor
+////			dataProviderEngine = new MigrationEngine(
+////					migrationTypePanel.getMigrationType(), this,
+////					migrationInfoPanel, migrationTypePanel, dataProvider,
+////					newSoftwarePanel, currentSoftwarePanel);
+//			
+//			dataProviderEngine = new MigrationEngine(
+//					migrationTypePanel.getMigrationType(), this,
+//					migrationInfoPanel, migrationTypePanel, dataProvider,
+//					newSoftwarePanel);
+//
+//			// guarda a data de início da migração
+//			date = Calendar.getInstance();
+//
+//			// dá a partida no motor!!! \o/
+//			dataProviderEngine.start();
+//
+//			break;
+			
 			welcomePanel.setVisible(false);
 			customerNamePanel.setVisible(false);
 			migrationTypePanel.setVisible(false);
 			newSoftwarePanel.setVisible(false);
-			currentSoftwarePanel.setVisible(false);
+		//	currentSoftwarePanel.setVisible(false);
 			confirmDataPanel.setVisible(false);
 			migrationInfoPanel.setVisible(false);
 			donePanel.setVisible(true); // Informa que a migração foi concluída
 
 			break;
+
+//		case 8:
+//
+//			welcomePanel.setVisible(false);
+//			customerNamePanel.setVisible(false);
+//			migrationTypePanel.setVisible(false);
+//			newSoftwarePanel.setVisible(false);
+//		//	currentSoftwarePanel.setVisible(false);
+//			confirmDataPanel.setVisible(false);
+//			migrationInfoPanel.setVisible(false);
+//			donePanel.setVisible(true); // Informa que a migração foi concluída
+//
+//			break;
 
 		default:
 			break;
@@ -792,29 +857,29 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 		MigrationReportData report = new MigrationReportData();
 
 		DatabaseConfigurations newSftCf = newSoftwarePanel.getDatabaseInfo();
-		DatabaseConfigurations currStfCf = currentSoftwarePanel
-				.getDatabaseInfo();
-
-		// determina o nome do relatório
-		report.setPath("Relatório de migração.pdf");
-		// configura as informações do software atual
-		report.setSoftwareFrom(currentSoftwarePanel.getSoftware());
-		report.setDbTypeFrom(currStfCf.getDbType());
-		report.setIpAddressFrom(currStfCf.getIpAddress());
-		report.setPortFrom(currStfCf.getPort());
-		if (currStfCf.getDbType() == DatabaseType.Firebird
-				|| currStfCf.getDbType() == DatabaseType.MSAccess) {
-			File f = new File(currStfCf.getDatabaseName());
-			if (f.exists()) {
-				report.setDbNameFrom(f.getName());
-			} else {
-				report.setDbNameFrom("(Arquivo inexistente)");
-			}
-		} else {
-			report.setDbNameFrom(currStfCf.getDatabaseName());
-		}
-		report.setUsernameFrom(currStfCf.getUsername());
-		report.setPasswordFrom(currStfCf.getPassword());
+//		DatabaseConfigurations currStfCf = currentSoftwarePanel
+//				.getDatabaseInfo();
+//
+//		// determina o nome do relatório
+//		report.setPath("Relatório de migração.pdf");
+//		// configura as informações do software atual
+//		report.setSoftwareFrom(currentSoftwarePanel.getSoftware());
+//		report.setDbTypeFrom(currStfCf.getDbType());
+//		report.setIpAddressFrom(currStfCf.getIpAddress());
+//		report.setPortFrom(currStfCf.getPort());
+//		if (currStfCf.getDbType() == DatabaseType.Firebird
+//				|| currStfCf.getDbType() == DatabaseType.MSAccess) {
+//			File f = new File(currStfCf.getDatabaseName());
+//			if (f.exists()) {
+//				report.setDbNameFrom(f.getName());
+//			} else {
+//				report.setDbNameFrom("(Arquivo inexistente)");
+//			}
+//		} else {
+//			report.setDbNameFrom(currStfCf.getDatabaseName());
+//		}
+//		report.setUsernameFrom(currStfCf.getUsername());
+//		report.setPasswordFrom(currStfCf.getPassword());
 		// configura as informações do novo software
 		report.setSoftwareTo(newSoftwarePanel.getSoftware());
 		report.setDbTypeTo(newSftCf.getDbType());
