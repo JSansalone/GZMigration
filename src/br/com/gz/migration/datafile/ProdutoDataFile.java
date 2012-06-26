@@ -422,7 +422,10 @@ public class ProdutoDataFile extends DataFile {
 			System.err.println(e.getMessage());
 		}
 
+		currentIndex = aux;
+		
 		return arP;
+		
 	}
 
 	@Override
