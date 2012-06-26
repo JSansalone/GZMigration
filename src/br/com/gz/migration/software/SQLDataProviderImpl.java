@@ -43,42 +43,66 @@ import br.com.gz.util.MercattoFormat;
 import br.com.gz.util.MercoFlexFormat;
 
 /**
+ * Classe que implementa a classe abstrata SQLDataProvider que fornece meios de obter e inserir dados
  * 
- * @Autor Jonathan
- * 
- * @Migra Produto, Fornecedor, Cliente, Armacao, Marca, Departamento, Grupo
- * 
+ * @author Jonathan Sansalone
+ *
  */
 public class SQLDataProviderImpl extends SQLDataProvider {
 
+	@Deprecated
 	private PreparedStatement stProduto;
+	@Deprecated
 	private PreparedStatement stDepartamento;
+	@Deprecated
 	private PreparedStatement stGrupo;
+	@Deprecated
 	private PreparedStatement stArmacao;
+	@Deprecated
 	private PreparedStatement stMarca;
+	@Deprecated
 	private PreparedStatement stCliente;
+	@Deprecated
 	private PreparedStatement stFornecedor;
+	@Deprecated
 	private PreparedStatement stNFEntrada;
+	@Deprecated
 	private PreparedStatement stNFSaida;
+	@Deprecated
 	private PreparedStatement stContaPagar;
+	@Deprecated
 	private PreparedStatement stContaReceber;
+	@Deprecated
 	private PreparedStatement stMovtoVenda;
 
+	@Deprecated
 	private ResultSet rsProduto;
+	@Deprecated
 	private ResultSet rsDepartamento;
+	@Deprecated
 	private ResultSet rsGrupo;
+	@Deprecated
 	private ResultSet rsArmacao;
+	@Deprecated
 	private ResultSet rsMarca;
+	@Deprecated
 	private ResultSet rsCliente;
+	@Deprecated
 	private ResultSet rsFornecedor;
+	@Deprecated
 	private ResultSet rsNFEntrada;
+	@Deprecated
 	private ResultSet rsNFSaida;
+	@Deprecated
 	private ResultSet rsContaPagar;
+	@Deprecated
 	private ResultSet rsContaReceber;
+	@Deprecated
 	private ResultSet rsMovtoVenda;
 
 	private ColumnsPolicy policy;
 
+	@Deprecated
 	public SQLDataProviderImpl(GZSoftwares software, GZSoftwares otherSoftware,
 			DatabaseType dbTo, DatabaseType dbFrom) {
 		super(software, otherSoftware, dbTo, dbFrom);

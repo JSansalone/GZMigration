@@ -1,4 +1,4 @@
-package br.com.gz.migration.panelSteps;
+package br.com.gz.migration.steps;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +9,6 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,20 +26,12 @@ import br.com.gz.migration.ISoftwareMutable;
 import br.com.gz.migration.exception.InvalidSoftwareException;
 import br.com.gz.util.GZSoftwares;
 
-public class CurrentSoftwarePanel extends JPanel implements IValidation,
+public class NewSoftwarePanel extends JPanel implements IValidation,
 		IDatabaseInfo, IDatabaseMutable, ISoftwareMutable,
 		InitialConfigurationsOnVisible {
 
 	private JComboBox<String> cmbSoftware;
-	private JLabel lblSoftware;
-	private JLabel lblDbName;
-	private JLabel lblIPAdress;
-	private JLabel lblDot1;
-	private JLabel lblDot2;
-	private JLabel lblDot3;
-	private JLabel lblPort;
-	private JLabel lblUserName;
-	private JLabel lblPassword;
+	private JButton btSgbd;
 	private JTextField txtIp1;
 	private JTextField txtIp2;
 	private JTextField txtIp3;
@@ -49,42 +40,37 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 	private JTextField txtDbName;
 	private JTextField txtUserName;
 	private JPasswordField txtPassword;
-	private DatabaseType dbType;
+
 	private JLabel lblDb;
-	private JButton btSearch;
-	private JButton btSgbd;
+
+	private DatabaseType dbType;
 
 	private GZSoftwares software;
 
-	private ISoftwareMutable softMutable;
-
 	private boolean choosedDB = false;
 
-	public CurrentSoftwarePanel(ISoftwareMutable sftmt) {
+	public NewSoftwarePanel() {
 
-		this.softMutable = sftmt;
-
-		// software = GZSoftwares.Teste;
+		software = GZSoftwares.MERCOFLEX;
 
 		setLayout(null);
 		setSize(GZMigration.DIMENSION_PANEL);
 		setLocation(GZMigration.POINT_PANEL);
 		JLabel lblBanner = new JLabel(
-				"Digite as informações do banco de dados do software atual",
-				new ImageIcon("img/navigation/arrow.png"), JLabel.LEFT);
+				"Digite as informações do banco de dados do novo software",
+				new ImageIcon((URL) getClass().getResource(
+						"/img/navigation/arrow.png")), JLabel.LEFT);
 		lblBanner.setBounds(30, 20, 600, 30);
 		lblBanner.setFont(GZMigration.TITLE_FONT);
 		add(lblBanner);
 
-		btSearch = new JButton(new ImageIcon((URL) getClass().getResource(
-				"/img/navigation/search.png")));
-		btSearch.setVisible(false);
+		cmbSoftware = new JComboBox<String>();
+		cmbSoftware.addItem("MercoFlex");
+		cmbSoftware.addItem("Mercatto");
 
 		btSgbd = new JButton(new ImageIcon((URL) getClass().getResource(
 				"/img/navigation/change.png")));
 		btSgbd.setToolTipText("Alterar o tipo de banco de dados");
-
-		cmbSoftware = new JComboBox<String>();
 
 		txtIp1 = new JTextField();
 		txtIp2 = new JTextField();
@@ -95,15 +81,15 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 		txtUserName = new JTextField();
 		txtPassword = new JPasswordField();
 
-		lblSoftware = new JLabel("Software");
-		lblDbName = new JLabel("Nome do banco de dados");
-		lblIPAdress = new JLabel("Endereço IP");
-		lblDot1 = new JLabel(".");
-		lblDot2 = new JLabel(".");
-		lblDot3 = new JLabel(".");
-		lblPort = new JLabel("Porta");
-		lblUserName = new JLabel("Nome de usuário");
-		lblPassword = new JLabel("Senha");
+		JLabel lblSoftware = new JLabel("Software");
+		JLabel lblDbName = new JLabel("Nome do banco de dados");
+		JLabel lblIPAdress = new JLabel("Endereço IP");
+		JLabel lblDot1 = new JLabel(".");
+		JLabel lblDot2 = new JLabel(".");
+		JLabel lblDot3 = new JLabel(".");
+		JLabel lblPort = new JLabel("Porta");
+		JLabel lblUserName = new JLabel("Nome de usuário");
+		JLabel lblPassword = new JLabel("Senha");
 
 		lblSoftware.setBounds(60, 90, 160, 20);
 		lblDbName.setBounds(60, 120, 170, 20);
@@ -116,8 +102,6 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 		lblPassword.setBounds(60, 240, 150, 20);
 
 		cmbSoftware.setBounds(228, 90, 150, 20);
-
-		btSearch.setBounds(388, 120, 20, 20);
 
 		btSgbd.setBounds(388, 90, 20, 20);
 
@@ -285,28 +269,12 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 
 		});
 
-		btSearch.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				JFileChooser f = new JFileChooser();
-				if (f.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-
-					txtDbName.setText(f.getSelectedFile().getAbsolutePath());
-
-				}
-
-			}
-
-		});
-
 		btSgbd.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				new ChooseDatabase(CurrentSoftwarePanel.this, false);
+				new ChooseDatabase(NewSoftwarePanel.this, true);
 
 			}
 
@@ -341,7 +309,6 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 
 		add(cmbSoftware);
 		add(btSgbd);
-		add(btSearch);
 		add(txtDbName);
 		add(txtIp1);
 		add(txtIp2);
@@ -370,27 +337,6 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 			lblDb.setIcon(new ImageIcon((URL) getClass().getResource(
 					"/img/database/mysql.png")));
 
-			lblDbName.setText("Nome do banco de dados");
-			lblIPAdress.setVisible(true);
-			lblDot1.setVisible(true);
-			lblDot2.setVisible(true);
-			lblDot3.setVisible(true);
-			lblPort.setVisible(true);
-			lblUserName.setVisible(true);
-			lblPassword.setVisible(true);
-
-			txtIp1.setVisible(true);
-			txtIp2.setVisible(true);
-			txtIp3.setVisible(true);
-			txtIp4.setVisible(true);
-			txtPort.setVisible(true);
-			txtUserName.setVisible(true);
-			txtPassword.setVisible(true);
-
-			txtDbName.setEditable(true);
-			txtDbName.setText("");
-			btSearch.setVisible(false);
-
 			txtPort.setText("3306");
 			txtUserName.setText("root");
 
@@ -400,27 +346,6 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 
 			lblDb.setIcon(new ImageIcon((URL) getClass().getResource(
 					"/img/database/sqlserver.png")));
-
-			lblDbName.setText("Nome do banco de dados");
-			lblIPAdress.setVisible(true);
-			lblDot1.setVisible(true);
-			lblDot2.setVisible(true);
-			lblDot3.setVisible(true);
-			lblPort.setVisible(true);
-			lblUserName.setVisible(true);
-			lblPassword.setVisible(true);
-
-			txtIp1.setVisible(true);
-			txtIp2.setVisible(true);
-			txtIp3.setVisible(true);
-			txtIp4.setVisible(true);
-			txtPort.setVisible(true);
-			txtUserName.setVisible(true);
-			txtPassword.setVisible(true);
-
-			txtDbName.setEditable(true);
-			txtDbName.setText("");
-			btSearch.setVisible(false);
 
 			txtPort.setText("1433");
 			txtUserName.setText("sa");
@@ -432,118 +357,8 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 			lblDb.setIcon(new ImageIcon((URL) getClass().getResource(
 					"/img/database/oracle.png")));
 
-			lblDbName.setText("Nome do banco de dados");
-			lblIPAdress.setVisible(true);
-			lblDot1.setVisible(true);
-			lblDot2.setVisible(true);
-			lblDot3.setVisible(true);
-			lblPort.setVisible(true);
-			lblUserName.setVisible(true);
-			lblPassword.setVisible(true);
-
-			txtIp1.setVisible(true);
-			txtIp2.setVisible(true);
-			txtIp3.setVisible(true);
-			txtIp4.setVisible(true);
-			txtPort.setVisible(true);
-			txtUserName.setVisible(true);
-			txtPassword.setVisible(true);
-
-			txtDbName.setEditable(true);
-			txtDbName.setText("");
-			btSearch.setVisible(false);
-
 			txtPort.setText("1521");
 			txtUserName.setText("system");
-
-		} else if (type == DatabaseType.Firebird) {
-
-			dbType = type;
-
-			lblDb.setIcon(new ImageIcon((URL) getClass().getResource(
-					"/img/database/firebird.png")));
-
-			lblDbName.setText("Nome do banco de dados");
-			lblIPAdress.setVisible(true);
-			lblDot1.setVisible(true);
-			lblDot2.setVisible(true);
-			lblDot3.setVisible(true);
-			lblPort.setVisible(true);
-			lblUserName.setVisible(true);
-			lblPassword.setVisible(true);
-
-			txtIp1.setVisible(true);
-			txtIp2.setVisible(true);
-			txtIp3.setVisible(true);
-			txtIp4.setVisible(true);
-			txtPort.setVisible(true);
-			txtUserName.setVisible(true);
-			txtPassword.setVisible(true);
-
-			txtDbName.setEditable(false);
-			txtDbName.setText("");
-			btSearch.setVisible(true);
-
-			txtPort.setText("3050");
-			txtUserName.setText("sysdba");
-
-		} else if (type == DatabaseType.PostgreeSQL) {
-
-			dbType = type;
-
-			lblDb.setIcon(new ImageIcon((URL) getClass().getResource(
-					"/img/database/postgresql.png")));
-
-			lblIPAdress.setVisible(true);
-			lblDot1.setVisible(true);
-			lblDot2.setVisible(true);
-			lblDot3.setVisible(true);
-			lblPort.setVisible(true);
-			lblUserName.setVisible(true);
-			lblPassword.setVisible(true);
-
-			txtIp1.setVisible(true);
-			txtIp2.setVisible(true);
-			txtIp3.setVisible(true);
-			txtIp4.setVisible(true);
-			txtPort.setVisible(true);
-			txtUserName.setVisible(true);
-			txtPassword.setVisible(true);
-
-			txtDbName.setEditable(true);
-			txtDbName.setText("");
-			btSearch.setVisible(false);
-
-			txtPort.setText("5432");
-			txtUserName.setText("postgres");
-
-		} else if (type == DatabaseType.MSAccess) {
-
-			dbType = type;
-
-			lblDb.setIcon(new ImageIcon((URL) getClass().getResource(
-					"/img/database/access.png")));
-
-			lblDbName.setText("Nome da fonte de dados");
-			lblIPAdress.setVisible(false);
-			lblDot1.setVisible(false);
-			lblDot2.setVisible(false);
-			lblDot3.setVisible(false);
-			lblPort.setVisible(false);
-			lblUserName.setVisible(false);
-			lblPassword.setVisible(false);
-
-			txtIp1.setVisible(false);
-			txtIp2.setVisible(false);
-			txtIp3.setVisible(false);
-			txtIp4.setVisible(false);
-			txtPort.setVisible(false);
-			txtUserName.setVisible(false);
-			txtPassword.setVisible(false);
-
-			txtDbName.setEditable(true);
-			txtDbName.setText("");
-			btSearch.setVisible(false);
 
 		} else {
 
@@ -558,8 +373,7 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 
 		return !(isEmpty(txtDbName) || isEmpty(txtIp1) || isEmpty(txtIp2)
 				|| isEmpty(txtIp3) || isEmpty(txtIp4) || isEmpty(txtPassword)
-				|| isEmpty(txtPort) || isEmpty(txtUserName) || !choosedDB || cmbSoftware
-					.getSelectedIndex() == -1);
+				|| isEmpty(txtPort) || isEmpty(txtUserName) || !choosedDB);
 
 	}
 
@@ -600,39 +414,17 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 	@Override
 	public void chooseSoftware() throws InvalidSoftwareException {
 
-		if (cmbSoftware.getItemCount() > 0) {
+		if (cmbSoftware.getSelectedItem().equals("MercoFlex")) {
 
-			if (((String) cmbSoftware.getSelectedItem()).equals("Teste")) {
+			software = GZSoftwares.MERCOFLEX;
 
-				software = GZSoftwares.Teste;
+		} else if (cmbSoftware.getSelectedItem().equals("Mercatto")) {
 
-			} else if (((String) cmbSoftware.getSelectedItem())
-					.equals("Superus")) {
+			software = GZSoftwares.MERCATTO;
 
-				software = GZSoftwares.SUPERUS;
+		} else {
 
-			} else if (((String) cmbSoftware.getSelectedItem()).equals("MRS")) {
-
-				software = GZSoftwares.MRS;
-
-			} else if (((String) cmbSoftware.getSelectedItem()).equals("AES")) {
-
-				software = GZSoftwares.AES;
-
-			} else if (((String) cmbSoftware.getSelectedItem())
-					.equals("Versatho")) {
-
-				software = GZSoftwares.VERSATHO;
-
-			} else if (((String) cmbSoftware.getSelectedItem()).equals("Outro")) {
-
-				software = GZSoftwares.OTHER;
-
-			} else {
-
-				throw new InvalidSoftwareException();
-
-			}
+			throw new InvalidSoftwareException();
 
 		}
 
@@ -646,34 +438,7 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 
 	@Override
 	public void setAvailableSoftwares(GZSoftwares software) {
-
-		cmbSoftware.removeAllItems();
-
-		switch (software) {
-
-		case MERCOFLEX:
-
-			cmbSoftware.addItem("AES");
-			cmbSoftware.addItem("MRS");
-			cmbSoftware.addItem("Superus");
-			cmbSoftware.addItem("Versatho");
-			cmbSoftware.addItem("Outro");
-
-			break;
-
-		case MERCATTO:
-
-			cmbSoftware.addItem("AES");
-			cmbSoftware.addItem("MRS");
-			cmbSoftware.addItem("Superus");
-			cmbSoftware.addItem("Versatho");
-			cmbSoftware.addItem("Outro");
-			
-			break;
-
-		default:
-			break;
-		}
+		// TODO Auto-generated method stub
 
 	}
 

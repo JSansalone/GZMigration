@@ -35,17 +35,17 @@ import org.database.connection.InvalidDatabaseException;
 
 import br.com.gz.migration.file.DefaultDirectoryStructure;
 import br.com.gz.migration.file.LogFile;
-import br.com.gz.migration.panelSteps.ConfirmDataPanel;
-import br.com.gz.migration.panelSteps.CurrentSoftwarePanel;
-import br.com.gz.migration.panelSteps.CustomerNamePanel;
-import br.com.gz.migration.panelSteps.DonePanel;
-import br.com.gz.migration.panelSteps.MigrationInfoPanel;
-import br.com.gz.migration.panelSteps.MigrationTypePanel;
-import br.com.gz.migration.panelSteps.NewSoftwarePanel;
-import br.com.gz.migration.panelSteps.WelcomePanel;
 import br.com.gz.migration.report.MigrationReportData;
 import br.com.gz.migration.report.PDFReport;
 import br.com.gz.migration.software.SQLDataProviderImpl;
+import br.com.gz.migration.steps.ConfirmDataPanel;
+import br.com.gz.migration.steps.CurrentSoftwarePanel;
+import br.com.gz.migration.steps.CustomerNamePanel;
+import br.com.gz.migration.steps.DonePanel;
+import br.com.gz.migration.steps.MigrationInfoPanel;
+import br.com.gz.migration.steps.MigrationTypePanel;
+import br.com.gz.migration.steps.NewSoftwarePanel;
+import br.com.gz.migration.steps.WelcomePanel;
 import br.com.gz.util.GZSoftwares;
 
 import com.jgoodies.looks.plastic.PlasticXPLookAndFeel;
@@ -608,15 +608,17 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 				if (testConn(currentSoftwarePanel.getDatabaseInfo())) {
 
 					// passa as informações dos softwares para confirmação
-					try {
-						confirmDataPanel.setDB(newSoftwarePanel
-								.getDatabaseInfo().getDbType(),
-								currentSoftwarePanel.getDatabaseInfo()
-										.getDbType());
-					} catch (InvalidDatabaseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+//					try {
+//						confirmDataPanel.setDB(newSoftwarePanel
+//								.getDatabaseInfo().getDbType(),
+//								currentSoftwarePanel.getDatabaseInfo()
+//										.getDbType());
+//					} catch (InvalidDatabaseException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+					
+					confirmDataPanel.configure(migrationTypePanel.getMigrationType(), newSoftwarePanel.getDatabaseInfo().getDbType());
 
 					welcomePanel.setVisible(false);
 					customerNamePanel.setVisible(false);

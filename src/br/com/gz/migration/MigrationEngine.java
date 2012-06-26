@@ -31,7 +31,7 @@ import br.com.gz.migration.exception.InvalidCellTypeException;
 import br.com.gz.migration.exception.RequiredColumnNotFoundException;
 import br.com.gz.migration.exception.SecurityViolationException;
 import br.com.gz.migration.file.LogFile;
-import br.com.gz.migration.panelSteps.IMigrationInfo;
+import br.com.gz.migration.steps.IMigrationInfo;
 import br.com.gz.util.GZSoftwares;
 
 /**

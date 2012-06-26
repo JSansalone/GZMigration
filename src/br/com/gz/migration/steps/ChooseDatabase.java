@@ -1,4 +1,4 @@
-package br.com.gz.migration.panelSteps;
+package br.com.gz.migration.steps;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
