@@ -13,5 +13,13 @@
 	<classpathentry kind="lib" path="C:/Java/Libraries/javamail-1.4.4/mail.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/gzutil-1.0-28-05-12.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/XLS/poi-3.8-beta5/poi-3.8-beta5-20111217.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Libraries/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Libraries/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Libraries/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Libraries/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Libraries/groovy-all-1.7.5.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Libraries/jasperreports-4.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Libraries/PDF/itext-2.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Libraries/GZ Migration/gzreport.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -2,6 +2,8 @@ package br.com.gz.migration.report;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashMap;
 
 import org.database.connection.DatabaseType;
 
@@ -11,52 +13,28 @@ import br.com.gz.util.GZSoftwares;
 public class MigrationReportData {
 
 	private String path;
-
 	private String nomeCliente;
-	private GZSoftwares softwareTo;
-	private GZSoftwares softwareFrom;
-	private Calendar data;
+	private String modoMigracao;
+	private String nomeSistema;
+	private String tipoBanco;
+	private String ip;
+	private int porta;
+	private String nomeBanco;
+	private String usuario;
+	private String senha;
 
-	private boolean isAppend;
+	private Collection<MigrationBean> beans;
 
-	private DatabaseType dbTypeFrom;
-	private String ipAddressFrom;
-	private int portFrom;
-	private String dbNameFrom;
-	private String usernameFrom;
-	private String passwordFrom;
+	public MigrationReportData(Collection<MigrationBean> migrationBeans) {
 
-	private DatabaseType dbTypeTo;
-	private String ipAddressTo;
-	private int portTo;
-	private String dbNameTo;
-	private String usernameTo;
-	private String passwordTo;
+		beans = migrationBeans;
 
-	private ArrayList<MigrationDataType> dataTypes;
-
-	public boolean isAppend() {
-		return isAppend;
 	}
 
-	public void setAppend(boolean isAppend) {
-		this.isAppend = isAppend;
-	}
+	public Collection<MigrationBean> getBeans() {
 
-	public GZSoftwares getSoftwareTo() {
-		return softwareTo;
-	}
+		return this.beans;
 
-	public void setSoftwareTo(GZSoftwares softwareTo) {
-		this.softwareTo = softwareTo;
-	}
-
-	public GZSoftwares getSoftwareFrom() {
-		return softwareFrom;
-	}
-
-	public void setSoftwareFrom(GZSoftwares softwareFrom) {
-		this.softwareFrom = softwareFrom;
 	}
 
 	public String getPath() {
@@ -75,116 +53,276 @@ public class MigrationReportData {
 		this.nomeCliente = nomeCliente;
 	}
 
-	public Calendar getData() {
-		return data;
+	public String getModoMigracao() {
+		return modoMigracao;
 	}
 
-	public void setData(Calendar data) {
-		this.data = data;
+	public void setModoMigracao(boolean isAppend) {
+		this.modoMigracao = isAppend ? "Incluir" : "Sobrepor";
 	}
 
-	public DatabaseType getDbTypeFrom() {
-		return dbTypeFrom;
+	public String getNomeSistema() {
+		return nomeSistema;
 	}
 
-	public void setDbTypeFrom(DatabaseType dbTypeFrom) {
-		this.dbTypeFrom = dbTypeFrom;
+	public void setNomeSistema(String nomeSistema) {
+		this.nomeSistema = nomeSistema;
 	}
 
-	public String getIpAddressFrom() {
-		return ipAddressFrom;
+	public void setNomeSistema(GZSoftwares software) {
+		
+		switch (software) {
+		case MERCOFLEX:
+			this.nomeSistema = "MercoFlex";
+			break;
+
+		case MERCATTO:
+			this.nomeSistema = "Mercatto";
+			break;
+
+		default:
+			break;
+		}
+		
 	}
 
-	public void setIpAddressFrom(String ipAddressFrom) {
-		this.ipAddressFrom = ipAddressFrom;
+	public String getTipoBanco() {
+		return tipoBanco;
 	}
 
-	public int getPortFrom() {
-		return portFrom;
+	public void setTipoBanco(String tipoBanco) {
+		this.tipoBanco = tipoBanco;
 	}
 
-	public void setPortFrom(int portFrom) {
-		this.portFrom = portFrom;
+	public void setTipoBanco(DatabaseType dbType) {
+		switch(dbType){
+		case MySQL:
+			this.tipoBanco = "MySQL";
+			break;
+		case MSSQL:
+			this.tipoBanco = "SQL Server";
+			break;
+		case Oracle:
+			this.tipoBanco = "Oracle";
+			break;
+		}
+	}
+	
+	public String getIp() {
+		return ip;
 	}
 
-	public String getDbNameFrom() {
-		return dbNameFrom;
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
-	public void setDbNameFrom(String dbNameFrom) {
-		this.dbNameFrom = dbNameFrom;
+	public int getPorta() {
+		return porta;
 	}
 
-	public String getUsernameFrom() {
-		return usernameFrom;
+	public void setPorta(int porta) {
+		this.porta = porta;
 	}
 
-	public void setUsernameFrom(String usernameFrom) {
-		this.usernameFrom = usernameFrom;
+	public String getNomeBanco() {
+		return nomeBanco;
 	}
 
-	public String getPasswordFrom() {
-		return passwordFrom;
+	public void setNomeBanco(String nomeBanco) {
+		this.nomeBanco = nomeBanco;
 	}
 
-	public void setPasswordFrom(String passwordFrom) {
-		this.passwordFrom = passwordFrom;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public DatabaseType getDbTypeTo() {
-		return dbTypeTo;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
-	public void setDbTypeTo(DatabaseType dbTypeTo) {
-		this.dbTypeTo = dbTypeTo;
+	public String getSenha() {
+		return senha;
 	}
 
-	public String getIpAddressTo() {
-		return ipAddressTo;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
-	public void setIpAddressTo(String ipAddressTo) {
-		this.ipAddressTo = ipAddressTo;
-	}
-
-	public int getPortTo() {
-		return portTo;
-	}
-
-	public void setPortTo(int portTo) {
-		this.portTo = portTo;
-	}
-
-	public String getDbNameTo() {
-		return dbNameTo;
-	}
-
-	public void setDbNameTo(String dbNameTo) {
-		this.dbNameTo = dbNameTo;
-	}
-
-	public String getUsernameTo() {
-		return usernameTo;
-	}
-
-	public void setUsernameTo(String usernameTo) {
-		this.usernameTo = usernameTo;
-	}
-
-	public String getPasswordTo() {
-		return passwordTo;
-	}
-
-	public void setPasswordTo(String passwordTo) {
-		this.passwordTo = passwordTo;
-	}
-
-	public ArrayList<MigrationDataType> getDataTypes() {
-		return dataTypes;
-	}
-
-	public void setDataTypes(ArrayList<MigrationDataType> dataTypes) {
-		this.dataTypes = dataTypes;
-	}
+	// private String path;
+	//
+	// private String nomeCliente;
+	// private GZSoftwares softwareTo;
+	// private GZSoftwares softwareFrom;
+	// private Calendar data;
+	//
+	// private boolean isAppend;
+	//
+	// private DatabaseType dbTypeFrom;
+	// private String ipAddressFrom;
+	// private int portFrom;
+	// private String dbNameFrom;
+	// private String usernameFrom;
+	// private String passwordFrom;
+	//
+	// private DatabaseType dbTypeTo;
+	// private String ipAddressTo;
+	// private int portTo;
+	// private String dbNameTo;
+	// private String usernameTo;
+	// private String passwordTo;
+	//
+	// private ArrayList<MigrationDataType> dataTypes;
+	//
+	// public boolean isAppend() {
+	// return isAppend;
+	// }
+	//
+	// public void setAppend(boolean isAppend) {
+	// this.isAppend = isAppend;
+	// }
+	//
+	// public GZSoftwares getSoftwareTo() {
+	// return softwareTo;
+	// }
+	//
+	// public void setSoftwareTo(GZSoftwares softwareTo) {
+	// this.softwareTo = softwareTo;
+	// }
+	//
+	// public GZSoftwares getSoftwareFrom() {
+	// return softwareFrom;
+	// }
+	//
+	// public void setSoftwareFrom(GZSoftwares softwareFrom) {
+	// this.softwareFrom = softwareFrom;
+	// }
+	//
+	// public String getPath() {
+	// return path;
+	// }
+	//
+	// public void setPath(String path) {
+	// this.path = path;
+	// }
+	//
+	// public String getNomeCliente() {
+	// return nomeCliente;
+	// }
+	//
+	// public void setNomeCliente(String nomeCliente) {
+	// this.nomeCliente = nomeCliente;
+	// }
+	//
+	// public Calendar getData() {
+	// return data;
+	// }
+	//
+	// public void setData(Calendar data) {
+	// this.data = data;
+	// }
+	//
+	// public DatabaseType getDbTypeFrom() {
+	// return dbTypeFrom;
+	// }
+	//
+	// public void setDbTypeFrom(DatabaseType dbTypeFrom) {
+	// this.dbTypeFrom = dbTypeFrom;
+	// }
+	//
+	// public String getIpAddressFrom() {
+	// return ipAddressFrom;
+	// }
+	//
+	// public void setIpAddressFrom(String ipAddressFrom) {
+	// this.ipAddressFrom = ipAddressFrom;
+	// }
+	//
+	// public int getPortFrom() {
+	// return portFrom;
+	// }
+	//
+	// public void setPortFrom(int portFrom) {
+	// this.portFrom = portFrom;
+	// }
+	//
+	// public String getDbNameFrom() {
+	// return dbNameFrom;
+	// }
+	//
+	// public void setDbNameFrom(String dbNameFrom) {
+	// this.dbNameFrom = dbNameFrom;
+	// }
+	//
+	// public String getUsernameFrom() {
+	// return usernameFrom;
+	// }
+	//
+	// public void setUsernameFrom(String usernameFrom) {
+	// this.usernameFrom = usernameFrom;
+	// }
+	//
+	// public String getPasswordFrom() {
+	// return passwordFrom;
+	// }
+	//
+	// public void setPasswordFrom(String passwordFrom) {
+	// this.passwordFrom = passwordFrom;
+	// }
+	//
+	// public DatabaseType getDbTypeTo() {
+	// return dbTypeTo;
+	// }
+	//
+	// public void setDbTypeTo(DatabaseType dbTypeTo) {
+	// this.dbTypeTo = dbTypeTo;
+	// }
+	//
+	// public String getIpAddressTo() {
+	// return ipAddressTo;
+	// }
+	//
+	// public void setIpAddressTo(String ipAddressTo) {
+	// this.ipAddressTo = ipAddressTo;
+	// }
+	//
+	// public int getPortTo() {
+	// return portTo;
+	// }
+	//
+	// public void setPortTo(int portTo) {
+	// this.portTo = portTo;
+	// }
+	//
+	// public String getDbNameTo() {
+	// return dbNameTo;
+	// }
+	//
+	// public void setDbNameTo(String dbNameTo) {
+	// this.dbNameTo = dbNameTo;
+	// }
+	//
+	// public String getUsernameTo() {
+	// return usernameTo;
+	// }
+	//
+	// public void setUsernameTo(String usernameTo) {
+	// this.usernameTo = usernameTo;
+	// }
+	//
+	// public String getPasswordTo() {
+	// return passwordTo;
+	// }
+	//
+	// public void setPasswordTo(String passwordTo) {
+	// this.passwordTo = passwordTo;
+	// }
+	//
+	// public ArrayList<MigrationDataType> getDataTypes() {
+	// return dataTypes;
+	// }
+	//
+	// public void setDataTypes(ArrayList<MigrationDataType> dataTypes) {
+	// this.dataTypes = dataTypes;
+	// }
 
 }

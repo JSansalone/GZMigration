@@ -1243,8 +1243,9 @@ class MigrationEngine extends Thread implements IMigrationResults {
 	@Override
 	public int getCountRegisteredProdutos() {
 		// TODO Auto-generated method stub
-		return (useProduto) ? (toAppend) ? totalProdutoFinal
-				- totalProdutoInicio : totalProdutoRegistered
+		// return (useProduto) ? (toAppend) ? totalProdutoFinal
+		// - totalProdutoInicio : totalProdutoRegistered
+		return (useProduto) ? totalProdutoRegistered
 				: SQLDataProvider.EMPTY_RETURN;
 	}
 

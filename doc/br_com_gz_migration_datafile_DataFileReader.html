@@ -13,7 +13,11 @@
          </tr>
       </table>
       <hr>
-      <h2><font size="-1">br.com.gz.migration.datafile</font></h2><span style="font-size:large; font-weight:bold">Class&nbsp;</span><span style="font-size:large; font-weight:bold">DataFileReader</span><br><br>public <b>DataFileReader</b><br><br><br><br><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <h2><font size="-1">br.com.gz.migration.datafile</font></h2><span style="font-size:large; font-weight:bold">Class&nbsp;</span><span style="font-size:large; font-weight:bold">DataFileReader</span><br><br>public <b>DataFileReader</b><br><p>Classe auxiliar que faz a leitura dos valores das c&eacute;lulas do arquivo .xls.
+          Suas responsabilidades quanto &agrave; valida&ccedil;&atilde;o dos dados s&atilde;o poucas.
+          
+          
+      </p><br><br><br><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
       <thead>
          <tr>
             <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Method Summary</span></td>
@@ -23,7 +27,7 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public static String[] </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#295">getHeader</a>(org.apache.poi.hssf.usermodel.HSSFRow row, int maximumColumns)</code><br> <font>Retorna os nomes das colunas do arquivo<br>
+         <td><code><a href="#399">getHeader</a>(org.apache.poi.hssf.usermodel.HSSFRow row, int maximumColumns)</code><br> <font>Retorna os nomes das colunas do arquivo<br>
                 <br>
                 
                 Responsabilidades:<br>
@@ -36,7 +40,9 @@
          <td align="right" valign="top" width="1%"><font size="-1"><code>public static Object[] </code></font>&nbsp;
             										
          </td>
-         <td><code><a href="#296">getCellValues</a>(org.apache.poi.hssf.usermodel.HSSFRow row, int maximumColumns)</code><br> <font>M&eacute;todo para retornar os valores das c&eacute;lulas da linha informada e at&eacute; o limite de c&eacute;lulas informado<br><br>
+         <td><code><a href="#400">getCellValues</a>(org.apache.poi.hssf.usermodel.HSSFRow row, int maximumColumns)</code><br> <font>M&eacute;todo para retornar os valores das c&eacute;lulas da linha informada e at&eacute; o
+                limite de c&eacute;lulas informado<br>
+                <br>
                 
                 Responsabilidades:<br>
                 1- Obter os valores das colunas<br>
@@ -45,10 +51,20 @@
                 </font>&nbsp;
             										
          </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private static boolean </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#401">isNumber</a>(java.lang.String str)</code><br> <font>Verifica se a String passada representa um n&uacute;mero
+                
+                </font>&nbsp;
+            										
+         </td>
       </tr></tbody></table><br><br><br><br><br><br><br><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
       <tr>
          <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Method Detail</span></td>
-      </tr></table><a name="295"><span style="font-size:medium">getHeader</span></a><br><br><pre>public static String[]  <b>getHeader</b>(org.apache.poi.hssf.usermodel.HSSFRow row, int maximumColumns)</pre><br><dl>
+      </tr></table><a name="399"><span style="font-size:medium">getHeader</span></a><br><br><pre>public static String[]  <b>getHeader</b>(org.apache.poi.hssf.usermodel.HSSFRow row, int maximumColumns)</pre><br><dl>
          <p>Retorna os nomes das colunas do arquivo<br>
              <br>
              
@@ -59,12 +75,19 @@
              
              
          </p><br></dl>
-      <hr><a name="296"><span style="font-size:medium">getCellValues</span></a><br><br><pre>public static Object[]  <b>getCellValues</b>(org.apache.poi.hssf.usermodel.HSSFRow row, int maximumColumns)</pre><br><dl>
-         <p>M&eacute;todo para retornar os valores das c&eacute;lulas da linha informada e at&eacute; o limite de c&eacute;lulas informado<br><br>
+      <hr><a name="400"><span style="font-size:medium">getCellValues</span></a><br><br><pre>public static Object[]  <b>getCellValues</b>(org.apache.poi.hssf.usermodel.HSSFRow row, int maximumColumns)</pre><br><dl>
+         <p>M&eacute;todo para retornar os valores das c&eacute;lulas da linha informada e at&eacute; o
+             limite de c&eacute;lulas informado<br>
+             <br>
              
              Responsabilidades:<br>
              1- Obter os valores das colunas<br>
              
+             
+             
+         </p><br></dl>
+      <hr><a name="401"><span style="font-size:medium">isNumber</span></a><br><br><pre>private static boolean  <b>isNumber</b>(java.lang.String str)</pre><br><dl>
+         <p>Verifica se a String passada representa um n&uacute;mero
              
              
          </p><br></dl>
