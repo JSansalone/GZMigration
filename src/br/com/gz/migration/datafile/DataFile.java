@@ -271,6 +271,9 @@ public abstract class DataFile {
 
 	}
 	
+	/**
+	 * Grava em um arquivo todos os registros inválidos do arquivo de dados
+	 */
 	public final void writeNotInserteds() {
 
 		File f = new File("data/" + getFileNameNoExt() + "_NOT_INSERTED.xls");
