@@ -8,8 +8,17 @@ import javax.swing.JPanel;
 
 import br.com.gz.migration.GZMigration;
 
+/**
+ * Classe que representa o painél informando que a migração foi concluída
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class DonePanel extends JPanel {
 
+	/**
+	 * Construtor default
+	 */
 	public DonePanel() {
 
 		setLayout(null);

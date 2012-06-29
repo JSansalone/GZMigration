@@ -1,6 +1,7 @@
 package br.com.gz.migration;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -30,80 +31,58 @@ import br.com.gz.migration.sql.EnMercoFlexInsertStatement;
 import br.com.gz.util.GZSoftwares;
 
 /**
+ * Classe abstrata que servirá de substituta para a antiga interface IDAO Os
+ * benefícios dessa classe é que ela concentra todos os inserts para os sistemas
+ * da GZ, facilitando a manutenção.
  * 
  * @author Jonathan Sansalone
- * 
- *         Classe abstrata que servirá de substituta para a antiga interface
- *         IDAO Os benefícios dessa classe é que ela concentra todos os inserts
- *         para os sistemas da GZ, facilitando a manutenção.<br>
- * 
- *         <b>Regras para a implementação:</b><br>
- * 
- *         Regras gerais: primeiro usa-se countX. Se retornar POLICY_VIOLATION
- *         usa-se getXColumnsNeeded, caso contrário usa-sa getX - Devem ter
- *         membros ResultSet e PreparedStatement de acordo com a lista abaixo:
- * 
- *         private PreparedStatement stProduto; private PreparedStatement
- *         stDepartamento; private PreparedStatement stGrupo; private
- *         PreparedStatement stArmacao; private PreparedStatement stMarca;
- *         private PreparedStatement stCliente; private PreparedStatement
- *         stFornecedor; private PreparedStatement stNFEntrada; private
- *         PreparedStatement stNFSaida; private PreparedStatement stContaPagar;
- *         private PreparedStatement stContaReceber; private PreparedStatement
- *         stMovtoVenda;
- * 
- *         private ResultSet rsProduto; private ResultSet rsDepartamento;
- *         private ResultSet rsGrupo; private ResultSet rsArmacao; private
- *         ResultSet rsMarca; private ResultSet rsCliente; private ResultSet
- *         rsFornecedor; private ResultSet rsNFEntrada; private ResultSet
- *         rsNFSaida; private ResultSet rsContaPagar; private ResultSet
- *         rsContaReceber; private ResultSet rsMovtoVenda;
- * 
- *         Contrutor: - Deve implementar o construtor herdado - Deve salvar o
- *         software da GZ, de terceiro e o banco de destino nas variáveis
- *         herdadas - Deve instanciar a política de colunas
- * 
- *         Métodos countX: - Devem retornar a quantidade mais exata possível de
- *         registros que serão possivelmente inseridos - Devem validar as
- *         colunas retornadas usando a política de colunas - Devem retornar
- *         POLICY_VIOLATION se a política de colunas for violada - Devem
- *         retornar EMPTY_RETURN se não forem implementados - Devem obter o
- *         select apropriado da estrutura de diretórios de selects - Devem
- *         instanciar o PreparedStatement apropriado - Devem alimentar o
- *         ResultSet apropriado com os dados - Não devem de maneira nenhuma
- *         fechar o ResultSet apropriado - Não devem de maneira nenhuma fechar o
- *         PreparedStatement apropriado - Devem posicionar o cursor do ResultSet
- *         apropriado antes do primeiro registro (usar beforeFirst())
- * 
- *         Métodos getX: - Só podem ser utilizados se o countX validar a
- *         política de colunas - Não devem consultar os dados novamente no banco
- *         de dados - Devem utilizar o ResultSet alimentado pelo countX - Devem
- *         ser responsáveis por todos os tratamentos de dados usando um
- *         formatador apropriado para o sistema da GZ - São responsáveis por
- *         fechar o ResultSet e o PreparedStatement apropriados - Devem retornar
- *         os dados em ArrayList
- * 
- *         Métodos getXColunmNeeded: - Sua função é fornecer todas as colunas
- *         faltantes de acordo com a política - Só podem ser utilizados caso o
- *         countX retorne POLICY_VIOLATION - São responsáveis por fechar o
- *         ResultSet e o PreparedStatement apropriados caso forem (os métodos
- *         getXColumnsNeeded) utilizados - Devem retornar o ArrayList de colunas
- *         faltantes
  * 
  */
 public abstract class SQLDataProvider {
 
+	/**
+	 * Constante que representa um tipo de dado vazio. Alguns lugares usam esta constante para dizer que o tipo de dado não será usado
+	 */
 	public static final int EMPTY_RETURN = -987654321;
+	
+	/**
+	 * Constante que representa um registro com dados inválido
+	 */
 	public static final int POLICY_VIOLATION = -345612776;
+	
+	/**
+	 * Quando a coleta de dados era feita no banco de origem, esta constante informava a presença de alguma instrução SQL perigosa
+	 */
+	@Deprecated
 	public static final int SECURITY_VIOLATION = -917345787;
+	
+	/**
+	 * Quando a coleta de dados era feita no banco de origem, esta constante informava a presença de erros de sintaxe na instrução SQL
+	 */
+	@Deprecated
 	public static final int SQL_ERROR = -5196673;
 
+	/**
+	 * Software da GZ Sistemas que será implantado
+	 */
 	protected GZSoftwares software;
+	
+	/**
+	 * Software de terceiro usado atualmente
+	 */
+	@Deprecated
 	protected GZSoftwares otherSoftware;
+	
+	/**
+	 * Tipo de banco de dados de destino
+	 */
 	protected DatabaseType dbTo;
+	
+	/**
+	 * Tipo de banco de dados de origem
+	 */
+	@Deprecated
 	protected DatabaseType dbFrom;
-
-	protected GZSoftwares gzSoftware;
 
 	@Deprecated
 	public SQLDataProvider(GZSoftwares software, GZSoftwares otherSoftware,
@@ -116,13 +95,26 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Construtor que inicializa a classe
+	 * 
+	 * @param software - software que será implantado
+	 * @param dbTo - banco de dados de destino
+	 */
 	public SQLDataProvider(GZSoftwares software, DatabaseType dbTo) {
 
-		this.gzSoftware = software;
+		this.software = software;
 		this.dbTo = dbTo;
 
 	}
 
+	/**
+	 * Adiciona um cliente
+	 * 
+	 * @param cnn - Conexão ao banco de dados
+	 * @param c - cliente a ser adicionado
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addCliente(Connection cnn, Cliente c) {
 
 		try {
@@ -215,6 +207,13 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Adiciona um departamento
+	 * 
+	 * @param cnn - Conexão ao banco de dados
+	 * @param d - departamento a ser adicionado
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addDepartamento(Connection cnn, Departamento d) {
 
 		try {
@@ -261,6 +260,13 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Adiciona um fornecedor
+	 * 
+	 * @param cnn - Conexão ao banco de dados
+	 * @param f - fornecedor a ser adicionado
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addFornecedor(Connection cnn, Fornecedor f) {
 
 		try {
@@ -334,6 +340,13 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Adiciona um grupo
+	 * 
+	 * @param cnn - Conexão ao banco de dados
+	 * @param g - grupo a ser adicionado
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addGrupo(Connection cnn, Grupo g) {
 
 		PreparedStatement st;
@@ -402,7 +415,14 @@ public abstract class SQLDataProvider {
 
 	}
 
-	public final boolean addMarca(Connection cnn, Marca arg1) {
+	/**
+	 * Adiciona uma marca
+	 * 
+	 * @param cnn - Conexão ao banco de dados
+	 * @param m - marca a ser adicionada
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
+	public final boolean addMarca(Connection cnn, Marca m) {
 
 		PreparedStatement st;
 
@@ -413,8 +433,8 @@ public abstract class SQLDataProvider {
 				if (dbTo == DatabaseType.MySQL) {
 
 					st = cnn.prepareStatement("insert into marca(codigo,descricao) values(?,?) on duplicate key update codigo = codigo");
-					st.setInt(1, arg1.getCodigo());
-					st.setString(2, arg1.getDescricao());
+					st.setInt(1, m.getCodigo());
+					st.setString(2, m.getDescricao());
 					st.execute();
 					st.close();
 
@@ -429,8 +449,8 @@ public abstract class SQLDataProvider {
 				if (dbTo == DatabaseType.MySQL) {
 
 					st = cnn.prepareStatement("insert into subgrupo1(idsubgrupo1,Nome,idgrupo,idsubgrupo) values(?,?,1,1) on duplicate key update idsubgrupo1 = idsubgrupo1;");
-					st.setInt(1, arg1.getCodigo());
-					st.setString(2, arg1.getDescricao());
+					st.setInt(1, m.getCodigo());
+					st.setString(2, m.getDescricao());
 					st.execute();
 					st.close();
 
@@ -450,6 +470,13 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Adiciona um produto
+	 * 
+	 * @param cnn - Conexão ao banco de dados
+	 * @param p - produto a ser adicionado
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addProduto(Connection cnn, Produto p) {
 
 		try {
@@ -459,37 +486,6 @@ public abstract class SQLDataProvider {
 			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
-
-					// st =
-					// cnn.prepareStatement("insert into estoque(cdprod, codbarra, descricao, descpdv, unidade, setor, variavel, depto, quantprod, cadastro, contsaldo, sointeiro, cfiscal, tributa, grupo) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update cdprod = cdprod");
-					//
-					// st.setString(1, p.getCodigoInterno());
-					// st.setString(2, p.getCodigoDeBarras());
-					// st.setString(3, p.getDescricao());
-					// st.setString(4, p.getDescricaoReduzida());
-					// st.setString(5, p.getUnidade());
-					// st.setInt(6, p.getSetor());
-					// st.setString(7, p.getVariavel());
-					// st.setInt(8, p.getDepartamento());
-					// st.setDouble(9, p.getQuantidade());
-					// st.setDate(10, new java.sql.Date(p.getDataCadastro()
-					// .getTimeInMillis()));
-					// st.setString(11, p.getControlaSaldo());
-					// st.setString(12, p.getSoInteiro());
-					// st.setString(13, p.getNcm());
-					// st.setInt(14, p.getCodigoTributacao());
-					// st.setInt(15, p.getGrupo());
-					// st.execute();
-					//
-					// st =
-					// cnn.prepareStatement("insert into esttrib(cdprod, icmcompra, tributa, trbcompra) values(?,?,?,?) on duplicate key update cdprod = cdprod");
-					// st.setString(1, p.getCodigoInterno());
-					// st.setDouble(2, p.getIcmCompra());
-					// st.setInt(3, p.getCodigoTributacao());
-					// st.setString(4, p.getTributacaoCompra());
-					// st.execute();
-					//
-					// st.close();
 
 					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE
 							.getSQL(DatabaseType.MySQL));
@@ -597,6 +593,15 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Adiciona um produto para uma loja específica
+	 * 
+	 * @param cnn - conexão ao banco de dados
+	 * @param p - produto a ser adicionado
+	 * @param ignoreCode - true se for para ignorar o código de loja no arquivo, false para usar o código da loja
+	 * @param l - código da loja
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addProdutoLoja(Connection cnn, Produto p,
 			boolean ignoreCode, int l) {
 
@@ -607,40 +612,6 @@ public abstract class SQLDataProvider {
 			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
-
-					// st =
-					// cnn.prepareStatement("insert into saldos(cdprod, icmcompra, precocomp, ipi, precoprom, precovenda, precocusto, perclucro, estminimo, estmaximo, quant,  pis, cofins, situacao, trbcompra, loja) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update cdprod = cdprod");
-					// st.setString(1, p.getCodigoInterno());
-					// st.setDouble(2, p.getIcmCompra());
-					// st.setDouble(3, p.getPrecoCompra());
-					// st.setDouble(4, p.getIpi());
-					// st.setDouble(5, p.getPrecoPromocao());
-					// st.setDouble(6, p.getPrecoVenda());
-					// st.setDouble(7, p.getPrecoCusto());
-					//
-					// if (p.getPorcentagemLucro() > 100.00
-					// || p.getPorcentagemLucro() < 0) {
-					// st.setDouble(8, 100.00);
-					// } else {
-					// st.setDouble(8, p.getPorcentagemLucro());
-					// }
-					// st.setDouble(9, p.getQuantidadeEstoqueMinimo());
-					// st.setDouble(10, p.getQuantidadeEstoqueMaximo());
-					// st.setDouble(11, p.getQuantidade());
-					// st.setDouble(12, p.getAliquotaPisCompra());
-					// st.setDouble(13, p.getAliquotaCofinsCompra());
-					// st.setString(14, p.getAtivo());
-					// st.setString(15, p.getTributacaoCompra());
-					// st.setInt(16, l);
-					// st.execute();
-					//
-					// st =
-					// cnn.prepareStatement("insert into estmix(cdprod, loja) values(?,?) on duplicate key update cdprod = cdprod");
-					// st.setString(1, p.getCodigoInterno());
-					// st.setInt(2, l);
-					// st.execute();
-					//
-					// st.close();
 
 					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_SALDO
 							.getSQL(DatabaseType.MySQL));
@@ -705,6 +676,13 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Adiciona uma armação
+	 * 
+	 * @param conn - conexão ao banco de dados
+	 * @param armac - armação a ser adicionada
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addArmacao(Connection conn, Armacao armac) {
 
 		PreparedStatement st;
@@ -788,22 +766,71 @@ public abstract class SQLDataProvider {
 
 	//
 
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile - Arquivo de dados
+	 * @return - total
+	 * @throws IOException - se não conseguir ler o arquivo
+	 */
 	public abstract int countProduto(ProdutoDataFile dataFile)
 			throws IOException;
 
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile - Arquivo de dados
+	 * @return - total
+	 * @throws IOException - se não conseguir ler o arquivo
+	 */
 	public abstract int countDepartamento(DepartamentoDataFile dataFile)
 			throws IOException;
 
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile - Arquivo de dados
+	 * @return - total
+	 * @throws IOException - se não conseguir ler o arquivo
+	 */
 	public abstract int countGrupo(GrupoDataFile dataFile) throws IOException;
 
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile - Arquivo de dados
+	 * @return - total
+	 * @throws IOException - se não conseguir ler o arquivo
+	 */
 	public abstract int countArmacao(ArmacaoDataFile dataFile)
 			throws IOException;
 
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile - Arquivo de dados
+	 * @return - total
+	 * @throws IOException - se não conseguir ler o arquivo
+	 */
 	public abstract int countMarca(MarcaDataFile dataFile) throws IOException;
 
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile - Arquivo de dados
+	 * @return - total
+	 * @throws IOException - se não conseguir ler o arquivo
+	 */
 	public abstract int countCliente(ClienteDataFile dataFile)
 			throws IOException;
 
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile - Arquivo de dados
+	 * @return - total
+	 * @throws IOException - se não conseguir ler o arquivo
+	 */
 	public abstract int countFornecedor(FornecedorDataFile dataFile)
 			throws IOException;
 
@@ -845,19 +872,61 @@ public abstract class SQLDataProvider {
 
 	//
 
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
 	public abstract ArrayList<Produto> getProduto(ProdutoDataFile dataFile);
 
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
 	public abstract ArrayList<Departamento> getDepartamento(
 			DepartamentoDataFile dataFile);
 
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
 	public abstract ArrayList<Grupo> getGrupo(GrupoDataFile dataFile);
 
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
 	public abstract ArrayList<Armacao> getArmacao(ArmacaoDataFile dataFile);
 
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
 	public abstract ArrayList<Marca> getMarca(MarcaDataFile dataFile);
 
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
 	public abstract ArrayList<Cliente> getCliente(ClienteDataFile dataFile);
 
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
 	public abstract ArrayList<Fornecedor> getFornecedor(
 			FornecedorDataFile dataFile);
 
@@ -885,6 +954,12 @@ public abstract class SQLDataProvider {
 	@Deprecated
 	public abstract ArrayList<String> getFornecedorColumnsNeeded();
 
+	/**
+	 * Retorna quais as colunas estão faltando no arquivo de dados
+	 * 
+	 * @param dataFile - arquivo de dados
+	 * @return - {@link ArrayList} com as colunas que estão faltando
+	 */
 	public abstract ArrayList<String> getColumnsNeeded(DataFile dataFile);
 
 }

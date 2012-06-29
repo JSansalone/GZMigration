@@ -10,11 +10,23 @@ import javax.swing.JTextField;
 import br.com.gz.migration.GZMigration;
 import br.com.gz.migration.ICustomerInfo;
 
+/**
+ * Classe que representa o painél de digitação do nome do cliente
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class CustomerNamePanel extends JPanel implements ICustomerInfo,
 		IValidation, InitialConfigurationsOnVisible {
 
+	/**
+	 * JTextField para digitar o nome
+	 */
 	private JTextField txtName;
 
+	/**
+	 * Construtor default
+	 */
 	public CustomerNamePanel() {
 
 		setLayout(null);

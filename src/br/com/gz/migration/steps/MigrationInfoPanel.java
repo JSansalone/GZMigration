@@ -10,14 +10,27 @@ import javax.swing.JProgressBar;
 
 import br.com.gz.migration.GZMigration;
 
+/**
+ * Classe que representa o painél que informa o status da migração
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class MigrationInfoPanel extends JPanel implements IMigrationInfo {
 
+	/**
+	 * JProgressBar que é atualizada conforme os dados vão sendo adicionados
+	 */
 	private JProgressBar progressBar;
 
-	private int n = 1;
-
+	/**
+	 * JLabel que mostra o que o motor de migração está executando
+	 */
 	private JLabel lblInfo;
 
+	/**
+	 * Construtor default
+	 */
 	public MigrationInfoPanel() {
 
 		setLayout(null);

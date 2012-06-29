@@ -26,29 +26,89 @@ import br.com.gz.migration.ISoftwareMutable;
 import br.com.gz.migration.exception.InvalidSoftwareException;
 import br.com.gz.util.GZSoftwares;
 
+/**
+ * Classe que representa o painél de configuração do banco de dados de destino
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class NewSoftwarePanel extends JPanel implements IValidation,
 		IDatabaseInfo, IDatabaseMutable, ISoftwareMutable,
 		InitialConfigurationsOnVisible {
 
+	/**
+	 * Combo para escolher o software a ser implantado
+	 */
 	private JComboBox<String> cmbSoftware;
+	
+	/**
+	 * Botão para escolher o banco de dados de destino
+	 */
 	private JButton btSgbd;
+	
+	/**
+	 * Campo para digitar o 1o grupo do endereço IP
+	 */
 	private JTextField txtIp1;
+	
+	/**
+	 * Campo para digitar o 2o grupo do endereço IP
+	 */
 	private JTextField txtIp2;
+	
+	/**
+	 * Campo para digitar o 3o grupo do endereço IP
+	 */
 	private JTextField txtIp3;
+	
+	/**
+	 * Campo para digitar o 4o grupo do endereço IP
+	 */
 	private JTextField txtIp4;
+	
+	/**
+	 * Campo para digitar a porta
+	 */
 	private JTextField txtPort;
+	
+	/**
+	 * Campo para digitar o nome do banco de dados
+	 */
 	private JTextField txtDbName;
+	
+	/**
+	 * Campo para digitar o nome de usuário
+	 */
 	private JTextField txtUserName;
+	
+	/**
+	 * Campo para digitar a senha
+	 */
 	private JPasswordField txtPassword;
 
+	/**
+	 * JLabel que guarda a imagem do banco de dados
+	 */
 	private JLabel lblDb;
 
+	/**
+	 * Variável que guarda o banco de dados utilizado
+	 */
 	private DatabaseType dbType;
 
+	/**
+	 * Variável que guarda o software utilizado
+	 */
 	private GZSoftwares software;
 
+	/**
+	 * Flag que informa se o banco de dados já foi definido
+	 */
 	private boolean choosedDB = false;
 
+	/**
+	 * Construtor default
+	 */
 	public NewSoftwarePanel() {
 
 		software = GZSoftwares.MERCOFLEX;
@@ -327,6 +387,12 @@ public class NewSoftwarePanel extends JPanel implements IValidation,
 
 	}
 
+	/**
+	 * define o banco de dados de destino
+	 * 
+	 * @param type - banco de dados
+	 * @throws InvalidDatabaseException - se for um banco de dados não suportado
+	 */
 	public void setDatabaseType(DatabaseType type)
 			throws InvalidDatabaseException {
 

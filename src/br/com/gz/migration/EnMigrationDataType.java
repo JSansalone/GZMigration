@@ -3,7 +3,7 @@ package br.com.gz.migration;
 /**
  * Enum que contém os tipos de dados suportados pelo aplicativo para fazer migrações
  * 
- * @author Jonathan
+ * @author Jonathan Sansalone
  *
  */
 public enum EnMigrationDataType {
@@ -22,14 +22,27 @@ public enum EnMigrationDataType {
 	MOVTOVENDA("Movimentações de venda"), 
 	ARMACAO("Armações");
 	
+	/**
+	 * Membro private que guarda a descrição de cada tipo de dado
+	 */
 	private String description;
 	
+	/**
+	 * Construtor private
+	 * 
+	 * @param desc - descrição do tipo de dado
+	 */
 	private EnMigrationDataType(String desc) {
 		
 		this.description = desc;
 		
 	}
 	
+	/**
+	 * Retorna a descrição do tipo de dado
+	 * 
+	 * @return - a descrição do tipo de dado
+	 */
 	public String getDescription(){
 		
 		return this.description;

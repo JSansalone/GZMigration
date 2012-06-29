@@ -20,31 +20,108 @@ import br.com.gz.migration.EnMigrationDataType;
 import br.com.gz.migration.GZMigration;
 import br.com.gz.migration.IMigrationType;
 
+/**
+ * Classe que representa o painél de escolha dos tipos de dados da migração
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class MigrationTypePanel extends JPanel implements IValidation,
 		IMigrationType, InitialConfigurationsOnVisible {
 
+	/**
+	 * Opção produtos
+	 */
 	private JCheckBox chkProdutos;
+	
+	/**
+	 * Opção departamentos
+	 */
 	private JCheckBox chkDepartamento;
+	
+	/**
+	 * Opção grupos
+	 */
 	private JCheckBox chkGrupo;
+	
+	/**
+	 * Opção armações
+	 */
 	private JCheckBox chkArmacao;
+	
+	/**
+	 * Opção marcas
+	 */
 	private JCheckBox chkMarca;
+	
+	/**
+	 * Opção clientes
+	 */
 	private JCheckBox chkClientes;
+	
+	/**
+	 * Opção fornecedores
+	 */
 	private JCheckBox chkFornecedores;
+	
+	/**
+	 * Opção movimentação de vendas
+	 */
 	private JCheckBox chkMovVendas;
+	
+	/**
+	 * Opção notas fiscais de entrada
+	 */
 	private JCheckBox chkNFEntrada;
+	
+	/**
+	 * Opção notas fiscais de saídas
+	 */
 	private JCheckBox chkNFSaida;
+	
+	/**
+	 * Opção contas a pagar
+	 */
 	private JCheckBox chkContasPagar;
+	
+	/**
+	 * Opção contas a receber
+	 */
 	private JCheckBox chkContasReceber;
+	
+	/**
+	 * Opção selecionar todos
+	 */
 	private JCheckBox chkAll;
 
+	/**
+	 * Campo para digitar a quantidade de lojas
+	 */
 	private JSpinner spnLojas;
 
+	/**
+	 * Agrupador dos radioButtons
+	 */
 	private ButtonGroup btGroup;
+	
+	/**
+	 * Opção sobrepor dados
+	 */
 	private JRadioButton rdbOverride;
+	
+	/**
+	 * Opção incluir dados
+	 */
 	private JRadioButton rdbAppend;
 
+	/**
+	 * Opção ignorar códigos de loja nos arquivos
+	 */
 	private JCheckBox chkIgnoreMultiLoja;
 
+	/**
+	 * Construtor default
+	 */
 	public MigrationTypePanel() {
 
 		setLayout(null);

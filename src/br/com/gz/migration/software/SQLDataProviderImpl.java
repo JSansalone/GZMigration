@@ -128,6 +128,12 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 
 	}
 	
+	/**
+	 * Construtor que recebe o software a ser implantado e o tipo de banco de dados de destino
+	 * 
+	 * @param software - software a ser implantado
+	 * @param dbTo - tipo de banco de dados de destino
+	 */
 	public SQLDataProviderImpl(GZSoftwares software,
 			DatabaseType dbTo) {
 		

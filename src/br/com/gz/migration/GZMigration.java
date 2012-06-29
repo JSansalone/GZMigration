@@ -51,7 +51,7 @@ import com.jgoodies.looks.plastic.PlasticXPLookAndFeel;
 import com.jgoodies.looks.plastic.theme.SkyBluer;
 
 /**
- * GZ SIstemas - Migração de banco de dados
+ * GZ Sistemas - Migração de banco de dados
  * 
  * Data de início: Março de 2012
  * 
@@ -70,9 +70,11 @@ import com.jgoodies.looks.plastic.theme.SkyBluer;
  * É habilitado para realizar conexões com os bancos: - Oracle - MySQL -
  * Microsoft SQL Server
  * 
+ * @author Jonathan Sansalone
+ * 
  */
-public class GZMigration extends JFrame implements IValidateDataProvider,
-		IFinalizeMigration, ISoftwareMutable {
+public class GZMigration extends JFrame implements IFinalizeMigration,
+		ISoftwareMutable {
 
 	/**
 	 * Representa o container principal
@@ -354,20 +356,6 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 				LogFile.getInstance().writeInFile("Showing about frame");
 				new AboutFrame();
 
-				/*
-				 * JOptionPane .showMessageDialog( GZMigration.this, "" +
-				 * "Migração de banco de dados\n" +
-				 * "--------------------------------------\n" +
-				 * "GZ Sistemas Importação e Comércio\n" +
-				 * "Tel: (11)3308-8199\n" + "Site: www.gzsistemas.com.br\n\n" +
-				 * "Responsável pelo aplicativo: Jonathan Sansalone\n" +
-				 * "Contato: jonathan.sansalone@gzsistemas.com.br\n" +
-				 * "Departamento de Serviços\n" +
-				 * "--------------------------------------\n" +
-				 * "Abril de 2012 - Versão 1.0.0", "Sobre",
-				 * JOptionPane.INFORMATION_MESSAGE, new ImageIcon((URL)
-				 * getClass().getResource( "/img/navigation/info.png")));
-				 */
 			}
 
 		});
@@ -473,7 +461,6 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 			customerNamePanel.setVisible(false);
 			migrationTypePanel.setVisible(false);
 			newSoftwarePanel.setVisible(false);
-			// currentSoftwarePanel.setVisible(false);
 			confirmDataPanel.setVisible(false);
 			migrationInfoPanel.setVisible(false);
 			donePanel.setVisible(false);
@@ -486,7 +473,6 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 			customerNamePanel.setVisible(true);// <----
 			migrationTypePanel.setVisible(false);
 			newSoftwarePanel.setVisible(false);
-			// currentSoftwarePanel.setVisible(false);
 			confirmDataPanel.setVisible(false);
 			migrationInfoPanel.setVisible(false);
 			donePanel.setVisible(false);
@@ -504,7 +490,6 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 				migrationTypePanel.setVisible(true); // escolha dos dados da
 														// migração
 				newSoftwarePanel.setVisible(false);
-				// currentSoftwarePanel.setVisible(false);
 				confirmDataPanel.setVisible(false);
 				migrationInfoPanel.setVisible(false);
 				donePanel.setVisible(false);
@@ -532,7 +517,6 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 				customerNamePanel.setVisible(false);
 				migrationTypePanel.setVisible(false);
 				newSoftwarePanel.setVisible(true); // <----
-				// currentSoftwarePanel.setVisible(false);
 				confirmDataPanel.setVisible(false);
 				migrationInfoPanel.setVisible(false);
 				donePanel.setVisible(false);
@@ -560,23 +544,6 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 				// atual é habilitado
 				if (testConn(newSoftwarePanel.getDatabaseInfo())) {
 
-					// dizendo à tela de escolha do software atual
-					// para definir quais implementações de migração estão
-					// disponíveis para o novo software
-					// currentSoftwarePanel.setAvailableSoftwares(newSoftwarePanel
-					// .getSoftware());
-					//
-					// welcomePanel.setVisible(false);
-					// customerNamePanel.setVisible(false);
-					// migrationTypePanel.setVisible(false);
-					// newSoftwarePanel.setVisible(false);
-					// currentSoftwarePanel.setVisible(true); // <----
-					// confirmDataPanel.setVisible(false);
-					// migrationInfoPanel.setVisible(false);
-					// donePanel.setVisible(false);
-					//
-					// currentSoftwarePanel.setInitialFocus();
-
 					confirmDataPanel.configure(
 							migrationTypePanel.getMigrationType(),
 							newSoftwarePanel.getDatabaseInfo().getDbType());
@@ -585,7 +552,6 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 					customerNamePanel.setVisible(false);
 					migrationTypePanel.setVisible(false);
 					newSoftwarePanel.setVisible(false);
-					// currentSoftwarePanel.setVisible(false);
 					confirmDataPanel.setVisible(true); // <----
 					migrationInfoPanel.setVisible(false);
 					donePanel.setVisible(false);
@@ -616,64 +582,10 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 
 		case 6:
 
-			// // Se as configurações do software atual forem validadas...
-			// if (currentSoftwarePanel.validateFields()) {
-			//
-			// // Se as informações para conexão do banco de dados do software
-			// // atual forem válidas, o painél de confirmação das informações
-			// // é habilitado
-			// if (testConn(currentSoftwarePanel.getDatabaseInfo())) {
-			//
-			// // passa as informações dos softwares para confirmação
-			// // try {
-			// // confirmDataPanel.setDB(newSoftwarePanel
-			// // .getDatabaseInfo().getDbType(),
-			// // currentSoftwarePanel.getDatabaseInfo()
-			// // .getDbType());
-			// // } catch (InvalidDatabaseException e) {
-			// // // TODO Auto-generated catch block
-			// // e.printStackTrace();
-			// // }
-			//
-			// confirmDataPanel.configure(migrationTypePanel.getMigrationType(),
-			// newSoftwarePanel.getDatabaseInfo().getDbType());
-			//
-			// welcomePanel.setVisible(false);
-			// customerNamePanel.setVisible(false);
-			// migrationTypePanel.setVisible(false);
-			// newSoftwarePanel.setVisible(false);
-			// // currentSoftwarePanel.setVisible(false);
-			// confirmDataPanel.setVisible(true); // <----
-			// migrationInfoPanel.setVisible(false);
-			// donePanel.setVisible(false);
-			//
-			// btNext.setText("Iniciar");
-			//
-			// } else {
-			//
-			// JOptionPane.showMessageDialog(null,
-			// "Dados de conexão inválidos!", "Falha de conexão",
-			// JOptionPane.ERROR_MESSAGE);
-			// browse(--currentIndex);
-			//
-			// }
-			//
-			// } else {
-			//
-			// JOptionPane.showMessageDialog(null,
-			// "Digite as informações corretamente!", "Atenção",
-			// JOptionPane.WARNING_MESSAGE);
-			// browse(--currentIndex);
-			//
-			// }
-			//
-			// break;
-
 			welcomePanel.setVisible(false);
 			customerNamePanel.setVisible(false);
 			migrationTypePanel.setVisible(false);
 			newSoftwarePanel.setVisible(false);
-			// currentSoftwarePanel.setVisible(false);
 			confirmDataPanel.setVisible(false);
 			migrationInfoPanel.setVisible(true); // Mostrando o progresso da
 													// migração
@@ -687,17 +599,6 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 			setDataProvider();
 
 			// cria o ----> \o/ MOTOR DE MIGRAÇÃO \o/ <----
-			/*
-			 * dao = new MigrationEngine(migrationTypePanel.getMigrationType(),
-			 * this, migrationInfoPanel, migrationTypePanel, iDao,
-			 * newSoftwarePanel, currentSoftwarePanel);
-			 */
-			// johnny Instanciar o motor
-			// dataProviderEngine = new MigrationEngine(
-			// migrationTypePanel.getMigrationType(), this,
-			// migrationInfoPanel, migrationTypePanel, dataProvider,
-			// newSoftwarePanel, currentSoftwarePanel);
-
 			dataProviderEngine = new MigrationEngine(
 					migrationTypePanel.getMigrationType(), this,
 					migrationInfoPanel, migrationTypePanel, dataProvider,
@@ -713,88 +614,20 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 
 		case 7:
 
-			// welcomePanel.setVisible(false);
-			// customerNamePanel.setVisible(false);
-			// migrationTypePanel.setVisible(false);
-			// newSoftwarePanel.setVisible(false);
-			// // currentSoftwarePanel.setVisible(false);
-			// confirmDataPanel.setVisible(false);
-			// migrationInfoPanel.setVisible(true); // Mostrando o progresso da
-			// // migração
-			// donePanel.setVisible(false);
-			//
-			// btNext.setEnabled(false); // Não permite avançar
-			// btPrevious.setEnabled(false); // Não permite voltar
-			//
-			// // Escolhe a implementação adequada da interface IDAO baseada nas
-			// // informações dos softwares
-			// setDataProvider();
-			//
-			// // cria o ----> \o/ MOTOR DE MIGRAÇÃO \o/ <----
-			// /*
-			// * dao = new
-			// MigrationEngine(migrationTypePanel.getMigrationType(),
-			// * this, migrationInfoPanel, migrationTypePanel, iDao,
-			// * newSoftwarePanel, currentSoftwarePanel);
-			// */
-			// // johnny Instanciar o motor
-			// // dataProviderEngine = new MigrationEngine(
-			// // migrationTypePanel.getMigrationType(), this,
-			// // migrationInfoPanel, migrationTypePanel, dataProvider,
-			// // newSoftwarePanel, currentSoftwarePanel);
-			//
-			// dataProviderEngine = new MigrationEngine(
-			// migrationTypePanel.getMigrationType(), this,
-			// migrationInfoPanel, migrationTypePanel, dataProvider,
-			// newSoftwarePanel);
-			//
-			// // guarda a data de início da migração
-			// date = Calendar.getInstance();
-			//
-			// // dá a partida no motor!!! \o/
-			// dataProviderEngine.start();
-			//
-			// break;
-
 			welcomePanel.setVisible(false);
 			customerNamePanel.setVisible(false);
 			migrationTypePanel.setVisible(false);
 			newSoftwarePanel.setVisible(false);
-			// currentSoftwarePanel.setVisible(false);
 			confirmDataPanel.setVisible(false);
 			migrationInfoPanel.setVisible(false);
 			donePanel.setVisible(true); // Informa que a migração foi concluída
 
 			break;
 
-		// case 8:
-		//
-		// welcomePanel.setVisible(false);
-		// customerNamePanel.setVisible(false);
-		// migrationTypePanel.setVisible(false);
-		// newSoftwarePanel.setVisible(false);
-		// // currentSoftwarePanel.setVisible(false);
-		// confirmDataPanel.setVisible(false);
-		// migrationInfoPanel.setVisible(false);
-		// donePanel.setVisible(true); // Informa que a migração foi concluída
-		//
-		// break;
-
 		default:
 			break;
 		}
 
-	}
-
-	// Compara bancos de dados
-	@Override
-	public boolean validateDBTo(DatabaseType compare1, DatabaseType compare2) {
-		return (compare1 == compare2);
-	}
-
-	@Override
-	public boolean validateDBFrom(DatabaseType compare1, DatabaseType compare2) {
-		return (compare1 == compare2);
 	}
 
 	// Navega para o último passo da migração
@@ -951,7 +784,7 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 		DatabaseConfigurations newSftCf = newSoftwarePanel.getDatabaseInfo();
 
 		MigrationReportData reportData = new MigrationReportData(col);
-		
+
 		reportData.setIp(newSftCf.getIpAddress());
 		reportData.setNomeBanco(newSftCf.getDatabaseName());
 		reportData.setPorta(newSftCf.getPort());
@@ -961,149 +794,9 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 		reportData.setTipoBanco(newSftCf.getDbType());
 		reportData.setModoMigracao(migrationTypePanel.toAppend());
 		reportData.setNomeCliente(customerNamePanel.getCustomerName());
-		
+
 		MigrationReport report = new MigrationReport(reportData);
 		report.buildReport();
-
-		// MigrationReportData report = new MigrationReportData();
-
-		// DatabaseConfigurations newSftCf = newSoftwarePanel.getDatabaseInfo();
-		// DatabaseConfigurations currStfCf = currentSoftwarePanel
-		// .getDatabaseInfo();
-		//
-		// // determina o nome do relatório
-		// report.setPath("Relatório de migração.pdf");
-		// // configura as informações do software atual
-		// report.setSoftwareFrom(currentSoftwarePanel.getSoftware());
-		// report.setDbTypeFrom(currStfCf.getDbType());
-		// report.setIpAddressFrom(currStfCf.getIpAddress());
-		// report.setPortFrom(currStfCf.getPort());
-		// if (currStfCf.getDbType() == DatabaseType.Firebird
-		// || currStfCf.getDbType() == DatabaseType.MSAccess) {
-		// File f = new File(currStfCf.getDatabaseName());
-		// if (f.exists()) {
-		// report.setDbNameFrom(f.getName());
-		// } else {
-		// report.setDbNameFrom("(Arquivo inexistente)");
-		// }
-		// } else {
-		// report.setDbNameFrom(currStfCf.getDatabaseName());
-		// }
-		// report.setUsernameFrom(currStfCf.getUsername());
-		// report.setPasswordFrom(currStfCf.getPassword());
-		// configura as informações do novo software
-		// report.setSoftwareTo(newSoftwarePanel.getSoftware());
-		// report.setDbTypeTo(newSftCf.getDbType());
-		// report.setIpAddressTo(newSftCf.getIpAddress());
-		// report.setPortTo(newSftCf.getPort());
-		// report.setDbNameTo(newSftCf.getDatabaseName());
-		// report.setUsernameTo(newSftCf.getUsername());
-		// report.setPasswordTo(newSftCf.getPassword());
-		// report.setData(date);
-		// report.setNomeCliente(customerNamePanel.getCustomerName());
-		//
-		// report.setAppend(migrationTypePanel.toAppend());
-		//
-		// ArrayList<MigrationDataType> dataTypes = new
-		// ArrayList<MigrationDataType>();
-		// ArrayList<EnMigrationDataType> mgType = migrationTypePanel
-		// .getMigrationType();
-		// Iterator<EnMigrationDataType> it = mgType.iterator();
-		// IMigrationResults results = dataProviderEngine;
-		//
-		// while (it.hasNext()) {
-		//
-		// switch (it.next()) {
-		//
-		// case PRODUTO:
-		//
-		// if (results.getCountRegisteredProdutos() !=
-		// SQLDataProvider.EMPTY_RETURN) {
-		// MigrationDataType dProduto = new MigrationDataType();
-		// dProduto.setType(EnMigrationDataType.PRODUTO);
-		// dProduto.setTotal(results.getCountRegisteredProdutos());
-		// dataTypes.add(dProduto);
-		// }
-		//
-		// break;
-		//
-		// case FORNECEDOR:
-		//
-		// if (results.getCountFornecedores() != SQLDataProvider.EMPTY_RETURN) {
-		// MigrationDataType dFor = new MigrationDataType();
-		// dFor.setType(EnMigrationDataType.FORNECEDOR);
-		// dFor.setTotal(results.getCountFornecedores());
-		// dataTypes.add(dFor);
-		// }
-		//
-		// break;
-		//
-		// case CLIENTE:
-		//
-		// if (results.getCountClientes() != SQLDataProvider.EMPTY_RETURN) {
-		// MigrationDataType dCli = new MigrationDataType();
-		// dCli.setType(EnMigrationDataType.CLIENTE);
-		// dCli.setTotal(results.getCountClientes());
-		// dataTypes.add(dCli);
-		// }
-		//
-		// break;
-		//
-		// case DEPARTAMENTO:
-		//
-		// if (results.getCountDepartamento() != SQLDataProvider.EMPTY_RETURN) {
-		// MigrationDataType dDep = new MigrationDataType();
-		// dDep.setType(EnMigrationDataType.DEPARTAMENTO);
-		// dDep.setTotal(results.getCountDepartamento());
-		// dataTypes.add(dDep);
-		// }
-		//
-		// break;
-		//
-		// case GRUPO:
-		//
-		// if (results.getCountGrupo() != SQLDataProvider.EMPTY_RETURN) {
-		// MigrationDataType dGru = new MigrationDataType();
-		// dGru.setType(EnMigrationDataType.GRUPO);
-		// dGru.setTotal(results.getCountGrupo());
-		// dataTypes.add(dGru);
-		// }
-		//
-		// break;
-		//
-		// case MARCA:
-		//
-		// if (results.getCountMarca() != SQLDataProvider.EMPTY_RETURN) {
-		// MigrationDataType dMar = new MigrationDataType();
-		// dMar.setType(EnMigrationDataType.MARCA);
-		// dMar.setTotal(results.getCountClientes());
-		// dataTypes.add(dMar);
-		// }
-		//
-		// break;
-		//
-		// case ARMACAO:
-		//
-		// if (results.getCountArmacao() != SQLDataProvider.EMPTY_RETURN) {
-		// MigrationDataType dArm = new MigrationDataType();
-		// dArm.setType(EnMigrationDataType.ARMACAO);
-		// dArm.setTotal(results.getCountClientes());
-		// dataTypes.add(dArm);
-		// }
-		//
-		// break;
-		//
-		// default:
-		//
-		// break;
-		//
-		// }
-		//
-		// }
-		//
-		// report.setDataTypes(dataTypes);
-		//
-		// new MigrationReport().generateReport(report);
 
 	}
 
@@ -1130,52 +823,9 @@ public class GZMigration extends JFrame implements IValidateDataProvider,
 	public void setDataProvider() {
 
 		DatabaseType to = newSoftwarePanel.getDatabaseInfo().getDbType();
-		// DatabaseType from =
-		// currentSoftwarePanel.getDatabaseInfo().getDbType();
 		GZSoftwares software = newSoftwarePanel.getSoftware();
-		// GZSoftwares otherSoftware = currentSoftwarePanel.getSoftware();
 
 		dataProvider = new SQLDataProviderImpl(software, to);
-
-		// Instanciação dos DAOs
-		// if (newSoftwarePanel.getSoftware() == GZSoftwares.MERCOFLEX) {
-		//
-		// /*
-		// * if (currentSoftwarePanel.getSoftware() == EnSoftware.Superus) {
-		// *
-		// * dataProvider = new SuperusToMercoFlex(EnSoftware.MercoFlex,
-		// * EnSoftware.Superus, to, from);
-		// *
-		// * } else if (currentSoftwarePanel.getSoftware() ==
-		// * EnSoftware.Versatho) {
-		// *
-		// * dataProvider = new VersathoToMercoFlex(EnSoftware.MercoFlex,
-		// * EnSoftware.Versatho, to, from);
-		// *
-		// * } else if (currentSoftwarePanel.getSoftware() == EnSoftware.AES)
-		// * {
-		// *
-		// * dataProvider = new AESToMercoFlex(EnSoftware.MercoFlex,
-		// * EnSoftware.AES, to, from);
-		// *
-		// * } else if (currentSoftwarePanel.getSoftware() == EnSoftware.MRS)
-		// * {
-		// *
-		// * dataProvider = new MRSToMercoFlex(EnSoftware.MercoFlex,
-		// * EnSoftware.MRS, to, from);
-		// *
-		// * }
-		// */
-		//
-		// dataProvider = new SQLDataProviderImpl(software, otherSoftware, to,
-		// from);
-		//
-		// } else if (newSoftwarePanel.getSoftware() == GZSoftwares.MERCATTO) {
-		//
-		// dataProvider = new SQLDataProviderImpl(software, otherSoftware, to,
-		// from);
-		//
-		// }
 
 	}
 

@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import br.com.gz.migration.EnMigrationDataType;
 
+@Deprecated
 public class MercattoPolicy implements ColumnsPolicy {
 
 	// arraylist que vai guardar todas as colunas que faltam no select

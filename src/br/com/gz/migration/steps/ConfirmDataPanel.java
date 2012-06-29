@@ -15,16 +15,47 @@ import org.database.connection.InvalidDatabaseException;
 import br.com.gz.migration.EnMigrationDataType;
 import br.com.gz.migration.GZMigration;
 
+/**
+ * Classe que representa o painél de confirmação dos dados da migração
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class ConfirmDataPanel extends JPanel {
 
+	/**
+	 * Label que guarda a imagem do banco de dados de destino
+	 */
 	private JLabel lblTo;
+	
+	/**
+	 * Label que guarda a imagem do arquivo de dados
+	 */
 	private JLabel lblFrom;
 
+	/**
+	 * Label que contém o título do painél
+	 */
 	private JLabel lblBanner;
+	
+	/**
+	 * Label que guarda a imagem da seta que aponta o arquivo de dados para o banco de dados de destino
+	 */
 	private JLabel lblArrow;
+	
+	/**
+	 * Scroll que contém o JTextArea dos dados da migração
+	 */
 	private JScrollPane scrPane;
+	
+	/**
+	 * Área onde fica a lista dos dados da migração
+	 */
 	private JTextArea area;
 
+	/**
+	 * Construtor default
+	 */
 	public ConfirmDataPanel() {
 
 		setLayout(null);
@@ -43,6 +74,9 @@ public class ConfirmDataPanel extends JPanel {
 
 	}
 
+	/**
+	 * Constrói os componentes
+	 */
 	private void initComponents() {
 
 		lblBanner = new JLabel(
@@ -78,6 +112,11 @@ public class ConfirmDataPanel extends JPanel {
 
 	}
 
+	/**
+	 * Define a imagem do banco de dados de destino
+	 * 
+	 * @param to - banco de dados
+	 */
 	private void setDB(DatabaseType to) {
 
 		if (to == DatabaseType.MSSQL) {
@@ -99,6 +138,11 @@ public class ConfirmDataPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Carrega as informações no textArea
+	 * 
+	 * @param dataTypes - lista com os dados
+	 */
 	private void loadTextArea(ArrayList<EnMigrationDataType> dataTypes){
 		
 		area.setText("");
@@ -111,6 +155,12 @@ public class ConfirmDataPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Executa os métodos setDB e loadTextArea
+	 * 
+	 * @param dataTypes - dados da migração
+	 * @param dbTo - banco de dados de destino
+	 */
 	public void configure(ArrayList<EnMigrationDataType> dataTypes, DatabaseType dbTo){
 		
 		setDB(dbTo);
@@ -118,107 +168,4 @@ public class ConfirmDataPanel extends JPanel {
 		
 	}
 	
-//	private JLabel lblTo;
-//	private JLabel lblFrom;
-//
-//	public ConfirmDataPanel() {
-//
-//		setLayout(null);
-//		setSize(GZMigration.DIMENSION_PANEL);
-//		setLocation(GZMigration.POINT_PANEL);
-//		JLabel lblBanner = new JLabel(
-//				"<html>Clique em <font color=orange>Iniciar</font> para iniciar a migração<html>", new ImageIcon(
-//						(URL) getClass().getResource(
-//								"/img/navigation/arrow.png")), JLabel.LEFT);
-//		lblBanner.setBounds(30, 20, 600, 30);
-//		lblBanner.setFont(GZMigration.TITLE_FONT);
-//		add(lblBanner);
-//
-//		JLabel lblArrow = new JLabel(new ImageIcon((URL) getClass()
-//				.getResource("/img/common/from_to.png")));
-//		lblArrow.setBounds((getWidth() / 2) - 70, (getHeight() / 2) - 27, 140,
-//				55);
-//		add(lblArrow);
-//		lblFrom = new JLabel();
-//		lblFrom.setBounds(lblArrow.getX() - 200, (getHeight() / 2) - 50, 200,
-//				100);
-//		add(lblFrom);
-//		lblTo = new JLabel();
-//		lblTo.setBounds(lblArrow.getX() + lblArrow.getWidth(),
-//				(getHeight() / 2) - 50, 200, 100);
-//		add(lblTo);
-//
-//		lblTo.setHorizontalAlignment(JLabel.CENTER);
-//		lblFrom.setHorizontalAlignment(JLabel.CENTER);
-//		
-//		setVisible(false);
-//
-//	}
-//
-//	public void setDB(DatabaseType to, DatabaseType from)
-//			throws InvalidDatabaseException {
-//
-//		if (to == DatabaseType.MSSQL) {
-//
-//			lblTo.setIcon(new ImageIcon((URL) getClass().getResource(
-//					"/img/database/sqlserver.png")));
-//
-//		} else if (to == DatabaseType.MySQL) {
-//
-//			lblTo.setIcon(new ImageIcon((URL) getClass().getResource(
-//					"/img/database/mysql.png")));
-//
-//		} else if (to == DatabaseType.Oracle) {
-//
-//			lblTo.setIcon(new ImageIcon((URL) getClass().getResource(
-//					"/img/database/oracle.png")));
-//
-//		} else {
-//			throw new InvalidDatabaseException();
-//		}
-//
-//		switch (from) {
-//		case MSSQL:
-//
-//			lblFrom.setIcon(new ImageIcon((URL) getClass().getResource(
-//					"/img/database/sqlserver.png")));
-//
-//			break;
-//
-//		case MySQL:
-//
-//			lblFrom.setIcon(new ImageIcon((URL) getClass().getResource(
-//					"/img/database/mysql.png")));
-//
-//			break;
-//
-//		case Oracle:
-//
-//			lblFrom.setIcon(new ImageIcon((URL) getClass().getResource(
-//					"/img/database/oracle.png")));
-//
-//			break;
-//
-//		case Firebird:
-//
-//			lblFrom.setIcon(new ImageIcon((URL) getClass().getResource(
-//					"/img/database/firebird.png")));
-//
-//			break;
-//
-//		case PostgreeSQL:
-//
-//			lblFrom.setIcon(new ImageIcon((URL) getClass().getResource(
-//					"/img/database/postgresql.png")));
-//
-//			break;
-//
-//		default:
-//			
-//			throw new InvalidDatabaseException();
-//			
-//		}
-//
-//	}
-
 }

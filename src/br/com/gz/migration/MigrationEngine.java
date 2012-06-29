@@ -513,10 +513,10 @@ class MigrationEngine extends Thread implements IMigrationResults {
 					produtoDataFile = ProdutoDataFile.getInstance(myCfgTo
 							.getSoftware());
 
-					// totalProduto = myDAO.countProduto(cnnFrom);
 					totalProdutoRetrieved = myDAO.countProduto(produtoDataFile);
 
 				} catch (IOException e) {
+					
 					MigrationEngineMessages
 							.showErrorMessage(EnMigrationDataType.PRODUTO);
 					e.printStackTrace();
@@ -524,30 +524,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 							"failed to retrieve data from file");
 					LogFile.getInstance().writeInFile(e.getMessage());
 					continue;
-					// } catch (SecurityViolationException e) {
-					// showSecurityViolationMessage(EnMigrationDataType.PRODUTO);
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile("Security violation");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
-					// } catch (SQLException e) {
-					//
-					// showSyntaxErrorMessage(EnMigrationDataType.PRODUTO);
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile(
-					// "Syntax error on execute SQL statement");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// // LogFile.getInstance().writeInFile("");
-					// continue;
-					// } catch (InvalidCellTypeException e) {
-					//
-					// e.printStackTrace();
-					// continue;
-					// } catch (RequiredColumnNotFoundException e) {
-					// showPolicyViolationMessage(EnMigrationDataType.PRODUTO,
-					// myDAO.getProdutoColumnsNeeded());
-					// e.printStackTrace();
-					// continue;
+					
 				}
 				// se não estiver vazio
 				if (totalProdutoRetrieved != SQLDataProvider.EMPTY_RETURN) {
@@ -560,9 +537,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 								+ totalProdutoRetrieved);
 					} else {
 
-						// MigrationEngineMessages.showPolicyViolationMessage(
-						// EnMigrationDataType.PRODUTO,
-						// myDAO.getProdutoColumnsNeeded());
 						MigrationEngineMessages.showPolicyViolationMessage(
 								EnMigrationDataType.PRODUTO,
 								myDAO.getColumnsNeeded(produtoDataFile));
@@ -579,7 +553,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'departamento'");
-					// totalDepartamento = myDAO.countDepartamento(cnnFrom);
+					
 					totalDepartamentoRetrieved = myDAO
 							.countDepartamento(departamentoDataFile);
 				} catch (IOException e) {
@@ -590,18 +564,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 							"failed to retrieve data from file");
 					LogFile.getInstance().writeInFile(e.getMessage());
 					continue;
-					// } catch (SecurityViolationException e) {
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile("Security violation");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
-					// } catch (SQLException e) {
-					//
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile(
-					// "Syntax error on execute SQL statement");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
+					
 				}
 				if (totalDepartamentoRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalDepartamentoRetrieved != SQLDataProvider.POLICY_VIOLATION) {
@@ -611,9 +574,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 								+ totalDepartamentoRetrieved);
 					} else {
 
-						// MigrationEngineMessages.showPolicyViolationMessage(
-						// EnMigrationDataType.DEPARTAMENTO,
-						// myDAO.getDepartamentoColumnsNeeded());
 						MigrationEngineMessages.showPolicyViolationMessage(
 								EnMigrationDataType.DEPARTAMENTO,
 								myDAO.getColumnsNeeded(departamentoDataFile));
@@ -629,7 +589,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance()
 							.writeInFile("Trying to count 'grupo'");
-					// totalGrupo = myDAO.countGrupo(cnnFrom);
+					
 					totalGrupoRetrieved = myDAO.countGrupo(grupoDataFile);
 				} catch (IOException e) {
 					MigrationEngineMessages
@@ -639,18 +599,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 							"failed to retrieve data from file");
 					LogFile.getInstance().writeInFile(e.getMessage());
 					continue;
-					// } catch (SecurityViolationException e) {
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile("Security violation");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
-					// } catch (SQLException e) {
-					//
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile(
-					// "Syntax error on execute SQL statement");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
+					
 				}
 				if (totalGrupoRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalGrupoRetrieved != SQLDataProvider.POLICY_VIOLATION) {
@@ -662,7 +611,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 						MigrationEngineMessages.showPolicyViolationMessage(
 								EnMigrationDataType.GRUPO,
-								// myDAO.getGrupoColumnsNeeded());
 								myDAO.getColumnsNeeded(grupoDataFile));
 						continue;
 
@@ -676,7 +624,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'armacao'");
-					// totalArmacao = myDAO.countArmacao(cnnFrom);
+					
 					totalArmacaoRetrieved = myDAO.countArmacao(armacaoDataFile);
 				} catch (IOException e) {
 					MigrationEngineMessages
@@ -686,18 +634,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 							"failed to retrieve data from file");
 					LogFile.getInstance().writeInFile(e.getMessage());
 					continue;
-					// } catch (SecurityViolationException e) {
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile("Security violation");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
-					// } catch (SQLException e) {
-					//
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile(
-					// "Syntax error on execute SQL statement");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
+					
 				}
 				if (totalArmacaoRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalArmacaoRetrieved != SQLDataProvider.POLICY_VIOLATION) {
@@ -707,9 +644,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 								+ totalArmacaoRetrieved);
 					} else {
 
-						// MigrationEngineMessages.showPolicyViolationMessage(
-						// EnMigrationDataType.ARMACAO,
-						// myDAO.getArmacaoColumnsNeeded());
 						MigrationEngineMessages.showPolicyViolationMessage(
 								EnMigrationDataType.ARMACAO,
 								myDAO.getColumnsNeeded(armacaoDataFile));
@@ -726,7 +660,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance()
 							.writeInFile("Trying to count 'marca'");
-					// totalMarca = myDAO.countMarca(cnnFrom);
+					
 					totalMarcaRetrieved = myDAO.countMarca(marcaDataFile);
 				} catch (IOException e) {
 					MigrationEngineMessages
@@ -736,18 +670,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 							"failed to retrieve data from file");
 					LogFile.getInstance().writeInFile(e.getMessage());
 					continue;
-					// } catch (SecurityViolationException e) {
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile("Security violation");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
-					// } catch (SQLException e) {
-					//
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile(
-					// "Syntax error on execute SQL statement");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
+					
 				}
 				if (totalMarcaRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalMarcaRetrieved != SQLDataProvider.POLICY_VIOLATION) {
@@ -757,9 +680,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 								+ totalMarcaRetrieved);
 					} else {
 
-						// MigrationEngineMessages.showPolicyViolationMessage(
-						// EnMigrationDataType.MARCA,
-						// myDAO.getMarcaColumnsNeeded());
 						MigrationEngineMessages.showPolicyViolationMessage(
 								EnMigrationDataType.MARCA,
 								myDAO.getColumnsNeeded(marcaDataFile));
@@ -775,7 +695,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'fornecedor'");
-					// totalFornecedor = myDAO.countFornecedor(cnnFrom);
+					
 					totalFornecedorRetrieved = myDAO
 							.countFornecedor(fornecedorDataFile);
 				} catch (IOException e) {
@@ -786,18 +706,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 							"failed to retrieve data from file");
 					LogFile.getInstance().writeInFile(e.getMessage());
 					continue;
-					// } catch (SecurityViolationException e) {
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile("Security violation");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
-					// } catch (SQLException e) {
-					//
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile(
-					// "Syntax error on execute SQL statement");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
+					
 				}
 				if (totalFornecedorRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalFornecedorRetrieved != SQLDataProvider.POLICY_VIOLATION) {
@@ -807,9 +716,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 								+ totalFornecedorRetrieved);
 					} else {
 
-						// MigrationEngineMessages.showPolicyViolationMessage(
-						// EnMigrationDataType.FORNECEDOR,
-						// myDAO.getFornecedorColumnsNeeded());
 						MigrationEngineMessages.showPolicyViolationMessage(
 								EnMigrationDataType.FORNECEDOR,
 								myDAO.getColumnsNeeded(fornecedorDataFile));
@@ -825,7 +731,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'cliente'");
-					// totalCliente = myDAO.countCliente(cnnFrom);
+					
 					totalClienteRetrieved = myDAO.countCliente(clienteDataFile);
 				} catch (IOException e) {
 					MigrationEngineMessages
@@ -835,18 +741,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 							"failed to retrieve data from file");
 					LogFile.getInstance().writeInFile(e.getMessage());
 					continue;
-					// } catch (SecurityViolationException e) {
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile("Security violation");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
-					// } catch (SQLException e) {
-					//
-					// e.printStackTrace();
-					// LogFile.getInstance().writeInFile(
-					// "Syntax error on execute SQL statement");
-					// LogFile.getInstance().writeInFile(e.getMessage());
-					// continue;
+					
 				}
 				if (totalClienteRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalClienteRetrieved != SQLDataProvider.POLICY_VIOLATION) {
@@ -856,9 +751,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 								+ totalClienteRetrieved);
 					} else {
 
-						// MigrationEngineMessages.showPolicyViolationMessage(
-						// EnMigrationDataType.CLIENTE,
-						// myDAO.getClienteColumnsNeeded());
 						MigrationEngineMessages.showPolicyViolationMessage(
 								EnMigrationDataType.CLIENTE,
 								myDAO.getColumnsNeeded(clienteDataFile));
@@ -889,7 +781,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 		// ===========================
 		if (useProduto) {
 			// recupera todos os produtos e monta um iterator
-			// ArrayList<Produto> arP = myDAO.getProduto(cnnFrom);
 			ArrayList<Produto> arP = myDAO.getProduto(produtoDataFile);
 			Iterator<Produto> itP = arP.iterator();
 			// recupera a quantidade atual de produtos na tabela 'estoque'
@@ -960,7 +851,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				}
 
 				// se conseguir adicionar
-				// if (myDAO.addProduto(cnnTo, p)) {
 				if (added) {
 					// se o modo de inserção for de sobrepor
 					// adiciona para todas as lojas indicadas pela quantidade
@@ -976,8 +866,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 							included = myDAO.addProdutoLoja(cnnTo, p,
 									iType.ignoreCodes(), (i + 1));
 
-							// if (myDAO.addProdutoLoja(cnnTo, p,
-							// iType.ignoreCodes(), (i + 1))) {
 							if (included) {
 
 								iInfo.setValue(((count++) * 100) / totalData);
@@ -1075,7 +963,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			LogFile.getInstance().writeInFile("Inserting 'departamento'");
 			iInfo.setText("Inserindo registros na tabela de departamentos");
-			// ArrayList<Departamento> arD = myDAO.getDepartamento(cnnFrom);
 			ArrayList<Departamento> arD = myDAO
 					.getDepartamento(departamentoDataFile);
 			Iterator<Departamento> itD = arD.iterator();
@@ -1101,7 +988,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			LogFile.getInstance().writeInFile("Inserting 'grupo'");
 			iInfo.setText("Inserindo registros na tabela de grupos");
-			// ArrayList<Grupo> arG = myDAO.getGrupo(cnnFrom);
 			ArrayList<Grupo> arG = myDAO.getGrupo(grupoDataFile);
 			Iterator<Grupo> itG = arG.iterator();
 			while (itG.hasNext()) {
@@ -1126,7 +1012,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			LogFile.getInstance().writeInFile("Inserting 'armacao'");
 			iInfo.setText("Inserindo registros na tabela de armações");
-			// ArrayList<Armacao> arA = myDAO.getArmacao(cnnFrom);
 			ArrayList<Armacao> arA = myDAO.getArmacao(armacaoDataFile);
 			Iterator<Armacao> itA = arA.iterator();
 			while (itA.hasNext()) {
@@ -1151,7 +1036,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			LogFile.getInstance().writeInFile("Inserting 'marca'");
 			iInfo.setText("Inserindo registros na tabela de marcas");
-			// ArrayList<Marca> arM = myDAO.getMarca(cnnFrom);
 			ArrayList<Marca> arM = myDAO.getMarca(marcaDataFile);
 			Iterator<Marca> itM = arM.iterator();
 			while (itM.hasNext()) {
@@ -1166,20 +1050,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 		}
 
-		// if (useLoja) {
-		// iInfo.setText("Inserindo registros na tabela de lojas");
-		// // ArrayList<Loja> arL = myDAO.getLoja(cnnFrom);
-		// ArrayList<Loja> arL = myDAO.getLoja(cnnFrom);
-		// Iterator<Loja> itL = arL.iterator();
-		// while (itL.hasNext()) {
-		// Loja l = itL.next();
-		// myDAO.addLoja(cnnTo, l);
-		// iInfo.setValue(((count++) * 100) / totalData);
-		// }
-		// itL = null;
-		// arL = null;
-		// }
-
 		if (useCliente) {
 			LogFile.getInstance().writeInFile("Deleting 'cliente'");
 			iInfo.setText("Excluindo clientes antigos");
@@ -1190,7 +1060,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			LogFile.getInstance().writeInFile("Inserting 'cliente'");
 			iInfo.setText("Inserindo registros na tabela de clientes");
-			// ArrayList<Cliente> arC = myDAO.getCliente(cnnFrom);
 			ArrayList<Cliente> arC = myDAO.getCliente(clienteDataFile);
 			Iterator<Cliente> itC = arC.iterator();
 			while (itC.hasNext()) {
@@ -1215,7 +1084,6 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			LogFile.getInstance().writeInFile("Inserting 'fornecedor'");
 			iInfo.setText("Inserindo registros na tabela de fornecedores");
-			// ArrayList<Fornecedor> arF = myDAO.getFornecedor(cnnFrom);
 			ArrayList<Fornecedor> arF = myDAO.getFornecedor(fornecedorDataFile);
 			Iterator<Fornecedor> itF = arF.iterator();
 			while (itF.hasNext()) {
@@ -1242,56 +1110,46 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	@Override
 	public int getCountRegisteredProdutos() {
-		// TODO Auto-generated method stub
-		// return (useProduto) ? (toAppend) ? totalProdutoFinal
-		// - totalProdutoInicio : totalProdutoRegistered
 		return (useProduto) ? totalProdutoRegistered
 				: SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountClientes() {
-		// TODO Auto-generated method stub
 		return (useCliente) ? totalClienteRetrieved
 				: SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountFornecedores() {
-		// TODO Auto-generated method stub
 		return (useFornecedor) ? totalFornecedorRetrieved
 				: SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountMarca() {
-		// TODO Auto-generated method stub
 		return (useMarca) ? totalMarcaRetrieved : SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountDepartamento() {
-		// TODO Auto-generated method stub
 		return (useDepartamento) ? totalDepartamentoRetrieved
 				: SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountGrupo() {
-		// TODO Auto-generated method stub
 		return (useGrupo) ? totalGrupoRetrieved : SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountArmacao() {
-		// TODO Auto-generated method stub
 		return (useArmacao) ? totalArmacaoRetrieved
 				: SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountLoja() {
-		// TODO Auto-generated method stub
 		return (useLoja) ? totalLoja : SQLDataProvider.EMPTY_RETURN;
 	}
 
@@ -1571,10 +1429,8 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	@Override
 	public int getCountIncludedProdutos() {
-
 		return (useProduto) ? totalProdutoIncluded
 				: SQLDataProvider.EMPTY_RETURN;
-
 	}
 
 }

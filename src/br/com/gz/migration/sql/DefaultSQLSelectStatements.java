@@ -11,8 +11,10 @@ import br.com.gz.migration.EnMigrationDataType;
 import br.com.gz.migration.file.LogFile;
 import br.com.gz.util.GZSoftwares;
 
+@Deprecated
 public final class DefaultSQLSelectStatements {
 
+	@Deprecated
 	public static final String VERSATHO_SELECT_PRODUTO = 
 			"select \n"
 			+ "		codigo 																					as cdprod,\n"
@@ -42,6 +44,7 @@ public final class DefaultSQLSelectStatements {
 			+ " 	case when codaliquota = 1 then 0.0 when codaliquota = 2 then 0.0 when codaliquota = 3 then 0.0 when codaliquota = 4 then 7.0 when codaliquota = 5 then 12.0 when codaliquota = 6 then 18.0 when codaliquota = 7 then 25.0 end as icmcompra \n"
 			+ "from " 
 			+ "		produtos";
+	@Deprecated
 	public static final String VERSATHO_SELECT_CLIENTE = 
 			"select \n"
 			+ "		codigo 												as codigo,\n"
@@ -64,6 +67,7 @@ public final class DefaultSQLSelectStatements {
 			+ " 	coalesce(substring(nomefantasia from 1 for 25),' ') as nomfan \n"
 			+ "from \n" 
 			+ "		clientes";
+	@Deprecated
 	public static final String VERSATHO_SELECT_FORNECEDOR = 
 			"select \n"
 			+ "		codigo 											as codigo,\n"
@@ -83,16 +87,26 @@ public final class DefaultSQLSelectStatements {
 			+ " 	coalesce(inscest,0) 							as insest \n" 
 			+ "from \n"
 			+ "		fornecedores";
+	@Deprecated
 	public static final String VERSATHO_SELECT_GRUPO = "select codigo, descricao from grupos";
+	@Deprecated
 	public static final String VERSATHO_SELECT_DEPARTAMENTO = "select codigo, descricao from secoes";
+	@Deprecated
 	public static final String VERSATHO_SELECT_ARMACAO = "";
+	@Deprecated
 	public static final String VERSATHO_SELECT_MARCA = "";
+	@Deprecated
 	public static final String VERSATHO_SELECT_NF_ENTRADA = "";
+	@Deprecated
 	public static final String VERSATHO_SELECT_NF_SAIDA = "";
+	@Deprecated
 	public static final String VERSATHO_SELECT_CONTA_PAGAR = "";
+	@Deprecated
 	public static final String VERSATHO_SELECT_CONTA_RECEBER = "";
+	@Deprecated
 	public static final String VERSATHO_SELECT_MOVTO_VENDA = "";
-
+	
+	@Deprecated
 	public static final String AES_SELECT_PRODUTO = 
 			"select \n"
 			+ " 	substring(i1.idItens,4) as cdprod,\n"
@@ -140,7 +154,9 @@ public final class DefaultSQLSelectStatements {
 			+ "		itens_custo as i4 \n" 
 			+ "on \n" 
 			+ " 	i1.idItens = i4.idItens";
+	@Deprecated
 	public static final String AES_SELECT_CLIENTE = "";
+	@Deprecated
 	public static final String AES_SELECT_FORNECEDOR = 
 			"select \n" +
 			"		substring(p.idPN,3) as codigo,\n" +
@@ -160,16 +176,26 @@ public final class DefaultSQLSelectStatements {
 			"		enderecos as e \n" +
 			"on \n" +
 			"		p.idEndereco = e.idEnderecos";
+	@Deprecated
 	public static final String AES_SELECT_GRUPO = "select descricao from grupo_novo";
+	@Deprecated
 	public static final String AES_SELECT_DEPARTAMENTO = "";
+	@Deprecated
 	public static final String AES_SELECT_ARMACAO = "";
+	@Deprecated
 	public static final String AES_SELECT_MARCA = "";
+	@Deprecated
 	public static final String AES_SELECT_NF_ENTRADA = "";
+	@Deprecated
 	public static final String AES_SELECT_NF_SAIDA = "";
+	@Deprecated
 	public static final String AES_SELECT_CONTA_PAGAR = "";
+	@Deprecated
 	public static final String AES_SELECT_CONTA_RECEBER = "";
+	@Deprecated
 	public static final String AES_SELECT_MOVTO_VENDA = "";
 
+	@Deprecated
 	public static final String MRS_SELECT_PRODUTO = 
 			"select \n" +
 			"		p.codigo as cdprod,  \n" +
@@ -203,6 +229,7 @@ public final class DefaultSQLSelectStatements {
 			"		p.icms_entrada = i.codigo  \n" +
 			"order by	 \n" +
 			"		p.codigo \n";
+	@Deprecated
 	public static final String MRS_SELECT_CLIENTE = 
 			"select  \n" +
 			"		codigo as codigo, \n" +
@@ -221,6 +248,7 @@ public final class DefaultSQLSelectStatements {
 			"		codigo_municipio as ibge  \n" +
 			"from  \n" +
 			"		clientes \n";
+	@Deprecated
 	public static final String MRS_SELECT_FORNECEDOR = 
 			"select \n"
 					+"		distinct  \n"
@@ -241,6 +269,7 @@ public final class DefaultSQLSelectStatements {
 					+"		pe.telefone as telefone\n"
 					+"from  \n"
 					+"		fornecedores as pe";
+	@Deprecated
 	public static final String MRS_SELECT_GRUPO = 
 			"select  \n" +
 			"		distinct  \n" +
@@ -250,8 +279,11 @@ public final class DefaultSQLSelectStatements {
 			"		cad_log_sgru  \n" +
 			"order by  \n" +
 			"		sgru_seq";
+	@Deprecated
 	public static final String MRS_SELECT_DEPARTAMENTO = "";
+	@Deprecated
 	public static final String MRS_SELECT_ARMACAO = "";
+	@Deprecated
 	public static final String MRS_SELECT_MARCA = 
 			"select distinct  \n" +
 			"		cod_marca as CODIGO,  \n" +
@@ -260,12 +292,18 @@ public final class DefaultSQLSelectStatements {
 			"		cad_log_marca  \n" +
 			"order by  \n" +
 			"		cod_marca";
+	@Deprecated
 	public static final String MRS_SELECT_NF_ENTRADA = "";
+	@Deprecated
 	public static final String MRS_SELECT_NF_SAIDA = "";
+	@Deprecated
 	public static final String MRS_SELECT_CONTA_PAGAR = "";
+	@Deprecated
 	public static final String MRS_SELECT_CONTA_RECEBER = "";
+	@Deprecated
 	public static final String MRS_SELECT_MOVTO_VENDA = "";
 
+	@Deprecated
 	public static final String SUPERUS_SELECT_PRODUTO = 
 			"select \n"
 			+ "		distinct \n"
@@ -354,18 +392,30 @@ public final class DefaultSQLSelectStatements {
 			"		c.codigo = p5.classificacao \n"
 			+ "order by \n" 
 			+ "		p2.codigo, " + "p2.codbarra " + " desc ";
+	@Deprecated
 	public static final String SUPERUS_SELECT_CLIENTE = "";
+	@Deprecated
 	public static final String SUPERUS_SELECT_FORNECEDOR = "";
+	@Deprecated
 	public static final String SUPERUS_SELECT_GRUPO = "";
+	@Deprecated
 	public static final String SUPERUS_SELECT_DEPARTAMENTO = "select codigo, nome as descricao from categoria";
+	@Deprecated
 	public static final String SUPERUS_SELECT_ARMACAO = "select codigo, nome as descricao from grupo";
+	@Deprecated
 	public static final String SUPERUS_SELECT_MARCA = "select codigo, nome as descricao from subgrupo";
+	@Deprecated
 	public static final String SUPERUS_SELECT_NF_ENTRADA = "";
+	@Deprecated
 	public static final String SUPERUS_SELECT_NF_SAIDA = "";
+	@Deprecated
 	public static final String SUPERUS_SELECT_CONTA_PAGAR = "";
+	@Deprecated
 	public static final String SUPERUS_SELECT_CONTA_RECEBER = "";
+	@Deprecated
 	public static final String SUPERUS_SELECT_MOVTO_VENDA = "";
 
+	@Deprecated
 	public static String getFromFile(GZSoftwares software,
 			EnMigrationDataType dataType) throws IOException {
 
@@ -386,6 +436,7 @@ public final class DefaultSQLSelectStatements {
 
 	}
 
+	@Deprecated
 	private static String readFile(File f) {
 
 		try {

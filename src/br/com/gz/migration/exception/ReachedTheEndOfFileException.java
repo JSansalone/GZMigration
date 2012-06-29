@@ -8,6 +8,9 @@ package br.com.gz.migration.exception;
  */
 public class ReachedTheEndOfFileException extends Exception {
 
+	/**
+	 * Construtor default
+	 */
 	public ReachedTheEndOfFileException() {
 		super("Não há mais registros para ler! Alcançado o fim do arquivo.");
 	}

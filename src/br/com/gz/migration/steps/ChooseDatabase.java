@@ -14,8 +14,20 @@ import org.database.connection.DatabaseType;
 
 import br.com.gz.migration.IDatabaseMutable;
 
+/**
+ * Classe que representa um diálogo para escolha do banco de dados
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class ChooseDatabase extends JDialog {
 
+	/**
+	 * Construtor que recebe algum objeto que implementa {@link IDatabaseMutable} e um flag se o banco de dados é do software da GZ
+	 * 
+	 * @param mutable - objeto {@link IDatabaseMutable}
+	 * @param forGZ - true se for da GZ, false caso contrário
+	 */
 	public ChooseDatabase(final IDatabaseMutable mutable, boolean forGZ) {
 
 		setSize(300, 200);

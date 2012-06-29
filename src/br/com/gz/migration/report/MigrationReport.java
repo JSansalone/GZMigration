@@ -13,16 +13,35 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
 
+/**
+ * Classe que gera o relatório final
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class MigrationReport {
 
+	/**
+	 * Variável que guarda os dados da migração
+	 */
 	private MigrationReportData data;
 	
+	/**
+	 * Construtor que recebe os dados para alimentar o relatório
+	 * 
+	 * @param data - dados da migração
+	 */
 	public MigrationReport(MigrationReportData data) {
 
 		this.data = data;
 		
 	}
 	
+	/**
+	 * Método que constrói o relatório
+	 * 
+	 * @return - true se construir com sucesso, false caso contrário
+	 */
 	public boolean buildReport() {
 
 		JRBeanCollectionDataSource jrb = new JRBeanCollectionDataSource(data.getBeans());

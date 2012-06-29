@@ -8,6 +8,9 @@ package br.com.gz.migration.exception;
  */
 public class ReachedTheStartOfFileException extends Exception {
 
+	/**
+	 * Construtor default
+	 */
 	public ReachedTheStartOfFileException() {
 		super("Não há mais registros para ler! Alcançado o início do arquivo.");
 	}
