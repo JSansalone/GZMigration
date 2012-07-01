@@ -15,7 +15,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  * Classe que possui métodos úteis para gravar os registros não inseridos em
  * arquivos .xls
  * 
- * @author Jonathan
+ * @author Jonathan Sansalone
  * 
  */
 public class DataFileWriter {
@@ -23,9 +23,12 @@ public class DataFileWriter {
 	/**
 	 * Método que grava os registros não inseridos em um arquivo .xls
 	 * 
-	 * @param file - O arquivo que conterá os registros
-	 * @param header - Header com o nome das colunas
-	 * @param rows - Collection com os registros
+	 * @param file
+	 *            - O arquivo que conterá os registros
+	 * @param header
+	 *            - Header com o nome das colunas
+	 * @param rows
+	 *            - Collection com os registros
 	 */
 	public static void writeRowBatch(File file, Object[] header,
 			HashMap<Integer, Object[]> rows) {

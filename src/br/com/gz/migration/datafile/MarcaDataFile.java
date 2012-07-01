@@ -17,10 +17,26 @@ import br.com.gz.util.GZSoftwares;
 import br.com.gz.util.MercattoFormat;
 import br.com.gz.util.MercoFlexFormat;
 
+/**
+ * Classe que representa o arquivo de dados de marcas
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class MarcaDataFile extends DataFile {
 
+	/**
+	 * instância
+	 */
 	private static MarcaDataFile instance;
 
+	/**
+	 * Construtor que recebe o software a ser implantado
+	 * 
+	 * @param software - software a ser implantado
+	 * @throws InvalidMigrationDataTypeException - se o tipo de dado não for suportado
+	 * @throws IOException - se não for possível ler o arquivo
+	 */
 	private MarcaDataFile(GZSoftwares software)
 			throws InvalidMigrationDataTypeException, IOException {
 		super(software, EnMigrationDataType.MARCA);

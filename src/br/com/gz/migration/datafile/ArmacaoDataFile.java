@@ -17,10 +17,26 @@ import br.com.gz.util.GZSoftwares;
 import br.com.gz.util.MercattoFormat;
 import br.com.gz.util.MercoFlexFormat;
 
+/**
+ * Classe que representa o arquivo de dados de armações
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class ArmacaoDataFile extends DataFile {
 
+	/**
+	 * instância
+	 */
 	private static ArmacaoDataFile instance;
 
+	/**
+	 * Construtor que recebe o software a ser implantado
+	 * 
+	 * @param software - software a ser implantado
+	 * @throws InvalidMigrationDataTypeException - se o tipo de dado não for suportado
+	 * @throws IOException - se não for possível ler o arquivo
+	 */
 	private ArmacaoDataFile(GZSoftwares software)
 			throws InvalidMigrationDataTypeException, IOException {
 		super(software, EnMigrationDataType.ARMACAO);
