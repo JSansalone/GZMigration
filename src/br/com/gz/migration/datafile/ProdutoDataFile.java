@@ -34,43 +34,6 @@ public class ProdutoDataFile extends DataFile {
 	 */
 	private static ProdutoDataFile instance;
 
-//	/**
-//	 * Posição atual no arquivo
-//	 */
-//	private int currentIndex = 1;
-//
-//	/**
-//	 * Posição do último registro do arquivo
-//	 */
-//	private int lastIndex;
-//
-//	/**
-//	 * Guarda a quantidade de colunas obrigatórias para não pesquisar todas as
-//	 * vezes que precisar
-//	 */
-//	private int qtyRequiredColumns;
-//
-//	/**
-//	 * Array que guarda todas as colunas obrigatórias
-//	 */
-//	private EnMercoFlexRequiredColumns[] requiredColumns;
-//
-//	/**
-//	 * Software que está sendo implantado
-//	 */
-//	private GZSoftwares software;
-//
-//	/**
-//	 * Variável que guarda todos os que não foram inseridos por não possuirem
-//	 * todos os valores obrigatórios ou com valores inválidos
-//	 */
-//	private HashMap<Integer, Object[]> notInserted;
-//	
-//	/**
-//	 * Variável que guarda todas as colunas não encontradas
-//	 */
-//	private ArrayList<String> notFound;
-
 	/**
 	 * Construtor default para passar o tipo de dado para o construtor da
 	 * superclasse
@@ -219,7 +182,7 @@ public class ProdutoDataFile extends DataFile {
 			o = getRowData(currentIndex++);
 			if (!checkValuesPolicy(o)) {
 				passed = false;
-				if (!notInserted.containsKey(currentIndex - 1)) {
+				if (!notInserted.containsKey(currentIndex - 1)) {//44648 42
 					notInserted.put(currentIndex - 1, o);
 				}
 			} else {
