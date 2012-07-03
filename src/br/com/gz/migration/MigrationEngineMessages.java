@@ -15,6 +15,22 @@ import br.com.gz.migration.file.LogFile;
 class MigrationEngineMessages {
 
 	/**
+	 * Mostra mensagem de erro de arquivo não encontrado
+	 * 
+	 * @param type
+	 *            - tipo de dado
+	 */
+	static void showFileNotFoundErrorMessage(EnMigrationDataType type) {
+
+		LogFile.getInstance().writeInFile("Showing error message");
+
+		JOptionPane.showMessageDialog(null, "O arquivo " + type.toString()
+				+ ".xls não foi encontrado!", "Arquivo não encontrado",
+				JOptionPane.ERROR_MESSAGE);
+
+	}
+
+	/**
 	 * Mostra mensagem de erro genérica
 	 * 
 	 * @param type

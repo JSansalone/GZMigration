@@ -87,11 +87,11 @@ public enum EnMercoFlexInsertStatement {
 	 */
 	public String getSQL(DatabaseType dbType) {
 
-		String sql = "";
+		StringBuilder sql = new StringBuilder();
 
 		if (dbType == DatabaseType.MySQL) {
 
-			sql = "insert into " + category.getTableName();
+			sql.append("insert into " + category.getTableName());
 
 			String columns = "";
 			String values = "";
@@ -124,11 +124,80 @@ public enum EnMercoFlexInsertStatement {
 			columns = "(" + columns.substring(0, columns.length() - 1) + ")";
 			values = "(" + values.substring(0, values.length() - 1) + ")";
 
-			sql += columns + " values" + values + onDuplicate;
+			sql.append(columns + " values" + values + onDuplicate);
 
+		}else if(dbType == DatabaseType.MSSQL){
+			
+//			BEGIN TRAN
+//			-- if row already exists in a table update it else insert new row
+//			IF EXISTS (SELECT * FROM t1 WHERE id = 6)
+//			BEGIN 
+//			    -- see what locks are being held from select 
+//			    SELECT  resource_type, request_mode, resource_description, 'ROW NOT IN TABLE - Exists - after select'
+//			    FROM    sys.dm_tran_locks
+//
+//			    UPDATE  t1
+//			    SET     name1 = 'name 6'
+//			    WHERE   id = 6
+//
+//			    SELECT  resource_type, request_mode, resource_description, 'ROW NOT IN TABLE - Exists - after update'
+//			    FROM    sys.dm_tran_locks
+//			END 
+//			ELSE
+//			BEGIN 
+//			    -- see what locks are being held from select 
+//			    SELECT  resource_type, request_mode, resource_description, 'ROW NOT IN TABLE - Exists - after select'
+//			    FROM    sys.dm_tran_locks
+//
+//			    INSERT INTO t1
+//			    SELECT  6, 'name 6'
+//			    
+//			    SELECT  resource_type, request_mode, resource_description, 'ROW NOT IN TABLE - Exists - after insert'
+//			    FROM    sys.dm_tran_locks
+//			END 
+//			ROLLBACK
+			
+			sql.append("begin tran ");
+			sql.append("if not exists (select * from "+category.getTableName()+" where ");
+			for(EnMercoFlexRequiredColumns rq : EnMercoFlexRequiredColumns.filterValues(this.category)){
+				if(rq.isKey()){
+					sql.append(rq.getColumnName()+"=? and ");
+				}
+			}
+			sql.delete(sql.length()-5, sql.length());
+			sql.append(")");
+			sql.append(" begin ");
+			sql.append("insert into " + category.getTableName());
+
+			String columns = "";
+			String values = "";
+
+			for (EnMercoFlexRequiredColumns requiredColumn : EnMercoFlexRequiredColumns
+					.values()) {
+
+				for (EnColumnsCategory categ : requiredColumn.getCategories()) {
+
+					if (categ == this.category) {
+
+						columns += requiredColumn.getColumnName() + ",";
+						values += "?,";
+
+					}
+
+				}
+
+			}
+
+			columns = "(" + columns.substring(0, columns.length() - 1) + ")";
+			values = "(" + values.substring(0, values.length() - 1) + ")";
+
+			sql.append(columns + " values" + values);
+			sql.append(" end ");
+			sql.append("commit");
+			
 		}
 
-		return sql;
+		return sql.toString();
 
 	}
 

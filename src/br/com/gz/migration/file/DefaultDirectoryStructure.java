@@ -5,17 +5,23 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.database.table.Estoque;
+
+import br.com.gz.migration.EnMigrationDataType;
+import br.com.gz.migration.datafile.DataFileWriter;
+import br.com.gz.migration.policy.EnColumnsCategory;
+import br.com.gz.migration.policy.EnMercoFlexRequiredColumns;
+
 /**
  * Classe que trabalha com os arquivos de instruções SQL
  * 
  * @author Jonathan Sansalone
- *
+ * 
  */
-@Deprecated
 public class DefaultDirectoryStructure {
 
 	/**
-	 * Método que cria os arquivos
+	 * Método que cria os arquivos .xls
 	 */
 	public void createDefaultStructure() {
 
@@ -25,60 +31,33 @@ public class DefaultDirectoryStructure {
 
 			if (root.mkdir()) {
 
-				
+				DataFileWriter.createFile(EnMercoFlexRequiredColumns
+						.filterValues(EnColumnsCategory.ESTOQUE,
+								EnColumnsCategory.ESTOQUE_LOJA,
+								EnColumnsCategory.ESTOQUE_TRIBUTACAO,
+								EnColumnsCategory.ESTOQUE_SALDO),
+						EnMigrationDataType.PRODUTO);
+				DataFileWriter.createFile(EnMercoFlexRequiredColumns
+						.filterValues(EnColumnsCategory.DEPARTAMENTO),
+						EnMigrationDataType.DEPARTAMENTO);
+				DataFileWriter.createFile(EnMercoFlexRequiredColumns
+						.filterValues(EnColumnsCategory.GRUPO),
+						EnMigrationDataType.GRUPO);
+				DataFileWriter.createFile(EnMercoFlexRequiredColumns
+						.filterValues(EnColumnsCategory.ARMACAO),
+						EnMigrationDataType.ARMACAO);
+				DataFileWriter.createFile(EnMercoFlexRequiredColumns
+						.filterValues(EnColumnsCategory.MARCA),
+						EnMigrationDataType.MARCA);
+				DataFileWriter.createFile(EnMercoFlexRequiredColumns
+						.filterValues(EnColumnsCategory.CLIENTES),
+						EnMigrationDataType.CLIENTE);
+				DataFileWriter.createFile(EnMercoFlexRequiredColumns
+						.filterValues(EnColumnsCategory.FORNECEDOR),
+						EnMigrationDataType.FORNECEDOR);
 
 			}
 
-		}
-
-	}
-
-	/**
-	 * método que grava dados em um arquivo
-	 * 
-	 * @param f - arquivo
-	 * @param text - texto
-	 * @return - true se gravar com sucesso, false caso contrário
-	 */
-	private boolean write(File f, String text) {
-
-		try {
-
-			PrintWriter pr = new PrintWriter(f);
-
-			text = text.replace("\n", System.getProperty("line.separator"));
-
-			pr.write(text);
-			pr.close();
-
-			return true;
-
-		} catch (FileNotFoundException e) {
-			// johnny Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-
-	}
-
-	/**
-	 * Método que cria um arquivo
-	 * 
-	 * @param f - arquivo
-	 * @return - true se criar com sucesso, false caso contrário
-	 */
-	private boolean tryToCreate(File f) {
-
-		try {
-
-			f.createNewFile();
-
-			return true;
-
-		} catch (IOException e) {
-			// johnny Auto-generated catch block
-			e.printStackTrace();
-			return false;
 		}
 
 	}

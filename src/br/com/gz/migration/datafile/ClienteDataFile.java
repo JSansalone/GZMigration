@@ -1,6 +1,7 @@
 package br.com.gz.migration.datafile;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -65,7 +66,7 @@ public class ClienteDataFile extends DataFile {
 		if (instance == null) {
 
 			try {
-
+				System.out.println("aqui");
 				instance = new ClienteDataFile(software);
 
 			} catch (IOException e) {
@@ -233,12 +234,16 @@ public class ClienteDataFile extends DataFile {
 		c.setSexo(o[i++].toString());
 		
 		Calendar cldn = Calendar.getInstance();
-		Date dtdn = new Date(o[i++].toString());
+		Date dtdn = (Date)o[i++];
+	//	Date dtdn = new Date();
+	//	dtdn.setTime(new Long(o[i++].toString()));
 		cldn.setTime(dtdn);
 		c.setDataNascimento(cldn);
 		
 		Calendar cldc = Calendar.getInstance();
-		Date dtdc = new Date(o[i++].toString());
+		Date dtdc = (Date)o[i++];
+//		Date dtdc = new Date();
+//		dtdc.setTime(new Long(o[i++].toString()));
 		cldc.setTime(dtdc);
 		c.setDataCadastro(cldc);
 		
@@ -262,7 +267,7 @@ public class ClienteDataFile extends DataFile {
 		c.setEnderecoEntrega(format.toEndereco(o[i++].toString()));
 		c.setCepEntrega(format.toNumeric(o[i++].toString(), false));
 		c.setNumeroEnderecoEntrega(new Integer(format.toNumeric(o[i++].toString(), false)));
-		c.setTelEntrega(format.toNumeric(o[i++].toString(), false));
+		c.setTelefoneEntrega(format.toNumeric(o[i++].toString(), false));
 		c.setSituacao(format.toSituacao(o[i++].toString()));
 		
 		return c;
@@ -317,12 +322,16 @@ public class ClienteDataFile extends DataFile {
 		c.setSexo(o[i++].toString());
 		
 		Calendar cldn = Calendar.getInstance();
-		Date dtdn = new Date(o[i++].toString());
+		Date dtdn = (Date)o[i++];
+	//	Date dtdn = new Date();
+	//	dtdn.setTime(new Long(o[i++].toString()));
 		cldn.setTime(dtdn);
 		c.setDataNascimento(cldn);
 		
 		Calendar cldc = Calendar.getInstance();
-		Date dtdc = new Date(o[i++].toString());
+		Date dtdc = (Date)o[i++];
+//		Date dtdc = new Date();
+//		dtdc.setTime(new Long(o[i++].toString()));
 		cldc.setTime(dtdc);
 		c.setDataCadastro(cldc);
 		
@@ -346,7 +355,7 @@ public class ClienteDataFile extends DataFile {
 		c.setEnderecoEntrega(format.toEndereco(o[i++].toString()));
 		c.setCepEntrega(format.toNumeric(o[i++].toString(), false));
 		c.setNumeroEnderecoEntrega(new Integer(format.toNumeric(o[i++].toString(), false)));
-		c.setTelEntrega(format.toNumeric(o[i++].toString(), false));
+		c.setTelefoneEntrega(format.toNumeric(o[i++].toString(), false));
 		c.setSituacao(format.toSituacao(o[i++].toString()));
 		
 		return c;
@@ -385,7 +394,7 @@ public class ClienteDataFile extends DataFile {
 
 	@Override
 	protected Object[] getRowData(int rowIndex) {
-		
+
 		return DataFileReader.getCellValues(dataSheet.getRow(rowIndex),
 				qtyRequiredColumns);
 		

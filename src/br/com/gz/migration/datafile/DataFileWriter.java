@@ -11,6 +11,9 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+import br.com.gz.migration.EnMigrationDataType;
+import br.com.gz.migration.policy.EnMercoFlexRequiredColumns;
+
 /**
  * Classe que possui métodos úteis para gravar os registros não inseridos em
  * arquivos .xls
@@ -79,6 +82,34 @@ public class DataFileWriter {
 		} catch (IOException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+		}
+
+	}
+
+	public static void createFile(EnMercoFlexRequiredColumns[] columns,
+			EnMigrationDataType dataType) {
+
+		try {
+
+			File root = new File("data");
+			if (!root.exists())
+				root.mkdir();
+
+			File f = new File(root, dataType.toString() + ".xls");
+
+			HSSFWorkbook w = new HSSFWorkbook();
+			HSSFRow r = w.createSheet().createRow(0);
+
+			for (int i = 0; i < columns.length; i++) {
+				r.createCell(i).setCellValue(columns[i].getLabel());
+			}
+
+			w.write(new FileOutputStream(f));
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
 		}
 
 	}

@@ -36,7 +36,6 @@ import br.com.gz.migration.file.LogFile;
 import br.com.gz.migration.report.MigrationBean;
 import br.com.gz.migration.report.MigrationReport;
 import br.com.gz.migration.report.MigrationReportData;
-import br.com.gz.migration.software.SQLDataProviderImpl;
 import br.com.gz.migration.steps.ConfirmDataPanel;
 import br.com.gz.migration.steps.CurrentSoftwarePanel;
 import br.com.gz.migration.steps.CustomerNamePanel;

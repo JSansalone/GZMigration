@@ -1,18 +1,12 @@
 package br.com.gz.migration.teste;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
 
-import javax.swing.ImageIcon;
-
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.view.JasperViewer;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class Teste {
 
@@ -23,6 +17,26 @@ public class Teste {
 	}
 
 	public Teste() {
+
+		try {
+			
+			HSSFWorkbook w = new HSSFWorkbook();
+			w.createSheet().createRow(0).createCell(0).setCellValue("11/11/2011");
+			w.write(new FileOutputStream("data/teste.xls"));
+			
+			w = new HSSFWorkbook(new FileInputStream("data/teste.xls"));
+			
+			Date d = new Date(w.getSheetAt(0).getRow(0).getCell(0).getStringCellValue());
+			
+			System.out.println(d.toString());
+			
+		} catch (FileNotFoundException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// johnny Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

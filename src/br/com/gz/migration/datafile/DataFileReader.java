@@ -39,8 +39,6 @@ public class DataFileReader {
 		// array de String para guardar os nomes
 		String[] names = new String[maximumColumns];
 
-		// se a linha estiver com null, preenche o array com a constante
-		// DataFile.NULL_ROW
 		if (row == null) {
 
 			for (int i = 0; i < maximumColumns; i++) {
@@ -60,17 +58,9 @@ public class DataFileReader {
 				names[i] = DataFile.CELL_VALUE_NULL;
 				// senão
 			} else {
-				// pega o tipo de dado
-				// cellType = cell.getCellType();
+				
 				cell.setCellType(HSSFCell.CELL_TYPE_STRING);
 				names[i] = cell.getStringCellValue().toUpperCase();
-				// se não for texto, lança uma exception
-				// if (cellType != HSSFCell.CELL_TYPE_STRING) {
-				// names[i] = DataFile.INVALID_CELL_TYPE;
-				// } else {
-				// // guarda o valor da célula
-				// names[i] = cell.getStringCellValue().toUpperCase();
-				// }
 
 			}
 
@@ -120,16 +110,9 @@ public class DataFileReader {
 
 		for (int i = 0; i < maximumColumns; i++) {
 
-			// if(i==2){
-			//
-			// cell = row.getCell(i);
-			// cell.setCellType(cell.CELL_TYPE_STRING);
-			// System.out.println(cell.getStringCellValue());
-			//
-			// }
-
 			// pega a célula
 			cell = row.getCell(i);
+
 			// se for null lança uma exception
 			if (cell == null) {
 				values[i] = DataFile.CELL_VALUE_NULL;
@@ -144,24 +127,23 @@ public class DataFileReader {
 					values[i] = cell.getStringCellValue().toUpperCase().trim()
 							.equals("") ? DataFile.CELL_VALUE_NULL : cell
 							.getStringCellValue().toUpperCase();
+
 					break;
 
 				case HSSFCell.CELL_TYPE_NUMERIC:
 
+					if (HSSFDateUtil.isCellDateFormatted(cell)) {
+
+						values[i] = cell.getDateCellValue();
+						break;
+
+					}
+
 					cell.setCellType(HSSFCell.CELL_TYPE_STRING);
 
-					values[i] = cell.getStringCellValue().toUpperCase().trim()
-							.equals("") ? DataFile.CELL_VALUE_NULL : cell
-							.getStringCellValue().toUpperCase();
+					values[i] = cell.getStringCellValue().equals("") ? DataFile.CELL_VALUE_NULL
+							: cell.getStringCellValue();
 
-					// Double aux = cell.getNumericCellValue();
-					//
-					// if (aux - Math.floor(aux) > 0)
-					// values[i] = new Double(aux);
-					// else if (HSSFDateUtil.isCellDateFormatted(cell)) {
-					// values[i] = cell.getDateCellValue().getTime();
-					// } else
-					// values[i] = new Integer((int) Math.round(aux));
 					break;
 
 				case HSSFCell.CELL_TYPE_BLANK:

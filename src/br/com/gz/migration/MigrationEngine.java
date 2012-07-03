@@ -1,5 +1,6 @@
 package br.com.gz.migration;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -516,15 +517,22 @@ class MigrationEngine extends Thread implements IMigrationResults {
 					totalProdutoRetrieved = myDAO.countProduto(produtoDataFile);
 
 				} catch (IOException e) {
-					
-					MigrationEngineMessages
-							.showErrorMessage(EnMigrationDataType.PRODUTO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.PRODUTO);
+					} else {
+
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.PRODUTO);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
 					continue;
-					
+
 				}
 				// se não estiver vazio
 				if (totalProdutoRetrieved != SQLDataProvider.EMPTY_RETURN) {
@@ -553,18 +561,29 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'departamento'");
+
+					departamentoDataFile = DepartamentoDataFile.getInstance(myCfgTo.getSoftware());
 					
 					totalDepartamentoRetrieved = myDAO
 							.countDepartamento(departamentoDataFile);
 				} catch (IOException e) {
-					MigrationEngineMessages
-							.showErrorMessage(EnMigrationDataType.DEPARTAMENTO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.DEPARTAMENTO);
+					} else {
+
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.DEPARTAMENTO);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
 					continue;
-					
+
 				}
 				if (totalDepartamentoRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalDepartamentoRetrieved != SQLDataProvider.POLICY_VIOLATION) {
@@ -589,17 +608,28 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance()
 							.writeInFile("Trying to count 'grupo'");
+
+					grupoDataFile = GrupoDataFile.getInstance(myCfgTo.getSoftware());
 					
 					totalGrupoRetrieved = myDAO.countGrupo(grupoDataFile);
 				} catch (IOException e) {
-					MigrationEngineMessages
-							.showErrorMessage(EnMigrationDataType.GRUPO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.GRUPO);
+					} else {
+
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.GRUPO);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
 					continue;
-					
+
 				}
 				if (totalGrupoRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalGrupoRetrieved != SQLDataProvider.POLICY_VIOLATION) {
@@ -624,17 +654,28 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'armacao'");
+
+					armacaoDataFile = ArmacaoDataFile.getInstance(myCfgTo.getSoftware());
 					
 					totalArmacaoRetrieved = myDAO.countArmacao(armacaoDataFile);
 				} catch (IOException e) {
-					MigrationEngineMessages
-							.showErrorMessage(EnMigrationDataType.ARMACAO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.ARMACAO);
+					} else {
+
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.ARMACAO);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
 					continue;
-					
+
 				}
 				if (totalArmacaoRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalArmacaoRetrieved != SQLDataProvider.POLICY_VIOLATION) {
@@ -660,17 +701,28 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance()
 							.writeInFile("Trying to count 'marca'");
+
+					marcaDataFile = MarcaDataFile.getInstance(myCfgTo.getSoftware());
 					
 					totalMarcaRetrieved = myDAO.countMarca(marcaDataFile);
 				} catch (IOException e) {
-					MigrationEngineMessages
-							.showErrorMessage(EnMigrationDataType.MARCA);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.MARCA);
+					} else {
+
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.MARCA);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
 					continue;
-					
+
 				}
 				if (totalMarcaRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalMarcaRetrieved != SQLDataProvider.POLICY_VIOLATION) {
@@ -695,18 +747,29 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'fornecedor'");
+
+					fornecedorDataFile = FornecedorDataFile.getInstance(myCfgTo.getSoftware());
 					
 					totalFornecedorRetrieved = myDAO
 							.countFornecedor(fornecedorDataFile);
 				} catch (IOException e) {
-					MigrationEngineMessages
-							.showErrorMessage(EnMigrationDataType.FORNECEDOR);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.FORNECEDOR);
+					} else {
+
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.FORNECEDOR);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
 					continue;
-					
+
 				}
 				if (totalFornecedorRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalFornecedorRetrieved != SQLDataProvider.POLICY_VIOLATION) {
@@ -731,17 +794,29 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'cliente'");
+
+					clienteDataFile = ClienteDataFile.getInstance(myCfgTo.getSoftware());
 					
 					totalClienteRetrieved = myDAO.countCliente(clienteDataFile);
-				} catch (IOException e) {
-					MigrationEngineMessages
-							.showErrorMessage(EnMigrationDataType.CLIENTE);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
 					
+				} catch (IOException e) {
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.CLIENTE);
+					} else {
+
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.CLIENTE);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
+					continue;
+
 				}
 				if (totalClienteRetrieved != SQLDataProvider.EMPTY_RETURN) {
 					if (totalClienteRetrieved != SQLDataProvider.POLICY_VIOLATION) {

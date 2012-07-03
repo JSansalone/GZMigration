@@ -237,7 +237,7 @@ public class ProdutoDataFile extends DataFile {
 		p.setQuantidadeEstoqueMaximo(new Double(format.toNumeric(
 				o[i++].toString(), true)));
 		p.setQuantidade(new Double(format.toNumeric(o[i++].toString(), true)));
-		p.setDataCadastro(new Long(format.toNumeric(o[i++].toString(), false)));
+		p.setDataCadastro(((Date)o[i++]).getTime());
 		p.setAliquotaPisCompra(new Double(format.toNumeric(o[i++].toString(),
 				true)));
 		p.setAliquotaCofinsCompra(new Double(format.toNumeric(
@@ -333,7 +333,7 @@ public class ProdutoDataFile extends DataFile {
 		p.setQuantidadeEstoqueMaximo(new Double(format.toNumeric(
 				o[i++].toString(), true)));
 		p.setQuantidade(new Double(format.toNumeric(o[i++].toString(), true)));
-		p.setDataCadastro(new Long(format.toNumeric(o[i++].toString(), false)));
+		p.setDataCadastro(((Date)o[i++]).getTime());
 		p.setAliquotaPisCompra(new Double(format.toNumeric(o[i++].toString(),
 				true)));
 		p.setAliquotaCofinsCompra(new Double(format.toNumeric(
