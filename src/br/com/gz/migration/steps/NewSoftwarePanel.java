@@ -126,7 +126,7 @@ public class NewSoftwarePanel extends JPanel implements IValidation,
 
 		cmbSoftware = new JComboBox<String>();
 		cmbSoftware.addItem("MercoFlex");
-		cmbSoftware.addItem("Mercatto");
+		//cmbSoftware.addItem("Mercatto");
 
 		btSgbd = new JButton(new ImageIcon((URL) getClass().getResource(
 				"/img/navigation/change.png")));
