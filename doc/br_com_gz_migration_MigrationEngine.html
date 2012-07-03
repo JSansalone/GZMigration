@@ -1,0 +1,797 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   </head>
+   <body>
+      <table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%">
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr>
+      </table>
+      <hr>
+      <h2><font size="-1">br.com.gz.migration</font></h2><span style="font-size:large; font-weight:bold">Class&nbsp;</span><span style="font-size:large; font-weight:bold">MigrationEngine</span><br><br> <b>MigrationEngine</b><br><p>Motor de migra&ccedil;&atilde;o<br>
+          <br>
+          <br>
+          
+          Classe respons&aacute;vel por manipular os dados recuperados pela subclasse de
+          SQLDataProvider
+          
+          
+      </p><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Field Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#124">migrationType</a></code><br> <font>Vari&aacute;vel que guarda os tipos de migra&ccedil;&atilde;o que ser&atilde;o utilizados</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_IFinalizeMigration.html">IFinalizeMigration</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#125">iFinalize</a></code><br> <font>Vari&aacute;vel que executa alguns passos ao terminar a migra&ccedil;&atilde;o</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_steps_IMigrationInfo.html">IMigrationInfo</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#126">iInfo</a></code><br> <font>Vari&aacute;vel que fornece informa&ccedil;&otilde;es sobre a migra&ccedil;&atilde;o ap&oacute;s o t&eacute;rmino</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_IMigrationType.html">IMigrationType</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#127">iType</a></code><br> <font>Vari&aacute;vel que fornece alguns dados &uacute;teis para a migra&ccedil;&atilde;o</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_SQLDataProvider.html">SQLDataProvider</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#128">myDAO</a></code><br> <font>Vari&aacute;vel respons&aacute;vel por coletar e inserir os dados</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#129">myCfgTo</a></code><br> <font>Vari&aacute;vel que cont&eacute;m as configura&ccedil;&otilde;es do banco de dados de destino</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#130">myCfgFrom</a></code><br> <font>Vari&aacute;vel que cont&eacute;m as configura&ccedil;&otilde;es do banco de dados de origem.</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.Connection</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#131">cnnTo</a></code><br> <font>Vari&aacute;vel que guarda a conex&atilde;o com o banco de dados de destino</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.sql.Connection</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#132">cnnFrom</a></code><br> <font>Vari&aacute;vel que guarda a conex&atilde;o com o banco de dados de origem</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#133">totalData</a></code><br> <font>Guarda o total geral de dados a serem migrados</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#134">totalProdutoRetrieved</a></code><br> <font>Guarda o subtotal de produtos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#135">totalProdutoInicio</a></code><br> <font>Guarda o subtotal de produtos antes de inserir os novos.</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#136">totalProdutoFinal</a></code><br> <font>Guarda o total final ap&oacute;s incluir os produtos novos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#137">totalDepartamentoRetrieved</a></code><br> <font>Guarda o total de departamentos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#138">totalGrupoRetrieved</a></code><br> <font>Guarda o total de grupos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#139">totalMarcaRetrieved</a></code><br> <font>Guarda o total de marcas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#140">totalArmacaoRetrieved</a></code><br> <font>Guarda o total de arma&ccedil;&otilde;es</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#141">totalClienteRetrieved</a></code><br> <font>Guarda o total de clientes</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#142">totalFornecedorRetrieved</a></code><br> <font>Guarda o total de fornecedores</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#143">totalLoja</a></code><br> <font>Guarda o total de lojas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#144">totalNFEntradaRetrieved</a></code><br> <font>Guarda o total de notas fiscais de entrada</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#145">totalNFEntradaItemRetrieved</a></code><br> <font>Guarda o total de itens das notas fiscais de entrada</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#146">totalNFSaidaRetrieved</a></code><br> <font>Guarda o total de notas fiscais de saida</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#147">totalNFSaidaItemRetrieved</a></code><br> <font>Guarda o total de itens das notas fiscais de saida</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#148">totalContaPagarRetrieved</a></code><br> <font>Guarda o total de contas a pagar</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#149">totalContaReceberRetrieved</a></code><br> <font>Guarda o total de contas a receber</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#150">totalProdutoRegistered</a></code><br> <font>Guarda o subtotal de produtos novos cadastrado</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#151">totalProdutoIncluded</a></code><br> <font>Guarda o subtotal de produtos que j&aacute; est&atilde;o cadastrados, mas que foram
+                inseridos em outras lojas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#152">totalDepartamentoInserted</a></code><br> <font>Guarda o total de departamentos inseridos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#153">totalGrupoInserted</a></code><br> <font>Guarda o total de grupos inseridos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#154">totalMarcaInserted</a></code><br> <font>Guarda o total de marcas inseridas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#155">totalArmacaoInserted</a></code><br> <font>Guarda o total de arma&ccedil;&otilde;es inseridas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#156">totalClienteInserted</a></code><br> <font>Guarda o total de clientes inseridos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#157">totalFornecedorInserted</a></code><br> <font>Guarda o total de fornecedores inseridos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#158">totalNFEntradaInserted</a></code><br> <font>Guarda o total de notas fiscais de entrada inseridas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#159">totalNFEntradaItemInserted</a></code><br> <font>Guarda o total de itens das notas fiscais de entrada inseridos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#160">totalNFSaidaInserted</a></code><br> <font>Guarda o total de notas fiscais de saida inseridas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#161">totalNFSaidaItemInserted</a></code><br> <font>Guarda o total de itens das notas fiscais de saida inseridos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#162">totalContaPagarInserted</a></code><br> <font>Guarda o total de contas a pagar inseridas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#163">totalContaReceberInserted</a></code><br> <font>Guarda o total de contas a receber inseridas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#164">totalMovtoVendaRetrieved</a></code><br> <font>Guarda o total de movimenta&ccedil;&otilde;es de venda inseridas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#165">toAppend</a></code><br> <font>Sinaliza se vai incluir ou sobrepor os cadastros de produtos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#166">useProduto</a></code><br> <font>Flag para indicar se vai ser migrado produtos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#167">useGrupo</a></code><br> <font>Flag para indicar se vai ser migrado grupos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#168">useDepartamento</a></code><br> <font>Flag para indicar se vai ser migrado departamentos</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#169">useMarca</a></code><br> <font>Flag para indicar se vai ser migrado marcas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#170">useArmacao</a></code><br> <font>Flag para indicar se vai ser migrado arma&ccedil;&otilde;es</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#171">useLoja</a></code><br> <font>Flag para indicar se vai ser migrado lojas</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#172">useCliente</a></code><br> <font>Flag para indicar se vai ser migrado clientes</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#173">useFornecedor</a></code><br> <font>Flag para indicar se vai ser migrado</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#174">useNFEntrada</a></code><br> <font>Flag para indicar se vai ser migrado notas fiscais de entrada</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#175">useNFSaida</a></code><br> <font>Flag para indicar se vai ser migrado notas fiscais de saida</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#176">useContaPagar</a></code><br> <font>Flag para indicar se vai ser migrado contas a pagar</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#177">useContaReceber</a></code><br> <font>Flag para indicar se vai ser migrado contas a receber</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#178">useMovtoVenda</a></code><br> <font>Flag para indicar se vai ser migrado movimenta&ccedil;&otilde;es de venda</font>&nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Constructor Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#180">MigrationEngine</a>(java.util.ArrayList migrationType, <a href="br_com_gz_migration_IFinalizeMigration.html">IFinalizeMigration</a> iFinalize, <a href="br_com_gz_migration_steps_IMigrationInfo.html">IMigrationInfo</a> iInfo, <a href="br_com_gz_migration_IMigrationType.html">IMigrationType</a> iType, <a href="br_com_gz_migration_SQLDataProvider.html">SQLDataProvider</a> myDAO, <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> cfgTo, <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> cfgFrom)</code><br> <font>Construtor que instancia a classe
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#181">MigrationEngine</a>(java.util.ArrayList migrationType, <a href="br_com_gz_migration_IFinalizeMigration.html">IFinalizeMigration</a> iFinalize, <a href="br_com_gz_migration_steps_IMigrationInfo.html">IMigrationInfo</a> iInfo, <a href="br_com_gz_migration_IMigrationType.html">IMigrationType</a> iType, <a href="br_com_gz_migration_SQLDataProvider.html">SQLDataProvider</a> myDAO, <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> cfgTo)</code><br> <font>Construtor que inicializa o motor de migra&ccedil;&atilde;o <br>
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Method Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#183">run</a>()</code><br> <font>Realiza a migra&ccedil;&atilde;o</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#184">getCountRegisteredProdutos</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#185">getCountClientes</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#186">getCountFornecedores</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#187">getCountMarca</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#188">getCountDepartamento</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#189">getCountGrupo</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#190">getCountArmacao</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#191">getCountLoja</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#192">countCurrentProduto</a>(java.sql.Connection cnn, br.com.gz.util.GZSoftwares software, java.lang.String table)</code><br> <font>Conta a quantidade de dados nas tabelas de produto
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#193">getMaxLoja</a>(java.sql.Connection cnn, br.com.gz.util.GZSoftwares software)</code><br> <font>Busca a &uacute;ltima loja cadastrada no banco de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#194">clear</a>(java.sql.Connection cnn, java.lang.String table)</code><br> <font>Limpa a tabela informada no banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#195">exists</a>(java.sql.Connection cnn, int codLoja, java.lang.String codCodigo, java.lang.String table, java.lang.String fieldLoja, java.lang.String fieldCodigo)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private boolean </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#196">exists</a>(java.sql.Connection cnn, java.lang.String codCodigo, java.lang.String table, java.lang.String fieldCodigo)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#197">getCountIncludedProdutos</a>()</code><br> &nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Field Detail</span></td>
+      </tr></table><a name="124"><span style="font-size:larger">migrationType</span></a><br><br><pre>private java.util.ArrayList <b>migrationType</b></pre><br><dl>
+         <p>Vari&aacute;vel que guarda os tipos de migra&ccedil;&atilde;o que ser&atilde;o utilizados</p>
+      </dl><br><hr><a name="125"><span style="font-size:larger">iFinalize</span></a><br><br><pre>private <a href="br_com_gz_migration_IFinalizeMigration.html">IFinalizeMigration</a> <b>iFinalize</b></pre><br><dl>
+         <p>Vari&aacute;vel que executa alguns passos ao terminar a migra&ccedil;&atilde;o</p>
+      </dl><br><hr><a name="126"><span style="font-size:larger">iInfo</span></a><br><br><pre>private <a href="br_com_gz_migration_steps_IMigrationInfo.html">IMigrationInfo</a> <b>iInfo</b></pre><br><dl>
+         <p>Vari&aacute;vel que fornece informa&ccedil;&otilde;es sobre a migra&ccedil;&atilde;o ap&oacute;s o t&eacute;rmino</p>
+      </dl><br><hr><a name="127"><span style="font-size:larger">iType</span></a><br><br><pre>private <a href="br_com_gz_migration_IMigrationType.html">IMigrationType</a> <b>iType</b></pre><br><dl>
+         <p>Vari&aacute;vel que fornece alguns dados &uacute;teis para a migra&ccedil;&atilde;o</p>
+      </dl><br><hr><a name="128"><span style="font-size:larger">myDAO</span></a><br><br><pre>private <a href="br_com_gz_migration_SQLDataProvider.html">SQLDataProvider</a> <b>myDAO</b></pre><br><dl>
+         <p>Vari&aacute;vel respons&aacute;vel por coletar e inserir os dados</p>
+      </dl><br><hr><a name="129"><span style="font-size:larger">myCfgTo</span></a><br><br><pre>private <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> <b>myCfgTo</b></pre><br><dl>
+         <p>Vari&aacute;vel que cont&eacute;m as configura&ccedil;&otilde;es do banco de dados de destino</p>
+      </dl><br><hr><a name="130"><span style="font-size:larger">myCfgFrom</span></a><br><br><pre>private <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> <b>myCfgFrom</b></pre><br><dl>
+         <p>Vari&aacute;vel que cont&eacute;m as configura&ccedil;&otilde;es do banco de dados de origem. Esta
+             n&atilde;o ser&aacute; mais utilizada
+         </p>
+      </dl><br><hr><a name="131"><span style="font-size:larger">cnnTo</span></a><br><br><pre>private java.sql.Connection <b>cnnTo</b></pre><br><dl>
+         <p>Vari&aacute;vel que guarda a conex&atilde;o com o banco de dados de destino</p>
+      </dl><br><hr><a name="132"><span style="font-size:larger">cnnFrom</span></a><br><br><pre>private java.sql.Connection <b>cnnFrom</b></pre><br><dl>
+         <p>Vari&aacute;vel que guarda a conex&atilde;o com o banco de dados de origem</p>
+      </dl><br><hr><a name="133"><span style="font-size:larger">totalData</span></a><br><br><pre>private int <b>totalData</b></pre><br><dl>
+         <p>Guarda o total geral de dados a serem migrados</p>
+      </dl><br><hr><a name="134"><span style="font-size:larger">totalProdutoRetrieved</span></a><br><br><pre>private int <b>totalProdutoRetrieved</b></pre><br><dl>
+         <p>Guarda o subtotal de produtos</p>
+      </dl><br><hr><a name="135"><span style="font-size:larger">totalProdutoInicio</span></a><br><br><pre>private int <b>totalProdutoInicio</b></pre><br><dl>
+         <p>Guarda o subtotal de produtos antes de inserir os novos. (Modo anexar)</p>
+      </dl><br><hr><a name="136"><span style="font-size:larger">totalProdutoFinal</span></a><br><br><pre>private int <b>totalProdutoFinal</b></pre><br><dl>
+         <p>Guarda o total final ap&oacute;s incluir os produtos novos</p>
+      </dl><br><hr><a name="137"><span style="font-size:larger">totalDepartamentoRetrieved</span></a><br><br><pre>private int <b>totalDepartamentoRetrieved</b></pre><br><dl>
+         <p>Guarda o total de departamentos</p>
+      </dl><br><hr><a name="138"><span style="font-size:larger">totalGrupoRetrieved</span></a><br><br><pre>private int <b>totalGrupoRetrieved</b></pre><br><dl>
+         <p>Guarda o total de grupos</p>
+      </dl><br><hr><a name="139"><span style="font-size:larger">totalMarcaRetrieved</span></a><br><br><pre>private int <b>totalMarcaRetrieved</b></pre><br><dl>
+         <p>Guarda o total de marcas</p>
+      </dl><br><hr><a name="140"><span style="font-size:larger">totalArmacaoRetrieved</span></a><br><br><pre>private int <b>totalArmacaoRetrieved</b></pre><br><dl>
+         <p>Guarda o total de arma&ccedil;&otilde;es</p>
+      </dl><br><hr><a name="141"><span style="font-size:larger">totalClienteRetrieved</span></a><br><br><pre>private int <b>totalClienteRetrieved</b></pre><br><dl>
+         <p>Guarda o total de clientes</p>
+      </dl><br><hr><a name="142"><span style="font-size:larger">totalFornecedorRetrieved</span></a><br><br><pre>private int <b>totalFornecedorRetrieved</b></pre><br><dl>
+         <p>Guarda o total de fornecedores</p>
+      </dl><br><hr><a name="143"><span style="font-size:larger">totalLoja</span></a><br><br><pre>private int <b>totalLoja</b></pre><br><dl>
+         <p>Guarda o total de lojas</p>
+      </dl><br><hr><a name="144"><span style="font-size:larger">totalNFEntradaRetrieved</span></a><br><br><pre>private int <b>totalNFEntradaRetrieved</b></pre><br><dl>
+         <p>Guarda o total de notas fiscais de entrada</p>
+      </dl><br><hr><a name="145"><span style="font-size:larger">totalNFEntradaItemRetrieved</span></a><br><br><pre>private int <b>totalNFEntradaItemRetrieved</b></pre><br><dl>
+         <p>Guarda o total de itens das notas fiscais de entrada</p>
+      </dl><br><hr><a name="146"><span style="font-size:larger">totalNFSaidaRetrieved</span></a><br><br><pre>private int <b>totalNFSaidaRetrieved</b></pre><br><dl>
+         <p>Guarda o total de notas fiscais de saida</p>
+      </dl><br><hr><a name="147"><span style="font-size:larger">totalNFSaidaItemRetrieved</span></a><br><br><pre>private int <b>totalNFSaidaItemRetrieved</b></pre><br><dl>
+         <p>Guarda o total de itens das notas fiscais de saida</p>
+      </dl><br><hr><a name="148"><span style="font-size:larger">totalContaPagarRetrieved</span></a><br><br><pre>private int <b>totalContaPagarRetrieved</b></pre><br><dl>
+         <p>Guarda o total de contas a pagar</p>
+      </dl><br><hr><a name="149"><span style="font-size:larger">totalContaReceberRetrieved</span></a><br><br><pre>private int <b>totalContaReceberRetrieved</b></pre><br><dl>
+         <p>Guarda o total de contas a receber</p>
+      </dl><br><hr><a name="150"><span style="font-size:larger">totalProdutoRegistered</span></a><br><br><pre>private int <b>totalProdutoRegistered</b></pre><br><dl>
+         <p>Guarda o subtotal de produtos novos cadastrado</p>
+      </dl><br><hr><a name="151"><span style="font-size:larger">totalProdutoIncluded</span></a><br><br><pre>private int <b>totalProdutoIncluded</b></pre><br><dl>
+         <p>Guarda o subtotal de produtos que j&aacute; est&atilde;o cadastrados, mas que foram
+             inseridos em outras lojas
+         </p>
+      </dl><br><hr><a name="152"><span style="font-size:larger">totalDepartamentoInserted</span></a><br><br><pre>private int <b>totalDepartamentoInserted</b></pre><br><dl>
+         <p>Guarda o total de departamentos inseridos</p>
+      </dl><br><hr><a name="153"><span style="font-size:larger">totalGrupoInserted</span></a><br><br><pre>private int <b>totalGrupoInserted</b></pre><br><dl>
+         <p>Guarda o total de grupos inseridos</p>
+      </dl><br><hr><a name="154"><span style="font-size:larger">totalMarcaInserted</span></a><br><br><pre>private int <b>totalMarcaInserted</b></pre><br><dl>
+         <p>Guarda o total de marcas inseridas</p>
+      </dl><br><hr><a name="155"><span style="font-size:larger">totalArmacaoInserted</span></a><br><br><pre>private int <b>totalArmacaoInserted</b></pre><br><dl>
+         <p>Guarda o total de arma&ccedil;&otilde;es inseridas</p>
+      </dl><br><hr><a name="156"><span style="font-size:larger">totalClienteInserted</span></a><br><br><pre>private int <b>totalClienteInserted</b></pre><br><dl>
+         <p>Guarda o total de clientes inseridos</p>
+      </dl><br><hr><a name="157"><span style="font-size:larger">totalFornecedorInserted</span></a><br><br><pre>private int <b>totalFornecedorInserted</b></pre><br><dl>
+         <p>Guarda o total de fornecedores inseridos</p>
+      </dl><br><hr><a name="158"><span style="font-size:larger">totalNFEntradaInserted</span></a><br><br><pre>private int <b>totalNFEntradaInserted</b></pre><br><dl>
+         <p>Guarda o total de notas fiscais de entrada inseridas</p>
+      </dl><br><hr><a name="159"><span style="font-size:larger">totalNFEntradaItemInserted</span></a><br><br><pre>private int <b>totalNFEntradaItemInserted</b></pre><br><dl>
+         <p>Guarda o total de itens das notas fiscais de entrada inseridos</p>
+      </dl><br><hr><a name="160"><span style="font-size:larger">totalNFSaidaInserted</span></a><br><br><pre>private int <b>totalNFSaidaInserted</b></pre><br><dl>
+         <p>Guarda o total de notas fiscais de saida inseridas</p>
+      </dl><br><hr><a name="161"><span style="font-size:larger">totalNFSaidaItemInserted</span></a><br><br><pre>private int <b>totalNFSaidaItemInserted</b></pre><br><dl>
+         <p>Guarda o total de itens das notas fiscais de saida inseridos</p>
+      </dl><br><hr><a name="162"><span style="font-size:larger">totalContaPagarInserted</span></a><br><br><pre>private int <b>totalContaPagarInserted</b></pre><br><dl>
+         <p>Guarda o total de contas a pagar inseridas</p>
+      </dl><br><hr><a name="163"><span style="font-size:larger">totalContaReceberInserted</span></a><br><br><pre>private int <b>totalContaReceberInserted</b></pre><br><dl>
+         <p>Guarda o total de contas a receber inseridas</p>
+      </dl><br><hr><a name="164"><span style="font-size:larger">totalMovtoVendaRetrieved</span></a><br><br><pre>private int <b>totalMovtoVendaRetrieved</b></pre><br><dl>
+         <p>Guarda o total de movimenta&ccedil;&otilde;es de venda inseridas</p>
+      </dl><br><hr><a name="165"><span style="font-size:larger">toAppend</span></a><br><br><pre>private boolean <b>toAppend</b></pre><br><dl>
+         <p>Sinaliza se vai incluir ou sobrepor os cadastros de produtos</p>
+      </dl><br><hr><a name="166"><span style="font-size:larger">useProduto</span></a><br><br><pre>private boolean <b>useProduto</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado produtos</p>
+      </dl><br><hr><a name="167"><span style="font-size:larger">useGrupo</span></a><br><br><pre>private boolean <b>useGrupo</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado grupos</p>
+      </dl><br><hr><a name="168"><span style="font-size:larger">useDepartamento</span></a><br><br><pre>private boolean <b>useDepartamento</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado departamentos</p>
+      </dl><br><hr><a name="169"><span style="font-size:larger">useMarca</span></a><br><br><pre>private boolean <b>useMarca</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado marcas</p>
+      </dl><br><hr><a name="170"><span style="font-size:larger">useArmacao</span></a><br><br><pre>private boolean <b>useArmacao</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado arma&ccedil;&otilde;es</p>
+      </dl><br><hr><a name="171"><span style="font-size:larger">useLoja</span></a><br><br><pre>private boolean <b>useLoja</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado lojas</p>
+      </dl><br><hr><a name="172"><span style="font-size:larger">useCliente</span></a><br><br><pre>private boolean <b>useCliente</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado clientes</p>
+      </dl><br><hr><a name="173"><span style="font-size:larger">useFornecedor</span></a><br><br><pre>private boolean <b>useFornecedor</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado</p>
+      </dl><br><hr><a name="174"><span style="font-size:larger">useNFEntrada</span></a><br><br><pre>private boolean <b>useNFEntrada</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado notas fiscais de entrada</p>
+      </dl><br><hr><a name="175"><span style="font-size:larger">useNFSaida</span></a><br><br><pre>private boolean <b>useNFSaida</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado notas fiscais de saida</p>
+      </dl><br><hr><a name="176"><span style="font-size:larger">useContaPagar</span></a><br><br><pre>private boolean <b>useContaPagar</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado contas a pagar</p>
+      </dl><br><hr><a name="177"><span style="font-size:larger">useContaReceber</span></a><br><br><pre>private boolean <b>useContaReceber</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado contas a receber</p>
+      </dl><br><hr><a name="178"><span style="font-size:larger">useMovtoVenda</span></a><br><br><pre>private boolean <b>useMovtoVenda</b></pre><br><dl>
+         <p>Flag para indicar se vai ser migrado movimenta&ccedil;&otilde;es de venda</p>
+      </dl><br><hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Constructor Detail</span></td>
+      </tr></table><span style="font-size:medium"><a name="180"><span style="font-size:medium">MigrationEngine</span></a></span><br><pre> <b>MigrationEngine</b>(java.util.ArrayList migrationType, <a href="br_com_gz_migration_IFinalizeMigration.html">IFinalizeMigration</a> iFinalize, <a href="br_com_gz_migration_steps_IMigrationInfo.html">IMigrationInfo</a> iInfo, <a href="br_com_gz_migration_IMigrationType.html">IMigrationType</a> iType, <a href="br_com_gz_migration_SQLDataProvider.html">SQLDataProvider</a> myDAO, <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> cfgTo, <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> cfgFrom)</pre><br><dl>
+         <p>Construtor que instancia a classe
+             
+             
+         </p><br></dl>
+      <hr><span style="font-size:medium"><a name="181"><span style="font-size:medium">MigrationEngine</span></a></span><br><pre> <b>MigrationEngine</b>(java.util.ArrayList migrationType, <a href="br_com_gz_migration_IFinalizeMigration.html">IFinalizeMigration</a> iFinalize, <a href="br_com_gz_migration_steps_IMigrationInfo.html">IMigrationInfo</a> iInfo, <a href="br_com_gz_migration_IMigrationType.html">IMigrationType</a> iType, <a href="br_com_gz_migration_SQLDataProvider.html">SQLDataProvider</a> myDAO, <a href="br_com_gz_migration_IDatabaseInfo.html">IDatabaseInfo</a> cfgTo)</pre><br><dl>
+         <p>Construtor que inicializa o motor de migra&ccedil;&atilde;o <br>
+             
+             
+         </p><br></dl>
+      <hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Method Detail</span></td>
+      </tr></table><a name="183"><span style="font-size:medium">run</span></a><br><br><pre>public void  <b>run</b>()</pre><br><dl>
+         <p>Realiza a migra&ccedil;&atilde;o</p><br></dl>
+      <hr><a name="184"><span style="font-size:medium">getCountRegisteredProdutos</span></a><br><br><pre>public int  <b>getCountRegisteredProdutos</b>()</pre><br><dl><br></dl>
+      <hr><a name="185"><span style="font-size:medium">getCountClientes</span></a><br><br><pre>public int  <b>getCountClientes</b>()</pre><br><dl><br></dl>
+      <hr><a name="186"><span style="font-size:medium">getCountFornecedores</span></a><br><br><pre>public int  <b>getCountFornecedores</b>()</pre><br><dl><br></dl>
+      <hr><a name="187"><span style="font-size:medium">getCountMarca</span></a><br><br><pre>public int  <b>getCountMarca</b>()</pre><br><dl><br></dl>
+      <hr><a name="188"><span style="font-size:medium">getCountDepartamento</span></a><br><br><pre>public int  <b>getCountDepartamento</b>()</pre><br><dl><br></dl>
+      <hr><a name="189"><span style="font-size:medium">getCountGrupo</span></a><br><br><pre>public int  <b>getCountGrupo</b>()</pre><br><dl><br></dl>
+      <hr><a name="190"><span style="font-size:medium">getCountArmacao</span></a><br><br><pre>public int  <b>getCountArmacao</b>()</pre><br><dl><br></dl>
+      <hr><a name="191"><span style="font-size:medium">getCountLoja</span></a><br><br><pre>public int  <b>getCountLoja</b>()</pre><br><dl><br></dl>
+      <hr><a name="192"><span style="font-size:medium">countCurrentProduto</span></a><br><br><pre>private int  <b>countCurrentProduto</b>(java.sql.Connection cnn, br.com.gz.util.GZSoftwares software, java.lang.String table)</pre><br><dl>
+         <p>Conta a quantidade de dados nas tabelas de produto
+             
+             
+         </p><br></dl>
+      <hr><a name="193"><span style="font-size:medium">getMaxLoja</span></a><br><br><pre>private int  <b>getMaxLoja</b>(java.sql.Connection cnn, br.com.gz.util.GZSoftwares software)</pre><br><dl>
+         <p>Busca a &uacute;ltima loja cadastrada no banco de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="194"><span style="font-size:medium">clear</span></a><br><br><pre>private void  <b>clear</b>(java.sql.Connection cnn, java.lang.String table)</pre><br><dl>
+         <p>Limpa a tabela informada no banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="195"><span style="font-size:medium">exists</span></a><br><br><pre>private boolean  <b>exists</b>(java.sql.Connection cnn, int codLoja, java.lang.String codCodigo, java.lang.String table, java.lang.String fieldLoja, java.lang.String fieldCodigo)</pre><br><dl><br></dl>
+      <hr><a name="196"><span style="font-size:medium">exists</span></a><br><br><pre>private boolean  <b>exists</b>(java.sql.Connection cnn, java.lang.String codCodigo, java.lang.String table, java.lang.String fieldCodigo)</pre><br><dl><br></dl>
+      <hr><a name="197"><span style="font-size:medium">getCountIncludedProdutos</span></a><br><br><pre>public int  <b>getCountIncludedProdutos</b>()</pre><br><dl><br></dl>
+      <hr><br><br><table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%">
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr>
+      </table>
+      <hr><br><br><center><span style="font-size:xx-small">This documentation has been generated by EclipseUML.</span></center><br></body>
+</html>

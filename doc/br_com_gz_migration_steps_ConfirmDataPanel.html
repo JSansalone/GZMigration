@@ -1,0 +1,178 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   </head>
+   <body>
+      <table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%">
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.steps.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr>
+      </table>
+      <hr>
+      <h2><font size="-1">br.com.gz.migration.steps</font></h2><span style="font-size:large; font-weight:bold">Class&nbsp;</span><span style="font-size:large; font-weight:bold">ConfirmDataPanel</span><br><br>public <b>ConfirmDataPanel</b><br><p>Classe que representa o pain&eacute;l de confirma&ccedil;&atilde;o dos dados da migra&ccedil;&atilde;o
+          
+          
+      </p><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Field Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private javax.swing.JLabel</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#810">lblTo</a></code><br> <font>Label que guarda a imagem do banco de dados de destino</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private javax.swing.JLabel</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#811">lblFrom</a></code><br> <font>Label que guarda a imagem do arquivo de dados</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private javax.swing.JLabel</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#812">lblBanner</a></code><br> <font>Label que cont&eacute;m o t&iacute;tulo do pain&eacute;l</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private javax.swing.JLabel</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#813">lblArrow</a></code><br> <font>Label que guarda a imagem da seta que aponta o arquivo de dados para o banco de dados de destino</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private javax.swing.JScrollPane</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#814">scrPane</a></code><br> <font>Scroll que cont&eacute;m o JTextArea dos dados da migra&ccedil;&atilde;o</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private javax.swing.JTextArea</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#815">area</a></code><br> <font>&Aacute;rea onde fica a lista dos dados da migra&ccedil;&atilde;o</font>&nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Constructor Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#817">ConfirmDataPanel</a>()</code><br> <font>Construtor default</font>&nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Method Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#819">initComponents</a>()</code><br> <font>Constr&oacute;i os componentes</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#820">setDB</a>(org.database.connection.DatabaseType to)</code><br> <font>Define a imagem do banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#821">loadTextArea</a>(java.util.ArrayList dataTypes)</code><br> <font>Carrega as informa&ccedil;&otilde;es no textArea
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#822">configure</a>(java.util.ArrayList dataTypes, org.database.connection.DatabaseType dbTo)</code><br> <font>Executa os m&eacute;todos setDB e loadTextArea
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Field Detail</span></td>
+      </tr></table><a name="810"><span style="font-size:larger">lblTo</span></a><br><br><pre>private javax.swing.JLabel <b>lblTo</b></pre><br><dl>
+         <p>Label que guarda a imagem do banco de dados de destino</p>
+      </dl><br><hr><a name="811"><span style="font-size:larger">lblFrom</span></a><br><br><pre>private javax.swing.JLabel <b>lblFrom</b></pre><br><dl>
+         <p>Label que guarda a imagem do arquivo de dados</p>
+      </dl><br><hr><a name="812"><span style="font-size:larger">lblBanner</span></a><br><br><pre>private javax.swing.JLabel <b>lblBanner</b></pre><br><dl>
+         <p>Label que cont&eacute;m o t&iacute;tulo do pain&eacute;l</p>
+      </dl><br><hr><a name="813"><span style="font-size:larger">lblArrow</span></a><br><br><pre>private javax.swing.JLabel <b>lblArrow</b></pre><br><dl>
+         <p>Label que guarda a imagem da seta que aponta o arquivo de dados para o banco de dados de destino</p>
+      </dl><br><hr><a name="814"><span style="font-size:larger">scrPane</span></a><br><br><pre>private javax.swing.JScrollPane <b>scrPane</b></pre><br><dl>
+         <p>Scroll que cont&eacute;m o JTextArea dos dados da migra&ccedil;&atilde;o</p>
+      </dl><br><hr><a name="815"><span style="font-size:larger">area</span></a><br><br><pre>private javax.swing.JTextArea <b>area</b></pre><br><dl>
+         <p>&Aacute;rea onde fica a lista dos dados da migra&ccedil;&atilde;o</p>
+      </dl><br><hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Constructor Detail</span></td>
+      </tr></table><span style="font-size:medium"><a name="817"><span style="font-size:medium">ConfirmDataPanel</span></a></span><br><pre>public <b>ConfirmDataPanel</b>()</pre><br><dl>
+         <p>Construtor default</p><br></dl>
+      <hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Method Detail</span></td>
+      </tr></table><a name="819"><span style="font-size:medium">initComponents</span></a><br><br><pre>private void  <b>initComponents</b>()</pre><br><dl>
+         <p>Constr&oacute;i os componentes</p><br></dl>
+      <hr><a name="820"><span style="font-size:medium">setDB</span></a><br><br><pre>private void  <b>setDB</b>(org.database.connection.DatabaseType to)</pre><br><dl>
+         <p>Define a imagem do banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="821"><span style="font-size:medium">loadTextArea</span></a><br><br><pre>private void  <b>loadTextArea</b>(java.util.ArrayList dataTypes)</pre><br><dl>
+         <p>Carrega as informa&ccedil;&otilde;es no textArea
+             
+             
+         </p><br></dl>
+      <hr><a name="822"><span style="font-size:medium">configure</span></a><br><br><pre>public void  <b>configure</b>(java.util.ArrayList dataTypes, org.database.connection.DatabaseType dbTo)</pre><br><dl>
+         <p>Executa os m&eacute;todos setDB e loadTextArea
+             
+             
+         </p><br></dl>
+      <hr><br><br><table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%">
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.steps.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr>
+      </table>
+      <hr><br><br><center><span style="font-size:xx-small">This documentation has been generated by EclipseUML.</span></center><br></body>
+</html>
