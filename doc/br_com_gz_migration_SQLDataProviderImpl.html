@@ -1,0 +1,216 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   </head>
+   <body>
+      <table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%">
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr>
+      </table>
+      <hr>
+      <h2><font size="-1">br.com.gz.migration</font></h2><span style="font-size:large; font-weight:bold">Class&nbsp;</span><span style="font-size:large; font-weight:bold">SQLDataProviderImpl</span><br><br>public <b>SQLDataProviderImpl</b><br><p>Classe que implementa a classe abstrata SQLDataProvider que fornece meios de
+          obter e inserir dados
+          
+          
+      </p><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Field Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private <a href="br_com_gz_migration_policy_ColumnsPolicy.html">ColumnsPolicy</a></code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#65">policy</a></code><br> <font>Vari&aacute;vel da pol&iacute;tica de colunas</font>&nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Constructor Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#67">SQLDataProviderImpl</a>(br.com.gz.util.GZSoftwares software, org.database.connection.DatabaseType dbTo)</code><br> <font>Construtor que recebe o software a ser implantado e o tipo de banco de
+                dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Method Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#69">countProduto</a>(<a href="br_com_gz_migration_datafile_ProdutoDataFile.html">ProdutoDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#70">countDepartamento</a>(<a href="br_com_gz_migration_datafile_DepartamentoDataFile.html">DepartamentoDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#71">countGrupo</a>(<a href="br_com_gz_migration_datafile_GrupoDataFile.html">GrupoDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#72">countArmacao</a>(<a href="br_com_gz_migration_datafile_ArmacaoDataFile.html">ArmacaoDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#73">countMarca</a>(<a href="br_com_gz_migration_datafile_MarcaDataFile.html">MarcaDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#74">countCliente</a>(<a href="br_com_gz_migration_datafile_ClienteDataFile.html">ClienteDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#75">countFornecedor</a>(<a href="br_com_gz_migration_datafile_FornecedorDataFile.html">FornecedorDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#76">getProduto</a>(<a href="br_com_gz_migration_datafile_ProdutoDataFile.html">ProdutoDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#77">getDepartamento</a>(<a href="br_com_gz_migration_datafile_DepartamentoDataFile.html">DepartamentoDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#78">getGrupo</a>(<a href="br_com_gz_migration_datafile_GrupoDataFile.html">GrupoDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#79">getArmacao</a>(<a href="br_com_gz_migration_datafile_ArmacaoDataFile.html">ArmacaoDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#80">getMarca</a>(<a href="br_com_gz_migration_datafile_MarcaDataFile.html">MarcaDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#81">getCliente</a>(<a href="br_com_gz_migration_datafile_ClienteDataFile.html">ClienteDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#82">getFornecedor</a>(<a href="br_com_gz_migration_datafile_FornecedorDataFile.html">FornecedorDataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.ArrayList</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#83">getColumnsNeeded</a>(<a href="br_com_gz_migration_datafile_DataFile.html">DataFile</a> dataFile)</code><br> &nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Field Detail</span></td>
+      </tr></table><a name="65"><span style="font-size:larger">policy</span></a><br><br><pre>private <a href="br_com_gz_migration_policy_ColumnsPolicy.html">ColumnsPolicy</a> <b>policy</b></pre><br><dl>
+         <p>Vari&aacute;vel da pol&iacute;tica de colunas</p>
+      </dl><br><hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Constructor Detail</span></td>
+      </tr></table><span style="font-size:medium"><a name="67"><span style="font-size:medium">SQLDataProviderImpl</span></a></span><br><pre>public <b>SQLDataProviderImpl</b>(br.com.gz.util.GZSoftwares software, org.database.connection.DatabaseType dbTo)</pre><br><dl>
+         <p>Construtor que recebe o software a ser implantado e o tipo de banco de
+             dados de destino
+             
+             
+         </p><br></dl>
+      <hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Method Detail</span></td>
+      </tr></table><a name="69"><span style="font-size:medium">countProduto</span></a><br><br><pre>public int  <b>countProduto</b>(<a href="br_com_gz_migration_datafile_ProdutoDataFile.html">ProdutoDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="70"><span style="font-size:medium">countDepartamento</span></a><br><br><pre>public int  <b>countDepartamento</b>(<a href="br_com_gz_migration_datafile_DepartamentoDataFile.html">DepartamentoDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="71"><span style="font-size:medium">countGrupo</span></a><br><br><pre>public int  <b>countGrupo</b>(<a href="br_com_gz_migration_datafile_GrupoDataFile.html">GrupoDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="72"><span style="font-size:medium">countArmacao</span></a><br><br><pre>public int  <b>countArmacao</b>(<a href="br_com_gz_migration_datafile_ArmacaoDataFile.html">ArmacaoDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="73"><span style="font-size:medium">countMarca</span></a><br><br><pre>public int  <b>countMarca</b>(<a href="br_com_gz_migration_datafile_MarcaDataFile.html">MarcaDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="74"><span style="font-size:medium">countCliente</span></a><br><br><pre>public int  <b>countCliente</b>(<a href="br_com_gz_migration_datafile_ClienteDataFile.html">ClienteDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="75"><span style="font-size:medium">countFornecedor</span></a><br><br><pre>public int  <b>countFornecedor</b>(<a href="br_com_gz_migration_datafile_FornecedorDataFile.html">FornecedorDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="76"><span style="font-size:medium">getProduto</span></a><br><br><pre>public java.util.ArrayList <b>getProduto</b>(<a href="br_com_gz_migration_datafile_ProdutoDataFile.html">ProdutoDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="77"><span style="font-size:medium">getDepartamento</span></a><br><br><pre>public java.util.ArrayList <b>getDepartamento</b>(<a href="br_com_gz_migration_datafile_DepartamentoDataFile.html">DepartamentoDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="78"><span style="font-size:medium">getGrupo</span></a><br><br><pre>public java.util.ArrayList <b>getGrupo</b>(<a href="br_com_gz_migration_datafile_GrupoDataFile.html">GrupoDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="79"><span style="font-size:medium">getArmacao</span></a><br><br><pre>public java.util.ArrayList <b>getArmacao</b>(<a href="br_com_gz_migration_datafile_ArmacaoDataFile.html">ArmacaoDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="80"><span style="font-size:medium">getMarca</span></a><br><br><pre>public java.util.ArrayList <b>getMarca</b>(<a href="br_com_gz_migration_datafile_MarcaDataFile.html">MarcaDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="81"><span style="font-size:medium">getCliente</span></a><br><br><pre>public java.util.ArrayList <b>getCliente</b>(<a href="br_com_gz_migration_datafile_ClienteDataFile.html">ClienteDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="82"><span style="font-size:medium">getFornecedor</span></a><br><br><pre>public java.util.ArrayList <b>getFornecedor</b>(<a href="br_com_gz_migration_datafile_FornecedorDataFile.html">FornecedorDataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><a name="83"><span style="font-size:medium">getColumnsNeeded</span></a><br><br><pre>public java.util.ArrayList <b>getColumnsNeeded</b>(<a href="br_com_gz_migration_datafile_DataFile.html">DataFile</a> dataFile)</pre><br><dl><br></dl>
+      <hr><br><br><table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%">
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr>
+      </table>
+      <hr><br><br><center><span style="font-size:xx-small">This documentation has been generated by EclipseUML.</span></center><br></body>
+</html>

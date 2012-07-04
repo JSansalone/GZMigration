@@ -1,5 +1,6 @@
 package br.com.gz.migration;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,73 +21,321 @@ import br.com.gz.bean.Grupo;
 import br.com.gz.bean.Loja;
 import br.com.gz.bean.Marca;
 import br.com.gz.bean.Produto;
+import br.com.gz.migration.datafile.ArmacaoDataFile;
+import br.com.gz.migration.datafile.ClienteDataFile;
+import br.com.gz.migration.datafile.DepartamentoDataFile;
+import br.com.gz.migration.datafile.FornecedorDataFile;
+import br.com.gz.migration.datafile.GrupoDataFile;
+import br.com.gz.migration.datafile.MarcaDataFile;
+import br.com.gz.migration.datafile.ProdutoDataFile;
+import br.com.gz.migration.exception.InvalidCellTypeException;
+import br.com.gz.migration.exception.RequiredColumnNotFoundException;
 import br.com.gz.migration.exception.SecurityViolationException;
 import br.com.gz.migration.file.LogFile;
-import br.com.gz.migration.panelSteps.IMigrationInfo;
+import br.com.gz.migration.steps.IMigrationInfo;
+import br.com.gz.util.GZSoftwares;
 
 /**
+ * Motor de migração<br>
+ * <br>
+ * <br>
  * 
- * @author Jonathan
+ * Classe responsável por manipular os dados recuperados pela subclasse de
+ * SQLDataProvider
  * 
- *         O famoso Motor...
+ * @author Jonathan Sansalone
  * 
  */
 class MigrationEngine extends Thread implements IMigrationResults {
 
 	// tipos de migração
+	/**
+	 * Variável que guarda os tipos de migração que serão utilizados
+	 */
 	private ArrayList<EnMigrationDataType> migrationType;
+
+	/**
+	 * Variável que executa alguns passos ao terminar a migração
+	 */
 	private IFinalizeMigration iFinalize;
+
+	/**
+	 * Variável que fornece informações sobre a migração após o término
+	 */
 	private IMigrationInfo iInfo;
+
+	/**
+	 * Variável que fornece alguns dados úteis para a migração
+	 */
 	private IMigrationType iType;
+
+	/**
+	 * Variável responsável por coletar e inserir os dados
+	 */
 	private SQLDataProvider myDAO;
+
+	/**
+	 * Variável que contém as configurações do banco de dados de destino
+	 */
 	private IDatabaseInfo myCfgTo;
+
+	/**
+	 * Variável que contém as configurações do banco de dados de origem. Esta
+	 * não será mais utilizada
+	 */
 	private IDatabaseInfo myCfgFrom;
+
+	/**
+	 * Variável que guarda a conexão com o banco de dados de destino
+	 */
 	private Connection cnnTo;
+
+	/**
+	 * Variável que guarda a conexão com o banco de dados de origem
+	 */
 	private Connection cnnFrom;
 
 	// total geral de dados a serem migrados
+	/**
+	 * Guarda o total geral de dados a serem migrados
+	 */
 	private int totalData;
 
-	private int totalProduto;
+	/**
+	 * Guarda o subtotal de produtos
+	 */
+	private int totalProdutoRetrieved;
 	// apenas usado quando tiver que anexar produtos
+
+	/**
+	 * Guarda o subtotal de produtos antes de inserir os novos. (Modo anexar)
+	 */
 	private int totalProdutoInicio;
+
+	/**
+	 * Guarda o total final após incluir os produtos novos
+	 */
 	private int totalProdutoFinal;
 	// ------------------------------------
-	private int totalDepartamento;
-	private int totalGrupo;
-	private int totalMarca;
-	private int totalArmacao;
-	private int totalCliente;
-	private int totalFornecedor;
+
+	/**
+	 * Guarda o total de departamentos
+	 */
+	private int totalDepartamentoRetrieved;
+
+	/**
+	 * Guarda o total de grupos
+	 */
+	private int totalGrupoRetrieved;
+
+	/**
+	 * Guarda o total de marcas
+	 */
+	private int totalMarcaRetrieved;
+
+	/**
+	 * Guarda o total de armações
+	 */
+	private int totalArmacaoRetrieved;
+
+	/**
+	 * Guarda o total de clientes
+	 */
+	private int totalClienteRetrieved;
+
+	/**
+	 * Guarda o total de fornecedores
+	 */
+	private int totalFornecedorRetrieved;
+
+	/**
+	 * Guarda o total de lojas
+	 */
 	private int totalLoja;
-	private int totalNFEntrada;
-	private int totalNFEntradaItem;
-	private int totalNFSaida;
-	private int totalNFSaidaItem;
-	private int totalContaPagar;
-	private int totalContaReceber;
-	private int totalMovtoVenda;
+
+	/**
+	 * Guarda o total de notas fiscais de entrada
+	 */
+	private int totalNFEntradaRetrieved;
+
+	/**
+	 * Guarda o total de itens das notas fiscais de entrada
+	 */
+	private int totalNFEntradaItemRetrieved;
+
+	/**
+	 * Guarda o total de notas fiscais de saida
+	 */
+	private int totalNFSaidaRetrieved;
+
+	/**
+	 * Guarda o total de itens das notas fiscais de saida
+	 */
+	private int totalNFSaidaItemRetrieved;
+
+	/**
+	 * Guarda o total de contas a pagar
+	 */
+	private int totalContaPagarRetrieved;
+
+	/**
+	 * Guarda o total de contas a receber
+	 */
+	private int totalContaReceberRetrieved;
+
+	// ==========================
+	/**
+	 * Guarda o subtotal de produtos novos cadastrado
+	 */
+	private int totalProdutoRegistered;
+
+	/**
+	 * Guarda o subtotal de produtos que já estão cadastrados, mas que foram
+	 * inseridos em outras lojas
+	 */
+	private int totalProdutoIncluded;
+
+	/**
+	 * Guarda o total de departamentos inseridos
+	 */
+	private int totalDepartamentoInserted;
+
+	/**
+	 * Guarda o total de grupos inseridos
+	 */
+	private int totalGrupoInserted;
+
+	/**
+	 * Guarda o total de marcas inseridas
+	 */
+	private int totalMarcaInserted;
+
+	/**
+	 * Guarda o total de armações inseridas
+	 */
+	private int totalArmacaoInserted;
+
+	/**
+	 * Guarda o total de clientes inseridos
+	 */
+	private int totalClienteInserted;
+
+	/**
+	 * Guarda o total de fornecedores inseridos
+	 */
+	private int totalFornecedorInserted;
+
+	/**
+	 * Guarda o total de notas fiscais de entrada inseridas
+	 */
+	private int totalNFEntradaInserted;
+
+	/**
+	 * Guarda o total de itens das notas fiscais de entrada inseridos
+	 */
+	private int totalNFEntradaItemInserted;
+
+	/**
+	 * Guarda o total de notas fiscais de saida inseridas
+	 */
+	private int totalNFSaidaInserted;
+
+	/**
+	 * Guarda o total de itens das notas fiscais de saida inseridos
+	 */
+	private int totalNFSaidaItemInserted;
+
+	/**
+	 * Guarda o total de contas a pagar inseridas
+	 */
+	private int totalContaPagarInserted;
+
+	/**
+	 * Guarda o total de contas a receber inseridas
+	 */
+	private int totalContaReceberInserted;
+	// ==========================
+
+	/**
+	 * Guarda o total de movimentações de venda inseridas
+	 */
+	private int totalMovtoVendaRetrieved;
 
 	// sinaliza se vai anexar ou sobrepor cadastros referentes à lojas
 	// (produtos)
+	/**
+	 * Sinaliza se vai incluir ou sobrepor os cadastros de produtos
+	 */
 	private boolean toAppend;
 
 	// flags para indicar quais dados serão usados
+	/**
+	 * Flag para indicar se vai ser migrado produtos
+	 */
 	private boolean useProduto = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado grupos
+	 */
 	private boolean useGrupo = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado departamentos
+	 */
 	private boolean useDepartamento = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado marcas
+	 */
 	private boolean useMarca = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado armações
+	 */
 	private boolean useArmacao = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado lojas
+	 */
 	private boolean useLoja = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado clientes
+	 */
 	private boolean useCliente = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado
+	 */
 	private boolean useFornecedor = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado notas fiscais de entrada
+	 */
 	private boolean useNFEntrada = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado notas fiscais de saida
+	 */
 	private boolean useNFSaida = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado contas a pagar
+	 */
 	private boolean useContaPagar = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado contas a receber
+	 */
 	private boolean useContaReceber = false;
+
+	/**
+	 * Flag para indicar se vai ser migrado movimentações de venda
+	 */
 	private boolean useMovtoVenda = false;
 
 	/**
+	 * Construtor que instancia a classe
 	 * 
 	 * @param migrationType
 	 * @param iFinalize
@@ -96,6 +345,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 	 * @param cfgTo
 	 * @param cfgFrom
 	 */
+	@Deprecated
 	MigrationEngine(ArrayList<EnMigrationDataType> migrationType,
 			IFinalizeMigration iFinalize, IMigrationInfo iInfo,
 			IMigrationType iType, SQLDataProvider myDAO, IDatabaseInfo cfgTo,
@@ -165,7 +415,80 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	}
 
+	/**
+	 * Construtor que inicializa o motor de migração <br>
+	 * 
+	 * @param migrationType
+	 *            - Lista com todos os tipos de migração desejados
+	 * @param iFinalize
+	 *            - Objeto para executar os últimos passos da migração
+	 * @param iInfo
+	 *            - Objeto que atualiza a barra de progresso
+	 * @param iType
+	 *            - Objeto que fornece a quantidade de lojas
+	 * @param myDAO
+	 *            - Objeto SQLDataProvider
+	 * @param cfgTo
+	 *            - Configurações do banco de dados de origem
+	 */
+	MigrationEngine(ArrayList<EnMigrationDataType> migrationType,
+			IFinalizeMigration iFinalize, IMigrationInfo iInfo,
+			IMigrationType iType, SQLDataProvider myDAO, IDatabaseInfo cfgTo) {
+
+		this.iFinalize = iFinalize;
+		this.migrationType = migrationType;
+		this.iType = iType;
+		this.iInfo = iInfo;
+		this.myDAO = myDAO;
+		this.myCfgTo = cfgTo;
+		this.toAppend = iType.toAppend();
+
+		try {
+
+			// conectando SOMENTE ao banco de destino
+			LogFile.getInstance().writeInFile(
+					"Trying to connect to server "
+							+ myCfgTo.getDatabaseInfo().getIpAddress());
+			LogFile.getInstance().writeInFile(
+					"Database type: " + myCfgTo.getDatabaseInfo().getDbType());
+			LogFile.getInstance().writeInFile(
+					"Database name: "
+							+ myCfgTo.getDatabaseInfo().getDatabaseName());
+			LogFile.getInstance().writeInFile(
+					"Port: " + myCfgTo.getDatabaseInfo().getPort());
+			LogFile.getInstance().writeInFile(
+					"Username: " + myCfgTo.getDatabaseInfo().getUsername());
+			LogFile.getInstance()
+					.writeInFile(
+							"Using password: "
+									+ (myCfgTo.getDatabaseInfo().getPassword() != "" ? "yes"
+											: "no"));
+			cnnTo = ConnectionFactory.getConnection(myCfgTo.getDatabaseInfo()
+					.getDbType(), cfgTo.getDatabaseInfo());
+			LogFile.getInstance().writeInFile("Connected");
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * Realiza a migração
+	 */
 	public void run() {
+
+		ProdutoDataFile produtoDataFile = null;
+		DepartamentoDataFile departamentoDataFile = null;
+		GrupoDataFile grupoDataFile = null;
+		ArmacaoDataFile armacaoDataFile = null;
+		MarcaDataFile marcaDataFile = null;
+		ClienteDataFile clienteDataFile = null;
+		FornecedorDataFile fornecedorDataFile = null;
 
 		int count = 0;
 
@@ -188,43 +511,44 @@ class MigrationEngine extends Thread implements IMigrationResults {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'produto'");
 
-					totalProduto = myDAO.countProduto(cnnFrom);
+					produtoDataFile = ProdutoDataFile.getInstance(myCfgTo
+							.getSoftware());
+
+					totalProdutoRetrieved = myDAO.countProduto(produtoDataFile);
 
 				} catch (IOException e) {
-					showErrorMessage(EnMigrationDataType.PRODUTO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SecurityViolationException e) {
-					showSecurityViolationMessage(EnMigrationDataType.PRODUTO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile("Security violation");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SQLException e) {
-					// johnny Auto-generated catch block
-					showSyntaxErrorMessage(EnMigrationDataType.PRODUTO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"Syntax error on execute SQL statement");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					// LogFile.getInstance().writeInFile("");
-					continue;
-				}
-				// se não estiver vazio
-				if (totalProduto != SQLDataProvider.EMPTY_RETURN) {
-					if (totalProduto != SQLDataProvider.POLICY_VIOLATION) {
-						// adiciona o total de produtos ao total geral de dados
-						totalData += (totalProduto * iType.getNumLoja());
-						useProduto = true;
-						System.out.println("usa produto. Sub-total="
-								+ totalProduto);
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.PRODUTO);
 					} else {
 
-						showPolicyViolationMessage(EnMigrationDataType.PRODUTO,
-								myDAO.getProdutoColumnsNeeded());
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.PRODUTO);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+					continue;
+
+				}
+				// se não estiver vazio
+				if (totalProdutoRetrieved != SQLDataProvider.EMPTY_RETURN) {
+					if (totalProdutoRetrieved != SQLDataProvider.POLICY_VIOLATION) {
+						// adiciona o total de produtos ao total geral de dados
+						totalData += (totalProdutoRetrieved * iType
+								.getNumLoja());
+						useProduto = true;
+						System.out.println("usa produto. Sub-total="
+								+ totalProdutoRetrieved);
+					} else {
+
+						MigrationEngineMessages.showPolicyViolationMessage(
+								EnMigrationDataType.PRODUTO,
+								myDAO.getColumnsNeeded(produtoDataFile));
+
 						continue;
 
 					}
@@ -237,40 +561,41 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'departamento'");
-					totalDepartamento = myDAO.countDepartamento(cnnFrom);
+
+					departamentoDataFile = DepartamentoDataFile.getInstance(myCfgTo.getSoftware());
+					
+					totalDepartamentoRetrieved = myDAO
+							.countDepartamento(departamentoDataFile);
 				} catch (IOException e) {
-					showErrorMessage(EnMigrationDataType.DEPARTAMENTO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SecurityViolationException e) {
-					showSecurityViolationMessage(EnMigrationDataType.DEPARTAMENTO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile("Security violation");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SQLException e) {
-					// johnny Auto-generated catch block
-					showSyntaxErrorMessage(EnMigrationDataType.DEPARTAMENTO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"Syntax error on execute SQL statement");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				}
-				if (totalDepartamento != SQLDataProvider.EMPTY_RETURN) {
-					if (totalDepartamento != SQLDataProvider.POLICY_VIOLATION) {
-						totalData += totalDepartamento;
-						useDepartamento = true;
-						System.out.println("usa departamento. Sub-total="
-								+ totalDepartamento);
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.DEPARTAMENTO);
 					} else {
 
-						showPolicyViolationMessage(
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.DEPARTAMENTO);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
+					continue;
+
+				}
+				if (totalDepartamentoRetrieved != SQLDataProvider.EMPTY_RETURN) {
+					if (totalDepartamentoRetrieved != SQLDataProvider.POLICY_VIOLATION) {
+						totalData += totalDepartamentoRetrieved;
+						useDepartamento = true;
+						System.out.println("usa departamento. Sub-total="
+								+ totalDepartamentoRetrieved);
+					} else {
+
+						MigrationEngineMessages.showPolicyViolationMessage(
 								EnMigrationDataType.DEPARTAMENTO,
-								myDAO.getDepartamentoColumnsNeeded());
+								myDAO.getColumnsNeeded(departamentoDataFile));
 						continue;
 
 					}
@@ -283,39 +608,40 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance()
 							.writeInFile("Trying to count 'grupo'");
-					totalGrupo = myDAO.countGrupo(cnnFrom);
+
+					grupoDataFile = GrupoDataFile.getInstance(myCfgTo.getSoftware());
+					
+					totalGrupoRetrieved = myDAO.countGrupo(grupoDataFile);
 				} catch (IOException e) {
-					showErrorMessage(EnMigrationDataType.GRUPO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SecurityViolationException e) {
-					showSecurityViolationMessage(EnMigrationDataType.GRUPO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile("Security violation");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SQLException e) {
-					// johnny Auto-generated catch block
-					showSyntaxErrorMessage(EnMigrationDataType.GRUPO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"Syntax error on execute SQL statement");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				}
-				if (totalGrupo != SQLDataProvider.EMPTY_RETURN) {
-					if (totalGrupo != SQLDataProvider.POLICY_VIOLATION) {
-						totalData += totalGrupo;
-						useGrupo = true;
-						System.out
-								.println("usa grupo. Sub-total=" + totalGrupo);
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.GRUPO);
 					} else {
 
-						showPolicyViolationMessage(EnMigrationDataType.GRUPO,
-								myDAO.getGrupoColumnsNeeded());
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.GRUPO);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
+					continue;
+
+				}
+				if (totalGrupoRetrieved != SQLDataProvider.EMPTY_RETURN) {
+					if (totalGrupoRetrieved != SQLDataProvider.POLICY_VIOLATION) {
+						totalData += totalGrupoRetrieved;
+						useGrupo = true;
+						System.out.println("usa grupo. Sub-total="
+								+ totalGrupoRetrieved);
+					} else {
+
+						MigrationEngineMessages.showPolicyViolationMessage(
+								EnMigrationDataType.GRUPO,
+								myDAO.getColumnsNeeded(grupoDataFile));
 						continue;
 
 					}
@@ -328,39 +654,41 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'armacao'");
-					totalArmacao = myDAO.countArmacao(cnnFrom);
+
+					armacaoDataFile = ArmacaoDataFile.getInstance(myCfgTo.getSoftware());
+					
+					totalArmacaoRetrieved = myDAO.countArmacao(armacaoDataFile);
 				} catch (IOException e) {
-					showErrorMessage(EnMigrationDataType.ARMACAO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SecurityViolationException e) {
-					showSecurityViolationMessage(EnMigrationDataType.ARMACAO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile("Security violation");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SQLException e) {
-					// johnny Auto-generated catch block
-					showSyntaxErrorMessage(EnMigrationDataType.ARMACAO);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"Syntax error on execute SQL statement");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				}
-				if (totalArmacao != SQLDataProvider.EMPTY_RETURN) {
-					if (totalArmacao != SQLDataProvider.POLICY_VIOLATION) {
-						totalData += totalArmacao;
-						useArmacao = true;
-						System.out.println("usa armacao. Sub-total="
-								+ totalArmacao);
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.ARMACAO);
 					} else {
 
-						showPolicyViolationMessage(EnMigrationDataType.ARMACAO,
-								myDAO.getArmacaoColumnsNeeded());
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.ARMACAO);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
+					continue;
+
+				}
+				if (totalArmacaoRetrieved != SQLDataProvider.EMPTY_RETURN) {
+					if (totalArmacaoRetrieved != SQLDataProvider.POLICY_VIOLATION) {
+						totalData += totalArmacaoRetrieved;
+						useArmacao = true;
+						System.out.println("usa armacao. Sub-total="
+								+ totalArmacaoRetrieved);
+					} else {
+
+						MigrationEngineMessages.showPolicyViolationMessage(
+								EnMigrationDataType.ARMACAO,
+								myDAO.getColumnsNeeded(armacaoDataFile));
+
 						continue;
 
 					}
@@ -373,39 +701,40 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance()
 							.writeInFile("Trying to count 'marca'");
-					totalMarca = myDAO.countMarca(cnnFrom);
+
+					marcaDataFile = MarcaDataFile.getInstance(myCfgTo.getSoftware());
+					
+					totalMarcaRetrieved = myDAO.countMarca(marcaDataFile);
 				} catch (IOException e) {
-					showErrorMessage(EnMigrationDataType.MARCA);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SecurityViolationException e) {
-					showSecurityViolationMessage(EnMigrationDataType.MARCA);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile("Security violation");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SQLException e) {
-					// johnny Auto-generated catch block
-					showSyntaxErrorMessage(EnMigrationDataType.MARCA);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"Syntax error on execute SQL statement");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				}
-				if (totalMarca != SQLDataProvider.EMPTY_RETURN) {
-					if (totalMarca != SQLDataProvider.POLICY_VIOLATION) {
-						totalData += totalMarca;
-						useMarca = true;
-						System.out
-								.println("usa marca. Sub-total=" + totalMarca);
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.MARCA);
 					} else {
 
-						showPolicyViolationMessage(EnMigrationDataType.MARCA,
-								myDAO.getMarcaColumnsNeeded());
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.MARCA);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
+					continue;
+
+				}
+				if (totalMarcaRetrieved != SQLDataProvider.EMPTY_RETURN) {
+					if (totalMarcaRetrieved != SQLDataProvider.POLICY_VIOLATION) {
+						totalData += totalMarcaRetrieved;
+						useMarca = true;
+						System.out.println("usa marca. Sub-total="
+								+ totalMarcaRetrieved);
+					} else {
+
+						MigrationEngineMessages.showPolicyViolationMessage(
+								EnMigrationDataType.MARCA,
+								myDAO.getColumnsNeeded(marcaDataFile));
 						continue;
 
 					}
@@ -418,40 +747,41 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'fornecedor'");
-					totalFornecedor = myDAO.countFornecedor(cnnFrom);
+
+					fornecedorDataFile = FornecedorDataFile.getInstance(myCfgTo.getSoftware());
+					
+					totalFornecedorRetrieved = myDAO
+							.countFornecedor(fornecedorDataFile);
 				} catch (IOException e) {
-					showErrorMessage(EnMigrationDataType.FORNECEDOR);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SecurityViolationException e) {
-					showSecurityViolationMessage(EnMigrationDataType.FORNECEDOR);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile("Security violation");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SQLException e) {
-					// johnny Auto-generated catch block
-					showSyntaxErrorMessage(EnMigrationDataType.FORNECEDOR);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"Syntax error on execute SQL statement");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				}
-				if (totalFornecedor != SQLDataProvider.EMPTY_RETURN) {
-					if (totalFornecedor != SQLDataProvider.POLICY_VIOLATION) {
-						totalData += totalFornecedor;
-						useFornecedor = true;
-						System.out.println("usa fornecedor. Sub-total="
-								+ totalFornecedor);
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.FORNECEDOR);
 					} else {
 
-						showPolicyViolationMessage(
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.FORNECEDOR);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
+					continue;
+
+				}
+				if (totalFornecedorRetrieved != SQLDataProvider.EMPTY_RETURN) {
+					if (totalFornecedorRetrieved != SQLDataProvider.POLICY_VIOLATION) {
+						totalData += totalFornecedorRetrieved;
+						useFornecedor = true;
+						System.out.println("usa fornecedor. Sub-total="
+								+ totalFornecedorRetrieved);
+					} else {
+
+						MigrationEngineMessages.showPolicyViolationMessage(
 								EnMigrationDataType.FORNECEDOR,
-								myDAO.getFornecedorColumnsNeeded());
+								myDAO.getColumnsNeeded(fornecedorDataFile));
 						continue;
 
 					}
@@ -464,39 +794,41 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				try {
 					LogFile.getInstance().writeInFile(
 							"Trying to count 'cliente'");
-					totalCliente = myDAO.countCliente(cnnFrom);
+
+					clienteDataFile = ClienteDataFile.getInstance(myCfgTo.getSoftware());
+					
+					totalClienteRetrieved = myDAO.countCliente(clienteDataFile);
+					
 				} catch (IOException e) {
-					showErrorMessage(EnMigrationDataType.CLIENTE);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"failed to retrieve data from file");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SecurityViolationException e) {
-					showSecurityViolationMessage(EnMigrationDataType.CLIENTE);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile("Security violation");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				} catch (SQLException e) {
-					// johnny Auto-generated catch block
-					showSyntaxErrorMessage(EnMigrationDataType.CLIENTE);
-					e.printStackTrace();
-					LogFile.getInstance().writeInFile(
-							"Syntax error on execute SQL statement");
-					LogFile.getInstance().writeInFile(e.getMessage());
-					continue;
-				}
-				if (totalCliente != SQLDataProvider.EMPTY_RETURN) {
-					if (totalCliente != SQLDataProvider.POLICY_VIOLATION) {
-						totalData += totalCliente;
-						useCliente = true;
-						System.out.println("usa cliente. Sub-total="
-								+ totalCliente);
+
+					if (e instanceof FileNotFoundException) {
+						MigrationEngineMessages
+								.showFileNotFoundErrorMessage(EnMigrationDataType.CLIENTE);
 					} else {
 
-						showPolicyViolationMessage(EnMigrationDataType.CLIENTE,
-								myDAO.getClienteColumnsNeeded());
+						MigrationEngineMessages
+								.showErrorMessage(EnMigrationDataType.CLIENTE);
+						e.printStackTrace();
+						LogFile.getInstance().writeInFile(
+								"failed to retrieve data from file");
+						LogFile.getInstance().writeInFile(e.getMessage());
+
+					}
+
+					continue;
+
+				}
+				if (totalClienteRetrieved != SQLDataProvider.EMPTY_RETURN) {
+					if (totalClienteRetrieved != SQLDataProvider.POLICY_VIOLATION) {
+						totalData += totalClienteRetrieved;
+						useCliente = true;
+						System.out.println("usa cliente. Sub-total="
+								+ totalClienteRetrieved);
+					} else {
+
+						MigrationEngineMessages.showPolicyViolationMessage(
+								EnMigrationDataType.CLIENTE,
+								myDAO.getColumnsNeeded(clienteDataFile));
 						continue;
 
 					}
@@ -520,16 +852,18 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				"Total number of retrieved rows: " + totalData);
 		LogFile.getInstance().writeInFile("Append: " + toAppend);
 
+		// ======================= INSERINDO PRODUTOS
+		// ===========================
 		if (useProduto) {
 			// recupera todos os produtos e monta um iterator
-			ArrayList<Produto> arP = myDAO.getProduto(cnnFrom);
+			ArrayList<Produto> arP = myDAO.getProduto(produtoDataFile);
 			Iterator<Produto> itP = arP.iterator();
 			// recupera a quantidade atual de produtos na tabela 'estoque'
 			// (MercoFlex)
-			if (myCfgTo.getSoftware() == EnSoftware.MERCOFLEX) {
+			if (myCfgTo.getSoftware() == GZSoftwares.MERCOFLEX) {
 				totalProdutoInicio = countCurrentProduto(cnnTo,
 						myCfgTo.getSoftware(), "estoque");
-			} else if (myCfgTo.getSoftware() == EnSoftware.MERCATTO) {
+			} else if (myCfgTo.getSoftware() == GZSoftwares.MERCATTO) {
 				totalProdutoInicio = countCurrentProduto(cnnTo,
 						myCfgTo.getSoftware(), "produto");
 			} else {
@@ -542,12 +876,12 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			if (!toAppend) {
 				LogFile.getInstance().writeInFile("Deleting 'produto'");
 				iInfo.setText("Excluindo produtos antigos");
-				if (myCfgTo.getSoftware() == EnSoftware.MERCOFLEX) {
+				if (myCfgTo.getSoftware() == GZSoftwares.MERCOFLEX) {
 					clear(cnnTo, "estoque");
 					clear(cnnTo, "estmix");
 					clear(cnnTo, "esttrib");
 					clear(cnnTo, "saldos");
-				} else if (myCfgTo.getSoftware() == EnSoftware.MERCATTO) {
+				} else if (myCfgTo.getSoftware() == GZSoftwares.MERCATTO) {
 					clear(cnnTo, "produto");
 					clear(cnnTo, "produto_ean");
 					clear(cnnTo, "produto_mix");
@@ -563,36 +897,118 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			while (itP.hasNext()) {
 				// pega o Produto
 				Produto p = itP.next();
+
+				boolean added = false;
+
+				if (toAppend) {
+
+					if (!(exists(cnnTo, p.getCodigoInterno(), "estoque",
+							"cdprod") || exists(cnnTo, p.getCodigoInterno(),
+							"esttrib", "cdprod"))) {
+						added = myDAO.addProduto(cnnTo, p);
+
+						if (added)
+							totalProdutoRegistered++;
+
+					} else {
+
+						added = true;
+
+					}
+
+				} else {
+
+					added = myDAO.addProduto(cnnTo, p);
+
+					if (added)
+						totalProdutoRegistered++;
+
+				}
+
 				// se conseguir adicionar
-				if (myDAO.addProduto(cnnTo, p)) {
+				if (added) {
 					// se o modo de inserção for de sobrepor
 					// adiciona para todas as lojas indicadas pela quantidade
 					if (!toAppend) {
+
+						boolean included = false;
+
 						for (int i = 0; i < iType.getNumLoja(); i++) {
-							// se conseguir inserir atualiza o status da barra
-							if (myDAO.addProdutoLoja(cnnTo, p, (i + 1))) {
+
+							// se conseguir inserir atualiza o status da
+							// barra
+
+							included = myDAO.addProdutoLoja(cnnTo, p,
+									iType.ignoreCodes(), (i + 1));
+
+							if (included) {
+
 								iInfo.setValue(((count++) * 100) / totalData);
+
 							}
+
 						}
+
+						if (included)
+							totalProdutoIncluded++;
+
 					} else {
-						// parte do maior codigo de loja até atingir a
-						// quantidade mais o codigo
-						for (int i = currentLoja; i < iType.getNumLoja()
-								+ currentLoja; i++) {
-							// se conseguir inserir atualiza o status da barra
-							if (myDAO.addProdutoLoja(cnnTo, p, (i + 1))) {
-								iInfo.setValue(((count++) * 100) / totalData);
+
+						if (iType.ignoreCodes()) {
+
+							int aux = totalProdutoIncluded + 1;
+
+							for (int i = currentLoja; i < iType.getNumLoja()
+									+ currentLoja; i++) {
+
+								if (!(exists(cnnTo, i + 1,
+										p.getCodigoInterno(), "estmix", "loja",
+										"cdprod") || exists(cnnTo, i + 1,
+										p.getCodigoInterno(), "saldos", "loja",
+										"cdprod"))
+										&& myDAO.addProdutoLoja(cnnTo, p,
+												iType.ignoreCodes(), (i + 1))) {
+
+									iInfo.setValue(((count++) * 100)
+											/ totalData);
+
+									totalProdutoIncluded = aux;
+
+								}
+
 							}
+
+						} else {
+
+							int aux = totalProdutoIncluded + 1;
+
+							if (!(exists(cnnTo, p.getLoja(),
+									p.getCodigoInterno(), "estmix", "loja",
+									"cdprod") || exists(cnnTo, p.getLoja(),
+									p.getCodigoInterno(), "saldos", "loja",
+									"cdprod"))
+									&& myDAO.addProdutoLoja(cnnTo, p,
+											iType.ignoreCodes(), 0)) {
+
+								iInfo.setValue(((count++) * 100) / totalData);
+
+								totalProdutoIncluded = aux;
+
+							}
+
 						}
+
 					}
+
 				}
+
 			}
 			// recupera a quantidade atual de produtos na tabela 'estoque'
 			// (MercoFlex)
-			if (myCfgTo.getSoftware() == EnSoftware.MERCOFLEX) {
+			if (myCfgTo.getSoftware() == GZSoftwares.MERCOFLEX) {
 				totalProdutoFinal = countCurrentProduto(cnnTo,
 						myCfgTo.getSoftware(), "estoque");
-			} else if (myCfgTo.getSoftware() == EnSoftware.MERCATTO) {
+			} else if (myCfgTo.getSoftware() == GZSoftwares.MERCATTO) {
 				totalProdutoFinal = countCurrentProduto(cnnTo,
 						myCfgTo.getSoftware(), "produto");
 			}
@@ -601,18 +1017,29 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itP = null;
 			arP = null;
+
+			produtoDataFile.writeNotInserteds();
+
+			System.out.println("Total de produtos novos cadastrados: "
+					+ totalProdutoRegistered);
+			System.out.println("Total de produtos inseridos: "
+					+ totalProdutoIncluded);
+
 		}
+		// =============================================================================
+
 		if (useDepartamento) {
 			LogFile.getInstance().writeInFile("Deleting 'departamento'");
 			iInfo.setText("Excluindo departamento antigos");
-			if (myCfgTo.getSoftware() == EnSoftware.MERCOFLEX) {
+			if (myCfgTo.getSoftware() == GZSoftwares.MERCOFLEX) {
 				clear(cnnTo, "depto");
-			} else if (myCfgTo.getSoftware() == EnSoftware.MERCATTO) {
+			} else if (myCfgTo.getSoftware() == GZSoftwares.MERCATTO) {
 				clear(cnnTo, "grupo");
 			}
 			LogFile.getInstance().writeInFile("Inserting 'departamento'");
 			iInfo.setText("Inserindo registros na tabela de departamentos");
-			ArrayList<Departamento> arD = myDAO.getDepartamento(cnnFrom);
+			ArrayList<Departamento> arD = myDAO
+					.getDepartamento(departamentoDataFile);
 			Iterator<Departamento> itD = arD.iterator();
 			while (itD.hasNext()) {
 				Departamento d = itD.next();
@@ -621,18 +1048,22 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itD = null;
 			arD = null;
+
+			departamentoDataFile.writeNotInserteds();
+
 		}
+
 		if (useGrupo) {
 			LogFile.getInstance().writeInFile("Deleting 'grupo'");
 			iInfo.setText("Excluindo grupos antigos");
-			if (myCfgTo.getSoftware() == EnSoftware.MERCOFLEX) {
+			if (myCfgTo.getSoftware() == GZSoftwares.MERCOFLEX) {
 				clear(cnnTo, "grupo");
-			} else if (myCfgTo.getSoftware() == EnSoftware.MERCATTO) {
+			} else if (myCfgTo.getSoftware() == GZSoftwares.MERCATTO) {
 				clear(cnnTo, "subgrupo");
 			}
 			LogFile.getInstance().writeInFile("Inserting 'grupo'");
 			iInfo.setText("Inserindo registros na tabela de grupos");
-			ArrayList<Grupo> arG = myDAO.getGrupo(cnnFrom);
+			ArrayList<Grupo> arG = myDAO.getGrupo(grupoDataFile);
 			Iterator<Grupo> itG = arG.iterator();
 			while (itG.hasNext()) {
 				Grupo g = itG.next();
@@ -641,18 +1072,22 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itG = null;
 			arG = null;
+
+			grupoDataFile.writeNotInserteds();
+
 		}
+
 		if (useArmacao) {
 			LogFile.getInstance().writeInFile("Deleting 'armacao'");
 			iInfo.setText("Excluindo armações antigas");
-			if (myCfgTo.getSoftware() == EnSoftware.MERCOFLEX) {
+			if (myCfgTo.getSoftware() == GZSoftwares.MERCOFLEX) {
 				clear(cnnTo, "armacao");
-			} else if (myCfgTo.getSoftware() == EnSoftware.MERCATTO) {
+			} else if (myCfgTo.getSoftware() == GZSoftwares.MERCATTO) {
 				clear(cnnTo, "subgrupo1");
 			}
 			LogFile.getInstance().writeInFile("Inserting 'armacao'");
 			iInfo.setText("Inserindo registros na tabela de armações");
-			ArrayList<Armacao> arA = myDAO.getArmacao(cnnFrom);
+			ArrayList<Armacao> arA = myDAO.getArmacao(armacaoDataFile);
 			Iterator<Armacao> itA = arA.iterator();
 			while (itA.hasNext()) {
 				Armacao m = itA.next();
@@ -661,18 +1096,22 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itA = null;
 			arA = null;
+
+			armacaoDataFile.writeNotInserteds();
+
 		}
+
 		if (useMarca) {
 			LogFile.getInstance().writeInFile("Deleting 'marca'");
 			iInfo.setText("Excluindo marcas antigas");
-			if (myCfgTo.getSoftware() == EnSoftware.MERCOFLEX) {
+			if (myCfgTo.getSoftware() == GZSoftwares.MERCOFLEX) {
 				clear(cnnTo, "marca");
-			} else if (myCfgTo.getSoftware() == EnSoftware.MERCATTO) {
+			} else if (myCfgTo.getSoftware() == GZSoftwares.MERCATTO) {
 				clear(cnnTo, "subgrupo1");
 			}
 			LogFile.getInstance().writeInFile("Inserting 'marca'");
 			iInfo.setText("Inserindo registros na tabela de marcas");
-			ArrayList<Marca> arM = myDAO.getMarca(cnnFrom);
+			ArrayList<Marca> arM = myDAO.getMarca(marcaDataFile);
 			Iterator<Marca> itM = arM.iterator();
 			while (itM.hasNext()) {
 				Marca m = itM.next();
@@ -681,31 +1120,22 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itM = null;
 			arM = null;
-		}
-		if (useLoja) {
-			iInfo.setText("Inserindo registros na tabela de lojas");
-			ArrayList<Loja> arL = myDAO.getLoja(cnnFrom);
-			Iterator<Loja> itL = arL.iterator();
-			while (itL.hasNext()) {
-				Loja l = itL.next();
-				myDAO.addLoja(cnnTo, l);
-				iInfo.setValue(((count++) * 100) / totalData);
-			}
-			itL = null;
-			arL = null;
+
+			marcaDataFile.writeNotInserteds();
+
 		}
 
 		if (useCliente) {
 			LogFile.getInstance().writeInFile("Deleting 'cliente'");
 			iInfo.setText("Excluindo clientes antigos");
-			if (myCfgTo.getSoftware() == EnSoftware.MERCOFLEX) {
+			if (myCfgTo.getSoftware() == GZSoftwares.MERCOFLEX) {
 				clear(cnnTo, "clientes");
-			} else if (myCfgTo.getSoftware() == EnSoftware.MERCATTO) {
+			} else if (myCfgTo.getSoftware() == GZSoftwares.MERCATTO) {
 				clear(cnnTo, "cliente");
 			}
 			LogFile.getInstance().writeInFile("Inserting 'cliente'");
 			iInfo.setText("Inserindo registros na tabela de clientes");
-			ArrayList<Cliente> arC = myDAO.getCliente(cnnFrom);
+			ArrayList<Cliente> arC = myDAO.getCliente(clienteDataFile);
 			Iterator<Cliente> itC = arC.iterator();
 			while (itC.hasNext()) {
 				Cliente c = itC.next();
@@ -714,19 +1144,22 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itC = null;
 			arC = null;
+
+			clienteDataFile.writeNotInserteds();
+
 		}// fim do use clientes
 
 		if (useFornecedor) {
 			LogFile.getInstance().writeInFile("Deleting 'fornecedor'");
 			iInfo.setText("Excluindo fornecedores antigos");
-			if (myCfgTo.getSoftware() == EnSoftware.MERCOFLEX) {
+			if (myCfgTo.getSoftware() == GZSoftwares.MERCOFLEX) {
 				clear(cnnTo, "credor");
-			} else if (myCfgTo.getSoftware() == EnSoftware.MERCATTO) {
+			} else if (myCfgTo.getSoftware() == GZSoftwares.MERCATTO) {
 				clear(cnnTo, "fornecedor");
 			}
 			LogFile.getInstance().writeInFile("Inserting 'fornecedor'");
 			iInfo.setText("Inserindo registros na tabela de fornecedores");
-			ArrayList<Fornecedor> arF = myDAO.getFornecedor(cnnFrom);
+			ArrayList<Fornecedor> arF = myDAO.getFornecedor(fornecedorDataFile);
 			Iterator<Fornecedor> itF = arF.iterator();
 			while (itF.hasNext()) {
 				Fornecedor f = itF.next();
@@ -736,6 +1169,9 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			}
 			itF = null;
 			arF = null;
+
+			fornecedorDataFile.writeNotInserteds();
+
 		}// fim do use Fornecedores
 
 		iInfo.setValue(100);
@@ -748,57 +1184,62 @@ class MigrationEngine extends Thread implements IMigrationResults {
 	}// fim do run
 
 	@Override
-	public int getCountProdutos() {
-		// TODO Auto-generated method stub
-		return (useProduto) ? (toAppend) ? totalProdutoFinal
-				- totalProdutoInicio : totalProduto
+	public int getCountRegisteredProdutos() {
+		return (useProduto) ? totalProdutoRegistered
 				: SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountClientes() {
-		// TODO Auto-generated method stub
-		return (useCliente) ? totalCliente : SQLDataProvider.EMPTY_RETURN;
+		return (useCliente) ? totalClienteRetrieved
+				: SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountFornecedores() {
-		// TODO Auto-generated method stub
-		return (useFornecedor) ? totalFornecedor : SQLDataProvider.EMPTY_RETURN;
+		return (useFornecedor) ? totalFornecedorRetrieved
+				: SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountMarca() {
-		// TODO Auto-generated method stub
-		return (useMarca) ? totalMarca : SQLDataProvider.EMPTY_RETURN;
+		return (useMarca) ? totalMarcaRetrieved : SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountDepartamento() {
-		// TODO Auto-generated method stub
-		return (useDepartamento) ? totalDepartamento
+		return (useDepartamento) ? totalDepartamentoRetrieved
 				: SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountGrupo() {
-		// TODO Auto-generated method stub
-		return (useGrupo) ? totalGrupo : SQLDataProvider.EMPTY_RETURN;
+		return (useGrupo) ? totalGrupoRetrieved : SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountArmacao() {
-		// TODO Auto-generated method stub
-		return (useArmacao) ? totalArmacao : SQLDataProvider.EMPTY_RETURN;
+		return (useArmacao) ? totalArmacaoRetrieved
+				: SQLDataProvider.EMPTY_RETURN;
 	}
 
 	@Override
 	public int getCountLoja() {
-		// TODO Auto-generated method stub
 		return (useLoja) ? totalLoja : SQLDataProvider.EMPTY_RETURN;
 	}
 
-	private int countCurrentProduto(Connection cnn, EnSoftware software,
+	/**
+	 * Conta a quantidade de dados nas tabelas de produto
+	 * 
+	 * @param cnn
+	 *            - variável de conexão com o banco de dados de destino
+	 * @param software
+	 *            - software a ser implantado
+	 * @param table
+	 *            - nome da tabela
+	 * @return - o total de produtos na tabela
+	 */
+	private int countCurrentProduto(Connection cnn, GZSoftwares software,
 			String table) {
 
 		PreparedStatement st = null;
@@ -807,7 +1248,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (table.trim().equals("estoque")) {
 
@@ -847,7 +1288,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (table.trim().equals("produto")) {
 
@@ -919,7 +1360,16 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	}
 
-	private int getMaxLoja(Connection cnn, EnSoftware software) {
+	/**
+	 * Busca a última loja cadastrada no banco de destino
+	 * 
+	 * @param cnn
+	 *            - variável de conexão com o banco de dados de destino
+	 * @param software
+	 *            - software a ser implantado
+	 * @return - o código d a loja
+	 */
+	private int getMaxLoja(Connection cnn, GZSoftwares software) {
 
 		PreparedStatement st;
 
@@ -941,13 +1391,13 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				}
 
 			} catch (SQLException e) {
-				// johnny Auto-generated catch block
+
 				e.printStackTrace();
 				return -1;
 			}
 
 		case MERCATTO:
-			
+
 			try {
 
 				st = cnn.prepareStatement("select max(ID_LOJA) from produto_estoque");
@@ -962,11 +1412,11 @@ class MigrationEngine extends Thread implements IMigrationResults {
 				}
 
 			} catch (SQLException e) {
-				// johnny Auto-generated catch block
+
 				e.printStackTrace();
 				return -1;
 			}
-			
+
 		default:
 
 			return 0;
@@ -975,6 +1425,14 @@ class MigrationEngine extends Thread implements IMigrationResults {
 
 	}
 
+	/**
+	 * Limpa a tabela informada no banco de dados de destino
+	 * 
+	 * @param cnn
+	 *            - variável de conexão ao banco de dados de destino
+	 * @param table
+	 *            - nome da tabela a ser limpada
+	 */
 	private void clear(Connection cnn, String table) {
 
 		try {
@@ -982,606 +1440,72 @@ class MigrationEngine extends Thread implements IMigrationResults {
 			st.execute();
 			st.close();
 		} catch (SQLException e) {
-			// johnny Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
 	}
 
-	private void showErrorMessage(EnMigrationDataType type) {
+	private boolean exists(Connection cnn, int codLoja, String codCodigo,
+			String table, String fieldLoja, String fieldCodigo) {
 
-		LogFile.getInstance().writeInFile("Showing error message");
+		try {
 
-		switch (type) {
+			PreparedStatement st = cnn.prepareStatement("select count(*) from "
+					+ table + " where " + fieldCodigo + " = '" + codCodigo
+					+ "' and " + fieldLoja + " = " + codLoja);
 
-		case ARMACAO:
+			ResultSet rs = st.executeQuery();
+			rs.next();
 
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar as armações. Elas não serão migradas.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
+			boolean b = rs.getInt(1) > 0;
 
-			break;
+			rs.close();
+			st.close();
 
-		case CLIENTE:
+			return b;
 
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar os clientes. Eles não serão migrados.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
+		} catch (SQLException e) {
 
-			break;
-
-		case CONTAPAGAR:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar as contas a pagar. Elas não serão migradas.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case CONTARECEBER:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar as contas a receber. Elas não serão migradas.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case DEPARTAMENTO:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar os departamento. Eles não serão migrados.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case FORNECEDOR:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar os fornecedores. Eles não serão migrados.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case GRUPO:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar os grupos. Eles não serão migrados.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case MARCA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar as marcas. Elas não serão migradas.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case MOVTOVENDA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar as movimentações de vendas. Elas não serão migradas.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case NFENTRADA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar as notas fiscais de entrada. Elas não serão migradas.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case NFSAIDA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar as notas fiscais de saída. Elas não serão migradas.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case PRODUTO:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar os produtos. Eles não serão migrados.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case SETOR:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Não foi possível coletar os setores. Eles não serão migrados.",
-							"Erro", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		default:
-
-			JOptionPane.showMessageDialog(null, "Erro desconhecido.", "Erro",
-					JOptionPane.ERROR_MESSAGE);
-
-			break;
+			e.printStackTrace();
+			return true;
 
 		}
 
 	}
 
-	private void showPolicyViolationMessage(EnMigrationDataType type,
-			ArrayList<String> columnsNeeded) {
+	private boolean exists(Connection cnn, String codCodigo, String table,
+			String fieldCodigo) {
 
-		LogFile.getInstance().writeInFile("Showing policy violation message");
+		try {
 
-		switch (type) {
-		// .toString().replace("[", "").replace("]", "")
-		case ARMACAO:
+			PreparedStatement st = cnn.prepareStatement("select count(*) from "
+					+ table + " where " + fieldCodigo + " = '" + codCodigo
+					+ "'");
 
-			JOptionPane.showMessageDialog(null,
-					"Migração de armações não permitida! \nColuna(s) não encontrada(s):\n"
-							+ columnsNeeded.toString().replace("[", "")
-									.replace("]", ""), "Violação de política",
-					JOptionPane.ERROR_MESSAGE);
+			ResultSet rs = st.executeQuery();
+			rs.next();
 
-			break;
+			boolean b = rs.getInt(1) > 0;
 
-		case CLIENTE:
+			rs.close();
+			st.close();
 
-			JOptionPane.showMessageDialog(null,
-					"Migração de clientes não permitida! \nColuna(s) não encontrada(s):\n"
-							+ columnsNeeded.toString().replace("[", "")
-									.replace("]", ""), "Violação de política",
-					JOptionPane.ERROR_MESSAGE);
+			return b;
 
-			break;
+		} catch (SQLException e) {
 
-		case CONTAPAGAR:
-
-			JOptionPane.showMessageDialog(null,
-					"Migração de contas a pagar não permitida! \nColuna(s) não encontrada(s):\n"
-							+ columnsNeeded.toString().replace("[", "")
-									.replace("]", ""), "Violação de política",
-					JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case CONTARECEBER:
-
-			JOptionPane.showMessageDialog(null,
-					"Migração de contas a receber não permitida! \nColuna(s) não encontrada(s):\n"
-							+ columnsNeeded.toString().replace("[", "")
-									.replace("]", ""), "Violação de política",
-					JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case DEPARTAMENTO:
-
-			JOptionPane.showMessageDialog(null,
-					"Migração de departamentos não permitida! \nColuna(s) não encontrada(s):\n"
-							+ columnsNeeded.toString().replace("[", "")
-									.replace("]", ""), "Violação de política",
-					JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case FORNECEDOR:
-
-			JOptionPane.showMessageDialog(null,
-					"Migração de fornecedores não permitida! \nColuna(s) não encontrada(s):\n"
-							+ columnsNeeded.toString().replace("[", "")
-									.replace("]", ""), "Violação de política",
-					JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case GRUPO:
-
-			JOptionPane.showMessageDialog(null,
-					"Migração de grupos não permitida! \nColuna(s) não encontrada(s):\n"
-							+ columnsNeeded.toString().replace("[", "")
-									.replace("]", ""), "Violação de política",
-					JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case MARCA:
-
-			JOptionPane.showMessageDialog(null,
-					"Migração de marcas não permitida! \nColuna(s) não encontrada(s):\n"
-							+ columnsNeeded.toString().replace("[", "")
-									.replace("]", ""), "Violação de política",
-					JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case MOVTOVENDA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de movimentações de venda não permitida! \nColuna(s) não encontrada(s):\n"
-									+ columnsNeeded.toString().replace("[", "")
-											.replace("]", ""),
-							"Violação de política", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case NFENTRADA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de notas fiscais de entrada não permitida! \nColuna(s) não encontrada(s):\n"
-									+ columnsNeeded.toString().replace("[", "")
-											.replace("]", ""),
-							"Violação de política", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case NFSAIDA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de notas fiscais de saída não permitida! \nColuna(s) não encontrada(s):\n"
-									+ columnsNeeded.toString().replace("[", "")
-											.replace("]", ""),
-							"Violação de política", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case PRODUTO:
-
-			JOptionPane.showMessageDialog(null,
-					"Migração de produtos não permitida! \nColuna(s) não encontrada(s):\n"
-							+ columnsNeeded.toString().replace("[", "")
-									.replace("]", ""), "Violação de política",
-					JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case SETOR:
-
-			JOptionPane.showMessageDialog(null,
-					"Migração de setores não permitida! \nColuna(s) não encontrada(s):\n"
-							+ columnsNeeded.toString().replace("[", "")
-									.replace("]", ""), "Violação de política",
-					JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		default:
-
-			JOptionPane.showMessageDialog(null,
-					"Erro desconhecido de migração.", "Violação de política",
-					JOptionPane.ERROR_MESSAGE);
-
-			break;
+			e.printStackTrace();
+			return true;
 
 		}
 
 	}
 
-	private void showSecurityViolationMessage(EnMigrationDataType type) {
-
-		LogFile.getInstance().writeInFile("Showing security violation message");
-
-		switch (type) {
-		// .toString().replace("[", "").replace("]", "")
-		case ARMACAO:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de armações não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case CLIENTE:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de clientes não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case CONTAPAGAR:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de contas a pagar não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case CONTARECEBER:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de contas a receber não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case DEPARTAMENTO:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de departamentos não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case FORNECEDOR:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de fornecedores não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case GRUPO:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de grupos não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case MARCA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de marcas não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case MOVTOVENDA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de movimentações de venda não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case NFENTRADA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de notas fiscais de entrada não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case NFSAIDA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de notas fiscais de saída não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case PRODUTO:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de produtos não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case SETOR:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de setores não permitida! \nEncontrado código SQL perigoso ao tentar coletar os registros.",
-							"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		default:
-
-			JOptionPane.showMessageDialog(null, "Violação de segurança!.",
-					"Violação de segurança", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		}
-
-	}
-
-	private void showSyntaxErrorMessage(EnMigrationDataType type) {
-
-		LogFile.getInstance().writeInFile("Showing syntax error message");
-
-		switch (type) {
-		// .toString().replace("[", "").replace("]", "")
-		case ARMACAO:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de armações não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case CLIENTE:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de clientes não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case CONTAPAGAR:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de contas a pagar não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case CONTARECEBER:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de contas a receber não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case DEPARTAMENTO:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de departamentos não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case FORNECEDOR:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de fornecedores não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case GRUPO:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de grupos não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case MARCA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de marcas não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case MOVTOVENDA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de movimentações de venda não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case NFENTRADA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de notas fiscais de entrada não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case NFSAIDA:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de notas fiscais de saída não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case PRODUTO:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de produtos não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		case SETOR:
-
-			JOptionPane
-					.showMessageDialog(
-							null,
-							"Migração de setores não permitida! \nEncontrado erro de sintaxe ao tentar coletar os registros.",
-							"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		default:
-
-			JOptionPane.showMessageDialog(null, "Erro de sintaxe!",
-					"Erro de sintaxe", JOptionPane.ERROR_MESSAGE);
-
-			break;
-
-		}
-
+	@Override
+	public int getCountIncludedProdutos() {
+		return (useProduto) ? totalProdutoIncluded
+				: SQLDataProvider.EMPTY_RETURN;
 	}
 
 }

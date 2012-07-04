@@ -1,0 +1,523 @@
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   </head>
+   <body>
+      <table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%">
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.report.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr>
+      </table>
+      <hr>
+      <h2><font size="-1">br.com.gz.migration.report</font></h2><span style="font-size:large; font-weight:bold">Class&nbsp;</span><span style="font-size:large; font-weight:bold">MigrationReportData</span><br><br>public <b>MigrationReportData</b><br><p>Classe que cont&eacute;m os dados da migra&ccedil;&atilde;o para alimentar o relat&oacute;rio final
+          
+          
+      </p><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Field Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#714">path</a></code><br> <font>Caminho do relat&oacute;rio</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#715">nomeCliente</a></code><br> <font>Nome do cliente</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#716">modoMigracao</a></code><br> <font>Modo de migra&ccedil;&atilde;o</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#717">nomeSistema</a></code><br> <font>Nome do software a ser implantado</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#718">tipoBanco</a></code><br> <font>Tipo de banco de dados de destino</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#719">ip</a></code><br> <font>Endere&ccedil;o IP do banco de dados de destino</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private int</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#720">porta</a></code><br> <font>Porta do banco de dados de destino</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#721">nomeBanco</a></code><br> <font>Nome do banco de dados de destino</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#722">usuario</a></code><br> <font>Usu&aacute;rio do banco de dados de destino</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#723">senha</a></code><br> <font>Senha do banco de dados de destino</font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>private java.util.Collection</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#724">beans</a></code><br> <font>Collection com os tipos de dados migrados</font>&nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Constructor Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#726">MigrationReportData</a>(java.util.Collection migrationBeans)</code><br> <font>Construtor que recebe a Collection com os tipos de dados da migra&ccedil;&atilde;o
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <thead>
+         <tr>
+            <td bgColor="#CCCCFF" colspan="2"><span style="font-size:large; font-weight:bold">Method Summary</span></td>
+         </tr>
+      </thead><tbody>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.util.Collection</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#728">getBeans</a>()</code><br> <font>Retorna os tipos de dados da migra&ccedil;&atilde;o
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#729">getPath</a>()</code><br> <font>Caminho do relat&oacute;rio
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#730">setPath</a>(java.lang.String path)</code><br> <font>Define o caminho do relat&oacute;rio
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#731">getNomeCliente</a>()</code><br> <font>Retorna o nome do cliente
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#732">setNomeCliente</a>(java.lang.String nomeCliente)</code><br> <font>Define o nome do cliente
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#733">getModoMigracao</a>()</code><br> <font>retorna o modo de migra&ccedil;&atilde;o
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#734">setModoMigracao</a>(boolean isAppend)</code><br> <font>define o modo de migra&ccedil;&atilde;o
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#735">getNomeSistema</a>()</code><br> <font>retorna o nome do software a ser utilizado
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#736">setNomeSistema</a>(java.lang.String nomeSistema)</code><br> <font>define o nome do software
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#737">setNomeSistema</a>(br.com.gz.util.GZSoftwares software)</code><br> <font>define o nome do software
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#738">getTipoBanco</a>()</code><br> <font>retorna o tipo de banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#739">setTipoBanco</a>(java.lang.String tipoBanco)</code><br> <font>deifne o tipo de banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#740">setTipoBanco</a>(org.database.connection.DatabaseType dbType)</code><br> <font>define o tipo de banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#741">getIp</a>()</code><br> <font>retorna o ip do banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#742">setIp</a>(java.lang.String ip)</code><br> <font>define o ip do banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public int </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#743">getPorta</a>()</code><br> <font>retorna o n&uacute;mero da porta do banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#744">setPorta</a>(int porta)</code><br> <font>define o n&uacute;mero da porta do banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#745">getNomeBanco</a>()</code><br> <font>retorna o nome do banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#746">setNomeBanco</a>(java.lang.String nomeBanco)</code><br> <font>define o nome do banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#747">getUsuario</a>()</code><br> <font>retorna o nome do usu&aacute;rio do banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#748">setUsuario</a>(java.lang.String usuario)</code><br> <font>define o nome do usu&aacute;rio do banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public java.lang.String</code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#749">getSenha</a>()</code><br> <font>retorna a senha do banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr>
+      <tr>
+         <td align="right" valign="top" width="1%"><font size="-1"><code>public void </code></font>&nbsp;
+            										
+         </td>
+         <td><code><a href="#750">setSenha</a>(java.lang.String senha)</code><br> <font>define a senha do banco de dados de destino
+                
+                </font>&nbsp;
+            										
+         </td>
+      </tr></tbody></table><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Field Detail</span></td>
+      </tr></table><a name="714"><span style="font-size:larger">path</span></a><br><br><pre>private java.lang.String <b>path</b></pre><br><dl>
+         <p>Caminho do relat&oacute;rio</p>
+      </dl><br><hr><a name="715"><span style="font-size:larger">nomeCliente</span></a><br><br><pre>private java.lang.String <b>nomeCliente</b></pre><br><dl>
+         <p>Nome do cliente</p>
+      </dl><br><hr><a name="716"><span style="font-size:larger">modoMigracao</span></a><br><br><pre>private java.lang.String <b>modoMigracao</b></pre><br><dl>
+         <p>Modo de migra&ccedil;&atilde;o</p>
+      </dl><br><hr><a name="717"><span style="font-size:larger">nomeSistema</span></a><br><br><pre>private java.lang.String <b>nomeSistema</b></pre><br><dl>
+         <p>Nome do software a ser implantado</p>
+      </dl><br><hr><a name="718"><span style="font-size:larger">tipoBanco</span></a><br><br><pre>private java.lang.String <b>tipoBanco</b></pre><br><dl>
+         <p>Tipo de banco de dados de destino</p>
+      </dl><br><hr><a name="719"><span style="font-size:larger">ip</span></a><br><br><pre>private java.lang.String <b>ip</b></pre><br><dl>
+         <p>Endere&ccedil;o IP do banco de dados de destino</p>
+      </dl><br><hr><a name="720"><span style="font-size:larger">porta</span></a><br><br><pre>private int <b>porta</b></pre><br><dl>
+         <p>Porta do banco de dados de destino</p>
+      </dl><br><hr><a name="721"><span style="font-size:larger">nomeBanco</span></a><br><br><pre>private java.lang.String <b>nomeBanco</b></pre><br><dl>
+         <p>Nome do banco de dados de destino</p>
+      </dl><br><hr><a name="722"><span style="font-size:larger">usuario</span></a><br><br><pre>private java.lang.String <b>usuario</b></pre><br><dl>
+         <p>Usu&aacute;rio do banco de dados de destino</p>
+      </dl><br><hr><a name="723"><span style="font-size:larger">senha</span></a><br><br><pre>private java.lang.String <b>senha</b></pre><br><dl>
+         <p>Senha do banco de dados de destino</p>
+      </dl><br><hr><a name="724"><span style="font-size:larger">beans</span></a><br><br><pre>private java.util.Collection <b>beans</b></pre><br><dl>
+         <p>Collection com os tipos de dados migrados</p>
+      </dl><br><hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Constructor Detail</span></td>
+      </tr></table><span style="font-size:medium"><a name="726"><span style="font-size:medium">MigrationReportData</span></a></span><br><pre>public <b>MigrationReportData</b>(java.util.Collection migrationBeans)</pre><br><dl>
+         <p>Construtor que recebe a Collection com os tipos de dados da migra&ccedil;&atilde;o
+             
+             
+         </p><br></dl>
+      <hr><br><br><br><br><table border="1" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+         <td bgColor="#CCCCFF"><span style="font-size:large; font-weight:bold">Method Detail</span></td>
+      </tr></table><a name="728"><span style="font-size:medium">getBeans</span></a><br><br><pre>public java.util.Collection <b>getBeans</b>()</pre><br><dl>
+         <p>Retorna os tipos de dados da migra&ccedil;&atilde;o
+             
+             
+         </p><br></dl>
+      <hr><a name="729"><span style="font-size:medium">getPath</span></a><br><br><pre>public java.lang.String <b>getPath</b>()</pre><br><dl>
+         <p>Caminho do relat&oacute;rio
+             
+             
+         </p><br></dl>
+      <hr><a name="730"><span style="font-size:medium">setPath</span></a><br><br><pre>public void  <b>setPath</b>(java.lang.String path)</pre><br><dl>
+         <p>Define o caminho do relat&oacute;rio
+             
+             
+         </p><br></dl>
+      <hr><a name="731"><span style="font-size:medium">getNomeCliente</span></a><br><br><pre>public java.lang.String <b>getNomeCliente</b>()</pre><br><dl>
+         <p>Retorna o nome do cliente
+             
+             
+         </p><br></dl>
+      <hr><a name="732"><span style="font-size:medium">setNomeCliente</span></a><br><br><pre>public void  <b>setNomeCliente</b>(java.lang.String nomeCliente)</pre><br><dl>
+         <p>Define o nome do cliente
+             
+             
+         </p><br></dl>
+      <hr><a name="733"><span style="font-size:medium">getModoMigracao</span></a><br><br><pre>public java.lang.String <b>getModoMigracao</b>()</pre><br><dl>
+         <p>retorna o modo de migra&ccedil;&atilde;o
+             
+             
+         </p><br></dl>
+      <hr><a name="734"><span style="font-size:medium">setModoMigracao</span></a><br><br><pre>public void  <b>setModoMigracao</b>(boolean isAppend)</pre><br><dl>
+         <p>define o modo de migra&ccedil;&atilde;o
+             
+             
+         </p><br></dl>
+      <hr><a name="735"><span style="font-size:medium">getNomeSistema</span></a><br><br><pre>public java.lang.String <b>getNomeSistema</b>()</pre><br><dl>
+         <p>retorna o nome do software a ser utilizado
+             
+             
+         </p><br></dl>
+      <hr><a name="736"><span style="font-size:medium">setNomeSistema</span></a><br><br><pre>public void  <b>setNomeSistema</b>(java.lang.String nomeSistema)</pre><br><dl>
+         <p>define o nome do software
+             
+             
+         </p><br></dl>
+      <hr><a name="737"><span style="font-size:medium">setNomeSistema</span></a><br><br><pre>public void  <b>setNomeSistema</b>(br.com.gz.util.GZSoftwares software)</pre><br><dl>
+         <p>define o nome do software
+             
+             
+         </p><br></dl>
+      <hr><a name="738"><span style="font-size:medium">getTipoBanco</span></a><br><br><pre>public java.lang.String <b>getTipoBanco</b>()</pre><br><dl>
+         <p>retorna o tipo de banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="739"><span style="font-size:medium">setTipoBanco</span></a><br><br><pre>public void  <b>setTipoBanco</b>(java.lang.String tipoBanco)</pre><br><dl>
+         <p>deifne o tipo de banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="740"><span style="font-size:medium">setTipoBanco</span></a><br><br><pre>public void  <b>setTipoBanco</b>(org.database.connection.DatabaseType dbType)</pre><br><dl>
+         <p>define o tipo de banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="741"><span style="font-size:medium">getIp</span></a><br><br><pre>public java.lang.String <b>getIp</b>()</pre><br><dl>
+         <p>retorna o ip do banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="742"><span style="font-size:medium">setIp</span></a><br><br><pre>public void  <b>setIp</b>(java.lang.String ip)</pre><br><dl>
+         <p>define o ip do banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="743"><span style="font-size:medium">getPorta</span></a><br><br><pre>public int  <b>getPorta</b>()</pre><br><dl>
+         <p>retorna o n&uacute;mero da porta do banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="744"><span style="font-size:medium">setPorta</span></a><br><br><pre>public void  <b>setPorta</b>(int porta)</pre><br><dl>
+         <p>define o n&uacute;mero da porta do banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="745"><span style="font-size:medium">getNomeBanco</span></a><br><br><pre>public java.lang.String <b>getNomeBanco</b>()</pre><br><dl>
+         <p>retorna o nome do banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="746"><span style="font-size:medium">setNomeBanco</span></a><br><br><pre>public void  <b>setNomeBanco</b>(java.lang.String nomeBanco)</pre><br><dl>
+         <p>define o nome do banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="747"><span style="font-size:medium">getUsuario</span></a><br><br><pre>public java.lang.String <b>getUsuario</b>()</pre><br><dl>
+         <p>retorna o nome do usu&aacute;rio do banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="748"><span style="font-size:medium">setUsuario</span></a><br><br><pre>public void  <b>setUsuario</b>(java.lang.String usuario)</pre><br><dl>
+         <p>define o nome do usu&aacute;rio do banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="749"><span style="font-size:medium">getSenha</span></a><br><br><pre>public java.lang.String <b>getSenha</b>()</pre><br><dl>
+         <p>retorna a senha do banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><a name="750"><span style="font-size:medium">setSenha</span></a><br><br><pre>public void  <b>setSenha</b>(java.lang.String senha)</pre><br><dl>
+         <p>define a senha do banco de dados de destino
+             
+             
+         </p><br></dl>
+      <hr><br><br><table bgcolor="#CCCCFF" border="0" cellpadding="1" cellspacing="3" table-layout="fixed" width="100%">
+         <tr bgColor="#CCCCFF" width="100%">
+            <td width="72" align="center"><b><a href="overview-summary.html">Overview</a></b></td>
+            <td width="72" align="center"><b><a href="br.com.gz.migration.report.html">Package</a></b></td>
+            <td bgColor="#00008B" width="72" align="center"><span style="color:#FFFFFF; font-weight:bold">Class</span></td>
+            <td width="72" align="center">Diagram</td>
+            <td>&nbsp;</td>
+         </tr>
+      </table>
+      <hr><br><br><center><span style="font-size:xx-small">This documentation has been generated by EclipseUML.</span></center><br></body>
+</html>

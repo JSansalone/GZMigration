@@ -10,6 +10,13 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * Classe que representa a janela de informações do aplicativo
+ * 
+ * @author Jonathan Sansalone
+ *
+ *
+ */
 public class AboutFrame extends JDialog {
 
 	public AboutFrame() {
@@ -39,11 +46,11 @@ public class AboutFrame extends JDialog {
 		lblResp.setBounds(55, 150, 350, 20);
 		JLabel lblCont = new JLabel("E-mail: jonathan.sansalone@gzsistemas.com.br");
 		lblCont.setBounds(55, 170, 300, 20);
-		JLabel lblDep = new JLabel("Departamento de Serviços");
+		JLabel lblDep = new JLabel("Departamento de Desenvolvimento");
 		lblDep.setBounds(55, 190, 350, 20);
 		JLabel lblSep2 = new JLabel("--------------------------------------------------------");
 		lblSep2.setBounds(55, 210, 350, 20);
-		JLabel lblDate = new JLabel("Abril de 2012");
+		JLabel lblDate = new JLabel("Julho de 2012");
 		lblDate.setBounds(55, 230, 350, 20);
 		
 		JButton btSair = new JButton("Ok");

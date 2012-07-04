@@ -20,12 +20,38 @@ import javax.swing.JTextField;
 
 import br.com.gz.migration.file.LogFile;
 
+/**
+ * Classe que representa a janela de envio de email
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class MailSenderFrame extends JDialog {
 
+	/**
+	 * Campo para digitar o nome do remetente
+	 */
 	private JTextField txtFrom;
+	
+	/**
+	 * Area do corpo da mensagem
+	 */
 	private JTextArea area;
+	
+	/**
+	 * Botão para enviar o email
+	 */
 	private JButton btSend;
 
+	/**
+	 * Método que realiza o envio do email
+	 * 
+	 * @param from - nome do remetente
+	 * @param to - email do destinatário
+	 * @param title - título do email
+	 * @param message - mensagem
+	 * @return - true se for enviado com sucesso, false caso contrário
+	 */
 	private boolean enviarEmail(String from, String to, String title,
 			String message) {
 
@@ -72,6 +98,9 @@ public class MailSenderFrame extends JDialog {
 
 	}
 
+	/**
+	 * Construtor default que constrói a janela
+	 */
 	public MailSenderFrame() {
 
 		setSize(600, 380);

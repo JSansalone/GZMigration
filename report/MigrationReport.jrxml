@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MigrationReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="70"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#00FF00">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFFFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1"/>
+	<parameter name="logoHeader" class="java.lang.Object"/>
+	<parameter name="nomeCliente" class="java.lang.String"/>
+	<parameter name="modoMigracao" class="java.lang.String"/>
+	<parameter name="nomeSistema" class="java.lang.String"/>
+	<parameter name="tipoBanco" class="java.lang.String"/>
+	<parameter name="ip" class="java.lang.String"/>
+	<parameter name="porta" class="java.lang.String"/>
+	<parameter name="nomeBanco" class="java.lang.String"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="senha" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="totalCadastrado" class="java.lang.String"/>
+	<field name="totalIncluido" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="372" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="72"/>
+				<imageExpression><![CDATA[$P{logoHeader}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="82" width="555" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de migração]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="129" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="149" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="169" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modo de migração:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="99" y="149" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{nomeCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="169" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{modoMigracao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="129" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="217" width="129" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do sistema:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="237" width="129" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de banco de dados:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="257" width="129" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Endereço IP:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="277" width="129" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Porta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="297" width="129" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do banco de dados:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="317" width="129" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuário:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="337" width="129" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Senha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="129" y="217" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{nomeSistema}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="237" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{tipoBanco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="257" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{ip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="277" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{porta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="297" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{nomeBanco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="317" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="337" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{senha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement style="table_TH" x="113" y="0" width="123" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de dado migrado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="236" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total cadastrado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TH" x="336" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total incluído]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="table_TD" x="113" y="0" width="123" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="236" y="0" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{totalCadastrado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="336" y="0" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{totalIncluido}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

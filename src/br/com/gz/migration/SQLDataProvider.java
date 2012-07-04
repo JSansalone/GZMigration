@@ -1,10 +1,13 @@
 package br.com.gz.migration;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.xml.stream.events.EndElement;
 
 import org.database.connection.DatabaseType;
 
@@ -16,84 +19,78 @@ import br.com.gz.bean.Grupo;
 import br.com.gz.bean.Loja;
 import br.com.gz.bean.Marca;
 import br.com.gz.bean.Produto;
+import br.com.gz.migration.datafile.ArmacaoDataFile;
+import br.com.gz.migration.datafile.ClienteDataFile;
+import br.com.gz.migration.datafile.DataFile;
+import br.com.gz.migration.datafile.DepartamentoDataFile;
+import br.com.gz.migration.datafile.FornecedorDataFile;
+import br.com.gz.migration.datafile.GrupoDataFile;
+import br.com.gz.migration.datafile.MarcaDataFile;
+import br.com.gz.migration.datafile.ProdutoDataFile;
 import br.com.gz.migration.exception.SecurityViolationException;
 import br.com.gz.migration.file.LogFile;
+import br.com.gz.migration.sql.EnMercoFlexInsertStatement;
+import br.com.gz.util.GZSoftwares;
 
 /**
+ * Classe abstrata que servirá de substituta para a antiga interface IDAO Os
+ * benefícios dessa classe é que ela concentra todos os inserts para os sistemas
+ * da GZ, facilitando a manutenção.
  * 
- * @author Jonathan
- * 
- *         Classe abstrata que servirá de substituta para a antiga interface
- *         IDAO Os benefícios dessa classe é que ela concentra todos os inserts
- *         para os sistemas da GZ, facilitando a manutenção.
- * 
- * @rules Regras para a implementação:
- * 
- *        Regras gerais: primeiro usa-se countX. Se retornar POLICY_VIOLATION
- *        usa-se getXColumnsNeeded, caso contrário usa-sa getX - Devem ter
- *        membros ResultSet e PreparedStatement de acordo com a lista abaixo:
- * 
- *        private PreparedStatement stProduto; private PreparedStatement
- *        stDepartamento; private PreparedStatement stGrupo; private
- *        PreparedStatement stArmacao; private PreparedStatement stMarca;
- *        private PreparedStatement stCliente; private PreparedStatement
- *        stFornecedor; private PreparedStatement stNFEntrada; private
- *        PreparedStatement stNFSaida; private PreparedStatement stContaPagar;
- *        private PreparedStatement stContaReceber; private PreparedStatement
- *        stMovtoVenda;
- * 
- *        private ResultSet rsProduto; private ResultSet rsDepartamento; private
- *        ResultSet rsGrupo; private ResultSet rsArmacao; private ResultSet
- *        rsMarca; private ResultSet rsCliente; private ResultSet rsFornecedor;
- *        private ResultSet rsNFEntrada; private ResultSet rsNFSaida; private
- *        ResultSet rsContaPagar; private ResultSet rsContaReceber; private
- *        ResultSet rsMovtoVenda;
- * 
- *        Contrutor: - Deve implementar o construtor herdado - Deve salvar o
- *        software da GZ, de terceiro e o banco de destino nas variáveis
- *        herdadas - Deve instanciar a política de colunas
- * 
- *        Métodos countX: - Devem retornar a quantidade mais exata possível de
- *        registros que serão possivelmente inseridos - Devem validar as colunas
- *        retornadas usando a política de colunas - Devem retornar
- *        POLICY_VIOLATION se a política de colunas for violada - Devem retornar
- *        EMPTY_RETURN se não forem implementados - Devem obter o select
- *        apropriado da estrutura de diretórios de selects - Devem instanciar o
- *        PreparedStatement apropriado - Devem alimentar o ResultSet apropriado
- *        com os dados - Não devem de maneira nenhuma fechar o ResultSet
- *        apropriado - Não devem de maneira nenhuma fechar o PreparedStatement
- *        apropriado - Devem posicionar o cursor do ResultSet apropriado antes
- *        do primeiro registro (usar beforeFirst())
- * 
- *        Métodos getX: - Só podem ser utilizados se o countX validar a política
- *        de colunas - Não devem consultar os dados novamente no banco de dados
- *        - Devem utilizar o ResultSet alimentado pelo countX - Devem ser
- *        responsáveis por todos os tratamentos de dados usando um formatador
- *        apropriado para o sistema da GZ - São responsáveis por fechar o
- *        ResultSet e o PreparedStatement apropriados - Devem retornar os dados
- *        em ArrayList
- * 
- *        Métodos getXColunmNeeded: - Sua função é fornecer todas as colunas
- *        faltantes de acordo com a política - Só podem ser utilizados caso o
- *        countX retorne POLICY_VIOLATION - São responsáveis por fechar o
- *        ResultSet e o PreparedStatement apropriados caso forem (os métodos
- *        getXColumnsNeeded) utilizados - Devem retornar o ArrayList de colunas
- *        faltantes
+ * @author Jonathan Sansalone
  * 
  */
 public abstract class SQLDataProvider {
 
+	/**
+	 * Constante que representa um tipo de dado vazio. Alguns lugares usam esta
+	 * constante para dizer que o tipo de dado não será usado
+	 */
 	public static final int EMPTY_RETURN = -987654321;
+
+	/**
+	 * Constante que representa um registro com dados inválido
+	 */
 	public static final int POLICY_VIOLATION = -345612776;
+
+	/**
+	 * Quando a coleta de dados era feita no banco de origem, esta constante
+	 * informava a presença de alguma instrução SQL perigosa
+	 */
+	@Deprecated
 	public static final int SECURITY_VIOLATION = -917345787;
+
+	/**
+	 * Quando a coleta de dados era feita no banco de origem, esta constante
+	 * informava a presença de erros de sintaxe na instrução SQL
+	 */
+	@Deprecated
 	public static final int SQL_ERROR = -5196673;
 
-	protected EnSoftware software;
-	protected EnSoftware otherSoftware;
+	/**
+	 * Software da GZ Sistemas que será implantado
+	 */
+	protected GZSoftwares software;
+
+	/**
+	 * Software de terceiro usado atualmente
+	 */
+	@Deprecated
+	protected GZSoftwares otherSoftware;
+
+	/**
+	 * Tipo de banco de dados de destino
+	 */
 	protected DatabaseType dbTo;
+
+	/**
+	 * Tipo de banco de dados de origem
+	 */
+	@Deprecated
 	protected DatabaseType dbFrom;
 
-	public SQLDataProvider(EnSoftware software, EnSoftware otherSoftware,
+	@Deprecated
+	public SQLDataProvider(GZSoftwares software, GZSoftwares otherSoftware,
 			DatabaseType dbTo, DatabaseType dbFrom) {
 
 		this.dbTo = dbTo;
@@ -103,41 +100,120 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Construtor que inicializa a classe
+	 * 
+	 * @param software
+	 *            - software que será implantado
+	 * @param dbTo
+	 *            - banco de dados de destino
+	 */
+	public SQLDataProvider(GZSoftwares software, DatabaseType dbTo) {
+
+		this.software = software;
+		this.dbTo = dbTo;
+
+	}
+
+	/**
+	 * Adiciona um cliente
+	 * 
+	 * @param cnn
+	 *            - Conexão ao banco de dados
+	 * @param c
+	 *            - cliente a ser adicionado
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addCliente(Connection cnn, Cliente c) {
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
 					PreparedStatement st = cnn
-							.prepareStatement("insert into clientes(codigo, cgc, insest, dtnasc, situacao, ender, numero, bairro, munic, estado, cep, telefone, cadastro, razsoc, nomfan) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update codigo = codigo");
+							.prepareStatement(EnMercoFlexInsertStatement.INSERT_CLIENTE.getSQL(dbTo));
 
-					st.setInt(1, c.getCodigo());
-					st.setString(2, c.getCpf());
-					st.setString(3, c.getRg());
-					st.setDate(4, new java.sql.Date(c.getDataNascimento()
+					st.setInt(1,c.getCodigo());
+					st.setString(2,c.getNomeFantasia());
+					st.setString(3,c.getRazaoSocial());
+					st.setString(4,c.getCgc());
+					st.setString(5,c.getRegistroEstadual());
+					st.setString(6,c.getSexo());
+					st.setDate(7, new java.sql.Date(c.getDataNascimento()
 							.getTimeInMillis()));
-					st.setString(5, c.getSituacao());
-					st.setString(6, c.getEndereco());
-					st.setInt(7, c.getNumero());
-					st.setString(8, c.getBairro());
-					st.setString(9, c.getCidade());
-					st.setString(10, c.getEstado());
-					st.setString(11, c.getCep());
-					st.setString(12, c.getTelefoneResidencial());
-					st.setDate(13, new java.sql.Date(c.getDataCadastro()
+					st.setDate(8, new java.sql.Date(c.getDataCadastro()
 							.getTimeInMillis()));
-					st.setString(14, c.getRazaoSocial());
-					st.setString(15, c.getNomeFantasia());
-
+					st.setString(9,c.getEstado());
+					st.setString(10,c.getCidade());
+					st.setString(11,c.getBairro());
+					st.setString(12,c.getEndereco());
+					st.setString(13,c.getCep());
+					st.setInt(14,c.getNumero());
+					st.setString(15,c.getTelefoneResidencial());
+					st.setString(16,c.getEstadoCobranca());
+					st.setString(17,c.getCidadeCobranca());
+					st.setString(18,c.getBairroCobranca());
+					st.setString(19,c.getEnderecoCobranca());
+					st.setString(20,c.getCepCobranca());
+					st.setInt(21,c.getNumeroCobranca());
+					st.setString(22,c.getTelefoneCobranca());
+					st.setString(23,c.getEstadoEntrega());
+					st.setString(24,c.getCidadeEntrega());
+					st.setString(25,c.getBairroEntrega());
+					st.setString(26,c.getEnderecoEntrega());
+					st.setString(27,c.getCepEntrega());
+					st.setInt(28,c.getNumeroEnderecoEntrega());
+					st.setString(29,c.getTelefoneEntrega());
+					st.setString(30,c.getSituacao());
 					st.execute();
 					st.close();
 
+				}else if(dbTo == DatabaseType.MSSQL){
+					
+					PreparedStatement st = cnn
+							.prepareStatement(EnMercoFlexInsertStatement.INSERT_CLIENTE.getSQL(dbTo));
+
+					st.setInt(1,c.getCodigo());
+					st.setInt(2,c.getCodigo());
+					st.setString(3,c.getNomeFantasia());
+					st.setString(4,c.getRazaoSocial());
+					st.setString(5,c.getCgc());
+					st.setString(6,c.getRegistroEstadual());
+					st.setString(7,c.getSexo());
+					st.setDate(8, new java.sql.Date(c.getDataNascimento()
+							.getTimeInMillis()));
+					st.setDate(9, new java.sql.Date(c.getDataCadastro()
+							.getTimeInMillis()));
+					st.setString(10,c.getEstado());
+					st.setString(11,c.getCidade());
+					st.setString(12,c.getBairro());
+					st.setString(13,c.getEndereco());
+					st.setString(14,c.getCep());
+					st.setInt(15,c.getNumero());
+					st.setString(16,c.getTelefoneResidencial());
+					st.setString(17,c.getEstadoCobranca());
+					st.setString(18,c.getCidadeCobranca());
+					st.setString(19,c.getBairroCobranca());
+					st.setString(20,c.getEnderecoCobranca());
+					st.setString(21,c.getCepCobranca());
+					st.setInt(22,c.getNumeroCobranca());
+					st.setString(23,c.getTelefoneCobranca());
+					st.setString(24,c.getEstadoEntrega());
+					st.setString(25,c.getCidadeEntrega());
+					st.setString(26,c.getBairroEntrega());
+					st.setString(27,c.getEnderecoEntrega());
+					st.setString(28,c.getCepEntrega());
+					st.setInt(29,c.getNumeroEnderecoEntrega());
+					st.setString(30,c.getTelefoneEntrega());
+					st.setString(31,c.getSituacao());
+					st.execute();
+					st.close();
+					
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -195,16 +271,25 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Adiciona um departamento
+	 * 
+	 * @param cnn
+	 *            - Conexão ao banco de dados
+	 * @param d
+	 *            - departamento a ser adicionado
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addDepartamento(Connection cnn, Departamento d) {
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
 					PreparedStatement st = cnn
-							.prepareStatement("insert into depto(codigo, descricao) values(?,?) on duplicate key update codigo = codigo");
+							.prepareStatement(EnMercoFlexInsertStatement.INSERT_DEPARTAMENTO.getSQL(dbTo));
 
 					st.setInt(1, d.getCodigo());
 					st.setString(2, d.getDescricao());
@@ -212,9 +297,21 @@ public abstract class SQLDataProvider {
 					st.execute();
 					st.close();
 
+				}else if(dbTo == DatabaseType.MSSQL){
+					
+					PreparedStatement st = cnn
+							.prepareStatement(EnMercoFlexInsertStatement.INSERT_DEPARTAMENTO.getSQL(dbTo));
+
+					st.setInt(1, d.getCodigo());
+					st.setInt(2, d.getCodigo());
+					st.setString(3, d.getDescricao());
+
+					st.execute();
+					st.close();
+					
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -241,36 +338,75 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Adiciona um fornecedor
+	 * 
+	 * @param cnn
+	 *            - Conexão ao banco de dados
+	 * @param f
+	 *            - fornecedor a ser adicionado
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addFornecedor(Connection cnn, Fornecedor f) {
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
 					PreparedStatement st = cnn
-							.prepareStatement("insert into credor(codigo, nomfan, razsoc, ender, numero, bairro, munic, estado, cep, telefone, cgc, insest) values(?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update codigo = codigo");
+							.prepareStatement(EnMercoFlexInsertStatement.INSERT_FORNECEDOR.getSQL(dbTo));
 
-					st.setInt(1, f.getCodigo());
-					st.setString(2, f.getNomeFantasia());
-					st.setString(3, f.getRazaoSocial());
-					st.setString(4, f.getEndereco());
-					st.setInt(5, f.getNumero());
-					st.setString(6, f.getBairro());
-					st.setString(7, f.getCidade());
-					st.setString(8, f.getEstado());
-					st.setString(9, f.getCep());
-					st.setString(10, f.getTelefonePrincipal());
-					st.setString(11, f.getCnpj());
-					st.setString(12, f.getInscricaoEstadual());
-
+					st.setInt(1,f.getCodigo());
+					st.setString(2,f.getNomeFantasia());
+					st.setString(3,f.getRazaoSocial());
+					st.setString(4,f.getCgc());
+					st.setString(5,f.getRegistroEstadual());
+					st.setString(6,f.getEstado());
+					st.setString(7,f.getCidade());
+					st.setString(8,f.getBairro());
+					st.setString(9,f.getEndereco());
+					st.setString(10,f.getCep());
+					st.setInt(11,f.getNumero());
+					st.setString(12,f.getTelefonePrincipal());
+					st.setString(13,f.getSituacao());
+					st.setString(14,f.getNomeContato());
+					st.setString(15,f.getEmail());
+					st.setString(16,f.getEmailBoleto());
+					st.setString(17,f.getEmailDanfe());
 					st.execute();
 					st.close();
 
+				}else if(dbTo == DatabaseType.MSSQL){
+					
+					PreparedStatement st = cnn
+							.prepareStatement(EnMercoFlexInsertStatement.INSERT_FORNECEDOR.getSQL(dbTo));
+
+					st.setInt(1,f.getCodigo());
+					st.setInt(2,f.getCodigo());
+					st.setString(3,f.getNomeFantasia());
+					st.setString(4,f.getRazaoSocial());
+					st.setString(5,f.getCgc());
+					st.setString(6,f.getRegistroEstadual());
+					st.setString(7,f.getEstado());
+					st.setString(8,f.getCidade());
+					st.setString(9,f.getBairro());
+					st.setString(10,f.getEndereco());
+					st.setString(11,f.getCep());
+					st.setInt(12,f.getNumero());
+					st.setString(13,f.getTelefonePrincipal());
+					st.setString(14,f.getSituacao());
+					st.setString(15,f.getNomeContato());
+					st.setString(16,f.getEmail());
+					st.setString(17,f.getEmailBoleto());
+					st.setString(18,f.getEmailDanfe());
+					st.execute();
+					st.close();
+					
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -314,17 +450,26 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Adiciona um grupo
+	 * 
+	 * @param cnn
+	 *            - Conexão ao banco de dados
+	 * @param g
+	 *            - grupo a ser adicionado
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addGrupo(Connection cnn, Grupo g) {
 
 		PreparedStatement st;
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
-					st = cnn.prepareStatement("insert into grupo(codigo,descricao) values(?,?) on duplicate key update codigo = codigo");
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_GRUPO.getSQL(dbTo));
 					st.setInt(1, g.getCodigo());
 					st.setString(2, g.getDescricao());
 					st.execute();
@@ -332,11 +477,18 @@ public abstract class SQLDataProvider {
 
 				} else if (dbTo == DatabaseType.MSSQL) {
 
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_GRUPO.getSQL(dbTo));
+					st.setInt(1, g.getCodigo());
+					st.setInt(2, g.getCodigo());
+					st.setString(3, g.getDescricao());
+					st.execute();
+					st.close();
+					
 				} else if (dbTo == DatabaseType.Oracle) {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -366,7 +518,7 @@ public abstract class SQLDataProvider {
 
 	public final boolean addLoja(Connection cnn, Loja arg1) {
 
-		if (software == EnSoftware.MERCOFLEX) {
+		if (software == GZSoftwares.MERCOFLEX) {
 			if (dbTo == DatabaseType.MySQL) {
 
 			} else if (dbTo == DatabaseType.MSSQL) {
@@ -374,7 +526,7 @@ public abstract class SQLDataProvider {
 			} else if (dbTo == DatabaseType.Oracle) {
 
 			}
-		} else if (software == EnSoftware.MERCATTO) {
+		} else if (software == GZSoftwares.MERCATTO) {
 
 		}
 
@@ -382,35 +534,51 @@ public abstract class SQLDataProvider {
 
 	}
 
-	public final boolean addMarca(Connection cnn, Marca arg1) {
+	/**
+	 * Adiciona uma marca
+	 * 
+	 * @param cnn
+	 *            - Conexão ao banco de dados
+	 * @param m
+	 *            - marca a ser adicionada
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
+	public final boolean addMarca(Connection cnn, Marca m) {
 
 		PreparedStatement st;
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
-					st = cnn.prepareStatement("insert into marca(codigo,descricao) values(?,?) on duplicate key update codigo = codigo");
-					st.setInt(1, arg1.getCodigo());
-					st.setString(2, arg1.getDescricao());
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_MARCA.getSQL(dbTo));
+					st.setInt(1, m.getCodigo());
+					st.setString(2, m.getDescricao());
 					st.execute();
 					st.close();
 
 				} else if (dbTo == DatabaseType.MSSQL) {
 
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_MARCA.getSQL(dbTo));
+					st.setInt(1, m.getCodigo());
+					st.setInt(2, m.getCodigo());
+					st.setString(3, m.getDescricao());
+					st.execute();
+					st.close();
+					
 				} else if (dbTo == DatabaseType.Oracle) {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
 					st = cnn.prepareStatement("insert into subgrupo1(idsubgrupo1,Nome,idgrupo,idsubgrupo) values(?,?,1,1) on duplicate key update idsubgrupo1 = idsubgrupo1;");
-					st.setInt(1, arg1.getCodigo());
-					st.setString(2, arg1.getDescricao());
+					st.setInt(1, m.getCodigo());
+					st.setString(2, m.getDescricao());
 					st.execute();
 					st.close();
 
@@ -430,18 +598,27 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Adiciona um produto
+	 * 
+	 * @param cnn
+	 *            - Conexão ao banco de dados
+	 * @param p
+	 *            - produto a ser adicionado
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addProduto(Connection cnn, Produto p) {
 
 		try {
 
 			PreparedStatement st;
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
-					st = cnn.prepareStatement("insert into estoque(cdprod, codbarra, descricao, descpdv, unidade, setor, variavel, depto, quantprod, cadastro, contsaldo, sointeiro, cfiscal, tributa, grupo) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update cdprod = cdprod");
-
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE
+							.getSQL(dbTo));
 					st.setString(1, p.getCodigoInterno());
 					st.setString(2, p.getCodigoDeBarras());
 					st.setString(3, p.getDescricao());
@@ -450,32 +627,77 @@ public abstract class SQLDataProvider {
 					st.setInt(6, p.getSetor());
 					st.setString(7, p.getVariavel());
 					st.setInt(8, p.getDepartamento());
-					st.setDouble(9, p.getQuantidade());
+					st.setInt(9, p.getGrupo());
 					st.setDate(10, new java.sql.Date(p.getDataCadastro()
-							.getTimeInMillis()));
-					st.setString(11, p.getControlaSaldo());
-					st.setString(12, p.getSoInteiro());
-					st.setString(13, p.getNcm());
-					st.setInt(14, p.getCodigoTributacao());
-					st.setInt(15,p.getGrupo());
+							.getTime().getTime()));
+					st.setString(11, p.getNcm());
+					st.setInt(12, p.getCodigoTributacao());
+					st.setString(13, p.getSt());
 					st.execute();
+					st.close();
 
-					st = cnn.prepareStatement("insert into esttrib(cdprod, icmcompra, tributa, trbcompra) values(?,?,?,?) on duplicate key update cdprod = cdprod");
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_TRIBUTACAO
+							.getSQL(dbTo));
 					st.setString(1, p.getCodigoInterno());
-					st.setDouble(2, p.getIcmCompra());
-					st.setInt(3, p.getCodigoTributacao());
-					st.setString(4, p.getTributacaoCompra());
+					st.setInt(2, p.getCsosn());
+					st.setString(3, p.getModalidatePautaVenda());
+					st.setDouble(4, p.getPautaVenda());
+					st.setString(5, p.getTributacaoCompra());
+					st.setInt(6, p.getCodigoTributacao());
+					st.setDouble(7, p.getIcmCompra());
+					st.setString(8, p.getSt());
+					st.setDouble(9, p.getIcmVenda());
+					st.setDouble(10, p.getBaseIcmVenda());
+					st.setDouble(11, p.getBaseICMSub());
+					st.setDouble(12, p.getValorICMSSubstituicao());
+					st.setString(13, p.getEstadoTributacao());
 					st.execute();
-
 					st.close();
 
 				} else if (dbTo == DatabaseType.MSSQL) {
 
-				} else if (dbTo == DatabaseType.Oracle) {
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE
+							.getSQL(dbTo));
+					st.setString(1, p.getCodigoInterno());
+					st.setString(2, p.getCodigoInterno());
+					st.setString(3, p.getCodigoDeBarras());
+					st.setString(4, p.getDescricao());
+					st.setString(5, p.getDescricaoReduzida());
+					st.setString(6, p.getUnidade());
+					st.setInt(7, p.getSetor());
+					st.setString(8, p.getVariavel());
+					st.setInt(9, p.getDepartamento());
+					st.setInt(10, p.getGrupo());
+					st.setDate(11, new java.sql.Date(p.getDataCadastro()
+							.getTime().getTime()));
+					st.setString(12, p.getNcm());
+					st.setInt(13, p.getCodigoTributacao());
+					st.setString(14, p.getSt());
+					st.execute();
+					st.close();
+
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_TRIBUTACAO
+							.getSQL(dbTo));
+					st.setString(1, p.getCodigoInterno());
+					st.setString(2, p.getCodigoInterno());
+					st.setInt(3, p.getCsosn());
+					st.setString(4, p.getModalidatePautaVenda());
+					st.setDouble(5, p.getPautaVenda());
+					st.setString(6, p.getTributacaoCompra());
+					st.setInt(7, p.getCodigoTributacao());
+					st.setDouble(8, p.getIcmCompra());
+					st.setString(9, p.getSt());
+					st.setDouble(10, p.getIcmVenda());
+					st.setDouble(11, p.getBaseIcmVenda());
+					st.setDouble(12, p.getBaseICMSub());
+					st.setDouble(13, p.getValorICMSSubstituicao());
+					st.setString(14, p.getEstadoTributacao());
+					st.execute();
+					st.close();
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -538,51 +760,94 @@ public abstract class SQLDataProvider {
 
 	}
 
-	public final boolean addProdutoLoja(Connection cnn, Produto p, int l) {
+	/**
+	 * Adiciona um produto para uma loja específica
+	 * 
+	 * @param cnn
+	 *            - conexão ao banco de dados
+	 * @param p
+	 *            - produto a ser adicionado
+	 * @param ignoreCode
+	 *            - true se for para ignorar o código de loja no arquivo, false
+	 *            para usar o código da loja
+	 * @param l
+	 *            - código da loja
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
+	public final boolean addProdutoLoja(Connection cnn, Produto p,
+			boolean ignoreCode, int l) {
 
 		try {
 
 			PreparedStatement st;
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
-					st = cnn.prepareStatement("insert into saldos(cdprod, icmcompra, precocomp, ipi, precoprom, precovenda, precocusto, perclucro, estminimo, estmaximo, quant,  pis, cofins, situacao, trbcompra, loja) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update cdprod = cdprod");
-					st.setString(1, p.getCodigoInterno());
-					st.setDouble(2, p.getIcmCompra());
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_SALDO
+							.getSQL(dbTo));
+					st.setInt(1, ignoreCode ? l : p.getLoja());
+					st.setString(2, p.getCodigoInterno());
 					st.setDouble(3, p.getPrecoCompra());
-					st.setDouble(4, p.getIpi());
-					st.setDouble(5, p.getPrecoPromocao());
-					st.setDouble(6, p.getPrecoVenda());
-					st.setDouble(7, p.getPrecoCusto());
-
-					if (p.getPorcentagemLucro() > 100.00
-							|| p.getPorcentagemLucro() < 0) {
-						st.setDouble(8, 100.00);
-					} else {
-						st.setDouble(8, p.getPorcentagemLucro());
-					}
-					st.setDouble(9, p.getQuantidadeEstoqueMinimo());
-					st.setDouble(10, p.getQuantidadeEstoqueMaximo());
-					st.setDouble(11, p.getQuantidade());
-					st.setDouble(12, p.getAliquotaPisCompra());
-					st.setDouble(13, p.getAliquotaCofinsCompra());
-					st.setString(14, p.getAtivo());
-					st.setString(15, p.getTributacaoCompra());
-					st.setInt(16, l);
+					st.setDouble(4, p.getPrecoVenda());
+					st.setDouble(5, p.getPrecoVendaTerminal());
+					st.setDouble(6, p.getPrecoCusto());
+					st.setDouble(7, p.getPorcentagemLucro());
+					st.setDouble(8, p.getQuantidadeEstoqueMinimo());
+					st.setDouble(9, p.getQuantidadeEstoqueMaximo());
+					st.setDouble(10, p.getQuantidade());
+					st.setDouble(11, p.getAliquotaPisCompra());
+					st.setDouble(12, p.getAliquotaCofinsCompra());
+					st.setString(13, p.getAtivo());
+					st.setString(14, p.getTributacaoCompra());
+					st.setDouble(15, p.getIcmCompra());
 					st.execute();
-
-					st = cnn.prepareStatement("insert into estmix(cdprod, loja) values(?,?) on duplicate key update cdprod = cdprod");
-					st.setString(1, p.getCodigoInterno());
-					st.setInt(2, l);
-					st.execute();
-
 					st.close();
 
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_LOJA
+							.getSQL(dbTo));
+					st.setInt(1, ignoreCode ? l : p.getLoja());
+					st.setString(2, p.getCodigoInterno());
+					st.execute();
+					st.close();
+
+				} else if (dbTo == DatabaseType.MSSQL) {
+
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_SALDO
+							.getSQL(dbTo));
+					st.setInt(1, ignoreCode ? l : p.getLoja());
+					st.setString(2, p.getCodigoInterno());
+					st.setInt(3, ignoreCode ? l : p.getLoja());
+					st.setString(4, p.getCodigoInterno());
+					st.setDouble(5, p.getPrecoCompra());
+					st.setDouble(6, p.getPrecoVenda());
+					st.setDouble(7, p.getPrecoVendaTerminal());
+					st.setDouble(8, p.getPrecoCusto());
+					st.setDouble(9, p.getPorcentagemLucro());
+					st.setDouble(10, p.getQuantidadeEstoqueMinimo());
+					st.setDouble(11, p.getQuantidadeEstoqueMaximo());
+					st.setDouble(12, p.getQuantidade());
+					st.setDouble(13, p.getAliquotaPisCompra());
+					st.setDouble(14, p.getAliquotaCofinsCompra());
+					st.setString(15, p.getAtivo());
+					st.setString(16, p.getTributacaoCompra());
+					st.setDouble(17, p.getIcmCompra());
+					st.execute();
+					st.close();
+
+					st = cnn.prepareStatement(EnMercoFlexInsertStatement.INSERT_ESTOQUE_LOJA
+							.getSQL(dbTo));
+					st.setInt(1, ignoreCode ? l : p.getLoja());
+					st.setString(2, p.getCodigoInterno());
+					st.setInt(3, ignoreCode ? l : p.getLoja());
+					st.setString(4, p.getCodigoInterno());
+					st.execute();
+					st.close();
+					
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				st = cnn.prepareStatement("insert into produto_estoque(idProduto,estoque_atual,estoque_minimo,ID_LOJA) values(?,?,?,?) on duplicate key update idProduto = idProduto");
 				st.setInt(1, new Integer(p.getCodigoInterno()));
@@ -598,7 +863,7 @@ public abstract class SQLDataProvider {
 				st.setDouble(3, p.getPrecoCusto());
 				st.setDouble(4, p.getPrecoVenda());
 				st.setDouble(5, p.getPorcentagemLucro());
-				
+
 				st.execute();
 				st.close();
 
@@ -616,29 +881,45 @@ public abstract class SQLDataProvider {
 
 	}
 
+	/**
+	 * Adiciona uma armação
+	 * 
+	 * @param conn
+	 *            - conexão ao banco de dados
+	 * @param armac
+	 *            - armação a ser adicionada
+	 * @return - true se for adicionado com sucesso, false caso contrário
+	 */
 	public final boolean addArmacao(Connection conn, Armacao armac) {
 
 		PreparedStatement st;
 
 		try {
 
-			if (software == EnSoftware.MERCOFLEX) {
+			if (software == GZSoftwares.MERCOFLEX) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
 					st = conn
-							.prepareStatement("insert into armacao(codigo,descricao) values(?,?) on duplicate key update codigo = codigo");
+							.prepareStatement(EnMercoFlexInsertStatement.INSERT_ARMACAO.getSQL(dbTo));
 					st.setInt(1, armac.getCodigo());
 					st.setString(2, armac.getDescricao());
 					st.execute();
 
 				} else if (dbTo == DatabaseType.MSSQL) {
 
+					st = conn
+							.prepareStatement(EnMercoFlexInsertStatement.INSERT_ARMACAO.getSQL(dbTo));
+					st.setInt(1, armac.getCodigo());
+					st.setInt(2, armac.getCodigo());
+					st.setString(3, armac.getDescricao());
+					st.execute();
+					
 				} else if (dbTo == DatabaseType.Oracle) {
 
 				}
 
-			} else if (software == EnSoftware.MERCATTO) {
+			} else if (software == GZSoftwares.MERCATTO) {
 
 				if (dbTo == DatabaseType.MySQL) {
 
@@ -665,29 +946,89 @@ public abstract class SQLDataProvider {
 
 	}
 
-	public abstract int countProduto(Connection conn) throws IOException,
-			SecurityViolationException, SQLException;
+	//
 
-	public abstract int countDepartamento(Connection conn) throws IOException,
-			SecurityViolationException, SQLException;
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile
+	 *            - Arquivo de dados
+	 * @return - total
+	 * @throws IOException
+	 *             - se não conseguir ler o arquivo
+	 */
+	public abstract int countProduto(ProdutoDataFile dataFile)
+			throws IOException;
 
-	public abstract int countGrupo(Connection conn) throws IOException,
-			SecurityViolationException, SQLException;
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile
+	 *            - Arquivo de dados
+	 * @return - total
+	 * @throws IOException
+	 *             - se não conseguir ler o arquivo
+	 */
+	public abstract int countDepartamento(DepartamentoDataFile dataFile)
+			throws IOException;
 
-	public abstract int countArmacao(Connection conn) throws IOException,
-			SecurityViolationException, SQLException;
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile
+	 *            - Arquivo de dados
+	 * @return - total
+	 * @throws IOException
+	 *             - se não conseguir ler o arquivo
+	 */
+	public abstract int countGrupo(GrupoDataFile dataFile) throws IOException;
 
-	public abstract int countMarca(Connection conn) throws IOException,
-			SecurityViolationException, SQLException;
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile
+	 *            - Arquivo de dados
+	 * @return - total
+	 * @throws IOException
+	 *             - se não conseguir ler o arquivo
+	 */
+	public abstract int countArmacao(ArmacaoDataFile dataFile)
+			throws IOException;
 
-	public abstract int countCliente(Connection conn) throws IOException,
-			SecurityViolationException, SQLException;
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile
+	 *            - Arquivo de dados
+	 * @return - total
+	 * @throws IOException
+	 *             - se não conseguir ler o arquivo
+	 */
+	public abstract int countMarca(MarcaDataFile dataFile) throws IOException;
 
-	public abstract int countLoja(Connection conn) throws IOException,
-			SecurityViolationException, SQLException;
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile
+	 *            - Arquivo de dados
+	 * @return - total
+	 * @throws IOException
+	 *             - se não conseguir ler o arquivo
+	 */
+	public abstract int countCliente(ClienteDataFile dataFile)
+			throws IOException;
 
-	public abstract int countFornecedor(Connection conn) throws IOException,
-			SecurityViolationException, SQLException;
+	/**
+	 * Conta quantos registros são válidos no arquivo
+	 * 
+	 * @param dataFile
+	 *            - Arquivo de dados
+	 * @return - total
+	 * @throws IOException
+	 *             - se não conseguir ler o arquivo
+	 */
+	public abstract int countFornecedor(FornecedorDataFile dataFile)
+			throws IOException;
 
 	/*
 	 * int countNFEntrada(Connection conn) ;
@@ -701,36 +1042,80 @@ public abstract class SQLDataProvider {
 	 * int countMovtoVenda(Connection conn) ;
 	 */
 
-	public abstract ArrayList<Produto> getProduto(Connection conn);
+	//
 
-	public abstract ArrayList<Departamento> getDepartamento(Connection conn);
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile
+	 *            - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
+	public abstract ArrayList<Produto> getProduto(ProdutoDataFile dataFile);
 
-	public abstract ArrayList<Grupo> getGrupo(Connection conn);
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile
+	 *            - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
+	public abstract ArrayList<Departamento> getDepartamento(
+			DepartamentoDataFile dataFile);
 
-	public abstract ArrayList<Armacao> getArmacao(Connection conn);
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile
+	 *            - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
+	public abstract ArrayList<Grupo> getGrupo(GrupoDataFile dataFile);
 
-	public abstract ArrayList<Marca> getMarca(Connection conn);
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile
+	 *            - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
+	public abstract ArrayList<Armacao> getArmacao(ArmacaoDataFile dataFile);
 
-	public abstract ArrayList<Cliente> getCliente(Connection conn);
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile
+	 *            - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
+	public abstract ArrayList<Marca> getMarca(MarcaDataFile dataFile);
 
-	public abstract ArrayList<Loja> getLoja(Connection conn);
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile
+	 *            - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
+	public abstract ArrayList<Cliente> getCliente(ClienteDataFile dataFile);
 
-	public abstract ArrayList<Fornecedor> getFornecedor(Connection conn);
+	/**
+	 * Retorna um {@link ArrayList} com os dados
+	 * 
+	 * @param dataFile
+	 *            - arquivo de dados
+	 * @return - {@link ArrayList} com os dados
+	 */
+	public abstract ArrayList<Fornecedor> getFornecedor(
+			FornecedorDataFile dataFile);
 
-	public abstract ArrayList<String> getProdutoColumnsNeeded();
-
-	public abstract ArrayList<String> getDepartamentoColumnsNeeded();
-
-	public abstract ArrayList<String> getGrupoColumnsNeeded();
-
-	public abstract ArrayList<String> getArmacaoColumnsNeeded();
-
-	public abstract ArrayList<String> getMarcaColumnsNeeded();
-
-	public abstract ArrayList<String> getClienteColumnsNeeded();
-
-	public abstract ArrayList<String> getLojaColumnsNeeded();
-
-	public abstract ArrayList<String> getFornecedorColumnsNeeded();
+	/**
+	 * Retorna quais as colunas estão faltando no arquivo de dados
+	 * 
+	 * @param dataFile
+	 *            - arquivo de dados
+	 * @return - {@link ArrayList} com as colunas que estão faltando
+	 */
+	public abstract ArrayList<String> getColumnsNeeded(DataFile dataFile);
 
 }
