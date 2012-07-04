@@ -8,11 +8,27 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
 
+/**
+ * Classe que trabalha com os logs de operação
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class LogFile {
 
+	/**
+	 * Instância static da classe
+	 */
 	private static LogFile instance;
+	
+	/**
+	 * Arquivo de log
+	 */
 	private File logFile;
 
+	/**
+	 * Construtor default
+	 */
 	private LogFile() {
 
 		Calendar c = Calendar.getInstance();
@@ -39,6 +55,10 @@ public class LogFile {
 
 	}
 
+	/**
+	 * Método que segue o padrão singleton para garantir a gravação dos logs em um único arquivo durante a execução do aplicativo
+	 * @return - uma única instância da classe
+	 */
 	public static LogFile getInstance() {
 
 		if (instance == null) {
@@ -51,6 +71,11 @@ public class LogFile {
 
 	}
 
+	/**
+	 * Método que grava uma mensagem de log no arquivo
+	 * 
+	 * @param message - mensagem de log
+	 */
 	public void writeInFile(String message) {
 
 		Calendar c = Calendar.getInstance();
@@ -75,6 +100,9 @@ public class LogFile {
 
 	}
 
+	/**
+	 * Método que grava o header do arquivo
+	 */
 	private void writeHeader() {
 
 		try {
@@ -102,6 +130,12 @@ public class LogFile {
 
 	}
 
+	/**
+	 * Método que preenche com 0 números menores que 10. Usado para data
+	 * 
+	 * @param num - número
+	 * @return - o número com 0 na frente se for menor que 10
+	 */
 	private String fillZero(int num) {
 
 		return num < 10 ? ("0" + num) : ("" + num);

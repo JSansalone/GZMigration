@@ -1,190 +1,318 @@
 package br.com.gz.migration.report;
 
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Collection;
 
 import org.database.connection.DatabaseType;
 
-import br.com.gz.migration.EnSoftware;
-import br.com.gz.migration.MigrationDataType;
+import br.com.gz.util.GZSoftwares;
 
+/**
+ * Classe que contém os dados da migração para alimentar o relatório final
+ * 
+ * @author Jonathan Sansalone
+ *
+ */
 public class MigrationReportData {
 
+	/**
+	 * Caminho do relatório
+	 */
+	@Deprecated
 	private String path;
-
+	
+	/**
+	 * Nome do cliente
+	 */
 	private String nomeCliente;
-	private EnSoftware softwareTo;
-	private EnSoftware softwareFrom;
-	private Calendar data;
+	
+	/**
+	 * Modo de migração
+	 */
+	private String modoMigracao;
+	
+	/**
+	 * Nome do software a ser implantado
+	 */
+	private String nomeSistema;
+	
+	/**
+	 * Tipo de banco de dados de destino
+	 */
+	private String tipoBanco;
+	
+	/**
+	 * Endereço IP do banco de dados de destino
+	 */
+	private String ip;
+	
+	/**
+	 * Porta do banco de dados de destino
+	 */
+	private int porta;
+	
+	/**
+	 * Nome do banco de dados de destino
+	 */
+	private String nomeBanco;
+	
+	/**
+	 * Usuário do banco de dados de destino
+	 */
+	private String usuario;
+	
+	/**
+	 * Senha do banco de dados de destino
+	 */
+	private String senha;
 
-	private boolean isAppend;
+	/**
+	 * Collection com os tipos de dados migrados
+	 */
+	private Collection<MigrationBean> beans;
 
-	private DatabaseType dbTypeFrom;
-	private String ipAddressFrom;
-	private int portFrom;
-	private String dbNameFrom;
-	private String usernameFrom;
-	private String passwordFrom;
+	/**
+	 * Construtor que recebe a Collection com os tipos de dados da migração
+	 * 
+	 * @param migrationBeans - Collection com os tipos de dados
+	 */
+	public MigrationReportData(Collection<MigrationBean> migrationBeans) {
 
-	private DatabaseType dbTypeTo;
-	private String ipAddressTo;
-	private int portTo;
-	private String dbNameTo;
-	private String usernameTo;
-	private String passwordTo;
+		beans = migrationBeans;
 
-	private ArrayList<MigrationDataType> dataTypes;
-
-	public boolean isAppend() {
-		return isAppend;
 	}
 
-	public void setAppend(boolean isAppend) {
-		this.isAppend = isAppend;
+	/**
+	 * Retorna os tipos de dados da migração
+	 * 
+	 * @return - Collection com os tipos de dados
+	 */
+	public Collection<MigrationBean> getBeans() {
+
+		return this.beans;
+
 	}
 
-	public EnSoftware getSoftwareTo() {
-		return softwareTo;
-	}
-
-	public void setSoftwareTo(EnSoftware softwareTo) {
-		this.softwareTo = softwareTo;
-	}
-
-	public EnSoftware getSoftwareFrom() {
-		return softwareFrom;
-	}
-
-	public void setSoftwareFrom(EnSoftware softwareFrom) {
-		this.softwareFrom = softwareFrom;
-	}
-
+	/**
+	 * Caminho do relatório
+	 * 
+	 * @return - caminho
+	 */
+	@Deprecated
 	public String getPath() {
 		return path;
 	}
 
+	/**
+	 * Define o caminho do relatório
+	 * 
+	 * @param path - caminho
+	 */
+	@Deprecated
 	public void setPath(String path) {
 		this.path = path;
 	}
 
+	/**
+	 * Retorna o nome do cliente
+	 * 
+	 * @return - nome do cliente
+	 */
 	public String getNomeCliente() {
 		return nomeCliente;
 	}
 
+	/**
+	 * Define o nome do cliente
+	 * 
+	 * @param nomeCliente - nome do cliente
+	 */
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
 	}
 
-	public Calendar getData() {
-		return data;
+	/**
+	 * retorna o modo de migração
+	 * 
+	 * @return - modo de migração
+	 */
+	public String getModoMigracao() {
+		return modoMigracao;
 	}
 
-	public void setData(Calendar data) {
-		this.data = data;
+	/**
+	 * define o modo de migração
+	 * 
+	 * @param isAppend - se true é incluir, se false é sobrepor
+	 */
+	public void setModoMigracao(boolean isAppend) {
+		this.modoMigracao = isAppend ? "Incluir" : "Sobrepor";
 	}
 
-	public DatabaseType getDbTypeFrom() {
-		return dbTypeFrom;
+	/**
+	 * retorna o nome do software a ser utilizado
+	 * 
+	 * @return - nome do software
+	 */
+	public String getNomeSistema() {
+		return nomeSistema;
 	}
 
-	public void setDbTypeFrom(DatabaseType dbTypeFrom) {
-		this.dbTypeFrom = dbTypeFrom;
+	/**
+	 * define o nome do software
+	 * 
+	 * @param nomeSistema - nome do software em String
+	 */
+	public void setNomeSistema(String nomeSistema) {
+		this.nomeSistema = nomeSistema;
 	}
 
-	public String getIpAddressFrom() {
-		return ipAddressFrom;
+	/**
+	 * define o nome do software
+	 * 
+	 * @param software - nome do software via {@link GZSoftwares}
+	 */
+	public void setNomeSistema(GZSoftwares software) {
+		
+		switch (software) {
+		case MERCOFLEX:
+			this.nomeSistema = "MercoFlex";
+			break;
+
+		case MERCATTO:
+			this.nomeSistema = "Mercatto";
+			break;
+
+		default:
+			break;
+		}
+		
 	}
 
-	public void setIpAddressFrom(String ipAddressFrom) {
-		this.ipAddressFrom = ipAddressFrom;
+	/**
+	 * retorna o tipo de banco de dados de destino
+	 * 
+	 * @return - tipo de banco em String
+	 */
+	public String getTipoBanco() {
+		return tipoBanco;
 	}
 
-	public int getPortFrom() {
-		return portFrom;
+	/**
+	 * deifne o tipo de banco de dados de destino
+	 * 
+	 * @param tipoBanco - tipo de banco em String
+	 */
+	public void setTipoBanco(String tipoBanco) {
+		this.tipoBanco = tipoBanco;
 	}
 
-	public void setPortFrom(int portFrom) {
-		this.portFrom = portFrom;
+	/**
+	 * define o tipo de banco de dados de destino
+	 * 
+	 * @param dbType - tipo de banco de dados via DatabaseType
+	 */
+	public void setTipoBanco(DatabaseType dbType) {
+		switch(dbType){
+		case MySQL:
+			this.tipoBanco = "MySQL";
+			break;
+		case MSSQL:
+			this.tipoBanco = "SQL Server";
+			break;
+		case Oracle:
+			this.tipoBanco = "Oracle";
+			break;
+		}
+	}
+	
+	/**
+	 * retorna o ip do banco de dados de destino
+	 * 
+	 * @return
+	 */
+	public String getIp() {
+		return ip;
 	}
 
-	public String getDbNameFrom() {
-		return dbNameFrom;
+	/**
+	 * define o ip do banco de dados de destino
+	 * 
+	 * @param ip - ip do banco de dados de destino
+	 */
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
-	public void setDbNameFrom(String dbNameFrom) {
-		this.dbNameFrom = dbNameFrom;
+	/**
+	 * retorna o número da porta do banco de dados de destino
+	 * 
+	 * @return - número da porta do banco de dados de destino
+	 */
+	public int getPorta() {
+		return porta;
 	}
 
-	public String getUsernameFrom() {
-		return usernameFrom;
+	/**
+	 * define o número da porta do banco de dados de destino
+	 * 
+	 * @param porta - número da porta do banco de dados de destino
+	 */
+	public void setPorta(int porta) {
+		this.porta = porta;
 	}
 
-	public void setUsernameFrom(String usernameFrom) {
-		this.usernameFrom = usernameFrom;
+	/**
+	 * retorna o nome do banco de dados de destino
+	 * 
+	 * @return - nome do banco de dados de destino
+	 */
+	public String getNomeBanco() {
+		return nomeBanco;
 	}
 
-	public String getPasswordFrom() {
-		return passwordFrom;
+	/**
+	 * define o nome do banco de dados de destino
+	 * 
+	 * @param nomeBanco - nome do banco de dados de destino
+	 */
+	public void setNomeBanco(String nomeBanco) {
+		this.nomeBanco = nomeBanco;
 	}
 
-	public void setPasswordFrom(String passwordFrom) {
-		this.passwordFrom = passwordFrom;
+	/**
+	 * retorna o nome do usuário do banco de dados de destino
+	 * 
+	 * @return - nome do usuário do banco de dados de destino
+	 */
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public DatabaseType getDbTypeTo() {
-		return dbTypeTo;
+	/**
+	 * define o nome do usuário do banco de dados de destino
+	 * 
+	 * @param usuario - usuário do banco de dados de destino
+	 */
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
-	public void setDbTypeTo(DatabaseType dbTypeTo) {
-		this.dbTypeTo = dbTypeTo;
+	/**
+	 * retorna a senha do banco de dados de destino
+	 * 
+	 * @return - senha do banco de dados de destino
+	 */
+	public String getSenha() {
+		return senha;
 	}
 
-	public String getIpAddressTo() {
-		return ipAddressTo;
-	}
-
-	public void setIpAddressTo(String ipAddressTo) {
-		this.ipAddressTo = ipAddressTo;
-	}
-
-	public int getPortTo() {
-		return portTo;
-	}
-
-	public void setPortTo(int portTo) {
-		this.portTo = portTo;
-	}
-
-	public String getDbNameTo() {
-		return dbNameTo;
-	}
-
-	public void setDbNameTo(String dbNameTo) {
-		this.dbNameTo = dbNameTo;
-	}
-
-	public String getUsernameTo() {
-		return usernameTo;
-	}
-
-	public void setUsernameTo(String usernameTo) {
-		this.usernameTo = usernameTo;
-	}
-
-	public String getPasswordTo() {
-		return passwordTo;
-	}
-
-	public void setPasswordTo(String passwordTo) {
-		this.passwordTo = passwordTo;
-	}
-
-	public ArrayList<MigrationDataType> getDataTypes() {
-		return dataTypes;
-	}
-
-	public void setDataTypes(ArrayList<MigrationDataType> dataTypes) {
-		this.dataTypes = dataTypes;
+	/**
+	 * define a senha do banco de dados de destino
+	 * 
+	 * @param senha - senha do banco de dados de destino
+	 */
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 }
