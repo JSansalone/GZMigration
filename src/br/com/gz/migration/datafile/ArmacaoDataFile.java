@@ -206,7 +206,7 @@ public class ArmacaoDataFile extends DataFile {
 
 		int i = 0;
 
-		Armacao d = new Armacao();
+		Armacao d = new Armacao(software);
 
 		Formattable format;
 
@@ -253,7 +253,7 @@ public class ArmacaoDataFile extends DataFile {
 
 		int i = 0;
 
-		Armacao d = new Armacao();
+		Armacao d = new Armacao(software);
 
 		Formattable format;
 

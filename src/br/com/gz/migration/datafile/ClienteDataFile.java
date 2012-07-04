@@ -209,7 +209,7 @@ public class ClienteDataFile extends DataFile {
 
 		int i = 0;
 
-		Cliente c = new Cliente();
+		Cliente c = new Cliente(software);
 
 		Formattable format;
 
@@ -297,7 +297,7 @@ public class ClienteDataFile extends DataFile {
 
 		int i = 0;
 
-		Cliente c = new Cliente();
+		Cliente c = new Cliente(software);
 
 		Formattable format;
 

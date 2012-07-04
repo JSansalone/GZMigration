@@ -206,7 +206,7 @@ public class FornecedorDataFile extends DataFile {
 
 		int i = 0;
 
-		Fornecedor f = new Fornecedor();
+		Fornecedor f = new Fornecedor(software);
 
 		Formattable format;
 
@@ -270,7 +270,7 @@ public class FornecedorDataFile extends DataFile {
 
 		int i = 0;
 
-		Fornecedor f = new Fornecedor();
+		Fornecedor f = new Fornecedor(software);
 
 		Formattable format;
 

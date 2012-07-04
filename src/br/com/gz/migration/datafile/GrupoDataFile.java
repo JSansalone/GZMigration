@@ -206,7 +206,7 @@ public class GrupoDataFile extends DataFile {
 
 		int i = 0;
 
-		Grupo d = new Grupo();
+		Grupo d = new Grupo(software);
 
 		Formattable format;
 
@@ -253,7 +253,7 @@ public class GrupoDataFile extends DataFile {
 
 		int i = 0;
 
-		Grupo d = new Grupo();
+		Grupo d = new Grupo(software);
 
 		Formattable format;
 

@@ -206,7 +206,7 @@ public class MarcaDataFile extends DataFile {
 
 		int i = 0;
 
-		Marca d = new Marca();
+		Marca d = new Marca(software);
 
 		Formattable format;
 
@@ -253,7 +253,7 @@ public class MarcaDataFile extends DataFile {
 
 		int i = 0;
 
-		Marca d = new Marca();
+		Marca d = new Marca(software);
 
 		Formattable format;
 

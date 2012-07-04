@@ -207,7 +207,7 @@ public class DepartamentoDataFile extends DataFile {
 
 		int i = 0;
 
-		Departamento d = new Departamento();
+		Departamento d = new Departamento(software);
 
 		Formattable format;
 
@@ -254,7 +254,7 @@ public class DepartamentoDataFile extends DataFile {
 
 		int i = 0;
 
-		Departamento d = new Departamento();
+		Departamento d = new Departamento(software);
 
 		Formattable format;
 
