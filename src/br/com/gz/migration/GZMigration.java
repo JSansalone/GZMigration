@@ -31,6 +31,7 @@ import org.database.connection.ConnectionFactory;
 import org.database.connection.DatabaseConfigurations;
 import org.database.connection.DatabaseType;
 
+import br.com.gz.migration.datafile.DataFileWriter;
 import br.com.gz.migration.file.DefaultDirectoryStructure;
 import br.com.gz.migration.file.LogFile;
 import br.com.gz.migration.report.MigrationBean;
@@ -637,6 +638,7 @@ public class GZMigration extends JFrame implements IFinalizeMigration,
 		// habilita o botão de geração de relatório
 		btReport.setVisible(true);
 		btCancel.setText("Sair");
+		donePanel.showWarning();
 
 	}
 
@@ -857,6 +859,19 @@ public class GZMigration extends JFrame implements IFinalizeMigration,
 		} catch (UnsupportedLookAndFeelException e1) {
 			e1.printStackTrace();
 		}
+		
+		Runnable r = new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				DataFileWriter.removeNotInsertedFiles();
+				
+			}
+			
+		};
+		
+		new Thread(r).start();
 
 	}
 

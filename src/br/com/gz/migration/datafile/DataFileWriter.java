@@ -12,6 +12,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import br.com.gz.migration.EnMigrationDataType;
+import br.com.gz.migration.file.LogFile;
 import br.com.gz.migration.policy.EnMercoFlexRequiredColumns;
 
 /**
@@ -110,6 +111,25 @@ public class DataFileWriter {
 
 			e.printStackTrace();
 
+		}
+
+	}
+
+	/**
+	 * Método que remove os arquivos de registros não inseridos. Foi planejado
+	 * para ser executado dentro de uma Thread separada ao iniciar a aplicação.
+	 */
+	public static void removeNotInsertedFiles() {
+
+		File root = new File("data");
+
+		if (root.exists()) {
+			for (File xls : root.listFiles()) {
+				if (xls.getName().endsWith("NOT_INSERTED.xls"))
+					if (!xls.delete())
+						LogFile.getInstance().writeInFile(
+								"Could not delete the file " + xls.getName());
+			}
 		}
 
 	}
