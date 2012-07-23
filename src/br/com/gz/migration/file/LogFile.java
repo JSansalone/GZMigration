@@ -76,7 +76,7 @@ public class LogFile {
 	 * 
 	 * @param message - mensagem de log
 	 */
-	public void writeInFile(String message) {
+	public synchronized void writeInFile(String message) {
 
 		Calendar c = Calendar.getInstance();
 

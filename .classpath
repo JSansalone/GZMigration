@@ -7,7 +7,6 @@
 	<classpathentry kind="lib" path="C:/Java/Libraries/jgoodies-common-1.2.1.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/PDF/itextpdf-5.2.1.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/mercoflex-database-V255.jar"/>
-	<classpathentry kind="lib" path="C:/Java/Libraries/GZ Migration/imggzmigration.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/jtds-1.2.5.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/mysql-connector-java-5.1.7-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/javamail-1.4.4/mail.jar"/>
@@ -20,6 +19,7 @@
 	<classpathentry kind="lib" path="C:/Java/Libraries/jasperreports-4.5.1.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/PDF/itext-2.1.7.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/GZ Migration/gzreport.jar"/>
-	<classpathentry kind="lib" path="C:/Java/Libraries/gzutil20120704.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Libraries/gzutil20120718.jar"/>
+	<classpathentry kind="lib" path="lib/img.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

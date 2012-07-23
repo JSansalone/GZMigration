@@ -470,9 +470,11 @@ class MigrationEngine extends Thread implements IMigrationResults {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 		}
 
 	}
@@ -849,7 +851,7 @@ class MigrationEngine extends Thread implements IMigrationResults {
 		System.out.println("Anexar=" + toAppend);
 
 		LogFile.getInstance().writeInFile(
-				"Total number of retrieved rows: " + totalData);
+				"Total number of valid retrieved rows: " + totalData);
 		LogFile.getInstance().writeInFile("Append: " + toAppend);
 
 		// ======================= INSERINDO PRODUTOS

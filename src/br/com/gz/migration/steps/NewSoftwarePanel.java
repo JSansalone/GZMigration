@@ -39,7 +39,7 @@ public class NewSoftwarePanel extends JPanel implements IValidation,
 	/**
 	 * Combo para escolher o software a ser implantado
 	 */
-	private JComboBox<String> cmbSoftware;
+	private JComboBox cmbSoftware;
 	
 	/**
 	 * Botão para escolher o banco de dados de destino
@@ -124,7 +124,7 @@ public class NewSoftwarePanel extends JPanel implements IValidation,
 		lblBanner.setFont(GZMigration.TITLE_FONT);
 		add(lblBanner);
 
-		cmbSoftware = new JComboBox<String>();
+		cmbSoftware = new JComboBox();
 		cmbSoftware.addItem("MercoFlex");
 		//cmbSoftware.addItem("Mercatto");
 
