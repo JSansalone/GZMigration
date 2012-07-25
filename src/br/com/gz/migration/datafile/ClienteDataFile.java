@@ -226,26 +226,24 @@ public class ClienteDataFile extends DataFile {
 			format = new MercoFlexFormat();
 		}
 
-		c.setCodigo(new Integer(format.toNumeric(o[i++].toString(), false)));
+		c.setCodigo(new Long(format.toNumeric(o[i++].toString(), false)));
 		c.setNomeFantasia(format.toNomeFantasia(o[i++].toString()));
 		c.setRazaoSocial(format.toRazaoSocial(o[i++].toString()));
 		c.setCgc(format.toNumeric(o[i++].toString(), false));
 		c.setRegistroEstadual(format.toInscricaoEstadual(o[i++].toString()));
 		c.setSexo(o[i++].toString());
 		
-		Calendar cldn = Calendar.getInstance();
-		Date dtdn = (Date)o[i++];
-	//	Date dtdn = new Date();
-	//	dtdn.setTime(new Long(o[i++].toString()));
-		cldn.setTime(dtdn);
-		c.setDataNascimento(cldn);
+		try{
+			c.setDataNascimento(DateFormat.getDateInstance().parse((String) o[i++]));
+		}catch(Exception e){
+			c.setDataNascimento(Calendar.getInstance());
+		}
 		
-		Calendar cldc = Calendar.getInstance();
-		Date dtdc = (Date)o[i++];
-//		Date dtdc = new Date();
-//		dtdc.setTime(new Long(o[i++].toString()));
-		cldc.setTime(dtdc);
-		c.setDataCadastro(cldc);
+		try{
+			c.setDataCadastro(DateFormat.getDateInstance().parse((String) o[i++]));
+		}catch(Exception e){
+			c.setDataCadastro(Calendar.getInstance());
+		}
 		
 		c.setEstado(format.toEstadoSigla(o[i++].toString()));
 		c.setCidade(o[i++].toString());
@@ -314,7 +312,7 @@ public class ClienteDataFile extends DataFile {
 			format = new MercoFlexFormat();
 		}
 
-		c.setCodigo(new Integer(format.toNumeric(o[i++].toString(), false)));
+		c.setCodigo(new Long(format.toNumeric(o[i++].toString(), false)));
 		c.setNomeFantasia(format.toNomeFantasia(o[i++].toString()));
 		c.setRazaoSocial(format.toRazaoSocial(o[i++].toString()));
 		c.setCgc(format.toNumeric(o[i++].toString(), false));

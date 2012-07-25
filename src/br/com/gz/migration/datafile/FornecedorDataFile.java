@@ -223,7 +223,7 @@ public class FornecedorDataFile extends DataFile {
 			format = new MercoFlexFormat();
 		}
 
-		f.setCodigo(new Integer(format.toNumeric(o[i++].toString(), false)));
+		f.setCodigo(new Long(format.toNumeric(o[i++].toString(), false)));
 		f.setNomeFantasia(format.toNomeFantasia(o[i++].toString()));
 		f.setRazaoSocial(format.toRazaoSocial(o[i++].toString()));
 		f.setCgc(format.toNumeric(o[i++].toString(), false));
@@ -287,7 +287,7 @@ public class FornecedorDataFile extends DataFile {
 			format = new MercoFlexFormat();
 		}
 
-		f.setCodigo(new Integer(format.toNumeric(o[i++].toString(), false)));
+		f.setCodigo(new Long(format.toNumeric(o[i++].toString(), false)));
 		f.setNomeFantasia(format.toNomeFantasia(o[i++].toString()));
 		f.setRazaoSocial(format.toRazaoSocial(o[i++].toString()));
 		f.setCgc(format.toNumeric(o[i++].toString(), false));

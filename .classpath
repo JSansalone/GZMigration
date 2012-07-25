@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre6"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/database-connections-1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/jgoodies-looks-2.4.2.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/jgoodies-common-1.2.1.jar"/>
@@ -19,7 +19,7 @@
 	<classpathentry kind="lib" path="C:/Java/Libraries/jasperreports-4.5.1.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/PDF/itext-2.1.7.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Libraries/GZ Migration/gzreport.jar"/>
-	<classpathentry kind="lib" path="C:/Java/Libraries/gzutil20120718.jar"/>
 	<classpathentry kind="lib" path="lib/img.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Libraries/gzutil20120725.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
