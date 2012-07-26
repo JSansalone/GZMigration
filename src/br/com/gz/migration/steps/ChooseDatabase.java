@@ -37,8 +37,8 @@ public class ChooseDatabase extends JDialog {
 		setLocationRelativeTo(null);
 		setModal(true);
 
-		final JList<String> list = new JList<String>();
-		DefaultListModel<String> m = new DefaultListModel<String>();
+		final JList list = new JList();
+		DefaultListModel m = new DefaultListModel();
 		list.setModel(m);
 
 		m.addElement("Oracle");
@@ -88,7 +88,7 @@ public class ChooseDatabase extends JDialog {
 
 				if (n == 2) {
 
-					String db = list.getSelectedValue();
+					String db = (String) list.getSelectedValue();
 
 					if (db.equals("Oracle")) {
 
@@ -135,7 +135,7 @@ public class ChooseDatabase extends JDialog {
 
 				if (k.getKeyCode() == KeyEvent.VK_ENTER) {
 
-					String db = list.getSelectedValue();
+					String db = (String) list.getSelectedValue();
 
 					if (db.equals("Oracle")) {
 

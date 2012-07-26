@@ -91,10 +91,12 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 		} catch (InvalidCellTypeException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		} catch (RequiredColumnNotFoundException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		}
 
@@ -119,10 +121,12 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 		} catch (InvalidCellTypeException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		} catch (RequiredColumnNotFoundException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		}
 
@@ -146,10 +150,12 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 		} catch (InvalidCellTypeException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		} catch (RequiredColumnNotFoundException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		}
 
@@ -173,10 +179,12 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 		} catch (InvalidCellTypeException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		} catch (RequiredColumnNotFoundException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		}
 
@@ -200,10 +208,12 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 		} catch (InvalidCellTypeException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		} catch (RequiredColumnNotFoundException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		}
 
@@ -227,10 +237,12 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 		} catch (InvalidCellTypeException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		} catch (RequiredColumnNotFoundException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		}
 
@@ -254,10 +266,12 @@ public class SQLDataProviderImpl extends SQLDataProvider {
 		} catch (InvalidCellTypeException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		} catch (RequiredColumnNotFoundException e) {
 			// johnny Auto-generated catch block
 			e.printStackTrace();
+			LogFile.getInstance().writeInFile(e.getMessage());
 			return POLICY_VIOLATION;
 		}
 

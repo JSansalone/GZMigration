@@ -12,7 +12,7 @@ import br.com.gz.migration.GZMigration;
  * Classe que representa o painél de boas-vindas
  * 
  * @author Jonathan Sansalone
- *
+ * 
  */
 public class WelcomePanel extends JPanel {
 

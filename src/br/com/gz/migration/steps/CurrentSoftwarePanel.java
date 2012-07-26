@@ -32,7 +32,7 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 		IDatabaseInfo, IDatabaseMutable, ISoftwareMutable,
 		InitialConfigurationsOnVisible {
 
-	private JComboBox<String> cmbSoftware;
+	private JComboBox cmbSoftware;
 	private JLabel lblSoftware;
 	private JLabel lblDbName;
 	private JLabel lblIPAdress;
@@ -85,7 +85,7 @@ public class CurrentSoftwarePanel extends JPanel implements IValidation,
 				"/img/navigation/change.png")));
 		btSgbd.setToolTipText("Alterar o tipo de banco de dados");
 
-		cmbSoftware = new JComboBox<String>();
+		cmbSoftware = new JComboBox();
 
 		txtIp1 = new JTextField();
 		txtIp2 = new JTextField();

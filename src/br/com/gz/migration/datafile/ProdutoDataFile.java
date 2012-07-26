@@ -3,6 +3,7 @@ package br.com.gz.migration.datafile;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import br.com.gz.bean.Produto;
@@ -237,7 +238,11 @@ public class ProdutoDataFile extends DataFile {
 		p.setQuantidadeEstoqueMaximo(new Double(format.toNumeric(
 				o[i++].toString(), true)));
 		p.setQuantidade(new Double(format.toNumeric(o[i++].toString(), true)));
-		p.setDataCadastro(((Date)o[i++]).getTime());
+		try{
+			p.setDataCadastro(DateFormat.getDateInstance().parse((String) o[i++]));
+		}catch(Exception e){
+			p.setDataCadastro(Calendar.getInstance());
+		}
 		p.setAliquotaPisCompra(new Double(format.toNumeric(o[i++].toString(),
 				true)));
 		p.setAliquotaCofinsCompra(new Double(format.toNumeric(

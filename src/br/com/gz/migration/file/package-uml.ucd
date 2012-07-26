@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="file-aid" id="{UMLID=_OSdNxNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.file}" metadata="uml2-1.0" initialized="true" key="323030373036323920475A4D6967726174696F6E" Shrink="true">
+  <children xsi:type="editmodel:ClassEditModel" name="DefaultDirectoryStructure" location="188,50" size="200,65" timstampe="171592" stereotype="" id="{UMLID=_OSwItda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.file/DefaultDirectoryStructure}" runTimeClassModel="createDefaultStructure()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="createDefaultStructure" size="150,16" id="{UMLID=_QNPfcNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.file/DefaultDirectoryStructure#createDefaultStructure()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0" name="LogFile" location="50,50" size="123,183" timstampe="171600" stereotype="" id="{UMLID=_OSmXsNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.file/LogFile}" runTimeClassModel="getInstance(),LogFile(),writeInFile(Ljava.lang.String;),logFile,writeHeader(),instance,fillZero(I)">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="instance" size="76,21" id="{UMLID=_QZdWgta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="logFile" size="59,16" id="{UMLID=_QZdWgNa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="LogFile" size="74,16" id="{UMLID=_QZdWhNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.file/LogFile#LogFile()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getInstance" size="102,21" id="{UMLID=_QZmgcNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.file/LogFile#getInstance()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="writeInFile" size="89,16" id="{UMLID=_QZmgc9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.file/LogFile#writeInFile(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="writeHeader" size="100,16" id="{UMLID=_QZdWhda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.file/LogFile#writeHeader()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="fillZero" size="73,16" id="{UMLID=_QZdWhta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.file/LogFile#fillZero(I)}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_QcvUANa0EeGFpuhcC3B7Jg}" source="//@children.1" target="//@children.1" targetEnd="//@children.1/@sourceConnections.0/@children.2" label="//@children.1/@sourceConnections.0/@children.0" sourceEnd="//@children.1/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="instance" location="0,132" id="{UMLID=_QZdWgta0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" attachSource="true" multiplicityLabel="//@children.1/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.1/@sourceConnections.0/@children.1/@children.2" orderingLabel="//@children.1/@sourceConnections.0/@children.1/@children.0" scopeKind="1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="{order}" location="9,189" size="34,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="37,161" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- instance" location="-5,203" size="48,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="27,0" id="{UMLID=_QcvUAda0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" multiplicityLabel="//@children.1/@sourceConnections.0/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="84,29" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" level="4" showScope="InPackage" properties="wireOptions=7"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="14,14" gridOrigin="0,0" rulerUnit="cm" gridShow="true">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" shortPackageNameFormat="true" showClassStereotype="true" showPackageStereotype="true" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showInterfaceStereotype="true" showMethods="true" showAttributes="true" showLiterlas="true" showInnerEntity="true"/>
+</editmodel:ClassDiagramEditModel>

@@ -1,5 +1,7 @@
 package br.com.gz.migration.datafile;
 
+import java.io.File;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -58,7 +60,7 @@ public class DataFileReader {
 				names[i] = DataFile.CELL_VALUE_NULL;
 				// senão
 			} else {
-				
+
 				cell.setCellType(HSSFCell.CELL_TYPE_STRING);
 				names[i] = cell.getStringCellValue().toUpperCase();
 
@@ -179,6 +181,27 @@ public class DataFileReader {
 		} catch (Exception e) {
 			return false;
 		}
+
+	}
+
+	/**
+	 * Método que verifica se existe arquivos com registros não inseridos
+	 * 
+	 * @return - true se houver, false caso contrario
+	 */
+	public static boolean hasNotInsertedFiles() {
+
+		File root = new File("data");
+
+		if (root.exists()) {
+			for (File xls : root.listFiles()) {
+				if (xls.getName().endsWith("NOT_INSERTED.xls")) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 
 	}
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="sql-aid" id="{UMLID=_Pj9R4ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.sql}" metadata="uml2-1.0" initialized="true" key="323030373036323920475A4D6967726174696F6E" Shrink="true">
+  <children xsi:type="editmodel:EnumerationEditModel" name="EnMercoFlexInsertStatement" location="50,50" size="223,249" timstampe="171608" id="{UMLID=_PkHC4Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.sql/EnMercoFlexInsertStatement}" runTimeClassModel="INSERT_FORNECEDOR%,INSERT_GRUPO%,INSERT_SETOR%,INSERT_ARMACAO%,INSERT_MARCA%,INSERT_ESTOQUE_TRIBUTACAO%,INSERT_ESTOQUE%,INSERT_ESTOQUE_LOJA%,INSERT_DEPARTAMENTO%,INSERT_CLIENTE%,INSERT_ESTOQUE_SALDO%">
+    <children xsi:type="editmodel:CompartmentEditModel" size="189,198">
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="INSERT_ESTOQUE" size="118,16" id="{UMLID=_Srylg9a0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="INSERT_ESTOQUE_LOJA" size="151,16" id="{UMLID=_Sr7vcta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="INSERT_ESTOQUE_TRIBUTACAO" size="189,16" id="{UMLID=_SsFgcNa0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="INSERT_ESTOQUE_SALDO" size="160,16" id="{UMLID=_SryljNa0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="INSERT_CLIENTE" size="110,16" id="{UMLID=_Sr7ve9a0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="INSERT_FORNECEDOR" size="139,16" id="{UMLID=_Srylhta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="INSERT_DEPARTAMENTO" size="151,16" id="{UMLID=_SrylgNa0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="INSERT_GRUPO" size="106,16" id="{UMLID=_Srylida0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="INSERT_SETOR" size="104,16" id="{UMLID=_Sr7vdda0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="INSERT_ARMACAO" size="124,16" id="{UMLID=_Sr7vfta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="INSERT_MARCA" size="108,16" id="{UMLID=_Sr7veNa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" enumerationClassMode="false" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" level="4" showScope="InPackage" properties="wireOptions=7"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="14,14" gridOrigin="56,56" rulerUnit="cm" gridShow="true">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" shortPackageNameFormat="true" showClassStereotype="true" showPackageStereotype="true" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showInterfaceStereotype="true" showMethods="true" showAttributes="true" showLiterlas="true" showInnerEntity="true"/>
+</editmodel:ClassDiagramEditModel>

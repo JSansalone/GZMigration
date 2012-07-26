@@ -1,1 +1,1 @@
-Aplicativo que auxilia na migraÃ§Ã£o de bancos de dados.
+Aplicativo que realiza a migração de dados para o MercoFlex.

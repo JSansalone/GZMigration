@@ -135,7 +135,7 @@ public abstract class SQLDataProvider {
 					PreparedStatement st = cnn
 							.prepareStatement(EnMercoFlexInsertStatement.INSERT_CLIENTE.getSQL(dbTo));
 
-					st.setInt(1,c.getCodigo());
+					st.setLong(1,c.getCodigo());
 					st.setString(2,c.getNomeFantasia());
 					st.setString(3,c.getRazaoSocial());
 					st.setString(4,c.getCgc());
@@ -175,8 +175,8 @@ public abstract class SQLDataProvider {
 					PreparedStatement st = cnn
 							.prepareStatement(EnMercoFlexInsertStatement.INSERT_CLIENTE.getSQL(dbTo));
 
-					st.setInt(1,c.getCodigo());
-					st.setInt(2,c.getCodigo());
+					st.setLong(1,c.getCodigo());
+					st.setLong(2,c.getCodigo());
 					st.setString(3,c.getNomeFantasia());
 					st.setString(4,c.getRazaoSocial());
 					st.setString(5,c.getCgc());
@@ -221,7 +221,7 @@ public abstract class SQLDataProvider {
 							.prepareStatement("insert into cliente(idCliente,nome,endereco,bairro,cidade,uf,cep,cpf,rg,credito,limite,dt_nasc,empresa,salario,orgao,tipo,dtAbertura,usado,tipoend,numero,codmunicipio,empresa_convenio,limite_ch,credito_ch,CARENCIA,TIPOFIDELIDADE,PONTUACAO,LOJA,TabelaPreco,IdTipoCliente,fantasia) "
 									+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update idCliente = idCliente");
 
-					st.setInt(1, c.getCodigo());
+					st.setLong(1, c.getCodigo());
 					st.setString(2, c.getRazaoSocial());
 					st.setString(3, c.getEndereco());
 					st.setString(4, c.getBairro());
@@ -358,7 +358,7 @@ public abstract class SQLDataProvider {
 					PreparedStatement st = cnn
 							.prepareStatement(EnMercoFlexInsertStatement.INSERT_FORNECEDOR.getSQL(dbTo));
 
-					st.setInt(1,f.getCodigo());
+					st.setLong(1,f.getCodigo());
 					st.setString(2,f.getNomeFantasia());
 					st.setString(3,f.getRazaoSocial());
 					st.setString(4,f.getCgc());
@@ -383,8 +383,8 @@ public abstract class SQLDataProvider {
 					PreparedStatement st = cnn
 							.prepareStatement(EnMercoFlexInsertStatement.INSERT_FORNECEDOR.getSQL(dbTo));
 
-					st.setInt(1,f.getCodigo());
-					st.setInt(2,f.getCodigo());
+					st.setLong(1,f.getCodigo());
+					st.setLong(2,f.getCodigo());
 					st.setString(3,f.getNomeFantasia());
 					st.setString(4,f.getRazaoSocial());
 					st.setString(5,f.getCgc());
@@ -413,7 +413,7 @@ public abstract class SQLDataProvider {
 					PreparedStatement st = cnn
 							.prepareStatement("insert into fornecedor(IDFORNECEDOR,NOME,FANTASIA,ENDERECO,BAIRRO,CIDADE,UF,CEP,CPF_CGC,RG_IE,CONDICAOFAT,Entrega,SenhaCotacao,NUMERO,CODMUNICIPIO,TIPOEND,DTCADASTRO,HabilitaCotacao) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) on duplicate key update IDFORNECEDOR = IDFORNECEDOR");
 
-					st.setInt(1, f.getCodigo());
+					st.setLong(1, f.getCodigo());
 					st.setString(2, f.getRazaoSocial());
 					st.setString(3, f.getNomeFantasia());
 					st.setString(4, f.getEndereco());
