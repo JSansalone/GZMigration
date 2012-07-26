@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="datafile-aid" id="{UMLID=_PbLJUNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile}" metadata="uml2-1.0" initialized="true" key="323030373036323920475A4D6967726174696F6E" Shrink="true">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.7/@sourceConnections.1" name="DataFileWriter" location="1746,893" size="174,101" timstampe="172048" stereotype="" id="{UMLID=_QNYpYNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFileWriter}" runTimeClassModel="createFile([Lbr.com.gz.migration.policy.EnMercoFlexRequiredColumns;Lbr.com.gz.migration.EnMigrationDataType;),removeNotInsertedFiles(),writeRowBatch(Ljava.io.File;[Ljava.lang.Object;Ljava.lang.Object;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="writeRowBatch" size="116,16" id="{UMLID=_feSDwda4EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFileWriter#writeRowBatch(Ljava.io.File;[Ljava.lang.Object;Ljava.lang.Object;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="createFile" size="87,16" id="{UMLID=_feb0yda4EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFileWriter#createFile([Lbr.com.gz.migration.policy.EnMercoFlexRequiredColumns;Lbr.com.gz.migration.EnMigrationDataType;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeNotInsertedFiles" size="153,16" id="{UMLID=_feSDwNa4EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFileWriter#removeNotInsertedFiles()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.7/@sourceConnections.0 //@children.6/@sourceConnections.1 //@children.9/@sourceConnections.1 //@children.5/@sourceConnections.1 //@children.8/@sourceConnections.1 //@children.2/@sourceConnections.1 //@children.4/@sourceConnections.1 //@children.3/@sourceConnections.1" name="DataFileReader" location="1578,1310" size="156,119" timstampe="171920" stereotype="" id="{UMLID=_QdoE0Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFileReader}" runTimeClassModel="isNumber(Ljava.lang.String;),hasNotInsertedFiles(),getCellValues(Lorg.apache.poi.hssf.usermodel.HSSFRow;I),getHeader(Lorg.apache.poi.hssf.usermodel.HSSFRow;I)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="getHeader" size="90,16" id="{UMLID=_fcDPINa4EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFileReader#getHeader(Lorg.apache.poi.hssf.usermodel.HSSFRow;I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCellValues" size="105,16" id="{UMLID=_fcMZHNa4EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFileReader#getCellValues(Lorg.apache.poi.hssf.usermodel.HSSFRow;I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isNumber" size="85,16" id="{UMLID=_fcf7Eta4EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFileReader#isNumber(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNotInsertedFiles" size="135,16" id="{UMLID=_fcWKGNa4EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFileReader#hasNotInsertedFiles()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@sourceConnections.3" name="DepartamentoDataFile" location="3090,1618" size="183,363" timstampe="171576" stereotype="" id="{UMLID=_PeJk0Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile}" runTimeClassModel="hasNext(),getRowData(I),getAll(),checkValuesPolicy([Ljava.lang.Object;),getTotalRows(),getInstance(Lbr.com.gz.util.GZSoftwares;),next(),getName(),last(),DepartamentoDataFile(Lbr.com.gz.util.GZSoftwares;),hasNextAfter(I),hasPrevious(),previous(),first(),checkHeaderPolicy(),getColumnsNotFound(),instance">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="instance" size="76,21" id="{UMLID=_RIPvINa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="DepartamentoDataFile" size="145,16" id="{UMLID=_RJJHAta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#DepartamentoDataFile(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getInstance" size="102,21" id="{UMLID=_RI_WAta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#getInstance(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" size="82,16" id="{UMLID=_RJly8ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#getName()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalRows" size="106,16" id="{UMLID=_RJu86Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#getTotalRows()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="first" size="59,16" id="{UMLID=_RI2MEta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#first()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="last" size="57,16" id="{UMLID=_RI2MGta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#last()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNext" size="80,16" id="{UMLID=_RKoUwda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#hasNext()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasPrevious" size="100,16" id="{UMLID=_RJly-Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#hasPrevious()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNextAfter" size="105,16" id="{UMLID=_RKCe4ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#hasNextAfter(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="next" size="61,16" id="{UMLID=_RKVZ0ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#next()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="previous" size="82,16" id="{UMLID=_RJcB8ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#previous()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAll" size="67,16" id="{UMLID=_RJly9da0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#getAll()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRowData" size="100,16" id="{UMLID=_RKejwta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#getRowData(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkHeaderPolicy" size="132,16" id="{UMLID=_RIPvIta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#checkHeaderPolicy()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkValuesPolicy" size="130,16" id="{UMLID=_RJu84ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#checkValuesPolicy([Ljava.lang.Object;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColumnsNotFound" size="142,16" id="{UMLID=_RI2MF9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DepartamentoDataFile#getColumnsNotFound()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" size="2,1" autoLocated="true" id="{UMLID=_RGdmcta0EeGFpuhcC3B7Jg}" source="//@children.2" target="//@children.6/@sourceConnections.0" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="91,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_RNnXUda0EeGFpuhcC3B7Jg}" source="//@children.2" target="//@children.1" targetEnd="//@children.2/@sourceConnections.1/@children.2" label="//@children.2/@sourceConnections.1/@children.0" sourceEnd="//@children.2/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="38,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="156,109"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_RPPvAda0EeGFpuhcC3B7Jg}" source="//@children.2" target="//@children.7" targetEnd="//@children.2/@sourceConnections.2/@children.2" label="//@children.2/@sourceConnections.2/@children.0" sourceEnd="//@children.2/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="51,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,181" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="163,279"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_RS-YcNa0EeGFpuhcC3B7Jg}" source="//@children.2" target="//@children.2" targetEnd="//@children.2/@sourceConnections.3/@children.2" label="//@children.2/@sourceConnections.3/@children.0" sourceEnd="//@children.2/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="instance" location="0,263" id="{UMLID=_RIPvINa0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" attachSource="true" multiplicityLabel="//@children.2/@sourceConnections.3/@children.1/@children.1" roleLabel="//@children.2/@sourceConnections.3/@children.1/@children.2" orderingLabel="//@children.2/@sourceConnections.3/@children.1/@children.0" scopeKind="1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="{order}" location="3049,1888" size="34,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="3077,1860" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- instance" location="3035,1902" size="48,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="20,0" id="{UMLID=_RS-Ycda0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" multiplicityLabel="//@children.2/@sourceConnections.3/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="3117,1597" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.3" name="ArmacaoDataFile" location="3161,2653" size="163,363" timstampe="171571" stereotype="" id="{UMLID=_PczhANa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile}" runTimeClassModel="ArmacaoDataFile(Lbr.com.gz.util.GZSoftwares;),hasNext(),getRowData(I),getTotalRows(),getAll(),checkValuesPolicy([Ljava.lang.Object;),getInstance(Lbr.com.gz.util.GZSoftwares;),next(),getName(),last(),hasPrevious(),hasNextAfter(I),previous(),first(),checkHeaderPolicy(),getColumnsNotFound(),instance">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="instance" size="76,21" id="{UMLID=_RtM2UNa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="ArmacaoDataFile" size="121,16" id="{UMLID=_RuPYIta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#ArmacaoDataFile(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getInstance" size="102,21" id="{UMLID=_RuGOMNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#getInstance(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" size="82,16" id="{UMLID=_RtzTRNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#getName()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalRows" size="106,16" id="{UMLID=_RuZJINa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#getTotalRows()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="first" size="59,16" id="{UMLID=_RtpiSda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#first()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="last" size="57,16" id="{UMLID=_RtpiQ9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#last()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNext" size="80,16" id="{UMLID=_RtpiRta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#hasNext()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasPrevious" size="100,16" id="{UMLID=_Rui6INa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#hasPrevious()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNextAfter" size="105,16" id="{UMLID=_RtzTR9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#hasNextAfter(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="next" size="61,16" id="{UMLID=_Rt8dOda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#next()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="previous" size="82,16" id="{UMLID=_RuZJI9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#previous()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAll" size="67,16" id="{UMLID=_RtfxQNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#getAll()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRowData" size="100,16" id="{UMLID=_RtfxQ9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#getRowData(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkHeaderPolicy" size="132,16" id="{UMLID=_RtM2Uta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#checkHeaderPolicy()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkValuesPolicy" size="130,16" id="{UMLID=_Rt8dM9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#checkValuesPolicy([Ljava.lang.Object;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColumnsNotFound" size="142,16" id="{UMLID=_RtzTQda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ArmacaoDataFile#getColumnsNotFound()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" size="2,1" autoLocated="true" id="{UMLID=_RswKYNa0EeGFpuhcC3B7Jg}" source="//@children.3" target="//@children.6/@sourceConnections.0" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="81,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="93,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_RxhVoda0EeGFpuhcC3B7Jg}" source="//@children.3" target="//@children.1" targetEnd="//@children.3/@sourceConnections.1/@children.2" label="//@children.3/@sourceConnections.1/@children.0" sourceEnd="//@children.3/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="38,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="146,119"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_RzUFYda0EeGFpuhcC3B7Jg}" source="//@children.3" target="//@children.7" targetEnd="//@children.3/@sourceConnections.2/@children.2" label="//@children.3/@sourceConnections.2/@children.0" sourceEnd="//@children.3/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="51,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="163,610"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_R2vM0Na0EeGFpuhcC3B7Jg}" source="//@children.3" target="//@children.3" targetEnd="//@children.3/@sourceConnections.3/@children.2" label="//@children.3/@sourceConnections.3/@children.0" sourceEnd="//@children.3/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="instance" location="0,263" id="{UMLID=_RtM2UNa0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" attachSource="true" multiplicityLabel="//@children.3/@sourceConnections.3/@children.1/@children.1" roleLabel="//@children.3/@sourceConnections.3/@children.1/@children.2" orderingLabel="//@children.3/@sourceConnections.3/@children.1/@children.0" scopeKind="1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="{order}" location="3120,2923" size="34,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="3148,2895" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- instance" location="3106,2937" size="48,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="21,0" id="{UMLID=_R2vM0da0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" multiplicityLabel="//@children.3/@sourceConnections.3/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="3189,2632" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.3" name="ClienteDataFile" location="3120,569" size="163,363" timstampe="171625" stereotype="" id="{UMLID=_Pdju8Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile}" runTimeClassModel="hasNext(),getRowData(I),getTotalRows(),checkValuesPolicy([Ljava.lang.Object;),getAll(),getInstance(Lbr.com.gz.util.GZSoftwares;),next(),getName(),last(),hasPrevious(),hasNextAfter(I),ClienteDataFile(Lbr.com.gz.util.GZSoftwares;),previous(),first(),getColumnsNotFound(),checkHeaderPolicy(),instance">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="instance" size="76,21" id="{UMLID=_SEc4sNa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="ClienteDataFile" size="110,16" id="{UMLID=_SFpLg9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#ClienteDataFile(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getInstance" size="102,21" id="{UMLID=_SE49kNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#getInstance(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" size="82,16" id="{UMLID=_SEmCoNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#getName()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalRows" size="106,16" id="{UMLID=_SEmCpta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#getTotalRows()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="first" size="59,16" id="{UMLID=_SFVphda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#first()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="last" size="57,16" id="{UMLID=_SFfagda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#last()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNext" size="80,16" id="{UMLID=_SFMfkNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#hasNext()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasPrevious" size="100,16" id="{UMLID=_SFyVcta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#hasPrevious()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNextAfter" size="105,16" id="{UMLID=_SFfahNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#hasNextAfter(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="next" size="61,16" id="{UMLID=_SFCulNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#next()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="previous" size="82,16" id="{UMLID=_SFpLgNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#previous()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAll" size="67,16" id="{UMLID=_SFVpiNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#getAll()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRowData" size="100,16" id="{UMLID=_SEmCqda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#getRowData(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkHeaderPolicy" size="132,16" id="{UMLID=_SEvzpda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#checkHeaderPolicy()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkValuesPolicy" size="130,16" id="{UMLID=_SFMfk9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#checkValuesPolicy([Ljava.lang.Object;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColumnsNotFound" size="142,16" id="{UMLID=_SEmCo9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ClienteDataFile#getColumnsNotFound()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" size="2,1" autoLocated="true" id="{UMLID=_SEAMwNa0EeGFpuhcC3B7Jg}" source="//@children.4" target="//@children.6/@sourceConnections.0" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="81,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="49,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_SJg-4da0EeGFpuhcC3B7Jg}" source="//@children.4" target="//@children.1" targetEnd="//@children.4/@sourceConnections.1/@children.2" label="//@children.4/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="38,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,363" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="156,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_SLvzgda0EeGFpuhcC3B7Jg}" source="//@children.4" target="//@children.7" targetEnd="//@children.4/@sourceConnections.2/@children.2" label="//@children.4/@sourceConnections.2/@children.0" sourceEnd="//@children.4/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="51,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,363" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="163,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_SP7I4Na0EeGFpuhcC3B7Jg}" source="//@children.4" target="//@children.4" targetEnd="//@children.4/@sourceConnections.3/@children.2" label="//@children.4/@sourceConnections.3/@children.0" sourceEnd="//@children.4/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="instance" location="0,263" id="{UMLID=_SEc4sNa0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" attachSource="true" multiplicityLabel="//@children.4/@sourceConnections.3/@children.1/@children.1" roleLabel="//@children.4/@sourceConnections.3/@children.1/@children.2" orderingLabel="//@children.4/@sourceConnections.3/@children.1/@children.0" scopeKind="1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="{order}" location="3079,839" size="34,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="3107,811" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- instance" location="3065,853" size="48,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="23,0" id="{UMLID=_SP7I4da0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" multiplicityLabel="//@children.4/@sourceConnections.3/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="3150,548" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.3" name="MarcaDataFile" location="462,1620" size="163,363" timstampe="171579" stereotype="" id="{UMLID=_PfC8sNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile}" runTimeClassModel="hasNext(),getRowData(I),checkValuesPolicy([Ljava.lang.Object;),getTotalRows(),getAll(),getInstance(Lbr.com.gz.util.GZSoftwares;),next(),getName(),last(),hasNextAfter(I),hasPrevious(),previous(),MarcaDataFile(Lbr.com.gz.util.GZSoftwares;),first(),checkHeaderPolicy(),getColumnsNotFound(),instance">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="instance" size="76,21" id="{UMLID=_RVEDINa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="MarcaDataFile" size="108,16" id="{UMLID=_RVgvFta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#MarcaDataFile(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getInstance" size="102,21" id="{UMLID=_RVzqANa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#getInstance(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" size="82,16" id="{UMLID=_RVEDIta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#getName()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalRows" size="106,16" id="{UMLID=_RVgvENa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#getTotalRows()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="first" size="59,16" id="{UMLID=_RWGk-Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#first()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="last" size="57,16" id="{UMLID=_RVNNGNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#last()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNext" size="80,16" id="{UMLID=_RV9bBta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#hasNext()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasPrevious" size="100,16" id="{UMLID=_RV9bA9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#hasPrevious()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNextAfter" size="105,16" id="{UMLID=_RVzqBda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#hasNextAfter(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="next" size="61,16" id="{UMLID=_RVW-Eta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#next()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="previous" size="82,16" id="{UMLID=_RVNNG9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#previous()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAll" size="67,16" id="{UMLID=_RVgvE9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#getAll()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRowData" size="100,16" id="{UMLID=_RWGk8da0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#getRowData(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkHeaderPolicy" size="132,16" id="{UMLID=_RWGk-9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#checkHeaderPolicy()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkValuesPolicy" size="130,16" id="{UMLID=_RVNNEta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#checkValuesPolicy([Ljava.lang.Object;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColumnsNotFound" size="142,16" id="{UMLID=_RV9bCda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/MarcaDataFile#getColumnsNotFound()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" size="2,1" autoLocated="true" id="{UMLID=_RUnXMNa0EeGFpuhcC3B7Jg}" source="//@children.5" target="//@children.6/@sourceConnections.0" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="81,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="83,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_RY72gda0EeGFpuhcC3B7Jg}" source="//@children.5" target="//@children.1" targetEnd="//@children.5/@sourceConnections.1/@children.2" label="//@children.5/@sourceConnections.1/@children.0" sourceEnd="//@children.5/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="38,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="153,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,109"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_Rak1Qda0EeGFpuhcC3B7Jg}" source="//@children.5" target="//@children.7" targetEnd="//@children.5/@sourceConnections.2/@children.2" label="//@children.5/@sourceConnections.2/@children.0" sourceEnd="//@children.5/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="51,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="163,181" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,281"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_ReTesNa0EeGFpuhcC3B7Jg}" source="//@children.5" target="//@children.5" targetEnd="//@children.5/@sourceConnections.3/@children.2" label="//@children.5/@sourceConnections.3/@children.0" sourceEnd="//@children.5/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="instance" location="0,263" id="{UMLID=_RVEDINa0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" attachSource="true" multiplicityLabel="//@children.5/@sourceConnections.3/@children.1/@children.1" roleLabel="//@children.5/@sourceConnections.3/@children.1/@children.2" orderingLabel="//@children.5/@sourceConnections.3/@children.1/@children.0" scopeKind="1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="{order}" location="421,1890" size="34,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="449,1862" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- instance" location="407,1904" size="48,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="24,0" id="{UMLID=_ReTesda0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" multiplicityLabel="//@children.5/@sourceConnections.3/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="493,1599" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.6/@sourceConnections.3" name="FornecedorDataFile" location="452,528" size="166,363" timstampe="171585" stereotype="" id="{UMLID=_PieEINa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile}" runTimeClassModel="hasNext(),getRowData(I),getAll(),getTotalRows(),checkValuesPolicy([Ljava.lang.Object;),FornecedorDataFile(Lbr.com.gz.util.GZSoftwares;),getInstance(Lbr.com.gz.util.GZSoftwares;),next(),getName(),last(),hasNextAfter(I),hasPrevious(),previous(),first(),checkHeaderPolicy(),getColumnsNotFound(),instance">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="instance" size="76,21" id="{UMLID=_R4OakNa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="FornecedorDataFile" size="134,16" id="{UMLID=_R403hNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#FornecedorDataFile(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getInstance" size="102,21" id="{UMLID=_R4YLkta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#getInstance(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" size="82,16" id="{UMLID=_R5Rjc9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#getName()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalRows" size="106,16" id="{UMLID=_R4Oalda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#getTotalRows()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="first" size="59,16" id="{UMLID=_R5ataNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#first()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="last" size="57,16" id="{UMLID=_R5uPYta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#last()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNext" size="80,16" id="{UMLID=_R5keY9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#hasNext()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasPrevious" size="100,16" id="{UMLID=_R4-BcNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#hasPrevious()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNextAfter" size="105,16" id="{UMLID=_R4rGgNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#hasNextAfter(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="next" size="61,16" id="{UMLID=_R5keYNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#next()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="previous" size="82,16" id="{UMLID=_R5HydNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#previous()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAll" size="67,16" id="{UMLID=_R4Oakta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#getAll()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRowData" size="100,16" id="{UMLID=_R4-Bc9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#getRowData(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkHeaderPolicy" size="132,16" id="{UMLID=_R4h8kNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#checkHeaderPolicy()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkValuesPolicy" size="130,16" id="{UMLID=_R5atYta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#checkValuesPolicy([Ljava.lang.Object;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColumnsNotFound" size="142,16" id="{UMLID=_R5RjcNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/FornecedorDataFile#getColumnsNotFound()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.9/@sourceConnections.0 //@children.5/@sourceConnections.0 //@children.8/@sourceConnections.0 //@children.2/@sourceConnections.0 //@children.4/@sourceConnections.0 //@children.3/@sourceConnections.0" size="2,1" id="{UMLID=_R3xuoNa0EeGFpuhcC3B7Jg}" source="//@children.6" target="//@children.7" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="165,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="17,849" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_R9vMsda0EeGFpuhcC3B7Jg}" source="//@children.6" target="//@children.1" targetEnd="//@children.6/@sourceConnections.1/@children.2" label="//@children.6/@sourceConnections.1/@children.0" sourceEnd="//@children.6/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="38,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="156,363" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_R_YLcda0EeGFpuhcC3B7Jg}" source="//@children.6" target="//@children.7" targetEnd="//@children.6/@sourceConnections.2/@children.2" label="//@children.6/@sourceConnections.2/@children.0" sourceEnd="//@children.6/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="51,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="156,363" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_SCz58Na0EeGFpuhcC3B7Jg}" source="//@children.6" target="//@children.6" targetEnd="//@children.6/@sourceConnections.3/@children.2" label="//@children.6/@sourceConnections.3/@children.0" sourceEnd="//@children.6/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="instance" location="0,263" id="{UMLID=_R4OakNa0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" attachSource="true" multiplicityLabel="//@children.6/@sourceConnections.3/@children.1/@children.1" roleLabel="//@children.6/@sourceConnections.3/@children.1/@children.2" orderingLabel="//@children.6/@sourceConnections.3/@children.1/@children.0" scopeKind="1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="{order}" location="411,798" size="34,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="439,770" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- instance" location="397,812" size="48,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="20,0" id="{UMLID=_SCz58da0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" multiplicityLabel="//@children.6/@sourceConnections.3/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="479,507" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.6/@sourceConnections.0 //@children.6/@sourceConnections.2 //@children.9/@sourceConnections.2 //@children.5/@sourceConnections.2 //@children.8/@sourceConnections.2 //@children.2/@sourceConnections.2 //@children.4/@sourceConnections.2 //@children.3/@sourceConnections.2" name="DataFile" location="1886,1520" size="163,620" timstampe="171617" stereotype="" id="{UMLID=_Pbw_MNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile}" runTimeClassModel="fileNameNoExt,stream,close(),getAll(),writeNotInserteds(),getName(),software,hasPrevious(),hasNextAfter(I),qtyRequiredColumns,first(),getColumnsNotFound(),currentIndex,hasNext(),getFileNameNoExt(),getRowData(I),requiredColumns,getTotalRows(),checkValuesPolicy([Ljava.lang.Object;),next(),INVALID_CELL_TYPE,lastIndex,last(),DataFile(Lbr.com.gz.util.GZSoftwares;Lbr.com.gz.migration.EnMigrationDataType;),CELL_VALUE_NULL,notInserted,previous(),checkHeaderPolicy(),notFound,NULL_ROW,dataSheet">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="CELL_VALUE_NULL" size="126,16" id="{UMLID=_Rh4XJNa0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="INVALID_CELL_TYPE" size="131,16" id="{UMLID=_RhumK9a0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="NULL_ROW" size="86,16" id="{UMLID=_RiBhEta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="dataSheet" size="78,16" id="{UMLID=_RiBhFNa0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="stream" size="62,16" id="{UMLID=_RhumIda0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="fileNameNoExt" size="98,16" id="{UMLID=_RhumJda0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="currentIndex" size="90,16" id="{UMLID=_Rhk1INa0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="lastIndex" size="72,16" id="{UMLID=_Rh4XINa0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="qtyRequiredColumns" size="128,16" id="{UMLID=_Rh4XKda0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="requiredColumns" size="116,21" id="{UMLID=_RhumJ9a0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="software" size="74,16" id="{UMLID=_Rh4XIta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="notInserted" size="89,21" id="{UMLID=_Rh4XJta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="notFound" size="80,21" id="{UMLID=_RiBhENa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="DataFile" size="78,16" id="{UMLID=_RiUcBNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#DataFile(Lbr.com.gz.util.GZSoftwares;Lbr.com.gz.migration.EnMigrationDataType;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFileNameNoExt" size="126,16" id="{UMLID=_RjXk4Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#getFileNameNoExt()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" size="82,16" id="{UMLID=_Ri64-ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#getName()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalRows" size="106,16" id="{UMLID=_RjNz5ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#getTotalRows()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="first" size="59,16" id="{UMLID=_RjNz4ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#first()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="last" size="57,16" id="{UMLID=_RixH99a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#last()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNext" size="80,16" id="{UMLID=_RjEp8da0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#hasNext()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasPrevious" size="100,16" id="{UMLID=_RiLSEta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#hasPrevious()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNextAfter" size="105,16" id="{UMLID=_RiLSFda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#hasNextAfter(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="next" size="61,16" id="{UMLID=_RjEp9Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#next()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="previous" size="82,16" id="{UMLID=_RiBhF9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#previous()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAll" size="67,16" id="{UMLID=_Ri6499a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#getAll()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="close" size="66,16" id="{UMLID=_RjNz5da0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#close()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="writeNotInserteds" size="126,16" id="{UMLID=_RiBhFta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#writeNotInserteds()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRowData" size="100,16" id="{UMLID=_RixH8Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#getRowData(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkHeaderPolicy" size="132,16" id="{UMLID=_Rin-ANa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#checkHeaderPolicy()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkValuesPolicy" size="130,16" id="{UMLID=_Ri648da0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#checkValuesPolicy([Ljava.lang.Object;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColumnsNotFound" size="142,16" id="{UMLID=_RjEp99a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/DataFile#getColumnsNotFound()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_RlwKgda0EeGFpuhcC3B7Jg}" source="//@children.7" target="//@children.1" targetEnd="//@children.7/@sourceConnections.0/@children.2" label="//@children.7/@sourceConnections.0/@children.0" sourceEnd="//@children.7/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="38,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="146,119"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_Rp640da0EeGFpuhcC3B7Jg}" source="//@children.7" target="//@children.0" targetEnd="//@children.7/@sourceConnections.1/@children.2" label="//@children.7/@sourceConnections.1/@children.0" sourceEnd="//@children.7/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="38,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="16,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="156,101"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.8/@sourceConnections.3" name="ProdutoDataFile" location="1830,3200" size="163,399" timstampe="171670" stereotype="" id="{UMLID=_PgiKcNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile}" runTimeClassModel="hasNext(),getRowData(I),teste(),getTotalRows(),getAll(),checkValuesPolicy([Ljava.lang.Object;),getInstance(Lbr.com.gz.util.GZSoftwares;),next(),getName(),printa(Lbr.com.gz.bean.Produto;I),last(),hasPrevious(),hasNextAfter(I),previous(),first(),checkHeaderPolicy(),getColumnsNotFound(),instance,ProdutoDataFile(Lbr.com.gz.util.GZSoftwares;)">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="instance" size="76,21" id="{UMLID=_Sc4m0Na0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="ProdutoDataFile" size="115,16" id="{UMLID=_Sd7IoNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#ProdutoDataFile(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getInstance" size="102,21" id="{UMLID=_SdoNs9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#getInstance(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" size="82,16" id="{UMLID=_SdVSy9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#getName()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalRows" size="106,16" id="{UMLID=_SdCX2Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#getTotalRows()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="first" size="59,16" id="{UMLID=_SdfDwta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#first()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="last" size="57,16" id="{UMLID=_SeOqoNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#last()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNext" size="80,16" id="{UMLID=_SdLhxta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#hasNext()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="next" size="61,16" id="{UMLID=_SdoNsNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#next()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="previous" size="82,16" id="{UMLID=_SdfDxda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#previous()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAll" size="67,16" id="{UMLID=_SdVSwta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#getAll()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRowData" size="100,16" id="{UMLID=_SeOqo9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#getRowData(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkHeaderPolicy" size="132,16" id="{UMLID=_SeE5pNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#checkHeaderPolicy()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkValuesPolicy" size="130,16" id="{UMLID=_SdVSxda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#checkValuesPolicy([Ljava.lang.Object;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="printa" size="67,16" id="{UMLID=_SdLhwda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#printa(Lbr.com.gz.bean.Produto;I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="teste" size="64,16" id="{UMLID=_SeE5oNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#teste()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNextAfter" size="105,16" id="{UMLID=_SdCX09a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#hasNextAfter(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasPrevious" size="100,16" id="{UMLID=_SeE5oda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#hasPrevious()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColumnsNotFound" size="142,16" id="{UMLID=_SdCX0Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/ProdutoDataFile#getColumnsNotFound()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" size="2,1" autoLocated="true" id="{UMLID=_Scb64Na0EeGFpuhcC3B7Jg}" source="//@children.8" target="//@children.6/@sourceConnections.0" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="80,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="83,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_ShpyEda0EeGFpuhcC3B7Jg}" source="//@children.8" target="//@children.1" targetEnd="//@children.8/@sourceConnections.1/@children.2" label="//@children.8/@sourceConnections.1/@children.0" sourceEnd="//@children.8/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="38,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="156,109"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_Sjlrwda0EeGFpuhcC3B7Jg}" source="//@children.8" target="//@children.7" targetEnd="//@children.8/@sourceConnections.2/@children.2" label="//@children.8/@sourceConnections.2/@children.0" sourceEnd="//@children.8/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="51,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="109,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="53,620"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_SnnQINa0EeGFpuhcC3B7Jg}" source="//@children.8" target="//@children.8" targetEnd="//@children.8/@sourceConnections.3/@children.2" label="//@children.8/@sourceConnections.3/@children.0" sourceEnd="//@children.8/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="instance" location="0,289" id="{UMLID=_Sc4m0Na0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" attachSource="true" multiplicityLabel="//@children.8/@sourceConnections.3/@children.1/@children.1" roleLabel="//@children.8/@sourceConnections.3/@children.1/@children.2" orderingLabel="//@children.8/@sourceConnections.3/@children.1/@children.0" scopeKind="1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="{order}" location="1789,3496" size="34,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="1817,3468" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- instance" location="1775,3510" size="48,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="22,0" id="{UMLID=_SnnQIda0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" multiplicityLabel="//@children.8/@sourceConnections.3/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="1859,3179" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.3" name="GrupoDataFile" location="460,2632" size="163,363" timstampe="171578" stereotype="" id="{UMLID=_PbLJUda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile}" runTimeClassModel="hasNext(),getRowData(I),checkValuesPolicy([Ljava.lang.Object;),getAll(),getTotalRows(),getInstance(Lbr.com.gz.util.GZSoftwares;),next(),getName(),GrupoDataFile(Lbr.com.gz.util.GZSoftwares;),last(),hasNextAfter(I),hasPrevious(),previous(),first(),checkHeaderPolicy(),getColumnsNotFound(),instance">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="instance" size="76,21" id="{UMLID=_SSJ9gNa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="GrupoDataFile" size="108,16" id="{UMLID=_SSmpdda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#GrupoDataFile(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getInstance" size="102,21" id="{UMLID=_SS5kYNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#getInstance(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" size="82,16" id="{UMLID=_STMfU9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#getName()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalRows" size="106,16" id="{UMLID=_STMfUNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#getTotalRows()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="first" size="59,16" id="{UMLID=_STDVYNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#first()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="last" size="57,16" id="{UMLID=_SSmpcta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#last()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNext" size="80,16" id="{UMLID=_STgBUNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#hasNext()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasPrevious" size="100,16" id="{UMLID=_STDVY9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#hasPrevious()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasNextAfter" size="105,16" id="{UMLID=_SSc4c9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#hasNextAfter(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="next" size="61,16" id="{UMLID=_SS5kZda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#next()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="previous" size="82,16" id="{UMLID=_SSTuhNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#previous()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAll" size="67,16" id="{UMLID=_SSTugda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#getAll()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRowData" size="100,16" id="{UMLID=_SSJ9gta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#getRowData(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkHeaderPolicy" size="132,16" id="{UMLID=_STWQU9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#checkHeaderPolicy()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkValuesPolicy" size="130,16" id="{UMLID=_STMfVta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#checkValuesPolicy([Ljava.lang.Object;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColumnsNotFound" size="142,16" id="{UMLID=_SSc4cNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.datafile/GrupoDataFile#getColumnsNotFound()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" size="2,1" autoLocated="true" id="{UMLID=_SRtRkNa0EeGFpuhcC3B7Jg}" source="//@children.9" target="//@children.6/@sourceConnections.0" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="81,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="93,10"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_SWoN0da0EeGFpuhcC3B7Jg}" source="//@children.9" target="//@children.1" targetEnd="//@children.9/@sourceConnections.1/@children.2" label="//@children.9/@sourceConnections.1/@children.0" sourceEnd="//@children.9/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="38,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="163,10" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="10,119"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_SYRMkda0EeGFpuhcC3B7Jg}" source="//@children.9" target="//@children.7" targetEnd="//@children.9/@sourceConnections.2/@children.2" label="//@children.9/@sourceConnections.2/@children.0" sourceEnd="//@children.9/@sourceConnections.2/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="51,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="153,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,610"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_SbijANa0EeGFpuhcC3B7Jg}" source="//@children.9" target="//@children.9" targetEnd="//@children.9/@sourceConnections.3/@children.2" label="//@children.9/@sourceConnections.3/@children.0" sourceEnd="//@children.9/@sourceConnections.3/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="instance" location="0,263" id="{UMLID=_SSJ9gNa0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" attachSource="true" multiplicityLabel="//@children.9/@sourceConnections.3/@children.1/@children.1" roleLabel="//@children.9/@sourceConnections.3/@children.1/@children.2" orderingLabel="//@children.9/@sourceConnections.3/@children.1/@children.0" scopeKind="1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="{order}" location="419,2902" size="34,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="447,2874" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- instance" location="405,2916" size="48,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="24,0" id="{UMLID=_SbijAda0EeGFpuhcC3B7Jg}" anchorKind="FixedAtEdge" multiplicityLabel="//@children.9/@sourceConnections.3/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="491,2611" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" level="4" showScope="InPackage" properties="wireOptions=7"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="14,14" gridOrigin="0,0" rulerUnit="cm" gridShow="true">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" shortPackageNameFormat="true" showClassStereotype="true" showPackageStereotype="true" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showInterfaceStereotype="true" showMethods="true" showAttributes="true" showLiterlas="true" showInnerEntity="true"/>
+</editmodel:ClassDiagramEditModel>

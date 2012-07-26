@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="exception-aid" id="{UMLID=_N3LnAda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception}" metadata="uml2-1.0" initialized="true" key="323030373036323920475A4D6967726174696F6E" Shrink="true">
+  <children xsi:type="editmodel:ClassEditModel" name="ReachedTheStartOfFileException" location="378,268" size="251,65" timstampe="171586" stereotype="" id="{UMLID=_RJly8Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/ReachedTheStartOfFileException}" runTimeClassModel="ReachedTheStartOfFileException()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="ReachedTheStartOfFileException" size="199,16" id="{UMLID=_Pkl8Uta6EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/ReachedTheStartOfFileException#ReachedTheStartOfFileException()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="RequiredColumnNotFoundException" location="42,41" size="271,83" timstampe="171589" stereotype="" id="{UMLID=_RI2MENa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/RequiredColumnNotFoundException}" runTimeClassModel="RequiredColumnNotFoundException(Ljava.lang.String;),RequiredColumnNotFoundException()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="RequiredColumnNotFoundException" size="211,16" id="{UMLID=_TLFJkta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/RequiredColumnNotFoundException#RequiredColumnNotFoundException()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="RequiredColumnNotFoundException" size="211,16" id="{UMLID=_TK7Ykda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/RequiredColumnNotFoundException#RequiredColumnNotFoundException(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="InvalidSoftwareException" location="714,268" size="203,65" timstampe="171585" stereotype="" id="{UMLID=_N3eh8Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/InvalidSoftwareException}" runTimeClassModel="InvalidSoftwareException()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="InvalidSoftwareException" size="163,16" id="{UMLID=_Q1UzI9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/InvalidSoftwareException#InvalidSoftwareException()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ReachedTheEndOfFileException" location="714,41" size="245,65" timstampe="171585" stereotype="" id="{UMLID=_RKejwNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/ReachedTheEndOfFileException}" runTimeClassModel="ReachedTheEndOfFileException()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="ReachedTheEndOfFileException" size="194,16" id="{UMLID=_PmFxINa6EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/ReachedTheEndOfFileException#ReachedTheEndOfFileException()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="InvalidCellTypeException" location="378,448" size="201,83" timstampe="171583" stereotype="" id="{UMLID=_RIsbENa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/InvalidCellTypeException}" runTimeClassModel="InvalidCellTypeException(Ljava.lang.String;),InvalidCellTypeException()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="InvalidCellTypeException" size="157,16" id="{UMLID=_TKLxsNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/InvalidCellTypeException#InvalidCellTypeException()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="InvalidCellTypeException" size="157,16" id="{UMLID=_TKLxsda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/InvalidCellTypeException#InvalidCellTypeException(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="RequiredColumnNotFilledException" location="378,41" size="267,65" timstampe="171587" stereotype="" id="{UMLID=_PmrnAda6EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/RequiredColumnNotFilledException}" runTimeClassModel="RequiredColumnNotFilledException()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="RequiredColumnNotFilledException" size="205,16" id="{UMLID=_Pm1YAda6EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/RequiredColumnNotFilledException#RequiredColumnNotFilledException()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="SecurityViolationException" location="42,448" size="212,65" timstampe="171589" stereotype="" id="{UMLID=_PnIS8Na6EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/SecurityViolationException}" runTimeClassModel="SecurityViolationException()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="SecurityViolationException" size="168,16" id="{UMLID=_PnIS89a6EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/SecurityViolationException#SecurityViolationException()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="InvalidMigrationDataTypeException" location="42,268" size="265,65" timstampe="171583" stereotype="" id="{UMLID=_RJcB8Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/InvalidMigrationDataTypeException}" runTimeClassModel="InvalidMigrationDataTypeException()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="InvalidMigrationDataTypeException" size="205,16" id="{UMLID=_PnbN4ta6EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/InvalidMigrationDataTypeException#InvalidMigrationDataTypeException()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ColumnOutOfOrderException" location="714,448" size="224,65" timstampe="171581" stereotype="" id="{UMLID=_PnuI0ta6EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/ColumnOutOfOrderException}" runTimeClassModel="ColumnOutOfOrderException()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="ColumnOutOfOrderException" size="179,16" id="{UMLID=_Pn350da6EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.exception/ColumnOutOfOrderException#ColumnOutOfOrderException()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" level="4" showScope="InPackage" properties="wireOptions=7"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="14,14" gridOrigin="714,252" rulerUnit="cm" gridShow="true">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" shortPackageNameFormat="true" showClassStereotype="true" showPackageStereotype="true" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showInterfaceStereotype="true" showMethods="true" showAttributes="true" showLiterlas="true" showInnerEntity="true"/>
+</editmodel:ClassDiagramEditModel>

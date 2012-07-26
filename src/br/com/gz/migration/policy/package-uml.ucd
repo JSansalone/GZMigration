@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="policy-aid" id="{UMLID=_QNYpYta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy}" metadata="uml2-1.0" initialized="true" key="323030373036323920475A4D6967726174696F6E" Shrink="true">
+  <children xsi:type="editmodel:ClassEditModel" name="SecurityPolicy" location="460,336" size="131,65" timstampe="171601" stereotype="" id="{UMLID=_77ag0da6EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/SecurityPolicy}" runTimeClassModel="checkSecurity(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="checkSecurity" size="109,16" id="{UMLID=_77kR0da6EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/SecurityPolicy#checkSecurity(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:EnumerationEditModel" targetConnections="//@children.2/@sourceConnections.0 //@children.2/@sourceConnections.1" name="EnColumnsCategory" location="460,50" size="169,249" timstampe="171596" id="{UMLID=_QNiaYNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/EnColumnsCategory}" runTimeClassModel="ESTOQUE%,SETOR%,ESTOQUE_SALDO%,FORNECEDOR%,ESTOQUE_TRIBUTACAO%,GRUPO%,ESTOQUE_LOJA%,DEPARTAMENTO%,CLIENTES%,ARMACAO%,MARCA%">
+    <children xsi:type="editmodel:CompartmentEditModel" size="148,198">
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="ESTOQUE" size="77,16" id="{UMLID=_8kGRcNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="ESTOQUE_LOJA" size="110,16" id="{UMLID=_8kGRi9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="ESTOQUE_TRIBUTACAO" size="148,16" id="{UMLID=_8kGRdta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="ESTOQUE_SALDO" size="119,16" id="{UMLID=_8kGRc9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLIENTES" size="76,16" id="{UMLID=_8kGRiNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FORNECEDOR" size="98,16" id="{UMLID=_8kGRfNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="DEPARTAMENTO" size="110,16" id="{UMLID=_8kGRgta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="ARMACAO" size="83,16" id="{UMLID=_8kGRhda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="GRUPO" size="65,16" id="{UMLID=_8kGReda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="MARCA" size="67,16" id="{UMLID=_8kGRf9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="SETOR" size="63,16" id="{UMLID=_8kGRjta6EeGFpuhcC3B7Jg}"/>
+    </children>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" enumerationClassMode="false" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:EnumerationEditModel" name="EnMercoFlexRequiredColumns" location="50,50" size="326,1707" timstampe="171597" id="{UMLID=_QNYpY9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/EnMercoFlexRequiredColumns}" runTimeClassModel="CLI_CEP_ENTREGA%,PROD_CODIGO_DEPARTAMENTO%,PROD_CODIGO_INTERNO%,CLI_NUMERO_ENTREGA%,CLI_NUMERO_COBRANCA%,FOR_EMAIL_BOLETO%,PROD_DESCRICAO%,SET_CODIGO%,FOR_RAZAO_SOCIAL%,CLI_DATA_NASCIMENTO%,PROD_CODIGO_SETOR%,CLI_CIDADE_ENTREGA%,PROD_LOJA%,PROD_CODIGO_DE_BARRAS%,PROD_UNIDADE%,PROD_VALOR_PAUTA_VENDA%,CLI_SEXO%,PROD_QTDE_ESTOQUE_MAXIMO%,PROD_PRECO_VENDA_TERMINAL%,PROD_ALIQUOTA_COFINS%,CLI_CIDADE%,PROD_QTDE_ESTOQUE_ATUAL%,FOR_INSCRICAO_ESTADUAL_RG%,PROD_PRECO_VENDA%,PROD_PORCENTAGEM_REDUCAO_ICMS_SUBSTITUICAO%,GRU_CODIGO%,CLI_RUA_ENTREGA%,CLI_ESTADO_ENTREGA%,CLI_NOME_FANTASIA%,PROD_DATA_CADASTRO%,CLI_CPF_CNPJ%,PROD_CODIGO_TRIBUTACAO%,CLI_ESTADO%,PROD_PRECO_CUSTO%,CLI_DATA_CADASTRO%,FOR_CIDADE%,CLI_RUA_COBRANCA%,SET_DESCRICAO%,FOR_CONTATO%,PROD_UF_TRIBUTACAO%,FOR_ATIVO%,FOR_TELEFONE%,CLI_TELEFONE_ENTREGA%,PROD_DESCRICAO_REDUZIDA%,PROD_SITUACAO_TRIBUTARIA_VENDA%,PROD_CODIGO_NCM%,CLI_BAIRRO%,PROD_VALOR_ICMS_COMPRA%,CLI_BAIRRO_ENTREGA%,PROD_ATIVO%,PROD_MODALIDADE_VENDA%,CLI_BAIRRO_COBRANCA%,DEP_CODIGO%,GRU_DESCRICAO%,CLI_TELEFONE%,FOR_CODIGO%,CLI_INSCRICAO_ESTADUAL_RG%,PROD_VALOR_ICMS_SUBSTITUICAO%,CLI_ESTADO_COBRANCA%,MAR_CODIGO%,FOR_BAIRRO%,FOR_EMAIL_DANFE%,FOR_NUMERO%,CLI_CEP%,PROD_ALIQUOTA_PIS%,FOR_CPF_CNPJ%,CLI_TELEFONE_COBRANCA%,CLI_NUMERO%,PROD_QTDE_ESTOQUE_MINIMO%,MAR_DESCRICAO%,CLI_CODIGO%,CLI_CIDADE_COBRANCA%,CLI_CEP_COBRANCA%,CLI_RAZAO_SOCIAL%,FOR_NOME_FANTASIA%,PROD_TEM_PESO_VARIAVEL%,ARM_CODIGO%,FOR_CEP%,PROD_VALOR_ICMS_VENDA%,CLI_ATIVO%,PROD_PRECO_COMPRA%,PROD_CSOSN_VENDA%,FOR_EMAIL%,PROD_CODIGO_GRUPO%,PROD_TRIBUTACAO_COMPRA%,CLI_RUA%,FOR_ESTADO%,PROD_PORCENTAGEM_REDUCAO_ICMS%,FOR_RUA%,PROD_PORCENTAGEM_DE_LUCRO%,ARM_DESCRICAO%,DEP_DESCRICAO%">
+    <children xsi:type="editmodel:CompartmentEditModel" size="305,1656">
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_LOJA" size="90,16" id="{UMLID=_8HoX4Na6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_CODIGO_INTERNO" size="152,16" id="{UMLID=_8IFD4ta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_CODIGO_DE_BARRAS" size="172,16" id="{UMLID=_8GS7Lta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_DESCRICAO" size="122,16" id="{UMLID=_8HyI89a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_DESCRICAO_REDUZIDA" size="179,16" id="{UMLID=_8J3zqda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_UNIDADE" size="107,16" id="{UMLID=_8KUfkta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_CODIGO_SETOR" size="143,16" id="{UMLID=_8GJKK9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_TEM_PESO_VARIAVEL" size="173,16" id="{UMLID=_8JRWo9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_PRECO_COMPRA" size="147,16" id="{UMLID=_8Kdpf9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_PRECO_VENDA" size="139,16" id="{UMLID=_8GcFEda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_PRECO_VENDA_TERMINAL" size="195,16" id="{UMLID=_8JIMuda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_CODIGO_DEPARTAMENTO" size="190,16" id="{UMLID=_8I-bu9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_CODIGO_GRUPO" size="145,16" id="{UMLID=_8Jk4p9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_PRECO_CUSTO" size="138,16" id="{UMLID=_8HfOBNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_PORCENTAGEM_DE_LUCRO" size="199,16" id="{UMLID=_8HfN8ta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_QTDE_ESTOQUE_MINIMO" size="185,16" id="{UMLID=_8GS7Jda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_QTDE_ESTOQUE_MAXIMO" size="191,16" id="{UMLID=_8G4xGNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_QTDE_ESTOQUE_ATUAL" size="184,16" id="{UMLID=_8JbHtda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_DATA_CADASTRO" size="154,16" id="{UMLID=_8JIMsNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_ALIQUOTA_PIS" size="136,16" id="{UMLID=_8FjUQta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_ALIQUOTA_COFINS" size="158,16" id="{UMLID=_8KA9mNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_ATIVO" size="94,16" id="{UMLID=_8FZjQNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_CODIGO_NCM" size="131,16" id="{UMLID=_8GvnEda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_CSOSN_VENDA" size="141,16" id="{UMLID=_8HMTAta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_MODALIDADE_VENDA" size="172,16" id="{UMLID=_8KUfm9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_VALOR_PAUTA_VENDA" size="180,16" id="{UMLID=_8Kdpdta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_TRIBUTACAO_COMPRA" size="178,16" id="{UMLID=_8JbHqta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_CODIGO_TRIBUTACAO" size="174,16" id="{UMLID=_8G4xDda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_VALOR_ICMS_COMPRA" size="179,16" id="{UMLID=_8IO02da6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_SITUACAO_TRIBUTARIA_VENDA" size="223,16" id="{UMLID=_8GvnI9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_VALOR_ICMS_VENDA" size="171,16" id="{UMLID=_8IYl2ta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_PORCENTAGEM_REDUCAO_ICMS" size="225,16" id="{UMLID=_8HVc99a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_PORCENTAGEM_REDUCAO_ICMS_SUBSTITUICAO" size="305,16" id="{UMLID=_8FseQda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_VALOR_ICMS_SUBSTITUICAO" size="209,16" id="{UMLID=_8F2PM9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="PROD_UF_TRIBUTACAO" size="147,16" id="{UMLID=_8Gl2Fta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_CODIGO" size="90,16" id="{UMLID=_8HoX69a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_NOME_FANTASIA" size="135,16" id="{UMLID=_8HCiBta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_RAZAO_SOCIAL" size="132,16" id="{UMLID=_8IFD2da6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_CPF_CNPJ" size="100,16" id="{UMLID=_8HfN-9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_INSCRICAO_ESTADUAL_RG" size="186,16" id="{UMLID=_8JIMwta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_SEXO" size="78,16" id="{UMLID=_8GvnGta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_DATA_NASCIMENTO" size="149,16" id="{UMLID=_8JuCpda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_DATA_CADASTRO" size="141,16" id="{UMLID=_8HoX9Na6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_ESTADO" size="91,16" id="{UMLID=_8HCiD9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_CIDADE" size="87,16" id="{UMLID=_8JbHoda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_BAIRRO" size="89,16" id="{UMLID=_8IO05Na6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_RUA" size="72,16" id="{UMLID=_8H757ta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_CEP" size="69,16" id="{UMLID=_8KA9j9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_NUMERO" size="93,16" id="{UMLID=_8IYl0da6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_TELEFONE" size="101,16" id="{UMLID=_8Irgx9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_ESTADO_COBRANCA" size="156,16" id="{UMLID=_8I0qxda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_CIDADE_COBRANCA" size="152,16" id="{UMLID=_8HyI6ta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_BAIRRO_COBRANCA" size="154,16" id="{UMLID=_8KA9hta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_RUA_COBRANCA" size="137,16" id="{UMLID=_8G4xBNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_CEP_COBRANCA" size="134,16" id="{UMLID=_8GJKNNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_NUMERO_COBRANCA" size="158,16" id="{UMLID=_8FjUS9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_TELEFONE_COBRANCA" size="166,16" id="{UMLID=_8GcFGta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_ESTADO_ENTREGA" size="145,16" id="{UMLID=_8Jk4sNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_CIDADE_ENTREGA" size="141,16" id="{UMLID=_8H755da6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_BAIRRO_ENTREGA" size="143,16" id="{UMLID=_8I0qvNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_RUA_ENTREGA" size="126,16" id="{UMLID=_8J3zl9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_CEP_ENTREGA" size="123,16" id="{UMLID=_8JuCnNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_NUMERO_ENTREGA" size="147,16" id="{UMLID=_8FseONa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_TELEFONE_ENTREGA" size="155,16" id="{UMLID=_8Ihvy9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="CLI_ATIVO" size="81,16" id="{UMLID=_8KUfida6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_CODIGO" size="96,16" id="{UMLID=_8KKulda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_NOME_FANTASIA" size="141,16" id="{UMLID=_8Ihvwta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_RAZAO_SOCIAL" size="138,16" id="{UMLID=_8I0qs9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_CPF_CNPJ" size="106,16" id="{UMLID=_8HMTFNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_INSCRICAO_ESTADUAL_RG" size="192,16" id="{UMLID=_8Irg0Na6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_ESTADO" size="97,16" id="{UMLID=_8HVdANa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_CIDADE" size="93,16" id="{UMLID=_8KKujNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_BAIRRO" size="95,16" id="{UMLID=_8I-bsta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_RUA" size="78,16" id="{UMLID=_8KdpiNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_CEP" size="75,16" id="{UMLID=_8JuCk9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_NUMERO" size="99,16" id="{UMLID=_8HMTC9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_TELEFONE" size="107,16" id="{UMLID=_8F2PPNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_ATIVO" size="87,16" id="{UMLID=_8GJKIta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_CONTATO" size="104,16" id="{UMLID=_8HyI4da6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_EMAIL" size="86,16" id="{UMLID=_8J3zoNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_EMAIL_BOLETO" size="133,16" id="{UMLID=_8I-bxNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="FOR_EMAIL_DANFE" size="126,16" id="{UMLID=_8KUfgNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="DEP_CODIGO" size="94,16" id="{UMLID=_8GAANta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="DEP_DESCRICAO" size="113,16" id="{UMLID=_8Ihv1Na6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="GRU_CODIGO" size="97,16" id="{UMLID=_8IFD0Na6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="GRU_DESCRICAO" size="116,16" id="{UMLID=_8Gl2H9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="SET_CODIGO" size="94,16" id="{UMLID=_8KKug9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="SET_DESCRICAO" size="113,16" id="{UMLID=_8F2PRda6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="ARM_CODIGO" size="98,16" id="{UMLID=_8GAAP9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="ARM_DESCRICAO" size="117,16" id="{UMLID=_8GcFI9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="MAR_CODIGO" size="98,16" id="{UMLID=_8IYl49a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="MAR_DESCRICAO" size="117,16" id="{UMLID=_8FjUVNa6EeGFpuhcC3B7Jg}"/>
+    </children>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_8PO0sta6EeGFpuhcC3B7Jg}" source="//@children.2" target="//@children.1" targetEnd="//@children.2/@sourceConnections.0/@children.2" label="//@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="73,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="326,124" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="27,124"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="{UMLID=_8SXBMNa6EeGFpuhcC3B7Jg}" source="//@children.2" target="//@children.1" targetEnd="//@children.2/@sourceConnections.1/@children.2" label="//@children.2/@sourceConnections.1/@children.0" sourceEnd="//@children.2/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="326,114" id="{UMLID=_8SXBMda6EeGFpuhcC3B7Jg}" attachSource="true" multiplicityLabel="//@children.2/@sourceConnections.1/@children.1/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="383,143" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="categories" location="27,134" id="{UMLID=_8BX-5Na6EeGFpuhcC3B7Jg}" multiplicityLabel="//@children.2/@sourceConnections.1/@children.2/@children.0" roleLabel="//@children.2/@sourceConnections.1/@children.2/@children.1" navigable="true" changeability="2" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="449,163" size="4,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- categories" location="395,191" size="58,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" enumerationClassMode="false" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="MercoFlexPolicy" location="460,756" size="154,178" timstampe="171600" stereotype="" id="{UMLID=_TBizENa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercoFlexPolicy}" runTimeClassModel="validate(Ljava.sql.ResultSetMetaData;Lbr.com.gz.migration.EnMigrationDataType;),loadRequired(Lbr.com.gz.migration.EnMigrationDataType;),MercoFlexPolicy(),contains([Ljava.lang.String;Ljava.lang.String;),getColumnsNeeded(),required,needed">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="needed" size="71,21" id="{UMLID=_TRVilNa0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="required" size="69,16" id="{UMLID=_TRVikNa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="MercoFlexPolicy" size="118,16" id="{UMLID=_TRodgta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercoFlexPolicy#MercoFlexPolicy()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="validate" size="77,16" id="{UMLID=_TRVilta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercoFlexPolicy#validate(Ljava.sql.ResultSetMetaData;Lbr.com.gz.migration.EnMigrationDataType;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColumnsNeeded" size="133,16" id="{UMLID=_TRfTmNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercoFlexPolicy#getColumnsNeeded()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="loadRequired" size="103,16" id="{UMLID=_TRfTlda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercoFlexPolicy#loadRequired(Lbr.com.gz.migration.EnMigrationDataType;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="contains" size="81,16" id="{UMLID=_TRodg9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercoFlexPolicy#contains([Ljava.lang.String;Ljava.lang.String;)}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:InterfaceRealizationEditModel" size="2,1" autoLocated="true" id="{UMLID=_TRCnoNa0EeGFpuhcC3B7Jg}" source="//@children.3" target="//@children.5" targetEnd="//@children.3/@sourceConnections.0/@children.2" label="//@children.3/@sourceConnections.0/@children.0" sourceEnd="//@children.3/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="154,48" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,48"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_TSrmYda0EeGFpuhcC3B7Jg}" source="//@children.3" target="//@children.6" targetEnd="//@children.3/@sourceConnections.1/@children.2" label="//@children.3/@sourceConnections.1/@children.0" sourceEnd="//@children.3/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="38,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="76,178" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="76,0"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="MercattoPolicy" location="868,434" size="154,178" timstampe="171598" stereotype="" id="{UMLID=_TBizEta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercattoPolicy}" runTimeClassModel="validate(Ljava.sql.ResultSetMetaData;Lbr.com.gz.migration.EnMigrationDataType;),loadRequired(Lbr.com.gz.migration.EnMigrationDataType;),contains([Ljava.lang.String;Ljava.lang.String;),MercattoPolicy(),getColumnsNeeded(),required,needed">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="needed" size="71,21" id="{UMLID=_TMRcYta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="required" size="69,16" id="{UMLID=_TMHrYNa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="MercattoPolicy" size="110,16" id="{UMLID=_TMkXUNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercattoPolicy#MercattoPolicy()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="validate" size="77,16" id="{UMLID=_TMRcZNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercattoPolicy#validate(Ljava.sql.ResultSetMetaData;Lbr.com.gz.migration.EnMigrationDataType;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColumnsNeeded" size="133,16" id="{UMLID=_TMuIUta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercattoPolicy#getColumnsNeeded()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="loadRequired" size="103,16" id="{UMLID=_TMkXWda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercattoPolicy#loadRequired(Lbr.com.gz.migration.EnMigrationDataType;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="contains" size="81,16" id="{UMLID=_TMkXUda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercattoPolicy#contains([Ljava.lang.String;Ljava.lang.String;)}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:InterfaceRealizationEditModel" size="2,1" autoLocated="true" id="{UMLID=_TL-hcNa0EeGFpuhcC3B7Jg}" source="//@children.4" target="//@children.5" targetEnd="//@children.4/@sourceConnections.0/@children.2" label="//@children.4/@sourceConnections.0/@children.0" sourceEnd="//@children.4/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="77,178" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="77,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_TOqCAda0EeGFpuhcC3B7Jg}" source="//@children.4" target="//@children.7" targetEnd="//@children.4/@sourceConnections.1/@children.2" label="//@children.4/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="38,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,88" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="208,88"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.4/@sourceConnections.0 //@children.3/@sourceConnections.0" name="ColumnsPolicy" location="868,756" size="154,97" timstampe="171595" id="{UMLID=_Sxchkta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/ColumnsPolicy}" runTimeClassModel="validate(Ljava.sql.ResultSetMetaData;Lbr.com.gz.migration.EnMigrationDataType;),getColumnsNeeded()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="validate" size="77,16" id="{UMLID=_TP_ewNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/ColumnsPolicy#validate(Ljava.sql.ResultSetMetaData;Lbr.com.gz.migration.EnMigrationDataType;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColumnsNeeded" size="133,16" id="{UMLID=_TQJPxda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/ColumnsPolicy#getColumnsNeeded()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.1" name="MercoFlexRequiredColumns" location="460,1022" size="220,181" timstampe="171600" stereotype="" id="{UMLID=_TR7_gNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercoFlexRequiredColumns}" runTimeClassModel="SETOR,CLIENTE,MARCA,PRODUTO,DEPARTAMENTO,FORNECEDOR,GRUPO,ARMACAO">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="PRODUTO" size="78,16" id="{UMLID=_76X_DNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="CLIENTE" size="69,16" id="{UMLID=_76X_BNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="FORNECEDOR" size="98,16" id="{UMLID=_76hI-ta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="DEPARTAMENTO" size="110,16" id="{UMLID=_76X_ENa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="GRUPO" size="65,16" id="{UMLID=_76hI9ta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="ARMACAO" size="83,16" id="{UMLID=_76hI8ta6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="MARCA" size="67,16" id="{UMLID=_76X_CNa6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="SETOR" size="63,16" id="{UMLID=_76X_ANa6EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.1" name="MercattoRequiredColumns" location="460,434" size="208,181" timstampe="171598" stereotype="" id="{UMLID=_TNBDQNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.policy/MercattoRequiredColumns}" runTimeClassModel="SETOR,CLIENTE,MARCA,PRODUTO,DEPARTAMENTO,FORNECEDOR,GRUPO,ARMACAO">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="PRODUTO" size="78,16" id="{UMLID=_71T43Na6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="CLIENTE" size="69,16" id="{UMLID=_71T41Na6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="FORNECEDOR" size="98,16" id="{UMLID=_71dCy9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="DEPARTAMENTO" size="110,16" id="{UMLID=_71T44Na6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="GRUPO" size="65,16" id="{UMLID=_71dCx9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="ARMACAO" size="83,16" id="{UMLID=_71dCw9a6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="MARCA" size="67,16" id="{UMLID=_71T42Na6EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="SETOR" size="63,16" id="{UMLID=_71KH0Na6EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" level="4" showScope="InPackage" properties="wireOptions=7"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="14,14" gridOrigin="0,0" rulerUnit="cm" gridShow="true">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" shortPackageNameFormat="true" showClassStereotype="true" showPackageStereotype="true" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showInterfaceStereotype="true" showMethods="true" showAttributes="true" showLiterlas="true" showInnerEntity="true"/>
+</editmodel:ClassDiagramEditModel>

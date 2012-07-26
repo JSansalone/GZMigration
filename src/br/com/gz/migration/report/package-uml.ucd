@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="report-aid" id="{UMLID=_OSTcwNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report}" metadata="uml2-1.0" initialized="true" key="323030373036323920475A4D6967726174696F6E" Shrink="true">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@sourceConnections.0 //@children.1/@sourceConnections.0" name="MigrationReportData" location="294,28" size="171,687" timstampe="171607" stereotype="" id="{UMLID=_OSTcwda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData}" runTimeClassModel="MigrationReportData(LCollection;),nomeSistema,setNomeCliente(Ljava.lang.String;),usuario,setModoMigracao(Z),getPorta(),setTipoBanco(Lorg.database.connection.DatabaseType;),senha,modoMigracao,getTipoBanco(),getNomeBanco(),setIp(Ljava.lang.String;),beans,getUsuario(),path,setNomeSistema(Lbr.com.gz.util.GZSoftwares;),getBeans(),nomeCliente,porta,setNomeSistema(Ljava.lang.String;),getPath(),getIp(),getModoMigracao(),getNomeCliente(),getSenha(),tipoBanco,ip,setPorta(I),getNomeSistema(),setNomeBanco(Ljava.lang.String;),setTipoBanco(Ljava.lang.String;),setUsuario(Ljava.lang.String;),setPath(Ljava.lang.String;),setSenha(Ljava.lang.String;),nomeBanco">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="path" size="50,16" id="{UMLID=_PDebBta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="nomeCliente" size="87,16" id="{UMLID=_PDoMB9a0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="modoMigracao" size="99,16" id="{UMLID=_PDoMAda0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="nomeSistema" size="93,16" id="{UMLID=_PDVREta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="tipoBanco" size="77,16" id="{UMLID=_PDoMBda0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="ip" size="37,16" id="{UMLID=_PDoMA9a0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="porta" size="54,16" id="{UMLID=_PDVRENa0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="nomeBanco" size="86,16" id="{UMLID=_PDebCta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="usuario" size="65,16" id="{UMLID=_PDebAda0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="senha" size="59,16" id="{UMLID=_PDebCNa0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="beans" size="65,21" id="{UMLID=_PDebA9a0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="MigrationReportData" size="137,16" id="{UMLID=_PEXy4Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#MigrationReportData(LCollection;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getBeans" size="92,21" id="{UMLID=_PE9oxta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#getBeans()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPath" size="76,16" id="{UMLID=_PEqt19a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#getPath()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPath" size="76,16" id="{UMLID=_PEE38ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setPath(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNomeCliente" size="114,16" id="{UMLID=_PE9owNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#getNomeCliente()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNomeCliente" size="114,16" id="{UMLID=_PEXy49a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setNomeCliente(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getModoMigracao" size="125,16" id="{UMLID=_PEOB4ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#getModoMigracao()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setModoMigracao" size="125,16" id="{UMLID=_PE0e1ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setModoMigracao(Z)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNomeSistema" size="120,16" id="{UMLID=_PEqt0da0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#getNomeSistema()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNomeSistema" size="120,16" id="{UMLID=_PEOB5da0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setNomeSistema(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNomeSistema" size="120,16" id="{UMLID=_PEhj4ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setNomeSistema(Lbr.com.gz.util.GZSoftwares;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTipoBanco" size="106,16" id="{UMLID=_PDxV9da0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#getTipoBanco()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setTipoBanco" size="106,16" id="{UMLID=_PE0e0Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setTipoBanco(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setTipoBanco" size="106,16" id="{UMLID=_PEXy5ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setTipoBanco(Lorg.database.connection.DatabaseType;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getIp" size="63,16" id="{UMLID=_PEE39da0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#getIp()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setIp" size="63,16" id="{UMLID=_PDoMCda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setIp(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPorta" size="80,16" id="{UMLID=_PEqt1Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#getPorta()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPorta" size="80,16" id="{UMLID=_PEhj5da0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setPorta(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNomeBanco" size="113,16" id="{UMLID=_PD7G99a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#getNomeBanco()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNomeBanco" size="113,16" id="{UMLID=_PD7G9Na0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setNomeBanco(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getUsuario" size="92,16" id="{UMLID=_PD7G8da0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#getUsuario()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setUsuario" size="92,16" id="{UMLID=_PE0e09a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setUsuario(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSenha" size="86,16" id="{UMLID=_PE9ow9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#getSenha()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setSenha" size="86,16" id="{UMLID=_PDxV8ta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReportData#setSenha(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="{UMLID=_P1P2MNa0EeGFpuhcC3B7Jg}" source="//@children.0" target="//@children.1" targetEnd="//@children.0/@sourceConnections.0/@children.2" label="//@children.0/@sourceConnections.0/@children.0" sourceEnd="//@children.0/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="data" location="155,687" id="{UMLID=_Pxq9wNa0EeGFpuhcC3B7Jg}" attachSource="true" multiplicityLabel="//@children.0/@sourceConnections.0/@children.1/@children.0" roleLabel="//@children.0/@sourceConnections.0/@children.1/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="436,722" size="6,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- data" location="456,722" size="28,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="0,19" id="{UMLID=_P1P2Mda0EeGFpuhcC3B7Jg}" multiplicityLabel="//@children.0/@sourceConnections.0/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="27,278" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0" name="MigrationReport" location="40,280" size="142,106" timstampe="171606" stereotype="" id="{UMLID=_OSdNwta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReport}" runTimeClassModel="data,buildReport(),MigrationReport(Lbr.com.gz.migration.report.MigrationReportData;)">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="data" size="56,21" id="{UMLID=_Pxq9wNa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="MigrationReport" size="115,16" id="{UMLID=_Pxq9wta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReport#MigrationReport(Lbr.com.gz.migration.report.MigrationReportData;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="buildReport" size="94,16" id="{UMLID=_Px0uwda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationReport#buildReport()}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" size="2,1" autoLocated="true" id="{UMLID=_PykVoda0EeGFpuhcC3B7Jg}" source="//@children.1" target="//@children.0" targetEnd="//@children.1/@sourceConnections.0/@children.2" label="//@children.1/@sourceConnections.0/@children.0" sourceEnd="//@children.1/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="73,28" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="142,52" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,304"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="MigrationBean" location="28,28" size="154,209" timstampe="171605" stereotype="" id="{UMLID=_OTDDoda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationBean}" runTimeClassModel="totalIncluido,getTotalIncluido(),getTotalCadastrado(),getNome(),totalCadastrado,setNome(Ljava.lang.String;),setTotalIncluido(I),nome,setTotalCadastrado(I)">
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:AttributeEditModel" name="nome" size="55,16" id="{UMLID=_Pu1sMta0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="totalCadastrado" size="105,16" id="{UMLID=_Pu1sMNa0EeGFpuhcC3B7Jg}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="totalIncluido" size="85,16" id="{UMLID=_Pur7MNa0EeGFpuhcC3B7Jg}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel">
+      <children xsi:type="editmodel:MethodEditModel" name="getNome" size="82,16" id="{UMLID=_PvInINa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationBean#getNome()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNome" size="82,16" id="{UMLID=_Pu1sN9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationBean#setNome(Ljava.lang.String;)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalCadastrado" size="133,16" id="{UMLID=_Pu_dNda0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationBean#getTotalCadastrado()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setTotalCadastrado" size="133,16" id="{UMLID=_Pu_dMta0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationBean#setTotalCadastrado(I)}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalIncluido" size="113,16" id="{UMLID=_PvInI9a0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationBean#getTotalIncluido()}" isAssociationMemeber="true"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setTotalIncluido" size="113,16" id="{UMLID=_Pu1sNNa0EeGFpuhcC3B7Jg,JavaID=br.com.gz.migration.report/MigrationBean#setTotalIncluido(I)}" isAssociationMemeber="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="{UMLID=_PHy6UNa0EeGFpuhcC3B7Jg}" source="//@children.2" target="//@children.0" targetEnd="//@children.2/@sourceConnections.0/@children.2" label="//@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="beans" location="154,104" id="{UMLID=_PDebA9a0EeGFpuhcC3B7Jg}" attachSource="true" multiplicityLabel="//@children.2/@sourceConnections.0/@children.1/@children.0" roleLabel="//@children.2/@sourceConnections.0/@children.1/@children.1" navigable="true" flags="2">
+        <children xsi:type="editmodel:LabelEditModel" name="1..*" location="189,139" size="16,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="- beans" location="189,111" size="37,14" fontInfo="Arial-8-0" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="ownedEnd" location="0,104" id="{UMLID=_PHy6Uda0EeGFpuhcC3B7Jg}" multiplicityLabel="//@children.2/@sourceConnections.0/@children.2/@children.0" flags="1">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="281,111" size="6,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" level="4" showScope="InPackage" properties="wireOptions=7"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="14,14" gridOrigin="0,0" rulerUnit="cm" gridShow="true">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" shortPackageNameFormat="true" showClassStereotype="true" showPackageStereotype="true" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showInterfaceStereotype="true" showMethods="true" showAttributes="true" showLiterlas="true" showInnerEntity="true"/>
+</editmodel:ClassDiagramEditModel>
