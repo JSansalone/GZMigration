@@ -1,13 +1,10 @@
 package br.com.gz.migration;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.xml.stream.events.EndElement;
 
 import org.database.connection.DatabaseType;
 
@@ -27,7 +24,6 @@ import br.com.gz.migration.datafile.FornecedorDataFile;
 import br.com.gz.migration.datafile.GrupoDataFile;
 import br.com.gz.migration.datafile.MarcaDataFile;
 import br.com.gz.migration.datafile.ProdutoDataFile;
-import br.com.gz.migration.exception.SecurityViolationException;
 import br.com.gz.migration.file.LogFile;
 import br.com.gz.migration.sql.EnMercoFlexInsertStatement;
 import br.com.gz.util.GZSoftwares;

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import br.com.gz.bean.Departamento;
-import br.com.gz.bean.Produto;
 import br.com.gz.migration.EnMigrationDataType;
 import br.com.gz.migration.exception.InvalidCellTypeException;
 import br.com.gz.migration.exception.InvalidMigrationDataTypeException;

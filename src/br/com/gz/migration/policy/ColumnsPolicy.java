@@ -2,7 +2,6 @@ package br.com.gz.migration.policy;
 
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
-import java.util.List;
 
 import br.com.gz.migration.EnMigrationDataType;
 

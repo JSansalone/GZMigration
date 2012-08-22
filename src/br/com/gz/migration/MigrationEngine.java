@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.swing.JOptionPane;
-
 import org.database.connection.ConnectionFactory;
 
 import br.com.gz.bean.Armacao;
@@ -18,7 +16,6 @@ import br.com.gz.bean.Cliente;
 import br.com.gz.bean.Departamento;
 import br.com.gz.bean.Fornecedor;
 import br.com.gz.bean.Grupo;
-import br.com.gz.bean.Loja;
 import br.com.gz.bean.Marca;
 import br.com.gz.bean.Produto;
 import br.com.gz.migration.datafile.ArmacaoDataFile;
@@ -28,9 +25,6 @@ import br.com.gz.migration.datafile.FornecedorDataFile;
 import br.com.gz.migration.datafile.GrupoDataFile;
 import br.com.gz.migration.datafile.MarcaDataFile;
 import br.com.gz.migration.datafile.ProdutoDataFile;
-import br.com.gz.migration.exception.InvalidCellTypeException;
-import br.com.gz.migration.exception.RequiredColumnNotFoundException;
-import br.com.gz.migration.exception.SecurityViolationException;
 import br.com.gz.migration.file.LogFile;
 import br.com.gz.migration.steps.IMigrationInfo;
 import br.com.gz.util.GZSoftwares;

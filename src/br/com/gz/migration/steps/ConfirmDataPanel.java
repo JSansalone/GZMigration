@@ -10,7 +10,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import org.database.connection.DatabaseType;
-import org.database.connection.InvalidDatabaseException;
 
 import br.com.gz.migration.EnMigrationDataType;
 import br.com.gz.migration.GZMigration;

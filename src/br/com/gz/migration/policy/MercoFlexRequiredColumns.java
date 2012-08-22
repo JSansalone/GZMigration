@@ -1,7 +1,5 @@
 package br.com.gz.migration.policy;
 
-import java.util.ArrayList;
-import java.util.Collections;
 
 final class MercoFlexRequiredColumns {
 

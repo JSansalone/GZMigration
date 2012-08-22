@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
@@ -16,7 +15,6 @@ import br.com.gz.migration.exception.InvalidCellTypeException;
 import br.com.gz.migration.exception.InvalidMigrationDataTypeException;
 import br.com.gz.migration.exception.ReachedTheEndOfFileException;
 import br.com.gz.migration.exception.ReachedTheStartOfFileException;
-import br.com.gz.migration.exception.RequiredColumnNotFilledException;
 import br.com.gz.migration.exception.RequiredColumnNotFoundException;
 import br.com.gz.migration.policy.EnMercoFlexRequiredColumns;
 import br.com.gz.util.GZSoftwares;

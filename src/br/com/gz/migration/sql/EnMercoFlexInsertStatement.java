@@ -2,7 +2,6 @@ package br.com.gz.migration.sql;
 
 import org.database.connection.DatabaseType;
 
-import br.com.gz.bean.Produto;
 import br.com.gz.migration.policy.EnColumnsCategory;
 import br.com.gz.migration.policy.EnMercoFlexRequiredColumns;
 

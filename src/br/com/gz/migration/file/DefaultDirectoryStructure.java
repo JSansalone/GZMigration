@@ -1,11 +1,6 @@
 package br.com.gz.migration.file;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import org.database.table.Estoque;
 
 import br.com.gz.migration.EnMigrationDataType;
 import br.com.gz.migration.datafile.DataFileWriter;
